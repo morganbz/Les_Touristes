@@ -13,18 +13,20 @@
     
     <nav>
         <ul>
+            <li><a href="?page=recherche_activitee">Rechercher une activitée</a></li>
+            <li><a href="?page=recherche_logement">Rechercher un logement</a></li>
             <li><a href="?page=compte">Compte</a></li>
-            <li><a href="">Ajouter un logement</a></li>
-            <li><a href="?page=recherche">Rechercher un logement</a></li>
         </ul>
     </nav>
     <?php
         if ($page == "home"){
             echo "home";
+        } elseif ($page == "recherche_activitee"){
+            echo "on est sur le recherche activitee";
+        } elseif ($page == "recherche_logement"){
+            echo "on est sur le recherche logement";
         } elseif ($page == "compte"){
-            echo "on est sur le compte";
-        } elseif ($page == "recherche"){
-            echo "recherche";
+            Compte();
         }
     ?>
 </body>
