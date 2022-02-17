@@ -1,5 +1,5 @@
 <?php //Actions 
-  if (!isset($_GET["page"]){
+  if (!isset($_GET["page"])){
     page = "home";
   }
 ?>
