@@ -18,7 +18,7 @@
             <li><a href="?page=compte">Compte</a></li>
         </ul>
     </nav>
-    <a href="addUser.php">REGISTER</a>
+    <a href="?page=register">REGISTER</a>
     <?php
         if ($page == "home"){
             echo "home";
@@ -28,6 +28,10 @@
             echo "on est sur le recherche logement";
         } elseif ($page == "compte"){
             Compte();
+        }
+
+        if($page == "register"){
+            include_once "addUser.php";
         }
     ?>
 </body>
