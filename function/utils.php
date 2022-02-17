@@ -10,7 +10,9 @@ function isTextGoodLength($text, $max_length){
     return $good_length;
 }
 
-
+function isGoodBirthDate($birth_date){
+    return $birth_date < date("Y-m-d", time());
+}
 
 function hash_password($password){
     return password_hash($password, PASSWORD_BCRYPT);
