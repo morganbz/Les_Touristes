@@ -4,11 +4,7 @@ include_once "constant.php";
 
 include_once "db.php";
 
-include_once "compte.php";
-
-include_once "addLogement.php";
-
-include_once "addUser.php";
+include_once "function/function_db.php";
 
 include_once "action.php";
 

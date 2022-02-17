@@ -23,15 +23,20 @@
     <?php
         if ($page == "home"){
             echo "home";
-        } elseif ($page == "recherche_activitee"){
-            echo "on est sur le recherche activitee";
-        } elseif ($page == "recherche_logement"){
-            echo "on est sur le recherche logement";
-        } elseif ($page == "compte"){
-            Compte();
-        }elseif($page == "register"){
-            addUser();
         }
+        else if ($page == "recherche_activitee"){
+            echo "on est sur le recherche activitee";
+        }
+        else if ($page == "recherche_logement"){
+            echo "on est sur le recherche logement";
+        }
+        else if ($page == "user_page"){
+            include_once "compte.php";
+        }
+        else if($page == "register"){
+            include_once "add_user.php";
+        }
+        
     ?>
 </body>
 </html>

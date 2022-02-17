@@ -1,6 +1,3 @@
-<?php 
-function addLogement(){
-?>
 <h2>Ajouter un logement</h2>
 <form action="index.php" method="post">
   <div>
@@ -21,6 +18,3 @@ function addLogement(){
   </div>
 </form>
 
-<?php
-}
-?>
