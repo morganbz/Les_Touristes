@@ -16,9 +16,10 @@
             <li><a href="?page=recherche_activitee">Rechercher une activitée</a></li>
             <li><a href="?page=recherche_logement">Rechercher un logement</a></li>
             <li><a href="?page=compte">Compte</a></li>
+            <li><a href="?page=register">REGISTER</a></li>
         </ul>
     </nav>
-    <a href="?page=register">REGISTER</a>
+    
     <?php
         if ($page == "home"){
             echo "home";
@@ -28,12 +29,9 @@
             echo "on est sur le recherche logement";
         } elseif ($page == "compte"){
             Compte();
+        }elseif($page == "register"){
+            addUser();
         }
-
-        if($page == "register"){
-            include_once "addUser.php";
-        }
-    var_dump ($pageCompte);
     ?>
 </body>
 </html>

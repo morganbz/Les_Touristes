@@ -30,3 +30,4 @@
 
     <button id="submit" name="submit" value="Register" type="submit">Inscription</button>
 </form>
+
