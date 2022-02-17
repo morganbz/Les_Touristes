@@ -27,7 +27,9 @@
             $good_phone = false;
             $good_pass = false;
             $good_birth_date = false;
+        }
     }
+    
     else{
         $page = "home";
     
@@ -36,7 +38,7 @@
         }
     }
 
-  }
+  
 
 
 
