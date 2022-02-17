@@ -14,4 +14,8 @@ function Compte(){
   </ul>
 </nav>
 
-<?php } ?>
+<?php 
+if ($_GET["pageCompte"] == "ajoutAnnonce"){
+  addLogement();
+}
+} ?>
