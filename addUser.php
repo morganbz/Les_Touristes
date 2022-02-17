@@ -1,3 +1,6 @@
+<?php 
+function addUser(){
+    ?>
 <form action="index.php" method="post">
     <input placeholder="Prénom" type="text" name="firstname_register" id="firstname_register" required>
     <label for="firstname_register">Prénom</label>
@@ -26,3 +29,7 @@
 
     <button id="submit" name="submit" value="Register" type="submit">Inscription</button>
 </form>
+
+<?php 
+}
+?>
