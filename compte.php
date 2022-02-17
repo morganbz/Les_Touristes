@@ -15,7 +15,9 @@ function Compte(){
 </nav>
 
 <?php 
-if ($_GET["pageCompte"] == "ajoutAnnonce"){
+if ($pageCompte = "home"){
+  echo "page home du compte";
+} elseif ($pageCompte == "ajoutAnnonce"){
   addLogement();
 }
 } ?>
