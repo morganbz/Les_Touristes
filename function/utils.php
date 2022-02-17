@@ -10,6 +10,16 @@ function isTextGoodLength($text, $max_length){
     return $good_length;
 }
 
+function isTextBetweenLength($text, $minLength, $maxLength){
+    if(is_string($text)) {
+        $good_length = strlen($text) >= $minLength && strlen($text) <= $maxLength;   
+    }
+    else {
+        $good_length = false;   
+    }
+    return $good_length;
+}
+
 function isGoodBirthDate($birth_date){
     return $birth_date < date("Y-m-d", time());
 }

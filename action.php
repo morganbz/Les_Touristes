@@ -17,19 +17,53 @@
             $firstname = $_POST["firstname_register"];
             $lastname = $_POST["lastname_register"];
             $phone = $_POST["phone_register"];
-            $pass = $_POST["pass_register"];
             $birth_date = $_POST["birth_date_register"];
+            $pass = $_POST["pass_register"];
+            $conf_pass = $_POST["conf_pass_register"];
             $admin = $_POST["admin"];
     
+            $user_exist = true;
             $good_firstname = false;
             $good_lastname = false;
             $good_mail = false;
             $good_phone = false;
-            $good_pass = false;
             $good_birth_date = false;
+            $good_pass = false;
+            $good_conf_pass = false;
+
+            if(isTextGoodLength($firstname, 50)){
+                $good_firstname = true;
+            }
+            if(isTextGoodLength($lastname, 50)){
+                $good_lastname = true;
+            }
+            if(isTextGoodLength($firstname, 50)){
+                $good_firstname = true;
+            }
+            if(isTextGoodLength($mail, 150) && filter_var($mail, FILTER_VALIDATE_EMAIL)){
+                $good_mail = true;
+            }
+            if(isTextGoodLength($phone, 25)){
+                $good_phone = true;
+            }
+            if(isGoodBirthDate($birth_date)){
+                $good_birth_date = true;
+            }
+            if(isTextBetweenLength($password, 6, 50)){
+                $goodPassword = true;
+            }
+            if($good_pass && $conf_pass == $pass){
+                $good_conf_pass = true;
+            }
+            if($good_firstname && $good_lastname && $good_mail && $good_phone && $conf_pass && !($user_exist)){
+
+            }
+
+
+
         }
     }
-    
+
     else{
         $page = "home";
     
