@@ -31,10 +31,10 @@
             echo "on est sur le recherche logement";
         }
         else if ($page == "user_page"){
-            include_once "compte.php";
+            include_once "user_page.php";
         }
         else if($page == "register"){
-            include_once "add_user.php";
+            include_once "register.php";
         }
         
     ?>
