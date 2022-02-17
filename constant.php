@@ -1,1 +1,1 @@
-//fichier avec les differentes constantes
+<?php //fichier avec les differentes constantes ?>
