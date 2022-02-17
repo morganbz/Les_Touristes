@@ -1,5 +1,6 @@
 <?php //Actions 
-  if (!isset($_GET["page"])){
-    $page = "home";
+  $page = "home";
+  if (isset($_GET["page"])){
+    $page = $_GET["page"];
   }
 ?>
