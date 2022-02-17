@@ -3,6 +3,10 @@
     if (isset($_GET["page"])){
         $page = $_GET["page"];
     }
+    $pageCompte = "home";
+    if (isset($_GET["pageCompte"])){
+        $pageCompte = $_GET["pageCompte"];
+    }
     if(!empty($_POST)&&array_key_exists("submit", $_POST)){
         $submit = $_POST["submit"];
         if($submit == "register"){
