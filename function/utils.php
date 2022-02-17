@@ -1,5 +1,15 @@
 <?php
 
+function isTextGoodLength($text, $max_length){
+    if(is_string($text)){
+        $good_length = strlen($text) > 0 && strlen($text) <= $max_length;
+    }
+    else{
+        $good_length = false;
+    }
+    return $good_length;
+}
+
 
 
 function hash_password($password){
