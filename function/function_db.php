@@ -33,4 +33,6 @@ function addUser($mail, $firstname, $lastname, $birth_date, $phone, $password, $
 
 
 
+
+
 ?>
