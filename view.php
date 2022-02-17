@@ -33,6 +33,7 @@
         if($page == "register"){
             include_once "addUser.php";
         }
+    var_dump ($pageCompte);
     ?>
 </body>
 </html>
