@@ -19,6 +19,9 @@
         </ul>
     </nav>
     <?php
+    if ($_GET["page"] == "compte"){
+        echo "on est sur le compte";
+    }
     ?>
 </body>
 </html>
