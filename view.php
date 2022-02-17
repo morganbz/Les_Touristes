@@ -30,7 +30,7 @@
         } elseif ($page == "compte"){
             Compte();
         }elseif($page == "register"){
-            include_once "addUser.php";
+            addUser();
         }
     ?>
 </body>
