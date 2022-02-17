@@ -19,11 +19,11 @@
         </ul>
     </nav>
     <?php
-        if ($_GET["page"] == "home"){
+        if ($page == "home"){
             echo "home";
-        } elseif ($_GET["page"] == "compte"){
+        } elseif ($page == "compte"){
             echo "on est sur le compte";
-        } elseif ($_GET["page"] == "recherche"){
+        } elseif ($page == "recherche"){
             echo "recherche";
         }
     ?>
