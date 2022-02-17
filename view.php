@@ -18,6 +18,7 @@
             <li><a href="?page=compte">Compte</a></li>
         </ul>
     </nav>
+    <a href="addUser.php">REGISTER</a>
     <?php
         if ($page == "home"){
             echo "home";
