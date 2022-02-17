@@ -18,5 +18,7 @@
             <li><a href="">Rechercher un logement</a></li>
         </ul>
     </nav>
+    <?php
+    ?>
 </body>
 </html>
