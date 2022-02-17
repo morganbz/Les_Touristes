@@ -19,7 +19,9 @@
         </ul>
     </nav>
     <?php
-        if ($_GET["page"] == "compte"){
+        if ($_GET["page"] == "home"){
+            echo "home";
+        } elseif ($_GET["page"] == "compte"){
             echo "on est sur le compte";
         } elseif ($_GET["page"] == "recherche"){
             echo "recherche";
