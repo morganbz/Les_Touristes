@@ -70,12 +70,12 @@
                 </div>
 
                 <?php
-                    echo '<input type="text" class="display_none" name="id_company" id="id_company" value="'.$id_company.'">';
-                    echo '<input type="text" class="display_none" name="back_page" id="back_page" value="'.$back_page.'">';
+                //    echo '<input type="text" class="display_none" name="id_company" id="id_company" value="'.$id_company.'">';
+                //    echo '<input type="text" class="display_none" name="back_page" id="back_page" value="'.$back_page.'">';
                 ?>
 
                 <?php
-                    if($error!=null){
+                /*    if($error!=null){
                         if($error=="already_user"){
                             echo "<p class='mb-4'>Ce mail possède déjà un compte.</p>";
                         }
@@ -94,14 +94,14 @@
                         else if($error=="wrong_pass"){
                             echo "<p class='mb-4'>Les mots de passe sont différents</p>";
                         }
-                    }
+                    }*/
                 ?>
 
                 <button class="w-100 btn btn-primary btn-lg px-4 me-sm-3" id="submit" name="submit" value="Register" type="submit">Inscription</button>
                 &nbsp;
 
                 <?php
-                    echo '<p><a class="forget_password text-primary" href="?page=login&id_company='.$id_company.'&back_page=register">Déjà un compte ?</a></p>';
+                    //echo '<p><a class="forget_password text-primary" href="?page=login&id_company='.$id_company.'&back_page=register">Déjà un compte ?</a></p>';
                 ?>
                 <p class="mt-5 mb-3 text-muted">&copy; 2021–2022</p>
             </form>
