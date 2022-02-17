@@ -13,7 +13,8 @@
 <?php 
   if ($pageCompte = "home"){
     echo "page home du compte";
-  } elseif ($pageCompte == "ajoutAnnonce"){
+  }
+  else if ($pageCompte == "ajoutAnnonce"){
     addLogement();
   }
   var_dump ($pageCompte);
