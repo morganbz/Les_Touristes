@@ -1,5 +1,5 @@
 <?php
-    $page = "home";
+    /*$page = "home";
     if (isset($_GET["page"])){
         $page = $_GET["page"];
     }
@@ -8,7 +8,7 @@
         if (isset($_GET["pageCompte"])){
             $pageCompte = $_GET["pageCompte"];
         }
-    }
+    }*/
    
     if(!empty($_POST)&&array_key_exists("submit", $_POST)){
         $submit = $_POST["submit"];
@@ -27,6 +27,13 @@
             $good_phone = false;
             $good_pass = false;
             $good_birth_date = false;
+    }
+    else{
+        $page = "home";
+    
+        if(isset($_GET["page"])){
+            $page = $_GET["page"];
+        }
     }
 
   }
