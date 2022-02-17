@@ -15,13 +15,15 @@
         <ul>
             <li><a href="?page=compte">Compte</a></li>
             <li><a href="">Ajouter un logement</a></li>
-            <li><a href="">Rechercher un logement</a></li>
+            <li><a href="?page=recherche">Rechercher un logement</a></li>
         </ul>
     </nav>
     <?php
-    if ($_GET["page"] == "compte"){
-        echo "on est sur le compte";
-    }
+        if ($_GET["page"] == "compte"){
+            echo "on est sur le compte";
+        } elseif ($_GET["page"] == "recherche"){
+            echo "recherche";
+        }
     ?>
 </body>
 </html>
