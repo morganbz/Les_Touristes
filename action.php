@@ -12,7 +12,7 @@
    
     if(!empty($_POST)&&array_key_exists("submit", $_POST)){
         $submit = $_POST["submit"];
-        if($submit == "register"){
+        if($submit == "Register"){
             $mail = $_POST["mail_register"];
             $firstname = $_POST["firstname_register"];
             $lastname = $_POST["lastname_register"];
