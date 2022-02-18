@@ -1,6 +1,6 @@
 <?php
 
-function addUser($mail, $firstname, $lastname, $birth_date, $phone, $password, $isAdmin, $idUserInfo){
+function addUser($mail, $firstname, $lastname, $birth_date, $phone, $password, $isAdmin){
     global $base;
 
     mysqli_real_escape_string($base, $mail);
@@ -24,6 +24,21 @@ function addUser($mail, $firstname, $lastname, $birth_date, $phone, $password, $
             VALUES ($mail, $password,$isAdmin)";
 
     mysqli_query($base, $sql);
+}
+
+function getUser($mail){
+        global $base;
+
+        $sql = "SELECT 
+                        mail
+                FROM User 
+                WHERE mail = $mail";
+        
+        $result = mysqli_query($base, $sql);
+
+        $user = mysqli_fetch_array($result);
+
+        return $user;
 }
 
 

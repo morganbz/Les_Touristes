@@ -31,6 +31,11 @@
             $good_pass = false;
             $good_conf_pass = false;
 
+            $user = getUser($mail);
+
+            if($user == null){
+                $user_exist = false;   
+            }
             if(isTextGoodLength($firstname, 50)){
                 $good_firstname = true;
             }
@@ -56,11 +61,9 @@
                 $good_conf_pass = true;
             }
             if($good_firstname && $good_lastname && $good_mail && $good_phone && $conf_pass && !($user_exist)){
-
+                addUser($mail, $firstname, $lastname, $birth_date, $phone, hash_password($pass), $admin);
+                
             }
-
-
-
         }
     }
 
