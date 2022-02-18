@@ -17,12 +17,13 @@ function addUser($mail, $firstname, $lastname, $birth_date, $phone, $password, $
 
         $sql = "INSERT INTO User_info(mail, firstname, lastname, birth_date, phone) 
                 VALUES ('$mail', '$firstname', '$lastname', '$birth_date', '$phone')";
-        echo $sql;
     
-        mysqli_query($base, $sql);
+        //mysqli_query($base, $sql);
 
         $sql = "INSERT INTO User(mail, password, admin) 
                 VALUES ('$mail', '$password', $isAdmin)";
+
+        echo $sql;
 
         mysqli_query($base, $sql);
 }
