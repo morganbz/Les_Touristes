@@ -54,7 +54,7 @@
             if(isGoodBirthDate($birth_date)){
                 $good_birth_date = true;
             }
-            if(isTextBetweenLength($password, 6, 50)){
+            if(isTextBetweenLength($conf_pass, 6, 50)){
                 $goodPassword = true;
             }
             if($good_pass && $conf_pass == $pass){
