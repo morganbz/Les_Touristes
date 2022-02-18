@@ -62,8 +62,9 @@
             }
             if($good_firstname && $good_lastname && $good_mail && $good_phone && $conf_pass && !($user_exist)){
                 addUser($mail, $firstname, $lastname, $birth_date, $phone, hash_password($pass), $admin);
-                
+                echo "PUTE";
             }
+            echo "SUCE";
         }
     }
 
