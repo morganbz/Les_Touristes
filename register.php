@@ -40,7 +40,7 @@
 
     <div>
         <label>
-            <input type="checkbox" value="admin"> Admin
+            <input type="checkbox" value="1" name="admin_register" id="admin_register"> Admin
         </label>
     </div>
 
