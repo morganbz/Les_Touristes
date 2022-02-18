@@ -3,6 +3,8 @@
 function addUser($mail, $firstname, $lastname, $birth_date, $phone, $password, $isAdmin){
         global $base;
 
+        echo $birth_date;
+
         mysqli_real_escape_string($base, $mail);
 
         mysqli_real_escape_string($base, $firstname);
