@@ -20,7 +20,7 @@
             $birth_date = date('Y-m-d', strtotime($_POST["birth_date_register"]));
             $pass = $_POST["pass_register"];
             $conf_pass = $_POST["conf_pass_register"];
-            $admin = $_POST["admin"];
+            $admin = $_POST["admin_register"];
     
             $user_exist = true;
             $good_firstname = false;
