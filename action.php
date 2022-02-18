@@ -17,7 +17,7 @@
             $firstname = $_POST["firstname_register"];
             $lastname = $_POST["lastname_register"];
             $phone = $_POST["phone_register"];
-            $birth_date = $_POST["birth_date_register"];
+            $birth_date = date('Y-m-d', strtotime($_POST["birth_date_register"]));
             $pass = $_POST["pass_register"];
             $conf_pass = $_POST["conf_pass_register"];
             $admin = $_POST["admin"];
