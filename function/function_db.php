@@ -16,7 +16,7 @@ function addUser($mail, $firstname, $lastname, $birth_date, $phone, $password, $
         mysqli_real_escape_string($base, $password);
 
         $sql = "INSERT INTO User_info(mail, firstname, lastname, birth_date, phone) 
-                VALUES ($mail, $firstname, $lastname, $birth, $phone)";
+                VALUES ($mail, $firstname, $lastname, $birth_date, $phone)";
         echo $sql;
     
         mysqli_query($base, $sql);
