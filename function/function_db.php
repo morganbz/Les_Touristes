@@ -34,7 +34,7 @@ function getUser($mail){
         $sql = "SELECT 
                         mail
                 FROM User 
-                WHERE mail = $mail";
+                WHERE mail = '$mail'";
         
         $result = mysqli_query($base, $sql);
 
