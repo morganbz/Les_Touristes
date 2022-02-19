@@ -51,7 +51,7 @@
             if(isTextGoodLength($phone, 25)){
                 $good_phone = true;
             }
-            if(isGoodBirthDate($birth_date)){
+            if(isGoodDateBeforeToday($birth_date)){
                 $good_birth_date = true;
             }
             if(isTextBetweenLength($conf_pass, 6, 50)){
@@ -64,8 +64,66 @@
                 addUser($mail, $firstname, $lastname, $birth_date, $phone, hash_password($pass), $admin);
             }
         }
-    }
+        if($submit == "Add_housing"){
+            $id_owner = $_POST[""];
+            $type = $_POST[""];
+            $latitude = $_POST[""];
+            $longitude = $_POST[""];
+            $name = $_POST[""];
+            $description = $_POST[""];
 
+            $good_id_owner = false;
+            $good_type = false;
+            $good_latitude = false;
+            $good_longitude = false;
+            $good_name = false;
+            $good_description = false;
+
+            if(isTextGoodLength($name, 50)){
+                $good_name = true;
+            }
+            if(is_float($longitude)){
+                $good_longitude = true;
+            }
+            if(is_float($latitude)){
+                $good_latitude = true;
+            }
+            if(is_int($type)){
+                $good_type = true;
+            }
+            if(is_int($id_owner)){
+                $good_id_owner = true;
+            }
+            if(is_string($description)){
+                $good_description = true;
+            }
+            if($good_id_owner && $good_type && $good_latitude && $good_longitude && $good_name && $good_description){
+                addHousing($id_owner, $type, $latitude, $longitude, $name, $description);
+            }
+        }
+        if($submit == "Add_announce"){
+            $price = $_POST[""];
+            $date_start = $_POST[""];
+            $id_housing = $_POST[""];
+
+            $good_price = false;
+            $good_date_start = false;
+            $good_id_housing = false;
+
+            if(is_int($type)){
+                $good_type = true;
+            }
+            if(is_int($id_owner)){
+                $good_id_owner = true;
+            }
+            if(isGoodDateBeforeToday($date_start)){
+                $good_date_start = true;
+            }
+            if($good_date_start && $good_type && $good_type){
+                addAnnounce($price, $date_start, $id_housing);
+            }
+        }
+    }
     else{
         $page = "home";
     

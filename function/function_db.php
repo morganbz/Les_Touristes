@@ -41,12 +41,29 @@ function getUser($mail){
         return $user;
 }
 
+function addHousing($id_owner, $type, $latitude, $longitude, $name, $description){
+        global $base;
 
+        mysqli_real_escape_string($base, $name);
 
+        mysqli_real_escape_string($base, $description);
 
+        $sql = "INSERT INTO housing (id_owner, type, latitude, longitude, nom, image_folder, description) 
+                VALUES ($id_owner, $type, $latitude, $longitude, '$name', '$description')";
 
+        mysqli_query($base, $sql);        
+}
 
+function addAnnounce($price, $date_start, $id_housing){
+        global $base;
 
+        mysqli_real_escape_string($base, $date);
+
+        $sql = "INSERT INTO Announce(price, date_start, isTaken, id_housing)
+                VALUES ($price, '$date_start', 0, $id_housing)";
+
+        mysqli_query($base, $sql);
+}
 
 
 
