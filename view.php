@@ -17,6 +17,7 @@
             <li><a href="?page=recherche_logement">Rechercher un logement</a></li>
             <li><a href="?page=compte">Compte</a></li>
             <li><a href="?page=register">REGISTER</a></li>
+            <li><a href="?page=add_housing">ADD HOUSING</a></li>
         </ul>
     </nav>
     
@@ -35,6 +36,12 @@
         }
         else if($page == "register"){
             include_once "register.php";
+        }
+        else if($page == "add_housing"){
+            include_once "add_housing.php";
+        }
+        else if($page == "add_announce"){
+            include_once "add_announce.php";
         }
         
     ?>

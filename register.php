@@ -1,7 +1,3 @@
-<?php
-    echo date("Y-m-d", time());
-?>
-
 <form action="index.php" method="post">
     <div>
         <input placeholder="Prénom" type="text" name="firstname_register" id="firstname_register" required>

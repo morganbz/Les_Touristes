@@ -65,12 +65,12 @@
             }
         }
         if($submit == "Add_housing"){
-            $id_owner = $_POST[""];
-            $type = $_POST[""];
-            $latitude = $_POST[""];
-            $longitude = $_POST[""];
-            $name = $_POST[""];
-            $description = $_POST[""];
+            $id_owner = $_POST["id_owner_housing"];
+            $type = $_POST["type_housing"];
+            $latitude = $_POST["latitude_housing"];
+            $longitude = $_POST["longitude_housing"];
+            $name = $_POST["name_housing"];
+            $description = $_POST["description_housing"];
 
             $good_id_owner = false;
             $good_type = false;
@@ -102,24 +102,24 @@
             }
         }
         if($submit == "Add_announce"){
-            $price = $_POST[""];
-            $date_start = $_POST[""];
-            $id_housing = $_POST[""];
+            $id_housing = $_POST["id_housing_announce"];
+            $price = $_POST["price_announce"];
+            $date_start = $_POST["price_announce"];
 
+            $good_id_housing = false;
             $good_price = false;
             $good_date_start = false;
-            $good_id_housing = false;
 
             if(is_int($type)){
                 $good_type = true;
             }
-            if(is_int($id_owner)){
-                $good_id_owner = true;
+            if(is_int($id_housing)){
+                $good_id_housing = true;
             }
             if(isGoodDateBeforeToday($date_start)){
                 $good_date_start = true;
             }
-            if($good_date_start && $good_type && $good_type){
+            if($good_date_start && $good_id_housing && $good_type){
                 addAnnounce($price, $date_start, $id_housing);
             }
         }

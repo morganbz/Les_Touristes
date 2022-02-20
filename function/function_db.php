@@ -48,7 +48,7 @@ function addHousing($id_owner, $type, $latitude, $longitude, $name, $description
 
         mysqli_real_escape_string($base, $description);
 
-        $sql = "INSERT INTO housing (id_owner, type, latitude, longitude, nom, image_folder, description) 
+        $sql = "INSERT INTO housing (id_owner, type, latitude, longitude, nom, description) 
                 VALUES ($id_owner, $type, $latitude, $longitude, '$name', '$description')";
 
         mysqli_query($base, $sql);        
@@ -65,6 +65,16 @@ function addAnnounce($price, $date_start, $id_housing){
         mysqli_query($base, $sql);
 }
 
+function verifUser($mail, $password){
+        global $base;
+        
+        mysqli_real_escape_string($base, $mail);
 
+        mysqli_real_escape_string($base, $password;
+
+        $sql = "SELECT id, admin, mail, password FROM User WHERE mail = $mail AND password = $password";
+        
+        $user = mysqli_fetch_array($base, $sql);
+}
 
 ?>
