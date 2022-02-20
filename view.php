@@ -8,7 +8,7 @@
 </head>
 <body>
     <header>
-        <marquee><h1>Salut les touristes !</h1></marquee>
+        <h1>Salut les touristes !</h1>
     </header>
     
     <nav>
