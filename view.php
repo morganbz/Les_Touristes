@@ -18,6 +18,7 @@
             <li><a href="?page=compte">Compte</a></li>
             <li><a href="?page=register">REGISTER</a></li>
             <li><a href="?page=add_housing">ADD HOUSING</a></li>
+            <li><a href="?page=add_announce">ADD ANNOUNCE</a></li>
         </ul>
     </nav>
     
