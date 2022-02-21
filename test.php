@@ -17,6 +17,7 @@
 <body>
 	<div class="container">
 		<center><h1>Access Google Maps API in PHP</h1></center>
+		<span>Location:</span><input type="text" id="txtautocomplete" style="width:400px" placeholder="Enter the address">
 		<div id="map"></div>
 	</div>
 </body>
