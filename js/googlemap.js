@@ -4,7 +4,7 @@ function initialize(){
     var autocomplete = new google.maps.places.Autocomplete("Allée des Treilles, 73190, Apremont, France");
         google.maps.event.addListener(autocomplete, 'place_changed', function(){
             var place = autocomplete.getPlace();
-            var location = {lat: place.geometry.location.A, lng: place.geometry.F};
+            var location = {lat: place.geometry.location.A, lng: place.geometry.location.F};
         });
 }
 
