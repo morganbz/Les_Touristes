@@ -17,5 +17,4 @@
   else if ($pageCompte == "ajoutAnnonce"){
     addLogement();
   }
-  var_dump ($pageCompte);
 ?>

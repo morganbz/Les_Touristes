@@ -15,7 +15,7 @@
         <ul>
             <li><a href="?page=recherche_activitee">Rechercher une activitée</a></li>
             <li><a href="?page=recherche_logement">Rechercher un logement</a></li>
-            <li><a href="?page=compte">Compte</a></li>
+            <li><a href="?page=user_page">Compte</a></li>
             <li><a href="?page=register">REGISTER</a></li>
             <li><a href="?page=add_housing">ADD HOUSING</a></li>
             <li><a href="?page=add_announce">ADD ANNOUNCE</a></li>
