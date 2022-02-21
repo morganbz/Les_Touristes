@@ -1,11 +1,11 @@
 function loadMap() {
-    var uluru = { lat: -25.344, lng: 131.036 };
+    var Theo = { lat: 45.5312, lng: 5.9522 };
     var map = new google.maps.Map(document.getElementById("map"), {
         zoom: 4,
-        center: uluru,
+        center: Theo,
     });
     var marker = new google.maps.Marker({
-        position: uluru,
+        position: Theo,
         map: map,
     });
 }
