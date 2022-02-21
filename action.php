@@ -112,6 +112,10 @@
                 addAnnounce($price, $date_start, $id_housing);
             }
         }
+        if($submit == "Search_Announce"){
+                
+            }
+        }
     }
     else{
         $page = "home";
