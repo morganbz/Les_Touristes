@@ -22,7 +22,7 @@
 	</div>
 </body>
 <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD52lPNRjz1eWF9DQzSvEzW8bAm__uKEpI&callback=loadMap&libraries=&v=weekly">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD52lPNRjz1eWF9DQzSvEzW8bAm__uKEpI&callback=loadMap">
 </script>
 </html>
 
