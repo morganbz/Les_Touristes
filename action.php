@@ -114,7 +114,6 @@
         }
         if($submit == "Search_Announce"){
                 
-            }
         }
     }
     else{
