@@ -30,10 +30,6 @@
 				center: new google.maps.LatLng(lat, lng),
 				zoom: zoom
 			});
-
-			var results = <?= json_encode($data); ?>
-
-			setMarkers(map,results);
 		}
 	</script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMo3P3AMsyG2sPjxzc6Vzs5ekRGoUEUk4&callback=initMap"></script>
