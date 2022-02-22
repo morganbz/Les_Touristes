@@ -15,14 +15,27 @@
 	</style>
 </head>
 <body>
-	<div class="container">
-		<center><h1>Access Google Maps API in PHP</h1></center>
-		<span>Location:</span><input type="text" id="txtautocomplete" style="width:400px" placeholder="Enter the address">
-		<div id="map"></div>
-	</div>
-</body>
-<script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMo3P3AMsyG2sPjxzc6Vzs5ekRGoUEUk4&callback=loadMap">
-</script>
+	<input type="text" id="lat" value=46>latitude
+	<input type="text" id="lng" value=2>longitude
+	<input type="text" id="zoom" value=6>zoom
+	<button onclick="initMap()">Generer Map</button>
+	<div id="map"></div>
+
+	<script>
+		function initMap() {
+			let lat = parseFloat(document.querySelector('#lat').value);
+			let lng = parseFloat(document.querySelector('#lng').value);
+			let zoom = parseFloat(document.querySelector('#zoom').value);
+			var map = new google.maps.Map(document.getElementById('map'), {
+				center: new google.maps.LatLng(lat, lng),
+				zoom: zoom
+			});
+
+			var results = <?= json_encode($data); ?>
+
+			setMarkers(map,results);
+		}
+	</script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMo3P3AMsyG2sPjxzc6Vzs5ekRGoUEUk4&callback=initMap"></script>
 </html>
 
