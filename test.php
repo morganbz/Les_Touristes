@@ -30,6 +30,43 @@
 				center: new google.maps.LatLng(lat, lng),
 				zoom: zoom
 			});
+
+			var results = <?= json_encode($data); ?>
+
+			setMarkers(map,results);
+		}
+
+		function setMarkers(map,locations) {
+			for(var i=0; i<locations.length; i++){
+				var station = locations[i];
+				var myLatLng = new google.maps.LatLng(station['latitude'], station['longitude']);
+				var infoWindow = new google.maps.InfoWindow();
+
+				var marker = new google.maps.Marker({
+					position: myLatLng,
+					map: map,
+					title: station['marker_ville']
+				});
+
+				(function(i){
+					google.maps.event.addListener(marker, "click",function(){
+						var station = locations[i];
+						infoWindow.close();
+
+						infoWindow.setContent(
+							"<div id='infoWindow'>"
+							+"<p>Département : "+station['departement']+"<p>"
+							+"<p>Direction : "+station['direction']+"<p>"
+							+"<p>Département : "+station['emplacement']+"<p>"
+							+"<p>Coordonnée : "+station['latitude']+", "+station['longitude']+"<p>"
+							+"<p>Route : "+station['route']+"<p>"
+							+"<p>Type : "+station['type']+"<p>"
+							+"</div>"
+						);
+						infoWindow.open(map,this);
+					});
+				})(i);
+			}
 		}
 	</script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMo3P3AMsyG2sPjxzc6Vzs5ekRGoUEUk4&callback=initMap"></script>
