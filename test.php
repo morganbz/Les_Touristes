@@ -33,7 +33,7 @@
 
 			var results = <?= json_encode($data); ?>
 
-			setMarkers(map,results);
+			//setMarkers(map,results);
 		}
 
 		function setMarkers(map,locations) {
