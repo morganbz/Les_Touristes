@@ -17,16 +17,16 @@
         </style>
     </head>
 	<body>
-	<input type="text" id="lat" value=46>latitude
+	<input type="text" id="lat">latitude
         <br>
-		<input type="text" id="lng" value=2>longitude
+		<input type="text" id="lng">longitude
         <br>
-		<button onclick="initMap()">Generer Map</button>
+		<button onclick="loadMapCoord()">Generer Map</button>
 		<br>
         <br>
 		<input type="text" id="address">addresse
         <br>
-		<button onclick="loadMap()">Generer Map</button>
+		<button onclick="loadMapAddress()">Generer Map</button>
         <br>
         <br>
         <input type="text" id="zoom" value=6>zoom
@@ -36,6 +36,16 @@
 		<script>
             
 			function initMap() {
+				let lat = parseFloat(document.querySelector('#lat').value);
+				let lng = parseFloat(document.querySelector('#lng').value);
+				let zoom = parseFloat(document.querySelector('#zoom').value);
+				var map = new google.maps.Map(document.getElementById('map'), {
+					center: new google.maps.LatLng(46, 2),
+					zoom: zoom
+				});
+			}
+
+			function loadMapCoord() {
 				let lat = parseFloat(document.querySelector('#lat').value);
 				let lng = parseFloat(document.querySelector('#lng').value);
 				let zoom = parseFloat(document.querySelector('#zoom').value);
@@ -68,7 +78,7 @@
 				}
 			}
 
-            function loadMap(){
+            function loadMapAddress(){
                 addressCoord(function(){
                     let zoom = parseFloat(document.querySelector('#zoom').value);
                     var map = new google.maps.Map(document.getElementById('map'), {
