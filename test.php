@@ -17,17 +17,24 @@
         </style>
     </head>
 	<body>
-		<input type="text" id="lat" value=46>latitude
+	<input type="text" id="lat" value=46>latitude
+        <br>
 		<input type="text" id="lng" value=2>longitude
-		<input type="text" id="zoom" value=6>zoom
+        <br>
 		<button onclick="initMap()">Generer Map</button>
 		<br>
+        <br>
 		<input type="text" id="address">addresse
-		<button onclick="addressCoord()">Generer Coord</button>
+        <br>
+		<button onclick="loadMap()">Generer Map</button>
+        <br>
+        <br>
+        <input type="text" id="zoom" value=6>zoom
 		<br>
 		<div id="map"></div>
 
 		<script>
+            
 			function initMap() {
 				let lat = parseFloat(document.querySelector('#lat').value);
 				let lng = parseFloat(document.querySelector('#lng').value);
@@ -38,11 +45,13 @@
 				});
 
 				let marker = new google.maps.Marker({
-				position: {lat, lng},
-				map: map
+                    position: new google.maps.LatLng(lat, lng),
+                    map: map
 				});
 			}
-			function addressCoord(){
+
+
+			function addressCoord(next){
 				var adresse = document.querySelector('#address').value;
 				if(adresse != ""){
 					var geocoder =  new google.maps.Geocoder();
@@ -50,14 +59,30 @@
 						if (status == google.maps.GeocoderStatus.OK) {
 							latitude = results[0].geometry.location.lat();
 							longitude = results[0].geometry.location.lng();
-						} else {
+						}
+                        else {
 							alert("Something got wrong " + status);
 						}
-						console.log(latitude);
-						console.log(longitude);
+                        next();
 					});
 				}
 			}
+
+            function loadMap(){
+                addressCoord(function(){
+                    let zoom = parseFloat(document.querySelector('#zoom').value);
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                        center: new google.maps.LatLng(latitude, longitude),
+                        zoom: zoom
+				    });
+                    
+                    let marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(latitude, longitude),
+                        map: map
+                    });
+                });
+            }
+
 
 			function setMarkers(map,locations) {
 				for(var i=0; i<locations.length; i++){
