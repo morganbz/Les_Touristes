@@ -69,6 +69,6 @@
 			}
 		}
 	</script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMo3P3AMsyG2sPjxzc6Vzs5ekRGoUEUk4&callback=initMap"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6q4hVJGUioenp17tQTqiCS9dLDWbgATw&callback=initMap"></script>
 </html>
 
