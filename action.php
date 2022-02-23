@@ -52,8 +52,6 @@
             if($good_firstname && $good_lastname && $good_mail && $good_phone && $conf_pass && !($user_exist)){
                 addUser($mail, $firstname, $lastname, $birth_date, $phone, hash_password($pass), $admin);
             }
-<<<<<<< HEAD
-=======
         }
         if($submit == "Add_housing"){
             $id_owner = $_POST["id_owner_housing"];
@@ -116,7 +114,6 @@
         }
         if($submit == "Search_Announce"){
                 
->>>>>>> 377b2764c2c387146775b4116cb28c11ca9e56e9
         }
     }
     else{
