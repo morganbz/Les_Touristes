@@ -33,6 +33,9 @@
 					zoom: zoom
 				});
 
+				let marker = new google.maps.Marker({
+				position: {lat, lng},
+				map: map
 			}
 
 			function setMarkers(map,locations) {
