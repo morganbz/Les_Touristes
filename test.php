@@ -17,7 +17,8 @@
         </style>
     </head>
 	<body>
-	<input type="text" id="lat">latitude
+
+		<input type="text" id="lat">latitude
         <br>
 		<input type="text" id="lng">longitude
         <br>
@@ -92,7 +93,6 @@
                     });
                 });
             }
-
 
 			function setMarkers(map,locations) {
 				for(var i=0; i<locations.length; i++){
