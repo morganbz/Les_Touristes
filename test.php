@@ -31,9 +31,6 @@
 				zoom: zoom
 			});
 
-			var results = <?= json_encode($data); ?>
-
-			//setMarkers(map,results);
 		}
 
 		function setMarkers(map,locations) {
