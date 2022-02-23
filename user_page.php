@@ -1,12 +1,12 @@
 
 <nav>
   <ul>
-    <li><a href="?page=compte&pageCompte=modifInfos">Modifier mes informations</a></li>
-    <li><a href="?page=compte&pageCompte=modifMDP">Modifier mon mot de passe</a></li>
-    <li><a href="?page=compte&pageCompte=voirRecommandations">Voir mes recommandations</a></li>
-    <li><a href="?page=compte&pageCompte=ajoutRecommandation">Ajouter une recommandation</a></li>
-    <li><a href="?page=compte&pageCompte=voirAnnonces">Voir mes annonces</a></li>
-    <li><a href="?page=compte&pageCompte=ajoutAnnonce">Ajouter une annonce</a></li>
+    <li><a href="?page=user_page&pageCompte=modifInfos">Modifier mes informations</a></li>
+    <li><a href="?page=user_page&pageCompte=modifMDP">Modifier mon mot de passe</a></li>
+    <li><a href="?page=user_page&pageCompte=voirRecommandations">Voir mes recommandations</a></li>
+    <li><a href="?page=user_page&pageCompte=ajoutRecommandation">Ajouter une recommandation</a></li>
+    <li><a href="?page=user_page&pageCompte=voirAnnonces">Voir mes annonces</a></li>
+    <li><a href="?page=user_page&pageCompte=ajoutAnnonce">Ajouter une annonce</a></li>
   </ul>
 </nav>
 
@@ -17,5 +17,4 @@
   else if ($pageCompte == "ajoutAnnonce"){
     addLogement();
   }
-  var_dump ($pageCompte);
 ?>

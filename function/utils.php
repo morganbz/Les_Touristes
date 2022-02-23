@@ -20,8 +20,8 @@ function isTextBetweenLength($text, $minLength, $maxLength){
     return $good_length;
 }
 
-function isGoodBirthDate($birth_date){
-    return $birth_date < date("Y-m-d", strtotime(time()));
+function isGoodDateBeforeToday($date){
+    return $date < date("Y-m-d", strtotime(time()));
 }
 
 function hash_password($password){

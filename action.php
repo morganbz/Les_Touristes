@@ -1,15 +1,4 @@
 <?php
-    /*$page = "home";
-    if (isset($_GET["page"])){
-        $page = $_GET["page"];
-    }
-    if ($page = "compte"){
-         $pageCompte = "home";
-        if (isset($_GET["pageCompte"])){
-            $pageCompte = $_GET["pageCompte"];
-        }
-    }*/
-   
     if(!empty($_POST)&&array_key_exists("submit", $_POST)){
         $submit = $_POST["submit"];
         if($submit == "Register"){
@@ -51,7 +40,7 @@
             if(isTextGoodLength($phone, 25)){
                 $good_phone = true;
             }
-            if(isGoodBirthDate($birth_date)){
+            if(isGoodDateBeforeToday($birth_date)){
                 $good_birth_date = true;
             }
             if(isTextBetweenLength($conf_pass, 6, 50)){
@@ -63,9 +52,73 @@
             if($good_firstname && $good_lastname && $good_mail && $good_phone && $conf_pass && !($user_exist)){
                 addUser($mail, $firstname, $lastname, $birth_date, $phone, hash_password($pass), $admin);
             }
+<<<<<<< HEAD
+=======
+        }
+        if($submit == "Add_housing"){
+            $id_owner = $_POST["id_owner_housing"];
+            $type = $_POST["type_housing"];
+            $latitude = $_POST["latitude_housing"];
+            $longitude = $_POST["longitude_housing"];
+            $name = $_POST["name_housing"];
+            $description = $_POST["description_housing"];
+
+            $good_id_owner = false;
+            $good_type = false;
+            $good_latitude = false;
+            $good_longitude = false;
+            $good_name = false;
+            $good_description = false;
+
+            if(isTextGoodLength($name, 50)){
+                $good_name = true;
+            }
+            if(is_float($longitude)){
+                $good_longitude = true;
+            }
+            if(is_float($latitude)){
+                $good_latitude = true;
+            }
+            if(is_int($type)){
+                $good_type = true;
+            }
+            if(is_int($id_owner)){
+                $good_id_owner = true;
+            }
+            if(is_string($description)){
+                $good_description = true;
+            }
+            if($good_id_owner && $good_type && $good_latitude && $good_longitude && $good_name && $good_description){
+                addHousing($id_owner, $type, $latitude, $longitude, $name, $description);
+            }
+        }
+        if($submit == "Add_announce"){
+            $id_housing = $_POST["id_housing_announce"];
+            $price = $_POST["price_announce"];
+            $date_start = $_POST["price_announce"];
+
+            $good_id_housing = false;
+            $good_price = false;
+            $good_date_start = false;
+
+            if(is_int($type)){
+                $good_type = true;
+            }
+            if(is_int($id_housing)){
+                $good_id_housing = true;
+            }
+            if(isGoodDateBeforeToday($date_start)){
+                $good_date_start = true;
+            }
+            if($good_date_start && $good_id_housing && $good_type){
+                addAnnounce($price, $date_start, $id_housing);
+            }
+        }
+        if($submit == "Search_Announce"){
+                
+>>>>>>> 377b2764c2c387146775b4116cb28c11ca9e56e9
         }
     }
-
     else{
         $page = "home";
     

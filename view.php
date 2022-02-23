@@ -8,15 +8,18 @@
 </head>
 <body>
     <header>
-        <marquee><h1>Salut les touristes !</h1></marquee>
+        <h1>Salut les touristes !</h1>
     </header>
     
     <nav>
         <ul>
             <li><a href="?page=recherche_activitee">Rechercher une activitée</a></li>
             <li><a href="?page=recherche_logement">Rechercher un logement</a></li>
-            <li><a href="?page=compte">Compte</a></li>
+            <li><a href="?page=user_page">Compte</a></li>
             <li><a href="?page=register">REGISTER</a></li>
+            <li><a href="?page=add_housing">ADD HOUSING</a></li>
+            <li><a href="?page=add_announce">ADD ANNOUNCE</a></li>
+            <li><a href="test.php">TEST GOOGLE</a></li>
         </ul>
     </nav>
     
@@ -36,6 +39,13 @@
         else if($page == "register"){
             include_once "register.php";
         }
+        else if($page == "add_housing"){
+            include_once "add_housing.php";
+        }
+        else if($page == "add_announce"){
+            include_once "add_announce.php";
+        }
+
         
     ?>
 </body>
