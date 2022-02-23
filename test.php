@@ -21,6 +21,10 @@
 		<input type="text" id="lng" value=2>longitude
 		<input type="text" id="zoom" value=6>zoom
 		<button onclick="initMap()">Generer Map</button>
+		<br>
+		<input type="text" id="address">addresse
+		<button onclick="addressCoord()">Generer Coord</button>
+		<br>
 		<div id="map"></div>
 
 		<script>
@@ -37,6 +41,22 @@
 				position: {lat, lng},
 				map: map
 				});
+			}
+			function addressCoord(){
+				var adresse = document.querySelector('#address').value;
+				if(adresse != ""){
+					var geocoder =  new google.maps.Geocoder();
+					geocoder.geocode( { 'address': adresse}, function(results, status) {
+						if (status == google.maps.GeocoderStatus.OK) {
+							latitude = results[0].geometry.location.lat();
+							longitude = results[0].geometry.location.lng();
+						} else {
+							alert("Something got wrong " + status);
+						}
+						console.log(latitude);
+						console.log(longitude);
+					});
+				}
 			}
 
 			function setMarkers(map,locations) {
