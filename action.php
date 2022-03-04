@@ -148,10 +148,10 @@
         if(isTextGoodLength($name, 50)){
             $good_name = true;
         }
-        if(is_float($longitude)){
+        if(is_float($longitude) || is_int($longitude)){
             $good_longitude = true;
         }
-        if(is_float($latitude)){
+        if(is_float($latitude) || is_int($latitude)){
             $good_latitude = true;
         }
         if(is_int($type)){
