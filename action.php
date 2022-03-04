@@ -157,14 +157,12 @@
         if(is_int($type)){
             $good_type = true;
         }
-        if(is_int($id_owner)){
-            $good_id_owner = true;
-        }
+
         if(is_string($description)){
             $good_description = true;
         }
 
-        if( $good_type && $good_latitude && $good_longitude && $good_name && $good_description && $good_price && $good_date_start && $good_date_end ){
+        if( $good_type && $good_latitude && $good_longitude && $good_name && $good_description && $good_price && $good_date_start ){
             echo "BITE";
             addHousingAndAnnounce($id_owner, $type, $latitude, $longitude, $name, $description, $price, $date_start, $date_end);
         }
