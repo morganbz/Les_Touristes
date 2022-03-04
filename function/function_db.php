@@ -84,8 +84,9 @@ function addHousingAndAnnounce($id_owner, $type, $latitude, $longitude, $name, $
 
         for($i = 1; $i <= $days; $i++ ){
 
+                $result = $currDate->format('Y-m-d H:i:s');
                 $sql = "INSERT INTO announce(price, date_start, isTaken, id_housing)
-                VALUES ($price, '$currDate->format('Y-m-d')', 0, $id_housing)";
+                VALUES ($price, '$result', 0, $id_housing)";
 
                 mysqli_query($base, $sql);
 
