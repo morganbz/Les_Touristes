@@ -68,8 +68,6 @@ function addAnnounce($price, $date_start, $id_housing){
 function addHousingAndAnnounce($id_owner, $type, $latitude, $longitude, $name, $description, $price, $date_start, $date_end){
         global $base;
 
-        mysqli_real_escape_string($base, $date);
-
         $sql = "INSERT INTO announce(price, date_start, isTaken, id_housing)
                 VALUES ($price, '$date_start', 0, $id_housing)";
 
@@ -78,11 +76,13 @@ function addHousingAndAnnounce($id_owner, $type, $latitude, $longitude, $name, $
         $id_housing = mysqli_insert_id($base);
 
         $dateDifference = abs(strtotime($date_end) - strtotime($date_start));
-        $dayDifference = floor(($dateDifference - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 *24) / (60 * 60 * 24));
+        $years  = floor($dateDifference / (365 * 60 * 60 * 24));
+        $months = floor(($dateDifference - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
+        $days   = floor(($dateDifference - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 *24) / (60 * 60 * 24));
 
         $currDate = new DateTime($date_start);
 
-        for($i = 1; $i <= $dayDifference; $i++ ){
+        for($i = 1; $i <= $days; $i++ ){
 
                 $sql = "INSERT INTO announce(price, date_start, isTaken, id_housing)
                 VALUES ($price, '$currDate->format('Y-m-d')', 0, $id_housing)";
