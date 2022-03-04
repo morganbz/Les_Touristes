@@ -80,7 +80,7 @@ function addHousingAndAnnounce($id_owner, $type, $latitude, $longitude, $name, $
         $months = floor(($dateDifference - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
         $days   = floor(($dateDifference - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 *24) / (60 * 60 * 24));
 
-        $currDate = new DateTime($date_start);
+        $currDate = $date_start;
 
         for($i = 1; $i <= $days; $i++ ){
 
