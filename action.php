@@ -133,16 +133,12 @@
         $good_longitude = false;
         $good_name = false;
         $good_description = false;
-        $good_id_housing = false;
         $good_price = false;
         $good_date_start = false;
         $good_date_end = false;
 
         if(is_int($price)){
             $good_price = true;
-        }
-        if(is_int($id_housing)){
-            $good_id_housing = true;
         }
         if(isGoodDateBeforeToday($date_start)){
             $good_date_start = true;
@@ -169,9 +165,10 @@
             $good_description = true;
         }
 
-
+        if($good_id_owner && $good_type && $good_latitude && $good_longitude && $good_name && $good_description && $good_price && $good_id_housing && $good_date_start && $good_date_end ){
             echo "BITE";
             addHousingAndAnnounce($id_owner, $type, $latitude, $longitude, $name, $description, $price, $date_start, $date_end);
+        }
     }
     else{
         $page = "home";
