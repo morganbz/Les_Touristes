@@ -127,45 +127,7 @@
         $date_start = $_POST["date_start_announce"];
         $date_end = $_POST["date_end_announce"];
 
-        $good_type = false;
-        $good_latitude = false;
-        $good_longitude = false;
-        $good_name = false;
-        $good_description = false;
-        $good_price = false;
-        $good_date_start = false;
-        $good_date_end = false;
-
-        if(is_int($price)){
-            $good_price = true;
-        }
-        if(isGoodDateBeforeToday($date_start)){
-            $good_date_start = true;
-        }
-        if($date_end >= $date_start){
-            $good_date_end = true;
-        }
-        if(isTextGoodLength($name, 50)){
-            $good_name = true;
-        }
-        if(is_float($longitude) || is_int($longitude)){
-            $good_longitude = true;
-        }
-        if(is_float($latitude) || is_int($latitude)){
-            $good_latitude = true;
-        }
-        if(is_int($type)){
-            $good_type = true;
-        }
-
-        if(is_string($description)){
-            $good_description = true;
-        }
-
-        if( $good_type && $good_latitude && $good_longitude && $good_name && $good_description && $good_price && $good_date_start ){
-            echo "BITE";
-            addHousingAndAnnounce($id_owner, $type, $latitude, $longitude, $name, $description, $price, $date_start, $date_end);
-        }
+        addHousingAndAnnounce($id_owner, $type, $latitude, $longitude, $name, $description, $price, $date_start, $date_end);
     }
     else{
         $page = "home";
