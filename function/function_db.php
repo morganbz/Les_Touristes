@@ -104,7 +104,9 @@ function verifUser($mail, $password){
 
         $sql = "SELECT id, admin, mail, password FROM user WHERE mail = '$mail' AND password = '$password'";
         
-        $user = mysqli_fetch_array($base, $sql);
+        $result = mysqli_query($base, $sql);
+
+        $user = mysqli_fetch_array($result);
 
         echo $sql;
 
