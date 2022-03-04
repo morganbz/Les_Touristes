@@ -127,7 +127,6 @@
         $date_start = $_POST["date_start_announce"];
         $date_end = $_POST["date_end_announce"];
 
-
         addHousingAndAnnounce($id_owner, $type, $latitude, $longitude, $name, $description, $price, $date_start, $date_end);
     }
     else{
