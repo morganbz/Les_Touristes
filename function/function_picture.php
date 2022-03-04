@@ -1,7 +1,7 @@
 <?php
 
 function createFolder($folder){
-    mkdir("test");
+    mkdir("test", 0777);
 }
 
 
