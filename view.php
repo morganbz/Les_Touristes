@@ -40,19 +40,19 @@
             include_once "user_page.php";
         }
         else if($page == "register"){
-            include_once "fomulaire/register.php";
+            include_once "register.php";
         }
         else if($page == "add_housing"){
-            include_once "fomulaire/add_housing.php";
+            include_once "add_housing.php";
         }
         else if($page == "add_announce"){
-            include_once "fomulaire/add_announce.php";
+            include_once "add_announce.php";
         }
         else if($page == "add_housing_announce"){
-            include_once "fomulaire/add_housing_announce.php";
+            include_once "add_housing_announce.php";
         }
         else if($page == "login"){
-            include_once "formulaire/login.php";
+            include_once "login.php";
         }
         else if($page == "search_housing"){
             include_once "search_housing.php";
