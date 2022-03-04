@@ -21,6 +21,7 @@
             <li><a href="?page=add_housing">ADD HOUSING</a></li>
             <li><a href="?page=add_announce">ADD ANNOUNCE</a></li>
             <li><a href="?page=add_housing_announce">ADD HOUSING + ANNOUNCE</a></li>
+            <li><a href="?page=search_housing">Recherche Logement</a></li>
             <li><a href="test.php">TEST GOOGLE</a></li>
         </ul>
     </nav>
@@ -52,6 +53,9 @@
         }
         else if($page == "login"){
             include_once "login.php";
+        }
+        else if($page == "search_housing"){
+            include_once "search_housing.php";
         }
 
         
