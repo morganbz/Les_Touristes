@@ -6,14 +6,9 @@
 
         <label for="id_owner_housing">Type de logement</label>
             <select name="type_housing">
-                <?
-                $TYPE_HOUSING = ["Maison", "Appartement", "Chalet", "Refuge"];
-                for($i=0;$i<sizeof($TYPE_HOUSING);$i++){
-
-                    echo"<option value='".$TYPE_HOUSING[$i]."'>".$i."</option>";
-        
-                }
-                ?>
+            <option value= 0>Maison</option>
+            <option value= 1>Appartement</option>
+            <option value= 2>Chalet</option>
             </select>
         </label>
 
