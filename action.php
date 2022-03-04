@@ -127,7 +127,6 @@
         $date_start = $_POST["date_start_announce"];
         $date_end = $_POST["date_end_announce"];
 
-        $good_id_owner = false;
         $good_type = false;
         $good_latitude = false;
         $good_longitude = false;
@@ -165,7 +164,7 @@
             $good_description = true;
         }
 
-        if($good_id_owner && $good_type && $good_latitude && $good_longitude && $good_name && $good_description && $good_price && $good_date_start && $good_date_end ){
+        if( $good_type && $good_latitude && $good_longitude && $good_name && $good_description && $good_price && $good_date_start && $good_date_end ){
             echo "BITE";
             addHousingAndAnnounce($id_owner, $type, $latitude, $longitude, $name, $description, $price, $date_start, $date_end);
         }
