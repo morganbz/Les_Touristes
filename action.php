@@ -129,11 +129,11 @@
             addHousingAndAnnounce($id_owner, $type, $latitude, $longitude, $name, $description, $price, $date_start, $date_end);
             createFolder("/public_html/Les_Touristes/picture_housing/test");
         }
-    }
-    if($submit == "Login"){
-        $mail = $_POST["mail_user"];
-        $password = $_POST["passWord"];
-        verifUser($mail, $password);
+        if($submit == "Login"){
+            $mail = $_POST["mail_user"];
+            $password = $_POST["passWord"];
+            verifUser($mail, $password);
+        }
     }
     else{
         $page = "home";
