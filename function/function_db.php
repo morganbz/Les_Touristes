@@ -106,7 +106,7 @@ function verifUser($mail, $password){
         
         $user = mysqli_fetch_array($base, $sql);
 
-        return $user;
+        echo $user;
 }
 
 function getUserById($id){
