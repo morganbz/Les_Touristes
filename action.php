@@ -128,12 +128,12 @@
     
             addHousingAndAnnounce($id_owner, $type, $latitude, $longitude, $name, $description, $price, $date_start, $date_end);
         }
-    }
         if($submit == "Login"){
             $mail = $_POST["mail_user"];
             $password = $_POST["passWord"];
             verifUser($mail, $password);
         }
+    }
     else{
         $page = "home";
     
