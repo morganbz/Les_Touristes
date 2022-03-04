@@ -5,6 +5,17 @@
     </div>
 
     <div>
+    <label for="id_owner_housing">Type de logement</label>
+    <?
+    for($i=0;$i<sizeof($TYPE_HOUSING);$i++){
+
+        echo"<input placeholder='Type de logement' type='checkbox' name='type_housing' value='".$TYPE_HOUSING[$i]."'>".$TYPE_HOUSING[$i]."<br>";
+        
+    }
+    ?>
+    </div>
+
+    <div>
         <input placeholder="Type de logement" type="int" name="type_housing" id="type_housing" required>
         <label for="type_housing">Type de logement</label>
     </div>
