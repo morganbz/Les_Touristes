@@ -19,6 +19,7 @@
             <li><a href="?page=register">REGISTER</a></li>
             <li><a href="?page=add_housing">ADD HOUSING</a></li>
             <li><a href="?page=add_announce">ADD ANNOUNCE</a></li>
+            <li><a href="?page=add_housing_announce">ADD HOUSING + ANNOUNCE</a></li>
             <li><a href="test.php">TEST GOOGLE</a></li>
         </ul>
     </nav>
@@ -44,6 +45,9 @@
         }
         else if($page == "add_announce"){
             include_once "add_announce.php";
+        }
+        else if($page == "add_housing_announce"){
+            include_once "add_housing_announce.php";
         }
 
         
