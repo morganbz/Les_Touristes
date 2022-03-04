@@ -1,6 +1,7 @@
 <?php
 
 function createFolder($folder){
+    boolean $folderIsCreate;
     if(is_dir("test")){
         $forderIsCreate = false;
     }
