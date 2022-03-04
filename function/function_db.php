@@ -108,6 +108,8 @@ function verifUser($mail, $password){
 
         echo $sql;
 
+        return $user;
+
 }
 
 function getUserById($id){
