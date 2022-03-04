@@ -5,9 +5,14 @@
     </div>
 
     <div>
-        <input placeholder="Type de logement" type="int" name="type_housing" id="type_housing" required>
-        <label for="type_housing">Type de logement</label>
-    </div>
+        <label for="id_owner_housing">Type de logement</label>
+            <select name="type_housing">
+            <option value= 0>Maison</option>
+            <option value= 1>Appartement</option>
+            <option value= 2>Chalet</option>
+            </select>
+        </label>
+        </div>
 
     <div>
         <input placeholder="Latitude"type="float" name="latitude_housing" id="latitude_housing" required>
