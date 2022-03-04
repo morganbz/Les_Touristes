@@ -10,7 +10,7 @@
                 <?
                 for($i=0;$i<sizeof($TYPE_HOUSING);$i++){
 
-                    echo"<option value='".$TYPE_HOUSING[$i]."'>".$i."</option>";
+                    echo"<option value='".$i."'>".$TYPE_HOUSING[$i]."</option>";
         
                 }
                 ?>
