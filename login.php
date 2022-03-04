@@ -5,7 +5,7 @@
     </div>
 
     <div>
-        <input placeholder="Mot de passe" type="text" name="passWord" id="password" required>
+        <input placeholder="Mot de passe" type="password" name="passWord" id="password" required>
         <label for="passWord">Mot de passe</label>
     </div>
 
