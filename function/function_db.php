@@ -102,7 +102,7 @@ function verifUser($mail, $password){
 
         mysqli_real_escape_string($base, $password);
 
-        $sql = "SELECT id, admin, mail, password FROM user WHERE mail = $mail AND password = $password";
+        $sql = "SELECT id, admin, mail, password FROM user WHERE mail = '$mail' AND password = '$password'";
         
         $user = mysqli_fetch_array($base, $sql);
 
