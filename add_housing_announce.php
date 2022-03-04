@@ -36,7 +36,7 @@
 
     <div>
         <input placeholder="Prix de l'annonce" type="int" name="price_announce" id="price_announce" required>
-        <label for="price_announce">Prix de l'annonce</label>
+        <label for="price_announce">Prix par nuit</label>
     </div>
 
     <div>
