@@ -4,7 +4,6 @@
         <label for="id_owner_housing">Id du propriétaire</label>
     </div>
 
-    <div>
         <label for="id_owner_housing">Type de logement</label>
             <select name="type_housing">
                 <?
@@ -16,7 +15,21 @@
                 ?>
             </select>
         </label>
-    </div>
+
+    <label>
+        Quel est votre sport favori ?<br />
+        <select name="sport">
+            <option value="badminton">badminton</option>
+            <option value="basketball">basketball</option>
+            <option value="équitation">équitation</option>
+            <option value="football">football</option>
+            <option value="handball">handball</option>
+            <option value="natation">natation</option>
+            <option value="tennis">tennis</option>
+            <option value="tir à l arc">tir à l arc</option>
+            <option value="voile">voile</option>
+        </select>
+    </label><br /><br />
 
     <div>
         <input placeholder="Type de logement" type="int" name="type_housing" id="type_housing" required>
