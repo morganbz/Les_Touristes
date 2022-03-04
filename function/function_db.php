@@ -65,6 +65,37 @@ function addAnnounce($price, $date_start, $id_housing){
         mysqli_query($base, $sql);
 }
 
+function addHousingAndAnnounce($id_owner, $type, $latitude, $longitude, $name, $description, $price, $date_start, $date_end){
+        global $base;
+
+        mysqli_real_escape_string($base, $date);
+
+        $sql = "INSERT INTO announce(price, date_start, isTaken, id_housing)
+                VALUES ($price, '$date_start', 0, $id_housing)";
+
+        mysqli_query($base, $sql);
+
+        $id_housing = mysqli_insert_id($base);
+
+        $dateDifference = abs(strtotime($date_end) - strtotime($date_start));
+        $dayDifference = floor(($dateDifference - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 *24) / (60 * 60 * 24));
+
+        $currDate = new DateTime($date_start);
+
+        for($i = 1; $i <= $dayDifference; $i++ ){
+
+                $sql = "INSERT INTO announce(price, date_start, isTaken, id_housing)
+                VALUES ($price, '$currDate', 0, $id_housing)";
+
+                mysqli_query($base, $sql);
+
+                $currDate = date("Y-m-d", strtotime($currDate.'+ 1 days'));
+
+        }
+
+
+}
+
 function verifUser($mail, $password){
         global $base;
         
