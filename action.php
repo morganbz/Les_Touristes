@@ -169,10 +169,9 @@
             $good_description = true;
         }
 
-        if($good_id_owner && $good_type && $good_latitude && $good_longitude && $good_name && $good_description && $good_price && $good_id_housing && $good_date_start && $good_date_end ){
+
             echo "BITE";
             addHousingAndAnnounce($id_owner, $type, $latitude, $longitude, $name, $description, $price, $date_start, $date_end);
-        }
     }
     else{
         $page = "home";
