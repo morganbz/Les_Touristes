@@ -142,8 +142,8 @@ function verifUser($mail, $password){
 function getUserById($id){
         global $base;
 
-        $sql = "SELECT  id, User.mail, admin, firstname, lastname, birth_date, phone, description
-        FROM User INNER JOIN User_info ON User.mail = User_info.mail
+        $sql = "SELECT  id, user.mail, admin, firstname, lastname, birth_date, phone, description
+        FROM user INNER JOIN user_info ON user.mail = user_info.mail
         WHERE id = $id";
         
         $result = mysqli_query($base, $sql);
