@@ -33,7 +33,7 @@
         else if ($page == "recherche_activitee"){
             echo "à venir";
         }
-        else if ($page == "recherche_logement"){
+        else if ($page == "search_housing_text"){
             displaySearch(searchAnnounce(0, 1000, "1900-01-01", "2070-01-01"));
         }
         else if ($page == "user_page"){
