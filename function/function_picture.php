@@ -9,8 +9,10 @@ function getData($ville){
 
     $res = [];
 
-    $sql = "SELECT id, departement, ville, adresse, latitude, longitude, nom, description FROM test_search WHERE ville = $ville";
+    $sql = "SELECT id, departement, ville, adresse, latitude, longitude, nom, description FROM test_search WHERE ville = '$ville'";
     
+    echo $sql;
+
     $result = mysqli_query($base, $sql);
 
     while($row = mysqli_fetch_assoc($result)){
