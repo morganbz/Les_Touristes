@@ -20,24 +20,29 @@ function addUser($mail, $firstname, $lastname, $birth_date, $phone, $password, $
 
         $insert_user_info = $base->query($sql);
 
-        $sql = "INSERT INTO user(mail, password, admin) 
+        if ($insert_user_info){
+                $sql = "INSERT INTO user(mail, password, admin) 
                 VALUES ('$mail', '$password', $isAdmin)";
 
-        $insert_user = $base->query($sql);
+                $insert_user = $base->query($sql);   
 
-        if ($insert_user_info && $insert_user){
-                unset($_SESSION["errors_register"]);
-                $sql = "SELECT id FROM user WHERE mail = '$mail'";
-                $result = mysqli_query ($base, $sql);
-                $id = mysqli_fetch_assoc($result);
-                $_SESSION["id_user"] = $id;
+                if ($insert_user){
+                        unset($_SESSION["errors_register"]);
+                        $sql = "SELECT id FROM user WHERE mail = '$mail'";
+                        $result = mysqli_query ($base, $sql);
+                        $id = mysqli_fetch_assoc($result);
+                        $_SESSION["id_user"] = $id;
+                } else {
+                        $errors[] = "Erreur au moment de l'ajout dans la base de donnée";
+                        $_SESSION["errors_register"] = $errors;
+                }
+
         } else {
-                $errors[] = "Erreur au moment de l'ajout dans la base de donnée" + var_dump($insert_user_info === TRUE && $insert_user === TRUE);
-                var_dump($insert_user_info == TRUE);
-                var_dump($insert_user_info === TRUE);
-                var_dump($insert_user_info);
+                $errors[] = "Erreur au moment de l'ajout dans la base de donnée";
                 $_SESSION["errors_register"] = $errors;
         }
+
+        
 }
 
 function getUser($mail){
