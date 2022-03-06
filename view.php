@@ -58,7 +58,7 @@
             include_once "search_housing.php";
         }
 
-      if (isset($_SESSION["errors_register"])){
+      if (isset($_SESSION["errors_register"]) && $page == "register"){
         echo "<p class='error'>Erreurs lors de la création de compte :</p>";
         echo "<ul>";
         foreach($_SESSION["errors_register"] as $error_register)
