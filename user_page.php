@@ -15,7 +15,7 @@
     echo "page home du compte";
   }
   else if ($pageCompte == "modifInfos"){
-    echo "modif infos";
+    include_once "modif_infos_user.php";
   }
   else if ($pageCompte == "modifMDP"){
     echo "modif mdp";
