@@ -70,6 +70,8 @@
 						if (status == google.maps.GeocoderStatus.OK) {
 							latitude = results[0].geometry.location.lat();
 							longitude = results[0].geometry.location.lng();
+							console.log(latitude);
+							console.log(longitude);
 						}
                         else {
 							alert("Something got wrong " + status);
