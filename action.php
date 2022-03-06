@@ -72,7 +72,7 @@
             }
             if($good_pass && $conf_pass == $pass){
                 $good_conf_pass = true;
-            } else if (){
+            } else if ($conf_pass == $pass){
                 $errors[] = "Les deux mots de passe ne correspondent pas";
                 $_SESSION["errors_register"] = $errors;
             }
