@@ -35,7 +35,7 @@
     </div>
 
     <div>
-        <input type="checkbox" value="0" name="admin_register" id="admin_register">
+        <input type="checkbox" value="1" name="admin_register" id="admin_register">
         <label for="admin_register"> Admin </label>
     </div>
 
