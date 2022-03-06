@@ -18,14 +18,14 @@ function addUser($mail, $firstname, $lastname, $birth_date, $phone, $password, $
         $sql = "INSERT INTO user_info(mail, firstname, lastname, birth_date, phone) 
                 VALUES ('$mail', '$firstname', '$lastname', '$birth_date', '$phone')";
 
-        mysqli_query($base, $sql);
+        $insert_user_info = mysqli_query($base, $sql);
 
         $sql = "INSERT INTO user(mail, password, admin) 
                 VALUES ('$mail', '$password', $isAdmin)";
 
-        mysqli_query($base, $sql);
+        $insert_user = mysqli_query($base, $sql);
 
-        if ($base->query($sql) === TRUE){
+        if ($insert_user_info === TRUE && $insert_user === TRUE){
                 unset($_SESSION["errors_register"]);
                 $sql = "SELECT id FROM user WHERE mail = '$mail'";
                 $result = mysqli_query ($base, $sql);
