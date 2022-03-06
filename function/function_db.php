@@ -169,7 +169,7 @@ function isTakenDuration($id_housing , $date_start, $date_end){
         $currDate = $date_start;
 
         while($row = mysqli_fetch_array($announce) && !$taken){
-                if(!isTakenDay($row)){
+                if(isTakenDay($row)){
                         $taken = true;
                 }
                 $currDate = date("Y-m-d", strtotime($currDate.'+ 1 days'));
