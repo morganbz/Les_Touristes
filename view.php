@@ -10,8 +10,6 @@
     <header>
         <h1>Salut les touristes !</h1>
     </header>
-    test
-    
     <nav>
         <ul>
             <li><a href="?page=recherche_activitee">Rechercher une activitée</a></li>
