@@ -58,7 +58,12 @@
             include_once "search_housing.php";
         }
 
-        
+      if (isset($_SESSION["errors_register"])){
+        echo "<ul>";
+        foreach($_SESSION["errors_register"] as $error_register)
+            echo "<li class='error'>$error_register</li>";
+        echo "</ul>";
+      }  
     ?>
 </body>
 </html>

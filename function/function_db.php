@@ -3,36 +3,52 @@
 function addUser($mail, $firstname, $lastname, $birth_date, $phone, $password, $isAdmin){
         global $base;
 
-        mysqli_real_escape_string($base, $mail);
+        $mail = mysqli_real_escape_string($base, $mail);
 
-        mysqli_real_escape_string($base, $firstname);
+        $firstname = mysqli_real_escape_string($base, $firstname);
         
-        mysqli_real_escape_string($base, $lastname);
+        $lastname = mysqli_real_escape_string($base, $lastname);
 
-        mysqli_real_escape_string($base, $birth_date);
+        $birth_date = mysqli_real_escape_string($base, $birth_date);
         
-        mysqli_real_escape_string($base, $phone);
+        $phone = mysqli_real_escape_string($base, $phone);
         
-        mysqli_real_escape_string($base, $password);
+        $password = mysqli_real_escape_string($base, $password);
 
-        $sql = "INSERT INTO user_info(mail, firstname, lastname, birth_date, phone) 
-                VALUES ('$mail', '$firstname', '$lastname', '$birth_date', '$phone')";
-    
-        mysqli_query($base, $sql);
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-        $sql = "INSERT INTO user(mail, password, admin) 
-                VALUES ('$mail', '$password', $isAdmin)";
+        $sql = "SELECT email FROM users WHERE email = '$email'";
+        $result = mysqli_query($base, $sql);
+        $user = mysqli_fetch_assoc($result);
 
-        mysqli_query($base, $sql);
+        if (empty($user)){
+                $sql = "INSERT INTO user_info(mail, firstname, lastname, birth_date, phone) 
+                        VALUES ('$mail', '$firstname', '$lastname', '$birth_date', '$phone')";
+        
+                mysqli_query($base, $sql);
+
+                $sql = "INSERT INTO user(mail, password, admin) 
+                        VALUES ('$mail', '$hashed_password', $isAdmin)";
+
+                mysqli_query($base, $sql);
+                if ($base->query($sql) === TRUE)
+                        unset($_SESSION["errors_register"]);
+                        $sql = "SELECT id FROM User WHERE mail = '$mail'";
+                        $result = mysqli_query ($base, $sql);
+                        $id = mysqli_fetch_assoc($result);
+                        $_SESSION["id_user"] = $id;
+                }
+        } else {
+                $errors[] = "Cette adresse mail possède déjà un compte";
+                $_SESSION["errors_register"] = $errors;
+        }
+
 }
 
 function getUser($mail){
         global $base;
 
-        $sql = "SELECT 
-                        mail
-                FROM user 
-                WHERE mail = '$mail'";
+        $sql = "SELECT mail FROM user WHERE mail = '$mail'";
         
         $result = mysqli_query($base, $sql);
 
