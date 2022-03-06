@@ -72,9 +72,6 @@
             echo "<li class='error'>$error_register</li>";
         echo "</ul>";
       }  
-      if (isset($_SESSION)){
-           var_dump($_SESSION);
-      }
     ?>
 </body>
 </html>
