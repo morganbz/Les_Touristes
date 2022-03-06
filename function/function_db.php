@@ -130,7 +130,7 @@ function searchAnnounce($priceMin, $priceMax, $dateStart, $dateEnd){
         global $base;
 
         $sql = "SELECT housing.id id_owner, type, latitude, longitude, nom, price, date_start, isTaken
-        FROM housing INNER JOIN Announce ON housing.id = Announce.id_housing
+        FROM housing INNER JOIN announce ON housing.id = announce.id_housing
         WHERE (price BETWEEN $priceMin AND $priceMax) AND (date_start BETWEEN '$dateStart' AND '$dateEnd') AND (NOT isTaken) 
         GROUP BY housing.id";
         
