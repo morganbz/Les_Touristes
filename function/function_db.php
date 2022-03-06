@@ -126,16 +126,56 @@ function getUserById($id){
         return $user;
 }
 
-function seachAnnounce(){
+function searchAnnounce($priceMin, $priceMax, $date_start, $date_end){
         global $base;
 
-        $sql = "SELECT housing.id id_owner, type, latitude, longitude, nom, price, date_start, isTaken
-        FROM housing INNER JOIN Announce ON housing.id = Announce.id_housing
-        WHERE (price BETWEEN $priceMin AND $priceMax) AND (date_start BETWEEN $dateStart AND $dateEnd) AND (NOT isTaken) AND type IN $types 
+        $sql = "SELECT housing.id, id_owner, type, latitude, longitude, nom, price, date_start, isTaken
+        FROM housing INNER JOIN announce ON housing.id = announce.id_housing
+        WHERE (price BETWEEN $priceMin AND $priceMax) AND (NOT isTaken) AND (date_start BETWEEN  $date_start AND $date_end)
         GROUP BY housing.id";
         
-        $announce = mysqli_fetch_array($base, $sql);
+        $announce = mysqli_query($base, $sql);
+        $result = [];
+        while($row = mysqli_fetch_array($announce)){
+                if(!isTakenDuration($row["id"], $date_start, $date_end)){
+                        array_push($result, $row);
+                }
 
-        return $announce;
+        }
+        var_dump($result);
+        return $result;
 }
+
+function isTakenDay($housing){
+        global $base; 
+        return $housing[7] == "1";
+}
+
+function isTakenDuration($id_housing , $date_start, $date_end){
+        global $base;
+        $taken = false;
+        $dateDifference = abs(strtotime($date_end) - strtotime($date_start));
+        $years  = floor($dateDifference / (365 * 60 * 60 * 24));
+        $months = floor(($dateDifference - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
+        $days   = floor(($dateDifference - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 *24) / (60 * 60 * 24));
+
+        $sql = "SELECT * FROM housing INNER JOIN announce ON housing.id = announce.id_housing
+        WHERE housing.id = $id_housing AND (date_start BETWEEN  $date_start AND $date_end)";
+        
+        $announce = mysqli_query($base, $sql);
+
+        $currDate = $date_start;
+
+        while($row = mysqli_fetch_array($announce) && !$taken){
+                if(!isTakenDay($row)){
+                        $taken = true;
+                }
+                $currDate = date("Y-m-d", strtotime($currDate.'+ 1 days'));
+        }
+
+        return $taken;
+
+
+}
+
 ?>
