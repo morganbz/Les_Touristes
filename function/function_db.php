@@ -134,9 +134,8 @@ function searchAnnounce($priceMin, $priceMax){
         WHERE (price BETWEEN $priceMin AND $priceMax) AND (NOT isTaken) 
         GROUP BY housing.id";
         
-        $announce = mysqli_fetch_array($base, $sql);
+        $announce = mysqli_query($base, $sql);
         var_dump($announce);
-        echo $sql;
 
         return $announce;
 }
