@@ -146,27 +146,6 @@ function searchAnnounce($priceMin, $priceMax, $date_start, $date_end){
         return $result;
 }
 
-function searchAnnounce2($priceMin, $priceMax, $date_start, $date_end){
-        global $base;
-
-        $sql = "SELECT housing.id, id_owner, type, latitude, longitude, nom, price, date_start, isTaken
-        FROM housing INNER JOIN announce ON housing.id = announce.id_housing
-        WHERE (price BETWEEN $priceMin AND $priceMax) AND (NOT isTaken) AND date_start >=  '$date_start' AND date_start <= '$date_end'
-        GROUP BY housing.id";
-        
-        $announce = mysqli_query($base, $sql);
-        $result = [];
-        while($row = mysqli_fetch_array($announce)){
-                if(!isTakenDuration($row["id"], $date_start, $date_end)){
-                        array_push($result, $row);
-                        echo $row["id"];
-                }
-
-        }
-        var_dump($result);
-        return $result;
-}
-
 function isTakenDay($housing){
         global $base; 
         return $housing["isTaken"] == "1";
@@ -197,6 +176,22 @@ function isTakenDuration($id_housing , $date_start, $date_end){
         return $taken;
 
 
+}
+
+function getData($ville){
+        global $base;
+    
+        $res = [];
+    
+        $sql = "SELECT id, departement, ville, adresse, latitude, longitude, nom, description FROM test_search WHERE ville = '$ville'";
+    
+        $result = mysqli_query($base, $sql);
+    
+        while($row = mysqli_fetch_assoc($result)){
+            $res[] = $row;
+        }
+    
+        return $res;
 }
 
 ?>
