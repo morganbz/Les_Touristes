@@ -137,8 +137,25 @@ function searchAnnounce($priceMin, $priceMax, $date_start, $date_end){
         $announce = mysqli_query($base, $sql);
         $result = [];
         while($row = mysqli_fetch_array($announce)){
+                array_push($result, $row);
+        }
+        //var_dump($result);
+        return $result;
+}
+
+function searchAnnounce2($priceMin, $priceMax, $date_start, $date_end){
+        global $base;
+
+        $sql = "SELECT housing.id, id_owner, type, latitude, longitude, nom, price, date_start, isTaken
+        FROM housing INNER JOIN announce ON housing.id = announce.id_housing
+        WHERE (price BETWEEN $priceMin AND $priceMax) AND (NOT isTaken) AND date_start >=  '$date_start' AND date_start <= '$date_end'
+        GROUP BY housing.id";
+        
+        $announce = mysqli_query($base, $sql);
+        $result = [];
+        while($row = mysqli_fetch_array($announce)){
                 if(!isTakenDuration($row["id"], $date_start, $date_end)){
-                        //array_push($result, $row);
+                        array_push($result, $row);
                         echo $row["id"];
                 }
 
@@ -161,7 +178,7 @@ function isTakenDuration($id_housing , $date_start, $date_end){
         $days   = floor(($dateDifference - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 *24) / (60 * 60 * 24));
 
         $sql = "SELECT * FROM housing INNER JOIN announce ON housing.id = announce.id_housing
-        WHERE housing.id = $id_housing AND (date_start BETWEEN  '$date_start' AND '$date_end')";
+        WHERE housing.id = $id_housing AND date_start >=  '$date_start' AND date_start <= '$date_end'";
         
         $announce = mysqli_query($base, $sql);
 
