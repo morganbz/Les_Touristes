@@ -135,7 +135,9 @@ function searchAnnounce($priceMin, $priceMax){
         GROUP BY housing.id";
         
         $announce = mysqli_query($base, $sql);
-        var_dump($announce);
+        while($row = mysqli_fetch_array($announce)){
+                var_dump($row);
+        }
 
         return $announce;
 }
