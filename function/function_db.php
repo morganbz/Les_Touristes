@@ -140,6 +140,7 @@ function searchAnnounce($priceMin, $priceMax, $date_start, $date_end){
                 if(!isTakenDuration($row["id"], $date_start, $date_end)){
                         array_push($result, $row);
                 }
+                var_dump($row);
 
         }
         var_dump($result);
