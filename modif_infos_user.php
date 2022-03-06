@@ -19,7 +19,7 @@
         if ($user["description"] != NULL){
             $description = $user["description"];
         }
-        var_dump ($user["description"]);
+        $affichage = "value";
     }
 ?>
 
