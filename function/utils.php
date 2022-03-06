@@ -44,7 +44,7 @@ function Get_Address_From_Google_Maps($lat, $lon) {
         'country_code' => google_getCountryCode($jsondata),
         'formatted_address' => google_getAddress($jsondata),
     );
-    
+}   
 
 function isTextBetweenLength($text, $minLength, $maxLength){
     if(is_string($text)) {
