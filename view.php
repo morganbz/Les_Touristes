@@ -31,7 +31,7 @@
             echo "home";
         }
         else if ($page == "recherche_activitee"){
-            echo "on est sur le recherche activitee";
+            searchAnnounce(0, 1000, '2000-01-01', '2030-01-01');
         }
         else if ($page == "recherche_logement"){
             echo "on est sur le recherche logement";
