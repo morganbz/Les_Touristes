@@ -137,8 +137,10 @@ function searchAnnounce($priceMin, $priceMax, $date_start, $date_end){
         $announce = mysqli_query($base, $sql);
         $result = [];
         while($row = mysqli_fetch_array($announce)){
-                array_push($result, $row);
-                echo $row["id"];
+                if(!isTakenDuration($row["id"], $date_start, $date_end)){
+                        array_push($result, $row);
+                        echo $row["id"];
+                }
         }
         var_dump($result);
         return $result;
@@ -186,17 +188,10 @@ function isTakenDuration($id_housing , $date_start, $date_end){
         $currDate = $date_start;
 
         while(($row = mysqli_fetch_array($announce)) && !$taken){
-                echo "bite";
                 if(isTakenDay($row)){
                         $taken = true;
                 }
                 $currDate = date("Y-m-d", strtotime($currDate.'+ 1 days'));
-        }
-        if($taken){
-                echo "BITEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE";
-        }
-        else{
-                echo "FF";
         }
 
         return $taken;
