@@ -33,6 +33,15 @@
         }
         else if ($page == "search_housing_text"){
             include_once "formulaire/search_housing_text.php";
+            $price_min = $_POST["price_min"];
+            $price_max = $_POST["price_max"];
+            $date_start = $_POST["date_start"];
+            $date_end = $_POST["date_end"];
+
+            $result = searchAnnounce($price_min, $price_max, $date_start, $date_end);
+            
+            displaySearch($result);
+            header("Location: .");
             //displaySearch(searchAnnounce(0, 1000, "1900-01-01", "2070-01-01"));
         }
         else if ($page == "user_page"){
