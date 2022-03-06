@@ -21,13 +21,13 @@ function addUser($mail, $firstname, $lastname, $birth_date, $phone, $password, $
         mysqli_query($base, $sql);
 
         $sql = "INSERT INTO user(mail, password, admin) 
-                VALUES ('$mail', '$hashed_password', $isAdmin)";
+                VALUES ('$mail', '$password', $isAdmin)";
 
         mysqli_query($base, $sql);
 
         if ($base->query($sql) === TRUE){
                 unset($_SESSION["errors_register"]);
-                $sql = "SELECT id FROM User WHERE mail = '$mail'";
+                $sql = "SELECT id FROM user WHERE mail = '$mail'";
                 $result = mysqli_query ($base, $sql);
                 $id = mysqli_fetch_assoc($result);
                 $_SESSION["id_user"] = $id;
