@@ -147,9 +147,14 @@
     }
     else{
         $page = "home";
+        $pageCompte = "home";
     
         if(isset($_GET["page"])){
             $page = $_GET["page"];
+        }
+
+        if(isset($_GET["pageCompte"])){
+            $pageCompte = $_GET["pageCompte"];
         }
     }
 

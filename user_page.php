@@ -11,13 +11,7 @@
 </nav>
 
 <?php 
-  $pageCompte = "home";
-  
-  if(isset($_GET["pageCompte"])){
-    $pageCompte = $_GET["pageCompte"];
-  }
-
-  if ($pageCompte = "home"){
+  if ($pageCompte == "home"){
     echo "page home du compte";
   }
   else if ($pageCompte == "modifInfos"){
