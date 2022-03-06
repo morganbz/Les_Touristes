@@ -64,19 +64,19 @@
                 $errors[] = "Vous ne pouvez pas être né dans le futur";
                 $_SESSION["errors_register"] = $errors;
             }
-            if(isTextBetweenLength($conf_pass, 6, 50)){
-                $goodPassword = true;
+            if(isTextBetweenLength($pass, 6, 50)){
+                $good_pass = true;
             } else {
                 $errors[] = "Pas assez sécurisé (min : 6 caractères) ou trop de caractères (max : 50 caractères)";
                 $_SESSION["errors_register"] = $errors;
             }
             if($good_pass && $conf_pass == $pass){
                 $good_conf_pass = true;
-            } else {
+            } else if (){
                 $errors[] = "Les deux mots de passe ne correspondent pas";
                 $_SESSION["errors_register"] = $errors;
             }
-            if($good_firstname && $good_lastname && $good_mail && $good_phone && $conf_pass && !($user_exist)){
+            if($good_firstname && $good_lastname && $good_mail && $good_phone && $good_conf_pass && !($user_exist)){
                 addUser($mail, $firstname, $lastname, $birth_date, $phone, hash_password($pass), $admin);
             }
         }
