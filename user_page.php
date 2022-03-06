@@ -13,6 +13,9 @@
 <?php 
   if ($pageCompte == "home"){
     echo "page home du compte";
+    $test = 46;
+    $test = $test + 3;
+    echo $test;
   }
   else if ($pageCompte == "modifInfos"){
     echo "modif infos";
