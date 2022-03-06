@@ -138,6 +138,7 @@ function searchAnnounce($priceMin, $priceMax, $date_start, $date_end){
         $result = [];
         while($row = mysqli_fetch_array($announce)){
                 array_push($result, $row);
+                echo $row["id"];
         }
         var_dump($result);
         return $result;
