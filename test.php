@@ -17,7 +17,7 @@
         </style>
     </head>
 	<body>
-		<a href="test_searching">Search</a><br>
+		<a href="test_searching.php">Search</a><br>
 		<input type="text" id="lat">latitude
         <br>
 		<input type="text" id="lng">longitude
