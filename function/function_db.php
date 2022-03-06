@@ -126,18 +126,18 @@ function getUserById($id){
         return $user;
 }
 
-function searchAnnounce($priceMin, $priceMax){
+function searchAnnounce($priceMin, $priceMax, $date_start, $date_end){
         global $base;
 
         $sql = "SELECT housing.id, id_owner, type, latitude, longitude, nom, price, date_start, isTaken
         FROM housing INNER JOIN announce ON housing.id = announce.id_housing
-        WHERE (price BETWEEN $priceMin AND $priceMax) AND (NOT isTaken) 
+        WHERE (price BETWEEN $priceMin AND $priceMax) AND (NOT isTaken) AND AND (date_start BETWEEN  '$date_start' AND '$date_end')
         GROUP BY housing.id";
         
         $announce = mysqli_query($base, $sql);
         $result = [];
         while($row = mysqli_fetch_array($announce)){
-                if(!isTakenDay($row)){
+                if(!isTakenDuration($row["id"], $date_start, $date_end)){
                         array_push($result, $row);
                 }
 
