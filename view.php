@@ -33,7 +33,7 @@
             echo "à venir";
         }
         else if ($page == "search_housing_text"){
-            include_once "search_housing.php";
+            include_once "formulaire/search_housing_text.php";
             //displaySearch(searchAnnounce(0, 1000, "1900-01-01", "2070-01-01"));
         }
         else if ($page == "user_page"){
