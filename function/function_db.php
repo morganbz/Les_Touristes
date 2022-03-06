@@ -32,7 +32,7 @@ function addUser($mail, $firstname, $lastname, $birth_date, $phone, $password, $
                 $id = mysqli_fetch_assoc($result);
                 $_SESSION["id_user"] = $id;
         } else {
-                $errors[] = "Erreur au moment de l'ajout dans la base de donnée";
+                $errors[] = "Erreur au moment de l'ajout dans la base de donnée" + $insert_user + $insert_user_info;
                 $_SESSION["errors_register"] = $errors;
         }
 }
