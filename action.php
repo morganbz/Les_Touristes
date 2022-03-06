@@ -9,7 +9,11 @@
             $birth_date = date('Y-m-d', strtotime($_POST["birth_date_register"]));
             $pass = $_POST["pass_register"];
             $conf_pass = $_POST["conf_pass_register"];
-            $admin = $_POST["admin_register"];
+            if (isset($_POST["admin_register"])){
+                $admin = $_POST["admin_register"];
+            } else {
+                $admin = 0;
+            }
     
             $user_exist = true;
             $good_firstname = false;
