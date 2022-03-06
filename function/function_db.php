@@ -31,7 +31,7 @@ function addUser($mail, $firstname, $lastname, $birth_date, $phone, $password, $
                         VALUES ('$mail', '$hashed_password', $isAdmin)";
 
                 mysqli_query($base, $sql);
-                if ($base->query($sql) === TRUE)
+                if ($base->query($sql) === TRUE){
                         unset($_SESSION["errors_register"]);
                         $sql = "SELECT id FROM User WHERE mail = '$mail'";
                         $result = mysqli_query ($base, $sql);
