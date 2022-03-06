@@ -22,8 +22,6 @@
             <li><a href="test.php">TEST GOOGLE</a></li>
         </ul>
     </nav>
-    fesses 
-    ça va marcher tkt je suis ingénieur informatien 
     <?php
         if ($page == "home"){
             echo "home";
