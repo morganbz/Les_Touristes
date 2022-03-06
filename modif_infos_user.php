@@ -5,6 +5,8 @@
      $birth_date = "Date de naissance";
      $phone = "Numéro de téléphone";
      $description = "Description";
+
+     $affichage = "<?php echo $firstname;?>";
     
     if(isset($_SESSION["id_user"])){
         $user = getUserById($_SESSION["id_user"]);
@@ -17,39 +19,40 @@
         if ($user["description"] != NULL){
             $description = $user["description"];
         }
-        
+
+        $affichage = "value";
     }
 ?>
 
 <form action="index.php" method="post">
     <div>
         <label for="firstname_modification">Prénom</label>
-        <input placeholder="<?php echo $firstname;?>" type="text" name="firstname_modification" id="firstname_modification" required>
+        <input <?php echo $affichage;?>="<?php echo $firstname;?>" type="text" name="firstname_modification" id="firstname_modification" required>
     </div>
 
     <div>
         <label for="lastname_modification">Nom</label>
-        <input placeholder="<?php echo $lastname;?>" type="text" name="lastname_modification" id="lastname_modification" required>
+        <input <?php echo $affichage;?>="<?php echo $lastname;?>" type="text" name="lastname_modification" id="lastname_modification" required>
     </div>
 
     <div>
         <label for="email_modification">Email</label>
-        <input placeholder="<?php echo $email;?>" type="email" name="email_modification" id="email_modification" required>
+        <input <?php echo $affichage;?>="<?php echo $email;?>" type="email" name="email_modification" id="email_modification" required>
     </div>
 
     <div>
         <label for="birth_date_modification">Date de naissance</label>
-        <input placeholder="<?php echo $birth_date;?>" type="date" name="birth_date_modification" id="birth_date_modification" required>
+        <input <?php echo $affichage;?>="<?php echo $birth_date;?>" type="date" name="birth_date_modification" id="birth_date_modification" required>
     </div>
 
     <div>
         <label for="phone_modification">Numéro de Téléphone</label>
-        <input placeholder="<?php echo $phone;?>" type="text" name="phone_modification" id="phone_modification" required>
+        <input <?php echo $affichage;?>="<?php echo $phone;?>" type="text" name="phone_modification" id="phone_modification" required>
     </div>
 
     <div>
         <label for="description_modification">Description</label>
-        <textarea placeholder="<?php echo $description;?>" name="description_modification" id="description_modification"> </textarea>
+        <textarea <?php echo $affichage;?>="<?php echo $description;?>" name="description_modification" id="description_modification"> </textarea>
     </div>
 
     <button id="submit" name="submit" value="update_user_info" type="submit">Mettre à jour</button>
