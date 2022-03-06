@@ -176,6 +176,7 @@
             $password = $_POST["passWord"];
 
             $user = getUser($mail);
+            $errors = [];
 
             if($user == null){
                 $errors[] = "Cette adresse mail ne possède pas de compte"; 
