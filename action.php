@@ -24,30 +24,57 @@
 
             if($user == null){
                 $user_exist = false;   
+            } else {
+                $errors[] = "Cette adresse mail possède déjà un compte";
+                $_SESSION["errors_register"] = $errors;
             }
             if(isTextGoodLength($firstname, 50)){
                 $good_firstname = true;
+            } else {
+                $errors[] = "Nom trop long (50 caractères autorisé)";
+                $_SESSION["errors_register"] = $errors;
             }
             if(isTextGoodLength($lastname, 50)){
                 $good_lastname = true;
-            }
-            if(isTextGoodLength($firstname, 50)){
-                $good_firstname = true;
+            }else {
+                $errors[] = "Nom trop long (50 caractères autorisé)";
+                $_SESSION["errors_register"] = $errors;
             }
             if(isTextGoodLength($mail, 150) && filter_var($mail, FILTER_VALIDATE_EMAIL)){
                 $good_mail = true;
+            }else {
+                if (!isTextGoodLength($mail, 150)){
+                    $errors[] = "Email trop long (150 caractères autorisé)";
+                    $_SESSION["errors_register"] = $errors;
+                }
+                if (!filter_var($mail, FILTER_VALIDATE_EMAIL)){
+                    $errors[] = "Email entré ne correspond pas à une adresse mail";
+                    $_SESSION["errors_register"] = $errors;
+                }
             }
             if(isTextGoodLength($phone, 25)){
                 $good_phone = true;
+            } else {
+                $errors[] = "Numéro de téléphone ne doit pas dépassé 25 caractères";
+                $_SESSION["errors_register"] = $errors;
             }
             if(isGoodDateBeforeToday($birth_date)){
                 $good_birth_date = true;
+            } else {
+                $errors[] = "Vous ne pouvez pas être né dans le futur";
+                $_SESSION["errors_register"] = $errors;
             }
             if(isTextBetweenLength($conf_pass, 6, 50)){
                 $goodPassword = true;
+            } else {
+                $errors[] = "Pas assez sécurisé (min : 6 caractères) ou trop de caractères (max : 50 caractères)";
+                $_SESSION["errors_register"] = $errors;
             }
             if($good_pass && $conf_pass == $pass){
                 $good_conf_pass = true;
+            } else {
+                $errors[] = "Les deux mots de passe ne correspondent pas";
+                $_SESSION["errors_register"] = $errors;
             }
             if($good_firstname && $good_lastname && $good_mail && $good_phone && $conf_pass && !($user_exist)){
                 addUser($mail, $firstname, $lastname, $birth_date, $phone, hash_password($pass), $admin);

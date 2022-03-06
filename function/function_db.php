@@ -15,34 +15,26 @@ function addUser($mail, $firstname, $lastname, $birth_date, $phone, $password, $
         
         $password = mysqli_real_escape_string($base, $password);
 
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        $sql = "INSERT INTO user_info(mail, firstname, lastname, birth_date, phone) 
+                VALUES ('$mail', '$firstname', '$lastname', '$birth_date', '$phone')";
 
-        $sql = "SELECT email FROM users WHERE email = '$email'";
-        $result = mysqli_query($base, $sql);
-        $user = mysqli_fetch_assoc($result);
+        mysqli_query($base, $sql);
 
-        if (empty($user)){
-                $sql = "INSERT INTO user_info(mail, firstname, lastname, birth_date, phone) 
-                        VALUES ('$mail', '$firstname', '$lastname', '$birth_date', '$phone')";
-        
-                mysqli_query($base, $sql);
+        $sql = "INSERT INTO user(mail, password, admin) 
+                VALUES ('$mail', '$hashed_password', $isAdmin)";
 
-                $sql = "INSERT INTO user(mail, password, admin) 
-                        VALUES ('$mail', '$hashed_password', $isAdmin)";
+        mysqli_query($base, $sql);
 
-                mysqli_query($base, $sql);
-                if ($base->query($sql) === TRUE){
-                        unset($_SESSION["errors_register"]);
-                        $sql = "SELECT id FROM User WHERE mail = '$mail'";
-                        $result = mysqli_query ($base, $sql);
-                        $id = mysqli_fetch_assoc($result);
-                        $_SESSION["id_user"] = $id;
-                }
+        if ($base->query($sql) === TRUE){
+                unset($_SESSION["errors_register"]);
+                $sql = "SELECT id FROM User WHERE mail = '$mail'";
+                $result = mysqli_query ($base, $sql);
+                $id = mysqli_fetch_assoc($result);
+                $_SESSION["id_user"] = $id;
         } else {
-                $errors[] = "Cette adresse mail possède déjà un compte";
+                $errors[] = "Erreur au moment de l'ajout dans la base de donnée";
                 $_SESSION["errors_register"] = $errors;
         }
-
 }
 
 function getUser($mail){
