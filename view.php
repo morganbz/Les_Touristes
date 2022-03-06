@@ -59,6 +59,7 @@
         }
 
       if (isset($_SESSION["errors_register"])){
+        echo "Erreurs lors de la création de compte :";
         echo "<ul>";
         foreach($_SESSION["errors_register"] as $error_register)
             echo "<li class='error'>$error_register</li>";
