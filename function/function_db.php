@@ -160,7 +160,7 @@ function searchAnnounce2($priceMin, $priceMax, $date_start, $date_end){
                 }
 
         }
-        //var_dump($result);
+        var_dump($result);
         return $result;
 }
 
