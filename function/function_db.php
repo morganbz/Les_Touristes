@@ -48,6 +48,8 @@ function addUser($mail, $firstname, $lastname, $birth_date, $phone, $password, $
 function getUser($mail){
         global $base;
 
+        $mail = mysqli_real_escape_string($base, $mail);
+
         $sql = "SELECT mail FROM user WHERE mail = '$mail'";
         
         $result = mysqli_query($base, $sql);
@@ -114,17 +116,20 @@ function addHousingAndAnnounce($id_owner, $type, $latitude, $longitude, $name, $
 function verifUser($mail, $password){
         global $base;
         
-        mysqli_real_escape_string($base, $mail);
+        $mail = mysqli_real_escape_string($base, $mail);
 
-        mysqli_real_escape_string($base, $password);
+        $password = mysqli_real_escape_string($base, $password);
 
-        $sql = "SELECT id, admin, mail, password FROM user WHERE mail = '$mail' AND password = '$password'";
+        $sql = "SELECT id, admin, mail, password FROM user WHERE mail = '$mail'";
         
         $result = mysqli_query($base, $sql);
 
         $user = mysqli_fetch_array($result);
 
-        echo $sql;
+        if (password_verify($password, $user['password'])){
+                $_SESSION["id_user"] = $user["id"];
+                unset($_SESSION["errors_login"]);
+        }
 
         return $user;
 

@@ -174,7 +174,29 @@
         if($submit == "Login"){
             $mail = $_POST["mail_user"];
             $password = $_POST["passWord"];
-            verifUser($mail, $password);
+
+            $user = getUser($mail);
+
+            if($user == null){
+                $errors[] = "Cette adresse mail ne possède pas de compte"; 
+            }
+            if (!isTextGoodLength($mail, 150)){
+                $errors[] = "Email trop long (150 caractères autorisé)";
+            }
+            if (!filter_var($mail, FILTER_VALIDATE_EMAIL)){
+                $errors[] = "Email entré ne correspond pas à une adresse mail";
+            }
+
+            if (empty($password)){
+                $errors[] = "Veuillez saisir un mot de passe";
+            }
+				
+            if (count($errors) > 0) {
+			    $_SESSION["errors_login"] = $errors;
+			} else {
+                verifUser($mail, $password);	
+			}
+            
         }
     }
     $page = "home";
