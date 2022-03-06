@@ -1,3 +1,3 @@
 <?
-$TYPE_HOUSING = array{ "Maison", "Appartement", "Chalet", "Refuge"};
+$TYPE_HOUSING = array("Maison", "Appartement", "Chalet", "Refuge");
 ?>
