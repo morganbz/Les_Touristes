@@ -136,7 +136,7 @@ function searchAnnounce($priceMin, $priceMax){
         
         $announce = mysqli_query($base, $sql);
         while($row = mysqli_fetch_array($announce)){
-                if(!isTakenDay($row)){
+                if(isTakenDay($row)){
                         var_dump($row);
                 }
         }
