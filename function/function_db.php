@@ -25,7 +25,7 @@ function addUser($mail, $firstname, $lastname, $birth_date, $phone, $password, $
 
         $insert_user = $base->query($sql);
 
-        if ($insert_user_info === TRUE && $insert_user === TRUE){
+        if ($insert_user_info && $insert_user){
                 unset($_SESSION["errors_register"]);
                 $sql = "SELECT id FROM user WHERE mail = '$mail'";
                 $result = mysqli_query ($base, $sql);
