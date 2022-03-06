@@ -136,10 +136,17 @@ function searchAnnounce($priceMin, $priceMax){
         
         $announce = mysqli_query($base, $sql);
         while($row = mysqli_fetch_array($announce)){
-                var_dump($row);
+                if(!isTakenDay($row)){
+                        var_dump($row);
+                }
         }
 
         return $announce;
+}
+
+function isTakenDay($housing){
+        global $base; 
+        return $housing["isTaken"] == 1;
 }
 
 ?>
