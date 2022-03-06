@@ -167,7 +167,7 @@ function searchAnnounce2($priceMin, $priceMax, $date_start, $date_end){
 
 function isTakenDay($housing){
         global $base; 
-        return $housing[7] == "1";
+        return $housing["isTaken"] == "1";
 }
 
 function isTakenDuration($id_housing , $date_start, $date_end){
