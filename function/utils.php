@@ -32,4 +32,19 @@ function verif_password($password, $hash){
     return password_verify($password, $hash);
 }
 
+<?php
+function getAddress($latitude, $longitude)
+{
+        $url = "https://maps.google.com/maps/api/geocode/json?latlng=$latitude,$longitude&key=AIzaSyAMo3P3AMsyG2sPjxzc6Vzs5ekRGoUEUk4";
+        $geocode = file_get_contents($url);
+        $json = json_decode($geocode);
+        $address = $json->results[0]->formatted_address;
+        return $address;
+}
+$latitude = '40.6781784';
+$longitude = '-73.9441579';
+$result = getAddress($latitude, $longitude);
+echo $result;
+?>
+
 ?>
