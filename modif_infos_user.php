@@ -16,11 +16,10 @@
         $email = $user["mail"];
         $birth_date = $user["birth_date"];
         $phone = $user["phone"];
-        if ($user["description"] != "NULL"){
+        if ($user["description"] != NULL){
             $description = $user["description"];
         }
         var_dump ($user["description"]);
-        $affichage = "value";
     }
 ?>
 
