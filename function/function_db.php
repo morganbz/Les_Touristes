@@ -146,7 +146,9 @@ function getUserById($id){
         FROM User INNER JOIN User_info ON User.mail = User_info.mail
         WHERE id = $id";
         
-        $user = mysqli_fetch_array($base, $sql);
+        $result = mysqli_query($base, $sql);
+
+        $user = mysqli_fetch_array($result);
 
         return $user;
 }
