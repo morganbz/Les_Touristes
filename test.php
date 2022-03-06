@@ -3,7 +3,6 @@
 	include_once "db.php";
 
 	include_once "function/function_picture.php";
-    include_once "function/function_db.php";
 
 ?>
 
@@ -81,6 +80,7 @@
                 <div id="search_housing_list">
                     <?php
                     foreach($data as $data_info){
+                        echo "<div class='test'>";
                         echo"<p>Nom : ".$data_info['nom']."<p>";
 						echo"<p>Adresse : ".$data_info['adresse']."<p>";
 						echo"<p>Département : ".$data_info['departement']."<p>";
