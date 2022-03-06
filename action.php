@@ -122,12 +122,8 @@
             $date_end = $_POST["date_end"];
 
             $result = searchAnnounce($price_min, $price_max, $date_start, $date_end);
-            if(count($result == 0)){
-                echo "pas de logement correspondant à votre recherche";
-            }
-            else{
-                displaySearch($result);
-            }
+            
+            displaySearch($result);
         }
         if($submit == "Add_housing_announce"){
             $id_owner = $_POST["id_owner_housing"];
