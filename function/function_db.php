@@ -142,14 +142,40 @@ function searchAnnounce($priceMin, $priceMax){
                 }
 
         }
-        echo $result;
-
+        var_dump($result);
         return $result;
 }
 
 function isTakenDay($housing){
         global $base; 
         return $housing[7] == "1";
+}
+
+function isTakenDuration($id_housing , $date_start, $date_end){
+        global $base;
+        $taken = false;
+        $dateDifference = abs(strtotime($date_end) - strtotime($date_start));
+        $years  = floor($dateDifference / (365 * 60 * 60 * 24));
+        $months = floor(($dateDifference - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
+        $days   = floor(($dateDifference - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 *24) / (60 * 60 * 24));
+
+        $sql = "SELECT * FROM housing INNER JOIN announce ON housing.id = announce.id_housing
+        WHERE housing.id = $id_housing AND (date_start BETWEEN  '$date_start' AND '$date_end')";
+        
+        $announce = mysqli_query($base, $sql);
+
+        $currDate = $date_start;
+
+        while($row = mysqli_fetch_array($announce) && !$taken){
+                if(!isTakenDay($row)){
+                        $taken = true;
+                }
+                $currDate = date("Y-m-d", strtotime($currDate.'+ 1 days'));
+        }
+
+        return $taken;
+
+
 }
 
 ?>
