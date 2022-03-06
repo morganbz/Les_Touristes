@@ -10,8 +10,6 @@
     <header>
         <h1>Salut les touristes !</h1>
     </header>
-    test
-    
     <nav>
         <ul>
             <li><a href="?page=recherche_activitee">Rechercher une activitée</a></li>
@@ -24,13 +22,14 @@
             <li><a href="test.php">TEST GOOGLE</a></li>
         </ul>
     </nav>
-    
     <?php
         if ($page == "home"){
             echo "home";
         }
         else if ($page == "recherche_activitee"){
-            echo "à venir";
+            displaySearch(searchAnnounce(0, 1000, "1900-01-01", "2070-01-01"));
+            //searchAnnounce(0, 1000, "1900-01-01", "2070-01-01");
+            //isTakenDuration(14 , "1900-01-01",  "2070-01-01");
         }
         else if ($page == "search_housing_text"){
             include_once "formulaire/search_housing_text.php";

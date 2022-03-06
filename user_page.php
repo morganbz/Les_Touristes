@@ -11,10 +11,27 @@
 </nav>
 
 <?php 
-  if ($pageCompte = "home"){
+  if ($pageCompte == "home"){
     echo "page home du compte";
   }
-  else if ($pageCompte == "ajoutAnnonce"){
-    addLogement();
+  else if ($pageCompte == "modifInfos"){
+    echo "modif infos";
   }
+  else if ($pageCompte == "modifMDP"){
+    include_once "modif mdp";
+  }
+  else if ($pageCompte == "voirRecommandations"){
+    echo "voir recommandation";
+  }
+  else if ($pageCompte == "ajoutRecommandation"){
+    include_once "add_annouce.php";
+  }
+  else if ($pageCompte == "voirAnnonces"){
+    echo "voir annonces";
+  }
+  else if ($pageCompte == "ajoutAnnonce"){
+    include_once "add_housing_annouce.php";
+  }
+  var_dump ($pageCompte);
+  
 ?>
