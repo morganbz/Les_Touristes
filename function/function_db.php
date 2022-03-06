@@ -167,7 +167,7 @@ function searchAnnounce2($priceMin, $priceMax, $date_start, $date_end){
 
 function isTakenDay($housing){
         global $base; 
-        return $housing[7] == "1";
+        return $housing["isTaken"] == "1";
 }
 
 function isTakenDuration($id_housing , $date_start, $date_end){
@@ -186,10 +186,17 @@ function isTakenDuration($id_housing , $date_start, $date_end){
         $currDate = $date_start;
 
         while($row = mysqli_fetch_array($announce) && !$taken){
+                echo "bite";
                 if(isTakenDay($row)){
                         $taken = true;
                 }
                 $currDate = date("Y-m-d", strtotime($currDate.'+ 1 days'));
+        }
+        if($taken){
+                echo "BITEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE";
+        }
+        else{
+                echo "FF";
         }
 
         return $taken;
