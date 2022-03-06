@@ -135,7 +135,7 @@ function searchAnnounce($priceMin, $priceMax){
         GROUP BY housing.id";
         
         $announce = mysqli_query($base, $sql);
-        $result = []:
+        $result = [];
         while($row = mysqli_fetch_array($announce)){
                 if(!isTakenDay($row)){
                         array_push($result, $row);
