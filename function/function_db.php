@@ -137,7 +137,7 @@ function searchAnnounce($priceMin, $priceMax, $date_start, $date_end){
         $announce = mysqli_query($base, $sql);
         $result = [];
         while($row = mysqli_fetch_array($announce)){
-                //var_dump($row);
+                var_dump($row);
                 echo "<br>";
                 if(!isTakenDuration($row["id"], $date_start, $date_end)){
                         array_push($result, $row);
