@@ -32,10 +32,12 @@
             echo "home";
         }
         else if ($page == "recherche_activitee"){
-            echo "à venir";
+            displaySearch(searchAnnounce(0, 1000, "1900-01-01", "2070-01-01"));
+            //searchAnnounce(0, 1000, "1900-01-01", "2070-01-01");
+            //isTakenDuration(14 , "1900-01-01",  "2070-01-01");
         }
         else if ($page == "recherche_logement"){
-            displaySearch(searchAnnounce(0, 1000, "1900-01-01", "2070-01-01"));
+            echo "on est sur le recherche logement";
         }
         else if ($page == "user_page"){
             include_once "user_page.php";
