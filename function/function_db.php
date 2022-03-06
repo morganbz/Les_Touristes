@@ -136,6 +136,7 @@ function searchAnnounce($priceMin, $priceMax, $dateStart, $dateEnd){
         
         $announce = mysqli_fetch_array($base, $sql);
         var_dump($announce);
+        echo $sql;
 
         return $announce;
 }
