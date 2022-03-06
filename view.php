@@ -17,10 +17,8 @@
             <li><a href="?page=user_page">Compte</a></li>
             <li><a href="?page=register">REGISTER</a></li>
             <li><a href="?page=login">LOGIN</a></li>
-            <li><a href="?page=add_housing">ADD HOUSING</a></li>
-            <li><a href="?page=add_announce">ADD ANNOUNCE</a></li>
-            <li><a href="?page=add_housing_announce">ADD HOUSING + ANNOUNCE</a></li>
-            <li><a href="?page=search_housing">Recherche Logement</a></li>
+            <li><a href="?page=add_housing_announce">Ajouter un logement</a></li>
+            <li><a href="?page=search_housing">Recherche logement carte</a></li>
             <li><a href="test.php">TEST GOOGLE</a></li>
         </ul>
     </nav>
@@ -34,8 +32,9 @@
             //searchAnnounce(0, 1000, "1900-01-01", "2070-01-01");
             //isTakenDuration(14 , "1900-01-01",  "2070-01-01");
         }
-        else if ($page == "recherche_logement"){
-            echo "on est sur le recherche logement";
+        else if ($page == "search_housing_text"){
+            include_once "formulaire/search_housing_text.php";
+            //displaySearch(searchAnnounce(0, 1000, "1900-01-01", "2070-01-01"));
         }
         else if ($page == "user_page"){
             include_once "user_page.php";
@@ -43,12 +42,12 @@
         else if($page == "register"){
             include_once "register.php";
         }
-        else if($page == "add_housing"){
+        /*else if($page == "add_housing"){
             include_once "add_housing.php";
         }
         else if($page == "add_announce"){
             include_once "add_announce.php";
-        }
+        }*/
         else if($page == "add_housing_announce"){
             include_once "add_housing_announce.php";
         }
