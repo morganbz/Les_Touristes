@@ -6,7 +6,7 @@
      $phone = "Numéro de téléphone";
      $description = "Description";
     
-    if(isset([$_SESSION["id_user"])){
+    if(isset($_SESSION["id_user"])){
         $user = getUserById($_SESSION["id_user"]);
 
         $firstname = $user["firstname"];
