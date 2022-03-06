@@ -40,10 +40,7 @@ function getAddress($latitude, $longitude)
         $address = $json->results[0]->formatted_address;
         return $address;
 }
-$latitude = '40.6781784';
-$longitude = '-73.9441579';
-$result = getAddress($latitude, $longitude);
-echo $result;
+
 
 
 ?>
