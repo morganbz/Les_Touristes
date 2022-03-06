@@ -135,21 +135,21 @@ function searchAnnounce($priceMin, $priceMax){
         GROUP BY housing.id";
         
         $announce = mysqli_query($base, $sql);
+        $result = []:
         while($row = mysqli_fetch_array($announce)){
-                if(isTakenDay($row)){
-                        echo "BITe";
+                if(!isTakenDay($row)){
+                        array_push($result, $row);
                 }
-                else{
-                        var_dump($row);
-                }
-        }
 
-        return $announce;
+        }
+        echo $result;
+
+        return $result;
 }
 
 function isTakenDay($housing){
         global $base; 
-        return $housing[7] == "0";
+        return $housing[7] == "1";
 }
 
 ?>
