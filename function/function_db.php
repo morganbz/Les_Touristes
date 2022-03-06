@@ -187,7 +187,7 @@ function isTakenDuration($id_housing , $date_start, $date_end){
 
         while($row = mysqli_fetch_array($announce) && !$taken){
                 echo "bite";
-                var_dump($row);
+                echo $row;
                 if(isTakenDay($row)){
                         $taken = true;
                 }
