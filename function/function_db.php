@@ -149,7 +149,7 @@ function searchAnnounce($priceMin, $priceMax){
 
 function isTakenDay($housing){
         global $base; 
-        return $housing["isTaken"] == "1";
+        return $housing[7] == "1";
 }
 
 ?>
