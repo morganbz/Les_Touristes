@@ -31,12 +31,10 @@
             echo "home";
         }
         else if ($page == "recherche_activitee"){
-            displaySearch(searchAnnounce(0, 1000, "1900-01-01", "2070-01-01"));
-            //searchAnnounce(0, 1000, "1900-01-01", "2070-01-01");
-            //isTakenDuration(14 , "1900-01-01",  "2070-01-01");
+            echo "à venir";
         }
         else if ($page == "recherche_logement"){
-            echo "on est sur le recherche logement";
+            displaySearch(searchAnnounce(0, 1000, "1900-01-01", "2070-01-01"));
         }
         else if ($page == "user_page"){
             include_once "user_page.php";
