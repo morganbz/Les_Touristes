@@ -6,7 +6,7 @@
      $phone = "Numéro de téléphone";
      $description = "Description";
 
-     $affichage = "<?php echo $firstname;?>";
+     $affichage = "placeholder";
     
     if(isset($_SESSION["id_user"])){
         $user = getUserById($_SESSION["id_user"]);
