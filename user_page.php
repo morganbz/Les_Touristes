@@ -32,5 +32,6 @@
   else if ($pageCompte == "ajoutAnnonce"){
     include_once "add_housing_annouce.php";
   }
+  var_dump ($pageCompte);
   
 ?>

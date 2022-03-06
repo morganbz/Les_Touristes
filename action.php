@@ -156,6 +156,8 @@
         if(isset($_GET["pageCompte"])){
             $pageCompte = $_GET["pageCompte"];
         }
+
+        var_dump ($pageCompte);
     }
 
   
