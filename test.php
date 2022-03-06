@@ -81,11 +81,12 @@
                 <div id="search_housing_list">
                     <?php
                     foreach($data as $data_info){
-                        echo "<div class='test'>";
-                        foreach($data_info as $value){
-                            echo $value;
-                            echo "<br>";
-                        }
+                        echo"<p>Nom : ".$data_info['nom']."<p>";
+						echo"<p>Adresse : ".$data_info['adresse']."<p>";
+						echo"<p>Département : ".$data_info['departement']."<p>";
+						echo"<p>Ville : ".$data_info['ville']."<p>";
+						echo"<p>Coordonnée : ".$data_info['latitude'].", ".$data_info['longitude']."<p>";
+						echo"<p>Description : ".$data_info['description']."<p>";
                         echo"</div>";
                     }
                     ?>
