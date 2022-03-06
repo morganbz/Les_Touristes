@@ -6,10 +6,14 @@ function displaySearch($array_housing){
     echo "<section>";
         foreach($array_housing as $housing){
             echo "<article>";
-            echo $TYPE_HOUSING[intval($housing["type"])];
+            echo "<div>";
+            echo "type de logement : " . $TYPE_HOUSING[intval($housing["type"])];
+            echo "</div>";
 
             echo "</article>";
         }
     echo "</section>";
 }
+
+
 ?>
