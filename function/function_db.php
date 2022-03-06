@@ -191,6 +191,7 @@ function isTakenDuration($id_housing , $date_start, $date_end){
                 }
                 $currDate = date("Y-m-d", strtotime($currDate.'+ 1 days'));
         }
+        echo $taken;
 
         return $taken;
 
