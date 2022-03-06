@@ -1,10 +1,10 @@
 <?php
 
-displaySearch($array_housing){
+function displaySearch($array_housing){
     echo "<section>";
         foreach($array_housing as $housing){
             echo "<article>";
-            echo "BITTTTTTTTE";
+            echo getaddress(45.56734848022461, 5.915475368499756);
 
             echo "</article>";
         }
