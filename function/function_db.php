@@ -129,8 +129,7 @@ function getUserById($id){
 function searchAnnounce($priceMin, $priceMax){
         global $base;
 
-        $sql = "SELECT housing.id id_owner, type, latitude, longitude, nom, price, date_start, isTaken
-        FROM housing INNER JOIN announce ON housing.id = announce.id_housing
+        $sql = "SELECT * FROM housing INNER JOIN announce ON housing.id = announce.id_housing
         WHERE (price BETWEEN $priceMin AND $priceMax) AND (NOT isTaken) 
         GROUP BY housing.id";
         
