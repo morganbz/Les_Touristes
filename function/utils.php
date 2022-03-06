@@ -48,6 +48,7 @@ function Get_Address_From_Google_Maps($lat, $lon) {
     return $address;
     }
  
+    
 /* 
 * Check if the json data from Google Geo is valid 
 */
