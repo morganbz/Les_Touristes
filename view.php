@@ -65,6 +65,7 @@
             echo "<li class='error'>$error_register</li>";
         echo "</ul>";
       }  
+      var_dump($_SESSION);
     ?>
 </body>
 </html>
