@@ -19,5 +19,5 @@
         <label for="price_announce">Prix maximum</label>
     </div>
 
-    <button id="submit" name="submit" value="search_housing" type="submit">Rechercher</button>
+    <button id="submit" name="submit" value="search_housing_text" type="submit">Rechercher</button>
 </form>

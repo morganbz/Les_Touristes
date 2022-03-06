@@ -115,7 +115,15 @@
         if($submit == "Search_Announce"){
                 
         }
-        if($submit == "search_housing"){
+        if($submit == "search_housing_text"){
+            $price_min = $_POST["price_min"];
+            $price_max = $_POST["price_max"];
+            $date_start = $_POST["date_start"];
+            $date_end = $_POST["date_end"];
+
+            $result = searchAnnounce($price_min, $price_max, $date_start, $date_end);
+            
+            displaySearch($result);
 
         }
         if($submit == "Add_housing_announce"){
