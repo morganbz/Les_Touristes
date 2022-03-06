@@ -17,7 +17,7 @@
         </style>
     </head>
 	<body>
-		<a href="test_searching">Search</a>
+		<a href="test_searching">Search</a><br>
 		<input type="text" id="lat">latitude
         <br>
 		<input type="text" id="lng">longitude
