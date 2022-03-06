@@ -16,7 +16,7 @@
         $email = $user["mail"];
         $birth_date = $user["birth_date"];
         $phone = $user["phone"];
-        if ($user["description"] != NULL){
+        if (!empty($user["description"])){
             $description = $user["description"];
         }
 
