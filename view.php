@@ -15,11 +15,12 @@
             <li><a href="?page=recherche_activitee">Rechercher une activitée</a></li>
             <li><a href="?page=search_housing_text">Rechercher un logement texte</a></li>
             <li><a href="?page=user_page">Compte</a></li>
-            <li><a href="?page=register">REGISTER</a></li>
-            <li><a href="?page=login">LOGIN</a></li>
+            <li><a href="?page=register">Inscription</a></li>
+            <li><a href="?page=login">Connexion</a></li>
+            <li><a href="?page=deconnexion">Déconnexion</a></li>
             <li><a href="?page=add_housing_announce">Ajouter un logement</a></li>
             <li><a href="?page=search_housing">Recherche logement carte</a></li>
-            <li><a href="test.php">TEST GOOGLE</a></li>
+            <li><a href="?page=test">TEST GOOGLE</a></li>
         </ul>
     </nav>
     <?php
@@ -54,8 +55,14 @@
         else if($page == "login"){
             include_once "login.php";
         }
+        else if ($page == "deconnexion"){
+            unset($_SESSION["id_user"]);
+        }
         else if($page == "search_housing"){
             include_once "search_housing.php";
+        } 
+        else if($page == "test"){
+            include_once "test.php";
         }
 
       if (isset($_SESSION["errors_register"]) && $page == "register"){
