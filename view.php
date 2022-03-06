@@ -56,7 +56,7 @@
             include_once "login.php";
         }
         else if ($page == "deconnexion"){
-            unset($_SESSION);
+            session_unset();
         }
         else if($page == "search_housing"){
             include_once "search_housing.php";
