@@ -24,13 +24,17 @@
     echo "voir recommandation";
   }
   else if ($pageCompte == "ajoutRecommandation"){
-    include_once "add_annouce.php";
+    //include_once "add_annouce.php";
+    echo "voir recommandation";
+  }
   }
   else if ($pageCompte == "voirAnnonces"){
     echo "voir annonces";
   }
   else if ($pageCompte == "ajoutAnnonce"){
-    include_once "add_housing_annouce.php";
+    //include_once "add_housing_annouce.php";
+    echo "ajout home annonce";
+  }
   }
   var_dump ($pageCompte);
   
