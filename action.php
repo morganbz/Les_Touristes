@@ -171,6 +171,7 @@
             addHousingAndAnnounce($id_owner, $type, $latitude, $longitude, $name, $description, $price, $date_start, $date_end);
             createFolder("./Les_Touristes/picture_housing/test");
         }
+        // ---------------- CONNEXION UTILISATEURS --------------------------------
         if($submit == "Login"){
             $mail = $_POST["mail_user"];
             $password = $_POST["passWord"];
@@ -198,6 +199,61 @@
                 verifUser($mail, $password);	
 			}
             
+        }
+        // ---------------- MODIFICATION DONNÉES UTILISATEURS --------------------------------
+        if($submit == "update_user_info"){
+            $firstname = $_POST["firstname_modification"];
+            $lastname = $_POST["lastname_modification"];
+            $mail = $_POST["email_modification"];
+            $birth_date = $_POST["birth_date_modification"];
+            $phone = $_POST["phone_modification"];
+            $description = $_POST["description_modification"];
+
+            $good_firstname = false;
+            $good_lastname = false;
+            $good_mail = false;
+            $good_phone = false;
+            $good_birth_date = false;
+
+            if(isTextGoodLength($firstname, 50)){
+                $good_firstname = true;
+            } else {
+                $errors[] = "Nom trop long (50 caractères autorisé)";
+                $_SESSION["errors_modifications"] = $errors;
+            }
+            if(isTextGoodLength($lastname, 50)){
+                $good_lastname = true;
+            }else {
+                $errors[] = "Nom trop long (50 caractères autorisé)";
+                $_SESSION["errors_modifications"] = $errors;
+            }
+            if(isTextGoodLength($mail, 150) && filter_var($mail, FILTER_VALIDATE_EMAIL)){
+                $good_mail = true;
+            }else {
+                if (!isTextGoodLength($mail, 150)){
+                    $errors[] = "Email trop long (150 caractères autorisé)";
+                    $_SESSION["errors_modifications"] = $errors;
+                }
+                if (!filter_var($mail, FILTER_VALIDATE_EMAIL)){
+                    $errors[] = "Email entré ne correspond pas à une adresse mail";
+                    $_SESSION["errors_modifications"] = $errors;
+                }
+            }
+            if(isTextGoodLength($phone, 25)){
+                $good_phone = true;
+            } else {
+                $errors[] = "Numéro de téléphone ne doit pas dépassé 25 caractères";
+                $_SESSION["errors_modifications"] = $errors;
+            }
+            if(isGoodDateBeforeToday($birth_date)){
+                $good_birth_date = true;
+            } else {
+                $errors[] = "Vous ne pouvez pas être né dans le futur";
+                $_SESSION["errors_modifications"] = $errors;
+            }
+            if($good_firstname && $good_lastname && $good_mail && $good_phone){
+                updateUser($mail, $firstname, $lastname, $birth_date, $phone, $description);
+            }
         }
     }
     $page = "home";
