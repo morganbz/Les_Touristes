@@ -39,7 +39,7 @@
 
     <div>
         <label for="description_modification">Description</label>
-        <textarea placeholder="Description" value="<?php echo $description;?>" name="description_modification" id="description_modification"></textarea>
+        <textarea placeholder="Description" name="description_modification" id="description_modification"><?php echo $description;?></textarea>
     </div>
 
     <button id="submit" name="submit" value="update_user_info" type="submit">Mettre à jour</button>
