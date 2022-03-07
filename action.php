@@ -254,7 +254,7 @@
                 $_SESSION["errors_modifications"] = $errors;
             }
             if(isTextGoodLength($description, 10000)){
-                $good_phone = true;
+                $good_description = true;
             } else {
                 $errors[] = "La description ne peut pas dépasser 10000 caractères";
                 $_SESSION["errors_modifications"] = $errors;
