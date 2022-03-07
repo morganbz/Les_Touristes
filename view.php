@@ -25,7 +25,6 @@
             <?php
                 }
             ?>
-            <li><a href="?page=add_housing_announce">Ajouter un logement</a></li>
             <li><a href="?page=search_housing">Recherche logement carte</a></li>
             <li><a href="?page=test">TEST GOOGLE</a></li>
         </ul>
@@ -56,9 +55,6 @@
         else if($page == "add_announce"){
             include_once "add_announce.php";
         }*/
-        else if($page == "add_housing_announce"){
-            include_once "add_housing_announce.php";
-        }
         else if($page == "login"){
             include_once "login.php";
         }
