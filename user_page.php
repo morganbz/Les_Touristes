@@ -18,7 +18,7 @@
     include_once "modif_infos_user.php";
   }
   else if ($pageCompte == "modifMDP"){
-    echo "modif mdp";
+    include_once "modif_mdp_user.php";
   }
   else if ($pageCompte == "voirRecommandations"){
     echo "voir recommandation";
