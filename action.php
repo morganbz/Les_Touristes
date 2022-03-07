@@ -229,6 +229,7 @@
             $good_mail = false;
             $good_phone = false;
             $good_birth_date = false;
+            $user_exist = true;
 
             $user = getUser($mail);
 
