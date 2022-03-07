@@ -187,8 +187,10 @@
     
             addHousingAndAnnounce($id_owner, $type, $latitude, $longitude, $name, $description, $price, $date_start, $date_end);
 
+            chmod("./Les_Touristes/picture_housing/", 0777);
+
             $dossier = strval($id_owner). "/test" /*. strval(getIdByInfos($id_owner, $type, $name, $latitude, $longitude))*/;
-            createFolder("/picture_housing/$dossier");
+            createFolder("./Les_Touristes/picture_housing/$dossier");
         }
 
         // ---------------- MODIFICATION ANNONCE HEBERGEMENT --------------------------------
