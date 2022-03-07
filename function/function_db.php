@@ -153,8 +153,20 @@ function getUserById($id){
         return $user;
 }
 
+function getMailById($id){
+        global $base;
+
+        $sql = "SELECT mail FROM user WHERE id=$id";
+
+        $result = mysqli_query($base, $sql);
+
+        $mail = mysqli_fetch_array($result);
+
+        return $mail;
+}
+
 function updateUser($firstname, $lastname, $birth_date, $phone, $description){
-        /*global $base;
+        global $base;
 
         $firstname = mysqli_real_escape_string($base, $firstname);
         $lastname = mysqli_real_escape_string($base, $lastname);
@@ -162,7 +174,9 @@ function updateUser($firstname, $lastname, $birth_date, $phone, $description){
         $phone = mysqli_real_escape_string($base, $phone);
         $description = mysqli_real_escape_string($base, $description);
 
-        $sql = "";
+        $mail = getMailById($_SESSION["id_user"]);
+
+        $sql = "UPDATE user_info SET firstname=$firstname, lastname=$lastname, birth_date=$birth_date, phone=$phone, description=$description WHERE mail=$mail";
 
         $insert_update_user = $base->query($sql);
 
@@ -171,7 +185,7 @@ function updateUser($firstname, $lastname, $birth_date, $phone, $description){
         } else {
                 $errors[] = "Erreur au moment de l'ajout dans la base de donnée";
                 $_SESSION["errors_modifications"] = $errors;
-        }*/
+        }
         echo "ok";
 
 }
