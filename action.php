@@ -266,5 +266,35 @@
                 $pageCompte = "modifInfos";
             }
         }
+
+        // ---------------- MODIFICATION MOT DE PASSE UTILISATEURS --------------------------------
+
+        if($submit == "modification_pass_user"){
+            $pass = $_POST["pass_modif"];
+            $conf_pass = $_POST["conf_pass_modif"];
+
+            $good_pass = false;
+            $good_conf_pass = false;
+
+            if(isTextBetweenLength($pass, 6, 50)){
+                $good_pass = true;
+            } else {
+                $errors[] = "Pas assez sécurisé (min : 6 caractères) ou trop de caractères (max : 50 caractères)";
+                $_SESSION["errors_modification_pass"] = $errors;
+            }
+            if($good_pass && $conf_pass == $pass){
+                $good_conf_pass = true;
+            } else if ($conf_pass != $pass){
+                $errors[] = "Les deux mots de passe ne correspondent pas";
+                $_SESSION["errors_modification_pass"] = $errors;
+            }
+           
+            if($good_pass && $good_conf_pass){
+                modificationPassUser(hash_password($pass));
+            } else {
+                $page = "user_page";
+                $pageCompte = "modifMDP";
+            }
+        }
     }
 ?>

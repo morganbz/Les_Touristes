@@ -188,6 +188,23 @@ function updateUser($firstname, $lastname, $birth_date, $phone, $description){
         }
 }
 
+function modificationPassUser($pass){
+        global $base;
+
+        $id = $_SESSION["id_user"];
+
+        $sql = "UPDATE user SET password='$pass' WHERE id=$id";
+
+        $insert_modification_pass_user = $base->query($sql);
+
+        if ($insert_modification_pass_user){
+                unset($_SESSION["errors_modification_pass"]);
+        } else {
+                $errors[] = "Erreur au moment de l'ajout dans la base de donnée";
+                $_SESSION["errors_modification_pass"] = $errors;
+        }
+}
+
 // ----------------------------------------------------- ANNOUNCE ----------------------------------------
 
 
