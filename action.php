@@ -190,7 +190,7 @@
             //chmod("./picture_housing/", 0777);
 
             $dossier = strval($id_owner). "/test" /*. strval(getIdByInfos($id_owner, $type, $name, $latitude, $longitude))*/;
-            createFolder("./Les_Touristes/picture_housing/$dossier");
+            createFolder("/picture_housing/$dossier");
         }
 
         // ---------------- MODIFICATION ANNONCE HEBERGEMENT --------------------------------
