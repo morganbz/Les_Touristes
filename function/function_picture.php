@@ -1,6 +1,9 @@
 <?php
 
 function createFolder($folder){
+    $root = $_SERVER["DOCUMENT_ROOT"];
+    $dir = $root . $folder;
+
     if (!file_exists($folder)){
         mkdir($folder, 0755, true);
     }
