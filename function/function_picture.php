@@ -2,7 +2,7 @@
 
 function createFolder($folder){
     if (!file_exists($folder)){
-        mkdir($folder, 0770, true);
+        mkdir($folder, 0755, true);
     }
     
 }
