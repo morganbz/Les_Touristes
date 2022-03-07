@@ -278,7 +278,8 @@
             if($good_firstname && $good_lastname && $good_mail && $good_phone && !($user_exist)){
                 updateUser($mail, $firstname, $lastname, $birth_date, $phone, $description);
             } else {
-                $page = "modifInfos";
+                $page = "user_page";
+                $pageCompte = "modifInfos";
             }
         }
     }
