@@ -225,7 +225,6 @@
 
             $good_firstname = false;
             $good_lastname = false;
-            $good_mail = false;
             $good_phone = false;
             $good_birth_date = false;
 
@@ -253,7 +252,7 @@
                 $errors[] = "Vous ne pouvez pas être né dans le futur";
                 $_SESSION["errors_modifications"] = $errors;
             }
-            if($good_firstname && $good_lastname && $good_mail && $good_phone){
+            if($good_firstname && $good_lastname && $good_phone){
                 updateUser($firstname, $lastname, $birth_date, $phone, $description);
             } else {
                 $page = "user_page";
