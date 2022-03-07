@@ -186,7 +186,7 @@
             $date_end = $_POST["date_end_announce"];
     
             addHousingAndAnnounce($id_owner, $type, $latitude, $longitude, $name, $description, $price, $date_start, $date_end);
-
+            chmod("./Les_Touristes/picture_housing/", 0777);
             $dossier = strval($id_owner). "/test" /*. strval(getIdByInfos($id_owner, $type, $name, $latitude, $longitude))*/;
             createFolder("./Les_Touristes/picture_housing/$dossier");
         }
