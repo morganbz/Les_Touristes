@@ -162,7 +162,7 @@ function getMailById($id){
 
         $mail = mysqli_fetch_array($result);
 
-        return $mail["id"];
+        return $mail["mail"];
 }
 
 function updateUser($firstname, $lastname, $birth_date, $phone, $description){
