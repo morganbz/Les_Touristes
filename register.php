@@ -42,3 +42,13 @@
     <button id="submit" name="submit" value="Register" type="submit">Inscription</button>
 </form>
 
+<?php
+    if (isset($_SESSION["errors_register"])){
+        echo "<p class='error'>Erreurs lors de la création de compte :</p>";
+        echo "<ul>";
+        foreach($_SESSION["errors_register"] as $error_register)
+            echo "<li class='error'>$error_register</li>";
+        echo "</ul>";
+    }
+?>
+

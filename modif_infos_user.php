@@ -53,3 +53,13 @@
 
     <button id="submit" name="submit" value="update_user_info" type="submit">Mettre à jour</button>
 </form>
+
+<?php
+    if (isset($_SESSION["errors_modifications"])){
+        echo "<p class='error'>Erreurs lors de la modification du compte :</p>";
+        echo "<ul>";
+        foreach($_SESSION["errors_modifications"] as $error_register)
+            echo "<li class='error'>$error_register</li>";
+        echo "</ul>";
+    }  
+?>
