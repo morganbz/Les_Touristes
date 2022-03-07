@@ -12,9 +12,7 @@
         $lastname = $user["lastname"];
         $birth_date = $user["birth_date"];
         $phone = $user["phone"];
-        if ($user["description"] != NULL){
-            $description = $user["description"];
-        }
+        $description = $user["description"];
     }
 ?>
 
