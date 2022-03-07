@@ -253,7 +253,7 @@
                 $errors[] = "Vous ne pouvez pas être né dans le futur";
                 $_SESSION["errors_modifications"] = $errors;
             }
-            if(isTextGoodLength($description, 10000)){
+            if(isTextBetweenLength($description, 0, 10000)){
                 $good_description = true;
             } else {
                 $errors[] = "La description ne peut pas dépasser 10000 caractères";
