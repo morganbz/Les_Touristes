@@ -153,6 +153,10 @@ function getUserById($id){
         return $user;
 }
 
+function updateUser($mail, $firstname, $lastname, $birth_date, $phone, $description){
+        echo "ok";
+}
+
 // ----------------------------------------------------- ANNOUNCE ----------------------------------------
 
 
