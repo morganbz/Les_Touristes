@@ -71,7 +71,7 @@
             if(isTextGoodLength($phone, 25)){
                 $good_phone = true;
             } else {
-                $errors[] = "Numéro de téléphone ne doit pas dépassé 25 caractères";
+                $errors[] = "Numéro de téléphone ne doit pas dépasser 25 caractères";
                 $_SESSION["errors_register"] = $errors;
             }
             if(isGoodDateBeforeToday($birth_date)){
@@ -227,6 +227,7 @@
             $good_lastname = false;
             $good_phone = false;
             $good_birth_date = false;
+            $good_description = false;
 
             if(isTextGoodLength($firstname, 50)){
                 $good_firstname = true;
@@ -243,7 +244,7 @@
             if(isTextGoodLength($phone, 25)){
                 $good_phone = true;
             } else {
-                $errors[] = "Numéro de téléphone ne doit pas dépassé 25 caractères";
+                $errors[] = "Numéro de téléphone ne doit pas dépasser 25 caractères";
                 $_SESSION["errors_modifications"] = $errors;
             }
             if(isGoodDateBeforeToday($birth_date)){
@@ -252,7 +253,13 @@
                 $errors[] = "Vous ne pouvez pas être né dans le futur";
                 $_SESSION["errors_modifications"] = $errors;
             }
-            if($good_firstname && $good_lastname && $good_phone){
+            if(isTextGoodLength($description, 10000)){
+                $good_phone = true;
+            } else {
+                $errors[] = "La description ne peut pas dépasser 10000 caractères";
+                $_SESSION["errors_modifications"] = $errors;
+            }
+            if($good_firstname && $good_lastname && $good_phone && $good_description){
                 updateUser($firstname, $lastname, $birth_date, $phone, $description);
             } else {
                 $page = "user_page";
