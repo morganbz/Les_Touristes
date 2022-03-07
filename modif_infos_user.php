@@ -49,8 +49,8 @@
     if (isset($_SESSION["errors_modifications"])){
         echo "<p class='error'>Erreurs lors de la modification du compte :</p>";
         echo "<ul>";
-        foreach($_SESSION["errors_modifications"] as $error_register)
-            echo "<li class='error'>$error_register</li>";
+        foreach($_SESSION["errors_modifications"] as $error_modifications)
+            echo "<li class='error'>$error_modifications</li>";
         echo "</ul>";
     }  
 ?>

@@ -16,8 +16,8 @@
     if (isset($_SESSION["errors_login"])){
         echo "<p class='error'>Erreurs lors de la connexion :</p>";
         echo "<ul>";
-        foreach($_SESSION["errors_login"] as $error_register)
-            echo "<li class='error'>$error_register</li>";
+        foreach($_SESSION["errors_login"] as $error_login)
+            echo "<li class='error'>$error_login</li>";
         echo "</ul>";
     }
 ?>
