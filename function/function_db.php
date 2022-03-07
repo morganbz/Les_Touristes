@@ -176,7 +176,7 @@ function updateUser($firstname, $lastname, $birth_date, $phone, $description){
 
         $mail = getMailById($_SESSION["id_user"]);
 
-        $sql = "UPDATE user_info SET firstname=$firstname, lastname=$lastname, birth_date=$birth_date, phone=$phone, description=$description WHERE mail=$mail";
+        $sql = "UPDATE user_info SET firstname='$firstname', lastname='$lastname', birth_date=$birth_date, phone='$phone', description='$description' WHERE mail='$mail'";
 
         $insert_update_user = $base->query($sql);
 
