@@ -249,7 +249,8 @@
             if(isGoodDateBeforeToday($birth_date)){
                 $good_birth_date = true;
             } else {
-                $errors[] = "Vous ne pouvez pas être né dans le futur" + date($birth_date);
+                $errors[] = "Vous ne pouvez pas être né dans le futur";
+                echo date($birth_date);
                 $_SESSION["errors_modifications"] = $errors;
             }
             if($good_firstname && $good_lastname && $good_phone){
