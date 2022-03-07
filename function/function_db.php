@@ -153,8 +153,27 @@ function getUserById($id){
         return $user;
 }
 
-function updateUser($mail, $firstname, $lastname, $birth_date, $phone, $description){
+function updateUser($firstname, $lastname, $birth_date, $phone, $description){
+        /*global $base;
+
+        $firstname = mysqli_real_escape_string($base, $firstname);
+        $lastname = mysqli_real_escape_string($base, $lastname);
+        $birth_date = mysqli_real_escape_string($base, $birth_date);
+        $phone = mysqli_real_escape_string($base, $phone);
+        $description = mysqli_real_escape_string($base, $description);
+
+        $sql = "";
+
+        $insert_update_user = $base->query($sql);
+
+        if ($insert_update_user){
+                unset($_SESSION["errors_modifications"]);
+        } else {
+                $errors[] = "Erreur au moment de l'ajout dans la base de donnée";
+                $_SESSION["errors_modifications"] = $errors;
+        }*/
         echo "ok";
+
 }
 
 // ----------------------------------------------------- ANNOUNCE ----------------------------------------
