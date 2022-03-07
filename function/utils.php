@@ -21,6 +21,7 @@ function isTextBetweenLength($text, $minLength, $maxLength){
 }
 
 function isGoodDateBeforeToday($date){
+    date_default_timezone_set('Europe/Paris');
     return $date < date("Y-m-d", strtotime(time()));
 }
 
