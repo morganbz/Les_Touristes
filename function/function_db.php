@@ -317,5 +317,5 @@ function getAnnounceByIdHousing($id){
         }
 
         return $announces;
-
+}
 ?>
