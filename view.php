@@ -14,10 +14,17 @@
         <ul>
             <li><a href="?page=recherche_activitee">Rechercher une activitée</a></li>
             <li><a href="?page=search_housing_text">Rechercher un logement texte</a></li>
-            <li><a href="?page=user_page">Compte</a></li>
-            <li><a href="?page=register">Inscription</a></li>
-            <li><a href="?page=login">Connexion</a></li>
-            <li><a href="?page=deconnexion">Déconnexion</a></li>
+            <?php 
+                if (isset($_SESSION["id_user"])){?>
+                    <li><a href="?page=user_page">Compte</a></li>
+                    <li><a href="?page=deconnexion">Déconnexion</a></li>
+            <?php
+                } else { ?>
+                    <li><a href="?page=register">Inscription</a></li>
+                    <li><a href="?page=login">Connexion</a></li>
+            <?php
+                }
+            ?>
             <li><a href="?page=add_housing_announce">Ajouter un logement</a></li>
             <li><a href="?page=search_housing">Recherche logement carte</a></li>
             <li><a href="?page=test">TEST GOOGLE</a></li>
