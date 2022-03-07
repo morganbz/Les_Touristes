@@ -186,7 +186,17 @@
             $date_end = $_POST["date_end_announce"];
     
             addHousingAndAnnounce($id_owner, $type, $latitude, $longitude, $name, $description, $price, $date_start, $date_end);
-            createFolder("./Les_Touristes/picture_housing/test");
+
+            $dossier = $id_owner + "/" + getIdByInfos($id_owner, $type, $name, $latitude, $longitude);
+            createFolder("./Les_Touristes/picture_housing/$dossier");
+        }
+
+        // ---------------- MODIFICATION ANNONCE HEBERGEMENT --------------------------------
+
+        if($submit == "Modification_housing_announce"){
+            $dossier = $_SESSION["id_user"] + "nom annonce";
+
+            uploadImg($dossier);
         }
 
         // ---------------- CONNEXION UTILISATEURS --------------------------------
