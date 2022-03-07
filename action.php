@@ -250,9 +250,6 @@
                 $good_birth_date = true;
             } else {
                 $errors[] = "Vous ne pouvez pas être né dans le futur";
-                echo date($birth_date);
-                date_default_timezone_set('Europe/Paris');
-                echo date("Y-m-d");
                 $_SESSION["errors_modifications"] = $errors;
             }
             if($good_firstname && $good_lastname && $good_phone){
