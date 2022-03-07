@@ -219,7 +219,6 @@
         if($submit == "update_user_info"){
             $firstname = $_POST["firstname_modification"];
             $lastname = $_POST["lastname_modification"];
-            $mail = $_POST["email_modification"];
             $birth_date = $_POST["birth_date_modification"];
             $phone = $_POST["phone_modification"];
             $description = $_POST["description_modification"];
@@ -229,16 +228,7 @@
             $good_mail = false;
             $good_phone = false;
             $good_birth_date = false;
-            $user_exist = true;
 
-            $user = getUser($mail);
-
-            if($user == null){
-                $user_exist = false;   
-            } else {
-                $errors[] = "Cette adresse mail possède déjà un compte";
-                $_SESSION["errors_register"] = $errors;
-            }
             if(isTextGoodLength($firstname, 50)){
                 $good_firstname = true;
             } else {
@@ -275,8 +265,8 @@
                 $errors[] = "Vous ne pouvez pas être né dans le futur";
                 $_SESSION["errors_modifications"] = $errors;
             }
-            if($good_firstname && $good_lastname && $good_mail && $good_phone && !($user_exist)){
-                updateUser($mail, $firstname, $lastname, $birth_date, $phone, $description);
+            if($good_firstname && $good_lastname && $good_mail && $good_phone){
+                updateUser($firstname, $lastname, $birth_date, $phone, $description);
             } else {
                 $page = "user_page";
                 $pageCompte = "modifInfos";

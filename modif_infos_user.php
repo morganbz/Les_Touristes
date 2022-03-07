@@ -1,7 +1,6 @@
 <?php
      $firstname = "";
      $lastname = "";
-     $email = "";
      $birth_date = "";
      $phone = "";
      $description = "";
@@ -11,7 +10,6 @@
 
         $firstname = $user["firstname"];
         $lastname = $user["lastname"];
-        $email = $user["mail"];
         $birth_date = $user["birth_date"];
         $phone = $user["phone"];
         if ($user["description"] != NULL){
@@ -29,11 +27,6 @@
     <div>
         <label for="lastname_modification">Nom</label>
         <input placeholder="Nom" value="<?php echo $lastname;?>" type="text" name="lastname_modification" id="lastname_modification" required>
-    </div>
-
-    <div>
-        <label for="email_modification">Email</label>
-        <input placeholder="exemple@mail.com" value="<?php echo $email;?>" type="email" name="email_modification" id="email_modification" required>
     </div>
 
     <div>
