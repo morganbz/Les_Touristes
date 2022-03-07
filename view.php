@@ -63,7 +63,7 @@
             include_once "login.php";
         }
         else if ($page == "deconnexion"){
-            $page = "home"
+            $page = "home";
             session_unset();
         }
         else if($page == "search_housing"){
