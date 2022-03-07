@@ -1,4 +1,9 @@
 <?php
+     $firstname = "";
+     $lastname = "";
+     $email = "";
+     $birth_date = "";
+     $phone = "";
      $description = "";
     
     if(isset($_SESSION["id_user"])){
