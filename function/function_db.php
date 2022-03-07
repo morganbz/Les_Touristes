@@ -176,7 +176,7 @@ function updateUser($firstname, $lastname, $birth_date, $phone, $description){
 
         $mail = getMailById($_SESSION["id_user"]);
 
-        $sql = "UPDATE user_info SET firstname='$firstname', lastname='$lastname', birth_date=$birth_date, phone='$phone', description='$description' WHERE mail='$mail'";
+        $sql = "UPDATE user_info SET firstname='$firstname', lastname='$lastname', birth_date='$birth_date', phone='$phone', description='$description' WHERE mail='$mail'";
 
         $insert_update_user = $base->query($sql);
 
@@ -186,8 +186,6 @@ function updateUser($firstname, $lastname, $birth_date, $phone, $description){
                 $errors[] = "Erreur au moment de l'ajout dans la base de donnée";
                 $_SESSION["errors_modifications"] = $errors;
         }
-        echo $sql;
-
 }
 
 // ----------------------------------------------------- ANNOUNCE ----------------------------------------
