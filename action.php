@@ -1,4 +1,16 @@
 <?php
+    $page = "home";
+    $pageCompte = "home";
+
+    if(isset($_GET["page"])){
+        $page = $_GET["page"];
+    }
+
+    if(isset($_GET["pageCompte"])){
+        $pageCompte = $_GET["pageCompte"];
+    }
+
+    // ---------------------- POST FORMULAIRE ----------------------------
     if(!empty($_POST)&&array_key_exists("submit", $_POST)){
         $submit = $_POST["submit"];
         if($submit == "Register"){
@@ -82,6 +94,8 @@
             }
             if($good_firstname && $good_lastname && $good_mail && $good_phone && $good_conf_pass && !($user_exist)){
                 addUser($mail, $firstname, $lastname, $birth_date, $phone, hash_password($pass), $admin);
+            } else {
+                $page = "register";
             }
         }
         if($submit == "Add_housing"){
@@ -186,7 +200,7 @@
                 $errors[] = "Email trop long (150 caractères autorisé)";
             }
             if (!filter_var($mail, FILTER_VALIDATE_EMAIL)){
-                $errors[] = "Email entré ne correspond pas à une adresse mail";
+                $errors[] = "Le mail ne correspond pas à une adresse mail";
             }
 
             if (empty($password)){
@@ -195,6 +209,7 @@
 				
             if (count($errors) > 0) {
 			    $_SESSION["errors_login"] = $errors;
+                $page = "login";
 			} else {
                 verifUser($mail, $password);	
 			}
@@ -215,6 +230,14 @@
             $good_phone = false;
             $good_birth_date = false;
 
+            $user = getUser($mail);
+
+            if($user == null){
+                $user_exist = false;   
+            } else {
+                $errors[] = "Cette adresse mail possède déjà un compte";
+                $_SESSION["errors_register"] = $errors;
+            }
             if(isTextGoodLength($firstname, 50)){
                 $good_firstname = true;
             } else {
@@ -235,7 +258,7 @@
                     $_SESSION["errors_modifications"] = $errors;
                 }
                 if (!filter_var($mail, FILTER_VALIDATE_EMAIL)){
-                    $errors[] = "Email entré ne correspond pas à une adresse mail";
+                    $errors[] = "Le mail ne correspond pas à une adresse mail";
                     $_SESSION["errors_modifications"] = $errors;
                 }
             }
@@ -251,19 +274,11 @@
                 $errors[] = "Vous ne pouvez pas être né dans le futur";
                 $_SESSION["errors_modifications"] = $errors;
             }
-            if($good_firstname && $good_lastname && $good_mail && $good_phone){
+            if($good_firstname && $good_lastname && $good_mail && $good_phone && !($user_exist)){
                 updateUser($mail, $firstname, $lastname, $birth_date, $phone, $description);
+            } else {
+                $page = "modifInfos";
             }
         }
-    }
-    $page = "home";
-    $pageCompte = "home";
-
-    if(isset($_GET["page"])){
-        $page = $_GET["page"];
-    }
-
-    if(isset($_GET["pageCompte"])){
-        $pageCompte = $_GET["pageCompte"];
     }
 ?>
