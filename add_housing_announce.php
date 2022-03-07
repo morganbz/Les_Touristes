@@ -1,10 +1,5 @@
 <form action="index.php" method="post">
     <div>
-        <input placeholder="Id du propriétaire" type="int" name="id_owner_housing" id="id_owner_housing" required>
-        <label for="id_owner_housing">Id du propriétaire</label>
-    </div>
-
-    <div>
         <label for="id_owner_housing">Type de logement</label>
             <select name="type_housing">
             <option value= 0>Maison</option>

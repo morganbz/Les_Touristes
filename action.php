@@ -171,8 +171,11 @@
             displaySearch($result);
 
         }
+
+        // ---------------- AJOUT ANNONCE HEBERGEMENT --------------------------------
+
         if($submit == "Add_housing_announce"){
-            $id_owner = $_POST["id_owner_housing"];
+            $id_owner = $_SESSION["id_user"];
             $type = $_POST["type_housing"];
             $latitude = $_POST["latitude_housing"];
             $longitude = $_POST["longitude_housing"];
@@ -185,7 +188,9 @@
             addHousingAndAnnounce($id_owner, $type, $latitude, $longitude, $name, $description, $price, $date_start, $date_end);
             createFolder("./Les_Touristes/picture_housing/test");
         }
+
         // ---------------- CONNEXION UTILISATEURS --------------------------------
+
         if($submit == "Login"){
             $mail = $_POST["mail_user"];
             $password = $_POST["passWord"];
