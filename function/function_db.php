@@ -18,10 +18,10 @@ function addHousing($id_owner, $type, $latitude, $longitude, $name, $description
 function addAnnounce($price, $date_start, $id_housing){
         global $base;
 
-        mysqli_real_escape_string($base, $date);
+        $date = mysqli_real_escape_string($base, $date);
 
         $sql = "INSERT INTO announce(price, date_start, isTaken, id_housing)
-                VALUES ($price, '$date_start', 0, $id_housing)";
+                VALUES ($price, '$date', 0, $id_housing)";
 
         mysqli_query($base, $sql);
 }
