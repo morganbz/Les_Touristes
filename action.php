@@ -241,18 +241,6 @@
                 $errors[] = "Nom trop long (50 caractères autorisé)";
                 $_SESSION["errors_modifications"] = $errors;
             }
-            if(isTextGoodLength($mail, 150) && filter_var($mail, FILTER_VALIDATE_EMAIL)){
-                $good_mail = true;
-            }else {
-                if (!isTextGoodLength($mail, 150)){
-                    $errors[] = "Email trop long (150 caractères autorisé)";
-                    $_SESSION["errors_modifications"] = $errors;
-                }
-                if (!filter_var($mail, FILTER_VALIDATE_EMAIL)){
-                    $errors[] = "Le mail ne correspond pas à une adresse mail";
-                    $_SESSION["errors_modifications"] = $errors;
-                }
-            }
             if(isTextGoodLength($phone, 25)){
                 $good_phone = true;
             } else {
