@@ -274,4 +274,48 @@ function getData($ville){
         return $res;
 }
 
+function getIdByInfos($id_owner, $type, $name, $latitude, $longitude){
+        global $base;
+
+        $sql = "SELECT id FROM housing WHERE id_owner = $id_owner, type = $type, nom = '$name', latitude = $latitude, longitude = $longitude";
+
+        $result = mysqli_query($base, $sql);
+
+        $id = mysqli_fetch_array($result);
+
+        return $id["id"]
+}
+
+function getHousingByIdOwner($id){
+        global $base;
+
+        $housings = [];
+
+        $sql = "SELECT id, id_owner, type, latitude, longitude, nom, image_folder, description 
+                FROM housing
+                WHERE id_owner = $id";
+        $result = mysqli_query($base, $sql);
+
+        while($row = mysqli_fetch_assoc($result)){
+            $housings[] = $row;
+        }
+
+        return $housings;
+
+}
+
+function getAnnounceByIdHousing($id){
+        global $base;
+
+        $announces = [];
+
+        $sql = "SELECT id, price, date_start, isTaken, id_housing FROM announce WHERE id_housing = $id";
+        $result = mysqli_query($base, $sql);
+
+        while($row = mysqli_fetch_assoc($result)){
+            $announces[] = $row;
+        }
+
+        return $announces;
+
 ?>
