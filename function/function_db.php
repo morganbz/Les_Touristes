@@ -186,7 +186,7 @@ function updateUser($firstname, $lastname, $birth_date, $phone, $description){
                 $errors[] = "Erreur au moment de l'ajout dans la base de donnée";
                 $_SESSION["errors_modifications"] = $errors;
         }
-        echo "ok";
+        echo $sql;
 
 }
 
