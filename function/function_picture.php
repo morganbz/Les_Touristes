@@ -45,7 +45,7 @@ function uploadImg($dossier){
         }
 
         if ($base->connect_error) {
-            die("Connection failed: " . $c->connect_error);
+            die("Connection failed: " . $base->connect_error);
         }
     }
 }
