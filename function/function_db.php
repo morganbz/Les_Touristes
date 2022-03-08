@@ -30,7 +30,7 @@ function addHousingAndAnnounce($id_owner, $type, $latitude, $longitude, $name, $
         global $base;
 
         $sql = "INSERT INTO housing (id_owner, type, latitude, longitude, nom, description) 
-                VALUES (8, 0, 12, 12, 'test380', 'test');";
+                VALUES ($id_owner, $type, $latitude, $longitude, '$name', '$description');";
 
         mysqli_query($base, $sql);
 
@@ -134,17 +134,15 @@ function verifUser($mail, $password){
 
         $user = mysqli_fetch_array($result);
 
+        $login = false;
+
         if (password_verify($password, $user['password'])){
                 $_SESSION["id_user"] = $user["id"];
                 unset($_SESSION["errors_login"]);
-        } else {
-                $errors[] = "Mauvais mot de passe";
-                $_SESSION["errors_login"] = $errors;
-                $page = "login";
+                $login = true;
         }
 
-        return $user;
-
+        return $login;
 }
 
 function getUserById($id){
