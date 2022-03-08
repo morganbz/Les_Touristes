@@ -2,14 +2,16 @@
 
 echo "voir annonces";
 
-//la connection à la bdd
-global $base;
+
 
 //ébauche de fct
-echo "<form>";
-//foreach (id as id){
-    
-//}
+echo "<ul>";
 
-echo "</form>";
+$announces  = getHousingByIdOwner($_SESSION["id_user"]);
+
+foreach ($announce as $announces){
+    echo "<li>" + $announce["nom"] + "</li>";
+}
+
+echo "</ul>";
 ?>
