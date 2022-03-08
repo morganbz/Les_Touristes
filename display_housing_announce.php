@@ -53,7 +53,6 @@ foreach ($listeAnnounces as $announce){
     if (isset ($cheminImg)){
         $images = scandir($cheminImg);
         foreach($images as $image){
-            var_dump($image);
             if ($image != "." && $image != ".."){
                 echo "<img src='".$cheminImg."/".$image."' alt='".$nom."'/>";
             }
