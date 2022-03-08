@@ -44,16 +44,13 @@
             .flex{
                 flex-grow: 1;
             }
-            .test{
+            .data_search{
                 border: black solid 1px;
                 height: auto;
             }
         </style>
     </head>
     <body>
-        <?php
-            $data = getData("Chambéry");
-        ?>
         <div id="page_content">
             <div class="searchbar">
                 <div class="flex">
@@ -74,99 +71,15 @@
                     <input placeholder="Quand ?" type="date" name="date_seach_departure" id="date_seach_departure">
                 </div>
                 
-                <button class="flex" onclick="loadMapAddress()">Rechercher</button>
+                <button class="flex" onclick="getLocation()">Rechercher</button>
             </div>
             <div id="contener">
-                <div id="search_housing_list">
-                    <?php
-                    foreach($data as $data_info){
-                        echo "<div class='test'>";
-                        echo"<p>Nom : ".$data_info['nom']."<p>";
-						echo"<p>Adresse : ".$data_info['adresse']."<p>";
-						echo"<p>Département : ".$data_info['departement']."<p>";
-						echo"<p>Ville : ".$data_info['ville']."<p>";
-						echo"<p>Coordonnée : ".$data_info['latitude'].", ".$data_info['longitude']."<p>";
-						echo"<p>Description : ".$data_info['description']."<p>";
-                        echo"</div>";
-                    }
-                    ?>
-            </div>
-            <div id="search_housing_map">
-                </div>
+                <div id="search_housing_list"></div>
+                <div id="search_housing_map"></div>
             </div>
         </div>
-            
-        <script>
-            function initMap() {
-                var map = new google.maps.Map(document.getElementById('search_housing_map'), {
-                    center: new google.maps.LatLng(46, 2),
-					zoom: 6
-				});
-
-                var results = <?= json_encode($data); ?>
-
-                setMarkers(map,results);
-			}
-
-            function addressCoord(next){
-				var adresse = document.querySelector('#place_search').value;
-				if(adresse != ""){
-					var geocoder =  new google.maps.Geocoder();
-					geocoder.geocode( { 'address': adresse}, function(results, status) {
-						if (status == google.maps.GeocoderStatus.OK) {
-							latitude = results[0].geometry.location.lat();
-							longitude = results[0].geometry.location.lng();
-						}
-                        else {
-							alert("Something got wrong " + status);
-						}
-                        next();
-					});
-				}
-			}
-
-            function loadMapAddress(){
-                addressCoord(function(){
-                    var map = new google.maps.Map(document.getElementById('search_housing_map'), {
-                        center: new google.maps.LatLng(latitude, longitude),
-                        zoom: 15
-				    });
-                });
-            }
-
-            function setMarkers(map,locations) {
-				for(var i=0; i<locations.length; i++){
-					var station = locations[i];
-					var myLatLng = new google.maps.LatLng(station['latitude'], station['longitude']);
-					var infoWindow = new google.maps.InfoWindow();
-
-					var marker = new google.maps.Marker({
-						position: myLatLng,
-						map: map,
-						title: station['marker_ville']
-					});
-
-					(function(i){
-						google.maps.event.addListener(marker, "click",function(){
-							var station = locations[i];
-							infoWindow.close();
-
-							infoWindow.setContent(
-								"<div id='infoWindow'>"
-								+"<p>Nom : "+station['nom']+"<p>"
-								+"<p>Adresse : "+station['adresse']+"<p>"
-								+"<p>Département : "+station['departement']+"<p>"
-								+"<p>Ville : "+station['ville']+"<p>"
-								+"<p>Coordonnée : "+station['latitude']+", "+station['longitude']+"<p>"
-								+"<p>Description : "+station['description']+"<p>"
-								+"</div>"
-							);
-							infoWindow.open(map,this);
-						});
-					})(i);
-				}
-			}
-        </script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="js/script.js"></script>
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6q4hVJGUioenp17tQTqiCS9dLDWbgATw&callback=initMap"></script>
     </body>
 </html>
