@@ -200,9 +200,8 @@
             createFolder("$dossier");
             
             $dossier = $dossier."/".strval($idAnnounce);
+            var_dump ($dossier);
             createFolder("$dossier");
-
-            //addFolderToHousingAnnounce($idAnnounce, $dossier);
         }
 
         // ---------------- MODIFICATION ANNONCE HEBERGEMENT --------------------------------
