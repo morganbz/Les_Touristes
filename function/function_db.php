@@ -140,6 +140,7 @@ function verifUser($mail, $password){
         } else {
                 $errors[] = "Mauvais mot de passe";
                 $_SESSION["errors_login"] = $errors;
+                $page = "login";
         }
 
         return $user;
