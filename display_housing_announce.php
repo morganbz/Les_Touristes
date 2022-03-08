@@ -52,14 +52,21 @@ foreach ($listeAnnounces as $announce){
 
     if (isset ($cheminIm)){
         $images = scandir($cheminImg);
-
         foreach($images as $image){
+            var_dump($image);
             if ($image != "."){
                 echo "<img src='".$image."' alt='".$nom."'/>";
             }
         }
     }
     
+    if (isset($_SESSION["errors_modification_image"])){
+        echo "<p class='error'>Erreurs sur l'ajout d'image :</p>";
+        echo "<ul>";
+        foreach($_SESSION["errors_upload_img"] as $error_upload_img)
+            echo "<li class='error'>$error_upload_img</li>";
+        echo "</ul>";
+    }
 
 }
 
