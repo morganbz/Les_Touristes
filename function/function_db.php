@@ -53,7 +53,7 @@ function addHousingAndAnnounce($id_owner, $type, $latitude, $longitude, $name, $
 
         $dossier =  "./picture_housing/".strval($id_owner)."/".strval($id_housing);
 
-        $sql = "UPDATE housing SET image_folder = $dossier WHERE id = $id_housing";
+        $sql = "UPDATE housing SET image_folder = '$dossier' WHERE id = $id_housing";
 
         mysqli_query($base, $sql);
         echo $sql;
