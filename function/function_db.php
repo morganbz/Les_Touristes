@@ -137,6 +137,9 @@ function verifUser($mail, $password){
         if (password_verify($password, $user['password'])){
                 $_SESSION["id_user"] = $user["id"];
                 unset($_SESSION["errors_login"]);
+        } else {
+                $errors[] = "Mauvais mot de passe";
+                $_SESSION["errors_login"] = $errors;
         }
 
         return $user;
