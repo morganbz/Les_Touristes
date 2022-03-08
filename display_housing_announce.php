@@ -7,9 +7,9 @@ global $base;
 
 //ébauche de fct
 echo "<form>";
-foreach (id as id){
+//foreach (id as id){
     
-}
+//}
 
 echo "</form>";
 ?>
