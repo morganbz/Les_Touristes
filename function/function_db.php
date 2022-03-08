@@ -30,7 +30,7 @@ function addHousingAndAnnounce($id_owner, $type, $latitude, $longitude, $name, $
         global $base;
 
         $sql = "INSERT INTO housing (id_owner, type, latitude, longitude, nom, description) 
-                VALUES (8, 0, 12, 12, 'test380', 'test');";
+                VALUES ($type, $type, $latitude, $longitude, '$name', '$description');";
 
         mysqli_query($base, $sql);
 
