@@ -9,6 +9,8 @@ function createFolder($folder){
 function uploadImg($dossier){
     global $base;
 
+    var_dump($dossier);
+    var_dump($_FILES);
     $errors = [];
 
     if (isset($_FILES)){
@@ -19,6 +21,9 @@ function uploadImg($dossier){
         $error = $_FILES["modification_image"]['error'];
 
         $cheminDossier = "./picture_housing/".$dossier."/".$name;
+
+        var_dump($cheminDossier);
+
         $extensionFichier = strtolower(basename($typefile));
 
         $extensionAcceptee = ['jpg', 'jpeg','png'];

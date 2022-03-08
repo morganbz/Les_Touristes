@@ -204,7 +204,7 @@
         // ---------------- MODIFICATION ANNONCE HEBERGEMENT --------------------------------
 
         if($submit == "housing_announce_update"){
-            $dossier = "./picture_housing/".strval($_SESSION["id_user"])."/91";
+            $dossier = strval($_SESSION["id_user"])."/91";
 
             uploadImg($dossier);
         }
