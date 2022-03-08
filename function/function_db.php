@@ -29,10 +29,14 @@ function addAnnounce($price, $date_start, $id_housing){
 function addHousingAndAnnounce($id_owner, $type, $latitude, $longitude, $name, $description, $price, $date_start, $date_end){
         global $base;
 
-        $dossier =  "./picture_housing/".strval($id_owner);
+        $dossier =  "./picture_housing/".strval($id_owner)."/";
 
-        $sql = "INSERT INTO housing (id_owner, type, latitude, longitude, nom, image_folder, description) 
-                VALUES ($id_owner, $type, $latitude, $longitude, '$name', '$dossier/'SELECT LAST_INSERT_ID(), '$description')";
+        $sql = "INSERT INTO housing (id_owner, type, latitude, longitude, nom, description) 
+                VALUES (8, 0, 12, 12, 'test380', 'test');
+                SET @last_id = LAST_INSERT_ID();
+                SET @folder = '$dossier';
+                SET @folderdst = CONCAT(@folder, CAST(@last_id as varchar(10)));
+                UPDATE housing SET image_folder = @folderdst WHERE id = @last_id;";
 
         echo $sql;
 
