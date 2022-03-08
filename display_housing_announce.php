@@ -7,9 +7,9 @@ echo "voir annonces";
 //ébauche de fct
 echo "<ul>";
 
-$announces  = getHousingByIdOwner($_SESSION["id_user"]);
+$listeAnnounces  = getHousingByIdOwner($_SESSION["id_user"]);
 
-foreach ($announce as $announces){
+foreach ($listeAnnounces as $announce){
     echo "<li>" + $announce["nom"] + "</li>";
 }
 
