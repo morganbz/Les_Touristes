@@ -166,9 +166,16 @@
             $date_start = $_POST["date_start"];
             $date_end = $_POST["date_end"];
 
-            $result = searchAnnounce($price_min, $price_max, $date_start, $date_end);
-            
-            displaySearch($result);
+            if(strtotime($date_start) > strtotime($date_end)){
+                $url = getURL()."?page=search_housing_text&statut_search=failed&error=date";
+            }
+            else if($price_min > $price_max){
+                $url = getURL()."?page=search_housing_text&statut_search=failed&error=price";
+            }
+            else{
+                $url = getURL()."?page=search_housing_text&statut_search=send&price_min=".$price_min."&price_max=".$price_max."&date_start=".$date_start."&date_end=".$date_end;   
+            }
+            header('Location: '.$url.'');
 
         }
 

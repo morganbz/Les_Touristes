@@ -41,7 +41,26 @@
             //isTakenDuration(14 , "1900-01-01",  "2070-01-01");
         }
         else if ($page == "search_housing_text"){
-            include_once "formulaire/search_housing_text.php";
+            if(isset($_GET["statut_search"])){
+                if($_GET["statut_search"] == "send"){
+                    $result = searchAnnounce(intval($_GET["price_min"]),intval($_GET["price_max"]),$_GET["date_start"],$_GET["date_end"]);
+                    displaySearch($result);
+                    
+                }
+                else if($_GET["statut_search"] == "failed"){
+                    if($_GET["error"] == "date"){
+                        echo "dates invalide";
+                    }
+                    if($_GET["error"] == "price"){
+                        echo "prix invalide";
+                    }
+
+                    include_once "formulaire/search_housing_text.php";
+                }
+            }
+            else{
+                include_once "formulaire/search_housing_text.php";
+            }
             //displaySearch(searchAnnounce(0, 1000, "1900-01-01", "2070-01-01"));
         }
         else if ($page == "user_page"){
