@@ -189,7 +189,10 @@
 
             //chmod("./picture_housing/", 0777);
 
-            $dossier = strval($id_owner)/*. "/test" . strval(getIdByInfos($id_owner, $type, $name, $latitude, $longitude))*/;
+            $dossier = strval($id_owner);
+            createFolder("./picture_housing/$dossier");
+            
+            $dossier = $dossier.strval(getIdByInfos($id_owner, $type, $name, $latitude, $longitude));
             createFolder("./picture_housing/$dossier");
         }
 
