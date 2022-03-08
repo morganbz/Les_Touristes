@@ -198,7 +198,6 @@
             createFolder("$dossier");
             
             $dossier = $dossier."/".strval($idAnnounce);
-            var_dump ($dossier);
             createFolder("$dossier");
         }
 
