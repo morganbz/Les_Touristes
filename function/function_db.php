@@ -325,4 +325,39 @@ function getAnnounceByIdHousing($id){
 
         return $announces;
 }
+
+function bookAnnounce($id_announce, $id_customer){
+        global $base;
+        $sql = "UPDATE `announce` SET `isTaken`=1 WHERE id = $id_announce";
+        echo $sql;
+        mysqli_query($base, $sql);
+
+        $sql = "INSERT INTO `reservation`(`id_user`, `id_announce`) VALUES ($id_customer,$id_announce)";
+        echo $sql;
+        mysqli_query($base, $sql);
+}
+
+function bookHousingPeriod($id_housing, $id_customer, $date_start, $date_end){
+
+        global $base;
+
+        $dateDifference = abs(strtotime($date_end) - strtotime($date_start));
+        $years  = floor($dateDifference / (365 * 60 * 60 * 24));
+        $months = floor(($dateDifference - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
+        $days   = floor(($dateDifference - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 *24) / (60 * 60 * 24));
+
+        $sql = "SELECT * FROM housing INNER JOIN announce ON housing.id = announce.id_housing
+        WHERE housing.id = $id_housing AND date_start >=  '$date_start' AND date_start <= '$date_end'";
+        
+        $announce = mysqli_query($base, $sql);
+
+        $currDate = $date_start;
+
+        while($row = mysqli_fetch_array($announce)){
+                var_dump($row);
+                bookAnnounce($row['id'], $id_customer);
+                $currDate = date("Y-m-d", strtotime($currDate.'+ 1 days'));
+        }
+
+}
 ?>
