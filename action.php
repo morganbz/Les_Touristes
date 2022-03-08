@@ -236,7 +236,12 @@
 			    $_SESSION["errors_login"] = $errors;
                 $page = "login";
 			} else {
-                verifUser($mail, $password);	
+                $login = verifUser($mail, $password);
+                if (!$login){
+                    $errors[] = "Mauvais mot de passe";
+                    $_SESSION["errors_login"] = $errors;
+                    $page = "login";
+                }	
 			}
             
         }
