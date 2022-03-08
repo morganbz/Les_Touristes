@@ -50,7 +50,7 @@ foreach ($listeAnnounces as $announce){
 <?php
     $cheminImg = $announce["image_folder"];
 
-    if (isset ($cheminIm)){
+    if (isset ($cheminImg)){
         $images = scandir($cheminImg);
         foreach($images as $image){
             var_dump($image);
