@@ -5,7 +5,7 @@ function createFolder($folder){
     if (!file_exists($folder)){
         mkdir($folder, 755, true);
     }
-    var_dump(fileperms($folder));
+    var_dump(fileperms("./housing_picture"));
     
 }
 
