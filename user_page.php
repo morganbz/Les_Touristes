@@ -11,25 +11,27 @@
 </nav>
 
 <?php 
-  if ($pageCompte == "home"){
-    echo "page home du compte";
+  if (isset($_SESSION["id_user"])){
+    if ($pageCompte == "home"){
+      echo "page home du compte";
+    }
+    else if ($pageCompte == "modifInfos"){
+      include_once "modif_infos_user.php";
+    }
+    else if ($pageCompte == "modifMDP"){
+      include_once "modif_mdp_user.php";
+    }
+    else if ($pageCompte == "voirRecommandations"){
+      echo "voir recommandation";
+    }
+    else if ($pageCompte == "ajoutRecommandation"){
+      include_once "add_announce.php";
+    }
+    else if ($pageCompte == "voirAnnonces"){
+      echo "voir annonces";
+    }
+    else if ($pageCompte == "ajoutAnnonce"){
+      include_once "add_housing_announce.php";
+    }  
   }
-  else if ($pageCompte == "modifInfos"){
-    include_once "modif_infos_user.php";
-  }
-  else if ($pageCompte == "modifMDP"){
-    include_once "modif_mdp_user.php";
-  }
-  else if ($pageCompte == "voirRecommandations"){
-    echo "voir recommandation";
-  }
-  else if ($pageCompte == "ajoutRecommandation"){
-    include_once "add_announce.php";
-  }
-  else if ($pageCompte == "voirAnnonces"){
-    echo "voir annonces";
-  }
-  else if ($pageCompte == "ajoutAnnonce"){
-    include_once "add_housing_announce.php";
-  }  
 ?>
