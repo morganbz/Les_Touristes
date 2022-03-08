@@ -6,6 +6,7 @@ function createFolder($folder){
         mkdir($folder, 755, true);
     }
     var_dump(fileperms("./picture_housing"));
+    echo substr(sprintf('%o', fileperms("./picture_housing")), -4);
     
 }
 
