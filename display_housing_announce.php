@@ -62,7 +62,7 @@ foreach ($listeAnnounces as $announce){
     if (isset($_SESSION["errors_modification_image"])){
         echo "<p class='error'>Erreurs sur l'ajout d'image :</p>";
         echo "<ul>";
-        foreach($_SESSION["errors_upload_img"] as $error_upload_img)
+        foreach($_SESSION["errors_modification_image"] as $error_upload_img)
             echo "<li class='error'>$error_upload_img</li>";
         echo "</ul>";
     }
