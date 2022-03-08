@@ -53,6 +53,8 @@ function uploadImg($dossier){
             die("Connection failed: " . $base->connect_error);
         }
     }
+    echo 'test';
+    var_dump($_FILES);
 }
 
 ?>
