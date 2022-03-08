@@ -74,7 +74,7 @@ function getLocation()
 {
     $.ajax({
         type: "POST",
-        url: "ajax.php",
+        url: "http://os-vps418.infomaniak.ch:1180/l2_info_10/Les_Touristes/ajax.php",
         data: {
             action: "getLocation",
             city: document.querySelector('#place_search').value
