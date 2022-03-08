@@ -10,6 +10,8 @@ foreach ($listeAnnounces as $announce){
     $description = $announce['description'];
     $adresse = getAddress($latitude, $longitude);
 
+    $id = $announce['id'];
+
 
 ?>
 
@@ -42,6 +44,11 @@ foreach ($listeAnnounces as $announce){
     <div>
         <label for='modification_image'>Image :</label>
         <input type='file' name='modification_image' id='modification_image'>
+    </div>
+
+    <div display="none">
+        <label for="id_housing_announce_update">ID Housing announce</label>
+        <input placeholder="id" value="<?php echo $id;?>" type="text" name="id_housing_announce_update" id="id_housing_announce_update">
     </div>
 
     <button id="submit" name="submit" value="housing_announce_update" type="submit">Mettre à jour</button>
