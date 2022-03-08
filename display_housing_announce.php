@@ -8,6 +8,7 @@ foreach ($listeAnnounces as $announce){
     $latitude = $announce['latitude'];
     $longitude = $announce['longitude'];
     $description = $announce['description'];
+    $adresse = getAddress($latitude, $longitude);
 
 
 ?>
