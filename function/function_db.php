@@ -32,8 +32,6 @@ function addHousingAndAnnounce($id_owner, $type, $latitude, $longitude, $name, $
         $sql = "INSERT INTO housing (id_owner, type, latitude, longitude, nom, description) 
                 VALUES (8, 0, 12, 12, 'test380', 'test');";
 
-        echo $sql;
-
         mysqli_query($base, $sql);
 
         $id_housing = mysqli_insert_id($base);
@@ -58,6 +56,7 @@ function addHousingAndAnnounce($id_owner, $type, $latitude, $longitude, $name, $
         $sql = "UPDATE housing SET image_folder = $dossier WHERE id = $id_housing";
 
         mysqli_query($base, $sql);
+        echo $sql;
 
         return $id_housing;
 }
