@@ -284,6 +284,7 @@ function getIdByInfos($id_owner, $type, $name, $latitude, $longitude){
         $id = mysqli_fetch_array($result);
 
         return $id["id"];
+        echo $sql;
 }
 
 function getHousingByIdOwner($id){
