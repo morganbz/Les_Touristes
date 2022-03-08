@@ -8,6 +8,7 @@ foreach ($listeAnnounces as $announce){
     $latitude = $announce['latitude'];
     $longitude = $announce['longitude'];
     $description = $announce['description'];
+    $adresse = getAddress($latitude, $longitude);
 
 
 ?>
@@ -26,6 +27,11 @@ foreach ($listeAnnounces as $announce){
     <div>
         <label for="longitude_housing_announce_update">Longitude</label>
         <input placeholder="longitude" value="<?php echo $longitude;?>" type="text" name="longitude_housing_announce_update" id="longitude_housing_announce_update" required>
+    </div>
+
+    <div>
+        <label for="adresse_housing_announce_update">Adresse</label>
+        <input placeholder="adresse" value="<?php echo $adresse;?>" type="text" name="adresse_housing_announce_update" id="adresse_housing_announce_update" required>
     </div>
 
     <div>
