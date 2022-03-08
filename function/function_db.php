@@ -32,8 +32,6 @@ function addHousingAndAnnounce($id_owner, $type, $latitude, $longitude, $name, $
         $sql = "INSERT INTO housing (id_owner, type, latitude, longitude, nom, description) 
                 VALUES ($id_owner, $type, $latitude, $longitude, '$name', '$description')";
 
-        echo $sql;
-
         mysqli_query($base, $sql);
 
         $id_housing = mysqli_insert_id($base);
@@ -277,13 +275,14 @@ function getData($ville){
 function getIdByInfos($id_owner, $type, $name, $latitude, $longitude){
         global $base;
 
-        $sql = "SELECT id FROM housing WHERE id_owner = $id_owner, type = $type, nom = '$name', latitude = $latitude, longitude = $longitude";
+        $sql = "SELECT id FROM housing WHERE id_owner = 8 AND type = 0 AND nom = 'z' AND latitude = 12 AND longitude = 12";
 
         $result = mysqli_query($base, $sql);
 
         $id = mysqli_fetch_array($result);
 
         return $id["id"];
+        
 }
 
 function getHousingByIdOwner($id){

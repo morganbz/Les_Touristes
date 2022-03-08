@@ -166,9 +166,16 @@
             $date_start = $_POST["date_start"];
             $date_end = $_POST["date_end"];
 
-            $result = searchAnnounce($price_min, $price_max, $date_start, $date_end);
-            
-            displaySearch($result);
+            if(strtotime($date_start) > strtotime($date_end)){
+                $url = getURL()."?page=search_housing_text&statut_search=failed&error=date";
+            }
+            else if($price_min > $price_max){
+                $url = getURL()."?page=search_housing_text&statut_search=failed&error=price";
+            }
+            else{
+                $url = getURL()."?page=search_housing_text&statut_search=send&price_min=".$price_min."&price_max=".$price_max."&date_start=".$date_start."&date_end=".$date_end;   
+            }
+            header('Location: '.$url.'');
 
         }
 
@@ -187,10 +194,15 @@
     
             addHousingAndAnnounce($id_owner, $type, $latitude, $longitude, $name, $description, $price, $date_start, $date_end);
 
-            //chmod("./picture_housing/", 0777);
+            $idAnnounce = getIdByInfos($id_owner, $type, $name, $latitude, $longitude);
 
-            $dossier = strval($id_owner). "/test" /*. strval(getIdByInfos($id_owner, $type, $name, $latitude, $longitude))*/;
-            createFolder("/picture_housing/$dossier");
+            $dossier = "./picture_housing/".strval($id_owner);
+            createFolder("$dossier");
+            
+            $dossier = $dossier."/".strval($idAnnounce);
+            createFolder("$dossier");
+
+            //addFolderToHousingAnnounce($idAnnounce, $dossier);
         }
 
         // ---------------- MODIFICATION ANNONCE HEBERGEMENT --------------------------------

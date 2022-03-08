@@ -1,12 +1,9 @@
 <?php
 
 function createFolder($folder){
-
     if (!file_exists($folder)){
-        mkdir($folder, 755, true);
-    }
-    var_dump(fileperms("./picture_housing"));
-    
+        mkdir($folder, 0777, true);
+    }    
 }
 
 function uploadImg($dossier){
