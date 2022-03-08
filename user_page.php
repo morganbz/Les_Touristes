@@ -28,7 +28,7 @@
       include_once "add_announce.php";
     }
     else if ($pageCompte == "voirAnnonces"){
-      echo "voir annonces";
+      include_once "display_housing_announce.php";
     }
     else if ($pageCompte == "ajoutAnnonce"){
       include_once "add_housing_announce.php";
