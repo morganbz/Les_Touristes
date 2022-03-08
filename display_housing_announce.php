@@ -46,7 +46,7 @@ foreach ($listeAnnounces as $announce){
         <input type='file' name='modification_image' id='modification_image'>
     </div>
 
-    <div display="none">
+    <div class = "id_housing_announce">
         <label for="id_housing_announce_update">ID Housing announce</label>
         <input placeholder="id" value="<?php echo $id;?>" type="text" name="id_housing_announce_update" id="id_housing_announce_update">
     </div>
