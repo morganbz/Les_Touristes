@@ -31,7 +31,7 @@ foreach ($listeAnnounces as $announce){
 
     <div>
         <label for="longitude_housing_announce_update">Longitude</label>
-        <input placeholder="longitude" value="<?php echo $longitude;?>" type="date" name="longitude_housing_announce_update" id="longitude_housing_announce_update" required>
+        <input placeholder="longitude" value="<?php echo $longitude;?>" type="text" name="longitude_housing_announce_update" id="longitude_housing_announce_update" required>
     </div>
 
     <div>
