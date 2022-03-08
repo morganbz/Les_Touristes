@@ -35,7 +35,7 @@ function displaySearch($array_housing){
         }
     echo "</section>";
 }
-}
+
 
 
 ?>
