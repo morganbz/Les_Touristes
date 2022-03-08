@@ -44,13 +44,16 @@ foreach ($listeAnnounces as $announce){
 <?php
     $cheminImg = $announce["image_folder"];
 
-    $images = scandir($cheminImg);
+    if (isset ($cheminIm)){
+        $images = scandir($cheminImg);
 
-    foreach($image as $images){
-        if ($image != "."){
-            echo "<img src='".$image."' alt='".$nom."'/>";
+        foreach($images as $image){
+            if ($image != "."){
+                echo "<img src='".$image."' alt='".$nom."'/>";
+            }
         }
     }
+    
 
 }
 
