@@ -10,8 +10,8 @@ echo "<ul>";
 $listeAnnounces  = getHousingByIdOwner($_SESSION["id_user"]);
 
 foreach ($listeAnnounces as $announce){
-    //echo "<li>" + $announce["nom"] + "</li>";
-    var_dump ($announce);
+    $nom = $announce['nom'];
+    echo "<li>$nom</li>";
 }
 
 echo "</ul>";
