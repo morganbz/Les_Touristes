@@ -29,6 +29,11 @@ foreach ($listeAnnounces as $announce){
     </div>
 
     <div>
+        <label for="adresse_housing_announce_update">Adresse</label>
+        <input placeholder="adresse" value="<?php echo $adresse;?>" type="text" name="adresse_housing_announce_update" id="adresse_housing_announce_update" required>
+    </div>
+
+    <div>
         <label for="description_housing_announce_update">Description</label>
         <textarea placeholder="Description" name="description_housing_announce_update" id="description_housing_announce_update"><?php echo $description;?></textarea>
     </div>
