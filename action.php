@@ -187,13 +187,15 @@
     
             addHousingAndAnnounce($id_owner, $type, $latitude, $longitude, $name, $description, $price, $date_start, $date_end);
 
-            //chmod("./picture_housing/", 0777);
+            $idAnnounce = getIdByInfos($id_owner, $type, $name, $latitude, $longitude);
 
-            $dossier = strval($id_owner);
-            createFolder("./picture_housing/$dossier");
+            $dossier = "./picture_housing/".strval($id_owner);
+            createFolder("$dossier");
             
-            $dossier = $dossier.strval(getIdByInfos($id_owner, $type, $name, $latitude, $longitude));
-            createFolder("./picture_housing/$dossier");
+            $dossier = $dossier."/".strval($idAnnounce);
+            createFolder("$dossier");
+
+            //addFolderToHousingAnnounce($idAnnounce, $dossier);
         }
 
         // ---------------- MODIFICATION ANNONCE HEBERGEMENT --------------------------------
