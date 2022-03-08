@@ -26,12 +26,12 @@ foreach ($listeAnnounces as $announce){
 
     <div>
         <label for="latitude_housing_announce_update">Latitude</label>
-        <input placeholder="latitude" value="<?php echo $lastname;?>" type="text" name="latitude_housing_announce_update" id="latitude_housing_announce_update" required>
+        <input placeholder="latitude" value="<?php echo $latitude;?>" type="text" name="latitude_housing_announce_update" id="latitude_housing_announce_update" required>
     </div>
 
     <div>
         <label for="longitude_housing_announce_update">Longitude</label>
-        <input placeholder="longitude" value="<?php echo $birth_date;?>" type="date" name="longitude_housing_announce_update" id="longitude_housing_announce_update" required>
+        <input placeholder="longitude" value="<?php echo $longitude;?>" type="date" name="longitude_housing_announce_update" id="longitude_housing_announce_update" required>
     </div>
 
     <div>
