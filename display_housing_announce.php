@@ -40,8 +40,8 @@ foreach ($listeAnnounces as $announce){
     </div>
 
     <div>
-        <label for='uploadImg'>Image :</label>
-        <input type='file' name='uploadImg' id='uploadImg'>
+        <label for='modification_image'>Image :</label>
+        <input type='file' name='modification_image' id='modification_image'>
     </div>
 
     <button id="submit" name="submit" value="housing_announce_update" type="submit">Mettre à jour</button>
