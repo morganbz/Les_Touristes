@@ -59,7 +59,7 @@ function addHousingAndAnnounce($id_owner, $type, $latitude, $longitude, $name, $
 
         }
 
-
+        return $id_housing;
 }
 
 // ----------------------------------------------------- USER ----------------------------------------
