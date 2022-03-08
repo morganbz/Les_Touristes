@@ -2,7 +2,7 @@
 
 include_once "db.php";
 
-include_once "function_db.php";
+include_once "function/function_db.php";
 
 const HTTP_OK = 200;
 const HTTP_BAD_REQUEST = 400;
