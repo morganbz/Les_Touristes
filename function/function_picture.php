@@ -44,7 +44,7 @@ function uploadImg($dossier){
             unset($_SESSION["errors_modification_image"]);
         }
 
-        if ($c->connect_error) {
+        if ($base->connect_error) {
             die("Connection failed: " . $c->connect_error);
         }
     }
