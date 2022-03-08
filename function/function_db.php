@@ -30,9 +30,7 @@ function addHousingAndAnnounce($id_owner, $type, $latitude, $longitude, $name, $
         global $base;
 
         $sql = "INSERT INTO housing (id_owner, type, latitude, longitude, nom, description) 
-                VALUES ($id_owner, $type, $latitude, $longitude, '$name', '$description')";
-
-        echo $sql;
+                VALUES (8, 0, 12, 12, 'test380', 'test');";
 
         mysqli_query($base, $sql);
 
@@ -53,7 +51,13 @@ function addHousingAndAnnounce($id_owner, $type, $latitude, $longitude, $name, $
 
         }
 
+        $dossier =  "./picture_housing/".strval($id_owner)."/".strval($id_housing);
 
+        $sql = "UPDATE housing SET image_folder = '$dossier' WHERE id = $id_housing";
+
+        mysqli_query($base, $sql);
+
+        return $id_housing;
 }
 
 // ----------------------------------------------------- USER ----------------------------------------
@@ -281,7 +285,6 @@ function getIdByInfos($id_owner, $type, $name, $latitude, $longitude){
 
         $result = mysqli_query($base, $sql);
 
-        echo $sql;
         $id = mysqli_fetch_array($result);
 
         return $id["id"];
