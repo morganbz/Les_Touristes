@@ -184,15 +184,16 @@
         if($submit == "Add_housing_announce"){
             $id_owner = $_SESSION["id_user"];
             $type = $_POST["type_housing"];
-            $latitude = $_POST["latitude_housing"];
-            $longitude = $_POST["longitude_housing"];
+            $adress = $_POST["adress"];
+            $coord = getCoords($adress);
             $name = $_POST["name_housing"];
             $description = $_POST["description_housing"];
             $price = $_POST["price_announce"];
             $date_start = $_POST["date_start_announce"];
             $date_end = $_POST["date_end_announce"];
+
     
-            $idAnnounce = addHousingAndAnnounce($id_owner, $type, $latitude, $longitude, $name, $description, $price, $date_start, $date_end);
+            $idAnnounce = addHousingAndAnnounce($id_owner, $type, $coord["latitude"], $coord["longitude"], $name, $description, $price, $date_start, $date_end);
 
             $dossier = "./picture_housing/".strval($id_owner);
             createFolder("$dossier");
