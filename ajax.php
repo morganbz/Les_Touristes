@@ -25,13 +25,13 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtoupper($_SERVER['HTTP_X_REQU
         }
         if(isset($_POST['price_min'])){
             $price_min = $_POST['price_min'];
-            if(is_null($price_min)){
+            if($_POST['price_min'] == ''){
                 $price_min = 0;
             }
         }
         if(isset($_POST['price_max'])){
             $price_max = $_POST['price_max'];
-            if(is_null($price_max)){
+            if($_POST['price_max'] == ''){
                 $price_max = 999999999;
             }
         }
