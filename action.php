@@ -220,6 +220,9 @@
                     uploadImg($dossier);
                 }   
             }
+
+            $page = "user_page";
+            $pageCompte = "voirAnnonces";
         }
 
         // ---------------- CONNEXION UTILISATEURS --------------------------------
