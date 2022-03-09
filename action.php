@@ -216,7 +216,7 @@
             updateHousingAnnounce($id, $name, $latitude, $longitude, $type, $description);
 
             if (isset($_FILES)){
-                if ($_FILES["error"] != 4){
+                if ($_FILES["modification_image"]["error"] != 4){
                     uploadImg($dossier);
                 }   
             }
