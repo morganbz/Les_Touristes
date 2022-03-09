@@ -71,7 +71,7 @@ foreach ($listeAnnounces as $announce){
 
     <button id="submit" name="submit" value="housing_announce_update" type="submit">Mettre à jour</button>
 
-
+</form>
 <?php
     $cheminImg = $announce["image_folder"];
 
@@ -99,4 +99,3 @@ foreach ($listeAnnounces as $announce){
 
 }
 ?>
-</form>
