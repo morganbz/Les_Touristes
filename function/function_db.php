@@ -60,6 +60,29 @@ function addHousingAndAnnounce($id_owner, $type, $latitude, $longitude, $name, $
         return $id_housing;
 }
 
+// ----------------------------------------------------- UPDATE HOUSING ------------------------------
+
+/*function updateHousingAnnounce($name, $latitude, $longitude, $type, $description){
+        global $base;
+
+        $name = mysqli_real_escape_string($base, $name);
+        $latitude = mysqli_real_escape_string($base, $latitude);
+        $longitude = mysqli_real_escape_string($base, $longitude);
+        $type = mysqli_real_escape_string($base, $type);
+        $description = mysqli_real_escape_string($base, $description);
+
+        $sql = "UPDATE housing SET nom='$name', latitude=$latitude, longitude=$longitude, type=$type, description='$description' WHERE id=?";
+
+        $update_housing = $base->query($sql);
+
+        if ($update_housing){
+                unset($_SESSION["errors_update_housing"]);
+        } else {
+                $errors[] = "Erreur au moment de l'ajout dans la base de donnée";
+                $_SESSION["errors_update_housing"] = $errors;
+        }
+}*/
+
 // ----------------------------------------------------- USER ----------------------------------------
 
 function addUser($mail, $firstname, $lastname, $birth_date, $phone, $password, $isAdmin){
