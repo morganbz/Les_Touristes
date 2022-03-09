@@ -67,6 +67,16 @@ function getDistance($addressFrom, $lat, $lng){
     return $distance;
 }
 
-
+function getCoords($address){
+    $address = str_replace(" ", "", $address);
+    $json = file_get_contents("https://maps.google.com/maps/api/geocode/json?address=$address&key=AIzaSyD6q4hVJGUioenp17tQTqiCS9dLDWbgATw&sensor=false");
+    $json = json_decode($json);
+    $lat = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lat'};
+    $long = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lng'};
+    $res = [];
+    $res["latitude"] = $lat;
+    $res["longitude"] = $long;
+    return $res;
+}
 
 ?>
