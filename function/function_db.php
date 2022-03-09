@@ -237,7 +237,7 @@ function modificationPassUser($pass){
 // ----------------------------------------------------- ANNOUNCE ----------------------------------------
 
 
-function searchAnnounce($priceMin, $priceMax, $date_start, $date_end){
+function searchAnnounce($priceMin, $priceMax, $date_start, $date_end, $dest, $distance){
         global $base;
 
         if(is_null($priceMax)){
@@ -254,9 +254,11 @@ function searchAnnounce($priceMin, $priceMax, $date_start, $date_end){
         
         $announce = mysqli_query($base, $sql);
         $result = [];
-        while($row = mysqli_fetch_array($announce)){
+        while($row = mysqli_fetch_assoc($announce)){
                 if(!isTakenDuration($row["id"], $date_start, $date_end)){
-                        array_push($result, $row);
+                        if(getDistance($dest, $row["latitude"], $row["longitude"]) <= $distance * 1000){
+                                array_push($result, $row);
+                        }
                 }
         }
         return $result;
