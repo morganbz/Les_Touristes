@@ -10,12 +10,12 @@
     </div>
 
     <div>
-        <input placeholder="Prix min" type="int" name="price_min" id="price_min" required>
+        <input placeholder="Prix min" type="int" name="price_min" id="price_min" >
         <label for="price_announce">Prix minimum</label>
     </div>
 
     <div>
-        <input placeholder="Prix max" type="int" name="price_max" id="price_max" required>
+        <input placeholder="Prix max" type="int" name="price_max" id="price_max" >
         <label for="price_announce">Prix maximum</label>
     </div>
 

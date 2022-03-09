@@ -12,17 +12,37 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtoupper($_SERVER['HTTP_X_REQU
 {
     $response_code = HTTP_BAD_REQUEST;
     $message = "Il manque le paramètre ACTION";
-    $city = null;
 
-    if ($_POST['action'] == "getLocation" && isset($_POST['city']))
+    if ($_POST['action'] == "getLocation" && isset($_POST['destination']))
     {
         $response_code = HTTP_OK;
-        $city = $_POST['city'];
+        $destination = $_POST['destination'];
+        if(isset($_POST['arrive'])){
+            $arrive = $_POST['arrive'];
+        }
+        if(isset($_POST['departure'])){
+            $departure = $_POST['departure'];
+        }
+        if(isset($_POST['price_min'])){
+            $price_min = $_POST['price_min'];
+        }
+        else{
+            $price_min = 0;
+        }
+        if(isset($_POST['price_max'])){
+            $price_max = $_POST['price_max'];
+        }
+        else{
+            $price_max = 9999999; 
+        }
+        if(isset($_POST['distance'])){
+            $distance = $_POST['distance'];
+        }
         $message = "OK";
-        $data = getData($city);
+        $data = searchAnnounce($price_min, $price_max, $arrive, $departure);
     }
 
-    response($response_code, $message, $city, $data);
+    response($response_code, $message, $destination, $arrive, $departure, $price_min, $price_max, $distance, $data);
 }
 else
 {
@@ -32,7 +52,7 @@ else
     response($response_code, $message);
 }
 
-function response($response_code, $message, $city = null, $data = null)
+function response($response_code, $message, $destination = null, $arrive = null, $departure = null, $price_min = null, $price_max = null, $distance = null, $data = null)
 {
     header('Content-Type: application/json');
     http_response_code($response_code);
@@ -40,7 +60,12 @@ function response($response_code, $message, $city = null, $data = null)
     $response = [
         "response_code" => $response_code,
         "message" => $message,
-        "city" => $city,
+        "destination" => $destination,
+        "arrive" => $arrive,
+        "departure" => $departure,
+        "price_min" => $price_min,
+        "price_max" => $price_max,
+        "distance" => $distance,
         "data" => $data
     ];
     
