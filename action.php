@@ -216,10 +216,10 @@
             updateHousingAnnounce($id, $name, $latitude, $longitude, $type, $description);
 
             if (isset($_FILES)){
-                uploadImg($dossier);
+                if ($_FILES["error"] != 4){
+                    uploadImg($dossier);
+                }   
             }
-           var_dump($_FILES);
-
         }
 
         // ---------------- CONNEXION UTILISATEURS --------------------------------
