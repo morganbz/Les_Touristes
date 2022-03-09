@@ -99,8 +99,9 @@ function getLocation()
         success: function (response) {
             var results = response["data"];
             loadMapAddress(results);
+            $("#search_housing_list").empty();
             for(let i = 0; i < results.length; i++){
-                $("#search_housing_list").append("<div class='data_search'><p>Nom : " + results[i]['nom'] + "<p><p>Adresse : " + results[i]['adresse'] + "<p><p>Département : " + results[i]['departement'] + "<p><p>Ville : " + results[i]['ville'] + "<p><p>Coordonnée : " + results[i]['latitude'] + ", " + results[i]['longitude'] + "<p><p>Description : " + results[i]['description'] + "<p></div>");
+                $("#search_housing_list").append("<div class='data_search'><p>Nom : " + results[i]['nom'] + "<p><p>Type de logement : " + results[i]['type'] + "<p><p>Adresse : " + results[i]['adresse'] + "<p><p>Prix à la nuit : " + results[i]['price'] + "<p><p>Description : " + results[i]['description'] + "<p></div>");
             }
         },
         error: function (response) {

@@ -39,6 +39,9 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtoupper($_SERVER['HTTP_X_REQU
         }
         if(isset($_POST['distance'])){
             $distance = $_POST['distance'];
+            if($_POST['distance'] == ''){
+                $distance = 20;
+            }
         }
         $message = "OK";
         $data = searchAnnounce($price_min, $price_max, $arrive, $departure, $destination, $distance);

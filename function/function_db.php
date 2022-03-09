@@ -43,7 +43,7 @@ function addHousingAndAnnounce($id_owner, $type, $latitude, $longitude, $name, $
 
         $currDate = $date_start;
 
-        for($i = 1; $i <= $days; $i++ ){
+        for($i = 1; $i <= $days + 1; $i++ ){
 
                 addAnnounce($price, $currDate, $id_housing);
 
@@ -239,15 +239,9 @@ function modificationPassUser($pass){
 
 function searchAnnounce($priceMin, $priceMax, $date_start, $date_end, $dest, $distance){
         global $base;
+        $TYPE_HOUSING = array("Maison", "Appartement", "Chalet", "Refuge");
 
-        if(is_null($priceMax)){
-                $priceMax = 999999;
-        }
-        if(is_null($priceMin)){
-                $priceMin = 0;
-        }
-
-        $sql = "SELECT housing.id, id_owner, type, latitude, longitude, nom, price, date_start, isTaken
+        $sql = "SELECT housing.id, id_owner, type, latitude, longitude, nom, price, date_start, isTaken, description
         FROM housing INNER JOIN announce ON housing.id = announce.id_housing
         WHERE (price BETWEEN $priceMin AND $priceMax) AND (NOT isTaken) AND date_start >=  '$date_start' AND date_start <= '$date_end'
         GROUP BY housing.id";
@@ -257,6 +251,8 @@ function searchAnnounce($priceMin, $priceMax, $date_start, $date_end, $dest, $di
         while($row = mysqli_fetch_assoc($announce)){
                 if(!isTakenDuration($row["id"], $date_start, $date_end)){
                         if(getDistance($dest, $row["latitude"], $row["longitude"]) <= $distance * 1000){
+                                $row["adresse"] = getAddress($row["latitude"], $row["longitude"]);
+                                $row["type"] = $TYPE_HOUSING[$row["type"]];
                                 array_push($result, $row);
                         }
                 }
