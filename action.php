@@ -204,7 +204,16 @@
         // ---------------- MODIFICATION ANNONCE HEBERGEMENT --------------------------------
 
         if($submit == "housing_announce_update"){
+            $type = $_POST["type_housing"];
+            $latitude = $_POST["latitude_housing_announce_update"];
+            $longitude = $_POST["longitude_housing_announce_update"];
+            $name = $_POST["name_housing_announce_update"];
+            $description = $_POST["description_housing_announce_update"];
+            $id = $_POST["id_housing_announce_update"];
+
             $dossier = strval($_SESSION["id_user"])."/".$_POST["id_housing_announce_update"];
+
+            updateHousingAnnounce($id, $name, $latitude, $longitude, $type, $description);
 
             uploadImg($dossier);
 
