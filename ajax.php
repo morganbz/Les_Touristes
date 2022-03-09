@@ -26,8 +26,14 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtoupper($_SERVER['HTTP_X_REQU
         if(isset($_POST['price_min'])){
             $price_min = $_POST['price_min'];
         }
-        if(isset($_POST['price_min'])){
+        else{
+            $price_min = 0;
+        }
+        if(isset($_POST['price_max'])){
             $price_max = $_POST['price_max'];
+        }
+        else{
+            $price_max = 9999999; 
         }
         if(isset($_POST['distance'])){
             $distance = $_POST['distance'];
