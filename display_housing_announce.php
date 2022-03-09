@@ -71,7 +71,7 @@ foreach ($listeAnnounces as $announce){
 
     <button id="submit" name="submit" value="housing_announce_update" type="submit">Mettre à jour</button>
 
-
+</form>
 <?php
     $cheminImg = $announce["image_folder"];
 
@@ -79,10 +79,11 @@ foreach ($listeAnnounces as $announce){
         $images = scandir($cheminImg);
         foreach($images as $image){
             if ($image != "." && $image != ".."){
-                echo "<img src='".$cheminImg."/".$image."' alt='".$nom."'/>";
+                $imgLink = $cheminImg."/".$image;
+                echo "<img src='".$imgLink."' alt='".$nom."'/>";
                 ?>
                 <form action="index.php" method="post">
-                    <button id="del_img" name="del_img" value="<?php$cheminImg?>">Supprimer</button>
+                    <button id="del_img" name="del_img" value="<?php echo $imgLink;?>">Supprimer</button>
                 </form>
                 <?php
             }
@@ -99,4 +100,3 @@ foreach ($listeAnnounces as $announce){
 
 }
 ?>
-</form>

@@ -208,10 +208,6 @@
 
             uploadImg($dossier);
 
-            var_dump($_POST["del_img"]);
-            if(isset($_POST["del_img"])){
-                unlink($_POST["del_img"]);
-            }
         }
 
         // ---------------- CONNEXION UTILISATEURS --------------------------------
@@ -331,5 +327,12 @@
                 $pageCompte = "modifMDP";
             }
         }
+    } else if (!empty($_POST)&&array_key_exists("del_img", $_POST)) {
+        if(isset($_POST["del_img"])){
+            unlink($_POST["del_img"]);
+        }
+        $page = "user_page";
+        $pageCompte = "voirAnnonces";
     }
+    
 ?>
