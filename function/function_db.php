@@ -247,7 +247,7 @@ function searchAnnounce($priceMin, $priceMax, $date_start, $date_end, $dest, $di
                 $priceMin = 0;
         }
 
-        $sql = "SELECT housing.id, id_owner, type, latitude, longitude, nom, price, date_start, isTaken
+        $sql = "SELECT housing.id, id_owner, type, latitude, longitude, nom, price, date_start, isTaken, description
         FROM housing INNER JOIN announce ON housing.id = announce.id_housing
         WHERE (price BETWEEN $priceMin AND $priceMax) AND (NOT isTaken) AND date_start >=  '$date_start' AND date_start <= '$date_end'
         GROUP BY housing.id";
