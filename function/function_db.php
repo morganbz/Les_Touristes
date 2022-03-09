@@ -241,13 +241,6 @@ function searchAnnounce($priceMin, $priceMax, $date_start, $date_end, $dest, $di
         global $base;
         $TYPE_HOUSING = array("Maison", "Appartement", "Chalet", "Refuge");
 
-        if(is_null($priceMax)){
-                $priceMax = 999999;
-        }
-        if(is_null($priceMin)){
-                $priceMin = 0;
-        }
-
         $sql = "SELECT housing.id, id_owner, type, latitude, longitude, nom, price, date_start, isTaken, description
         FROM housing INNER JOIN announce ON housing.id = announce.id_housing
         WHERE (price BETWEEN $priceMin AND $priceMax) AND (NOT isTaken) AND date_start >=  '$date_start' AND date_start <= '$date_end'

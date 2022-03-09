@@ -13,13 +13,18 @@
     </div>
 
     <div>
-        <input placeholder="Latitude" type="float" name="latitude_housing" id="latitude_housing" required>
+        <input placeholder="Latitude" type="double" name="latitude_housing" id="latitude_housing" >
         <label for="latitude_housing">Latitude</label>
     </div>
 
     <div>
-        <input placeholder="Longitude" type="float" name="longitude_housing" id="longitude_housing" required>
+        <input placeholder="Longitude" type="double" name="longitude_housing" id="longitude_housing" >
         <label for="longitude_housing">Longitude</label>
+    </div>
+
+    <div>
+        <input placeholder="adress" type="text" name="adress" id="adress_housing" required>
+        <label for="adress_housing">Adresse</label>
     </div>
 
     <div>
