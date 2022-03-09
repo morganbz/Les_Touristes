@@ -5,7 +5,7 @@
             <?php
                 $indice = 0;
                 foreach($TYPE_HOUSING as $type){
-                    echo "<option value=$indice>$type</option>"
+                    echo "<option value=$indice>$type</option>";
                     $indice++;
                 }
             ?>
