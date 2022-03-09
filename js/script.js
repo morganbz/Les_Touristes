@@ -3,10 +3,21 @@ function initMap() {
         center: new google.maps.LatLng(46, 2),
         zoom: 6
     });
+}
 
-    var results = {};
+function loadMapCoord() {
+    let lat = parseFloat(document.querySelector('#lat').value);
+    let lng = parseFloat(document.querySelector('#lng').value);
+    let zoom = parseFloat(document.querySelector('#zoom').value);
+    var map = new google.maps.Map(document.getElementById('map'), {
+        center: new google.maps.LatLng(lat, lng),
+        zoom: zoom
+    });
 
-    setMarkers(map,results);
+    let marker = new google.maps.Marker({
+        position: new google.maps.LatLng(lat, lng),
+        map: map
+    });
 }
 
 function addressCoord(next){
@@ -77,7 +88,12 @@ function getLocation()
         url: "ajax.php",
         data: {
             action: "getLocation",
-            city: document.querySelector('#place_search').value
+            destination: document.querySelector('#place_search').value,
+            arrive: document.querySelector('#date_seach_arrive').value,
+            departure: document.querySelector('#date_seach_departure').value,
+            price_min: document.querySelector('#price_search_min').value,
+            price_max: document.querySelector('#price_search_max').value,
+            distance: document.querySelector('#distance_search').value
         },
         dataType: "json",
         success: function (response) {
