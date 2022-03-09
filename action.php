@@ -207,6 +207,10 @@
             $dossier = strval($_SESSION["id_user"])."/".$_POST["id_housing_announce_update"];
 
             uploadImg($dossier);
+
+            if(isset($del_img)){
+                unlink($_POST["del_img"]);
+            }
         }
 
         // ---------------- CONNEXION UTILISATEURS --------------------------------
