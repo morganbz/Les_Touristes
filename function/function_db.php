@@ -239,6 +239,7 @@ function modificationPassUser($pass){
 
 function searchAnnounce($priceMin, $priceMax, $date_start, $date_end, $dest, $distance){
         global $base;
+        $TYPE_HOUSING = array("Maison", "Appartement", "Chalet", "Refuge");
 
         if(is_null($priceMax)){
                 $priceMax = 999999;
@@ -258,6 +259,7 @@ function searchAnnounce($priceMin, $priceMax, $date_start, $date_end, $dest, $di
                 if(!isTakenDuration($row["id"], $date_start, $date_end)){
                         if(getDistance($dest, $row["latitude"], $row["longitude"]) <= $distance * 1000){
                                 $row["adresse"] = getAddress($row["latitude"], $row["longitude"]);
+                                $row["type"] = $TYPE_HOUSING[$row["type"]];
                                 array_push($result, $row);
                         }
                 }
