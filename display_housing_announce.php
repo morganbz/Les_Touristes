@@ -82,7 +82,7 @@ foreach ($listeAnnounces as $announce){
                 echo "<img src='".$cheminImg."/".$image."' alt='".$nom."'/>";
                 ?>
                 <form action="index.php" method="post">
-                    <button id="del_img" name="del_img" value="<?php$cheminImg?>">Supprimer</button>
+                    <button id="del_img" name="del_img" value="<?php echo $cheminImg;?>">Supprimer</button>
                 </form>
                 <?php
             }
