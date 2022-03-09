@@ -8,6 +8,8 @@ foreach ($listeAnnounces as $announce){
     $latitude = $announce['latitude'];
     $longitude = $announce['longitude'];
     $description = $announce['description'];
+    $type = $announce['type'];
+
     $adresse = getAddress($latitude, $longitude);
 
     $id = $announce['id'];
@@ -22,6 +24,23 @@ foreach ($listeAnnounces as $announce){
     </div>
 
     <div>
+        <label for="id_owner_housing">Type de logement</label>
+        <select name="type_housing" id="id_owner_housing">
+            <?php
+                $indice = 0;
+                foreach($TYPE_HOUSING as $type){
+                    if($type == $indice){
+                        echo "\n<option value=$indice selected>$type</option>";
+                    } else {
+                        echo "\n<option value=$indice>$type</option>";
+                    }
+                    $indice++;
+                }
+            ?>
+        </select>
+    </div>
+
+    <div>
         <label for="latitude_housing_announce_update">Latitude</label>
         <input placeholder="latitude" value="<?php echo $latitude;?>" type="text" name="latitude_housing_announce_update" id="latitude_housing_announce_update" required>
     </div>
@@ -32,8 +51,7 @@ foreach ($listeAnnounces as $announce){
     </div>
 
     <div>
-        <label for="adresse_housing_announce_update">Adresse</label>
-        <input placeholder="adresse" value="<?php echo $adresse;?>" type="text" name="adresse_housing_announce_update" id="adresse_housing_announce_update" required>
+        <p>Ce qui correspond à l'adresse : <?php echo $adresse;?></p> 
     </div>
 
     <div>
