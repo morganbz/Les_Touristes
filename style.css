@@ -1,3 +1,6 @@
 .id_housing_announce{
     display: none;
 }
+img{
+    max-height: 500px;
+}
