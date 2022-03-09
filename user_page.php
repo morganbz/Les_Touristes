@@ -1,3 +1,6 @@
+<?php 
+  if (isset($_SESSION["id_user"])){
+?>
 
 <nav>
   <ul>
@@ -11,7 +14,7 @@
 </nav>
 
 <?php 
-  if (isset($_SESSION["id_user"])){
+  
     if ($pageCompte == "home"){
       echo "page home du compte";
     }
@@ -33,5 +36,5 @@
     else if ($pageCompte == "ajoutAnnonce"){
       include_once "add_housing_announce.php";
     }  
-  }
+}
 ?>
