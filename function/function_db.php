@@ -43,7 +43,7 @@ function addHousingAndAnnounce($id_owner, $type, $latitude, $longitude, $name, $
 
         $currDate = $date_start;
 
-        for($i = 1; $i <= $days; $i++ ){
+        for($i = 1; $i <= $days + 1; $i++ ){
 
                 addAnnounce($price, $currDate, $id_housing);
 
