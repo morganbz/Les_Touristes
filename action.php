@@ -212,6 +212,8 @@
             if(isset($_POST["del_img"])){
                 unlink($_POST["del_img"]);
             }
+            var_dump($_POST["del_img"]);
+
         }
 
         // ---------------- CONNEXION UTILISATEURS --------------------------------
