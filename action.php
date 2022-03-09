@@ -208,7 +208,8 @@
 
             uploadImg($dossier);
 
-            if(isset($del_img)){
+            var_dump($_POST["del_img"]);
+            if(isset($_POST["del_img"])){
                 unlink($_POST["del_img"]);
             }
         }
