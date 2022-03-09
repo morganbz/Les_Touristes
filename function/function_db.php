@@ -257,7 +257,7 @@ function searchAnnounce($priceMin, $priceMax, $date_start, $date_end, $dest, $di
         while($row = mysqli_fetch_assoc($announce)){
                 if(!isTakenDuration($row["id"], $date_start, $date_end)){
                         if(getDistance($dest, $row["latitude"], $row["longitude"]) <= $distance * 1000){
-                                $row["adresse"] = getAdress($row["latitude"], $row["longitude"]);
+                                $row["adresse"] = getAddress($row["latitude"], $row["longitude"]);
                                 array_push($result, $row);
                         }
                 }
