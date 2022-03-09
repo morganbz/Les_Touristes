@@ -40,7 +40,7 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtoupper($_SERVER['HTTP_X_REQU
         if(isset($_POST['distance'])){
             $distance = $_POST['distance'];
             if($_POST['distance'] == ''){
-                $price_max = 20;
+                $distance = 20;
             }
         }
         $message = "OK";
