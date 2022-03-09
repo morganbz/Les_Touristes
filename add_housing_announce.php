@@ -1,13 +1,16 @@
 <form action="index.php" method="post">
     <div>
-        <label for="id_owner_housing">Type de logement</label>
-            <select name="type_housing">
-            <option value= 0>Maison</option>
-            <option value= 1>Appartement</option>
-            <option value= 2>Chalet</option>
-            </select>
-        </label>
-        </div>
+    <label for="id_owner_housing">Type de logement</label>
+        <select name="type_housing" id="id_owner_housing">
+            <?php
+                $indice = 0;
+                foreach($TYPE_HOUSING as $type){
+                    echo "<option value=$indice>$type</option>"
+                    $indice++;
+                }
+            ?>
+        </select>
+    </div>
 
     <div>
         <input placeholder="Latitude"type="float" name="latitude_housing" id="latitude_housing" required>
