@@ -215,7 +215,10 @@
 
             updateHousingAnnounce($id, $name, $latitude, $longitude, $type, $description);
 
-            uploadImg($dossier);
+            if (isset($_FILES)){
+                uploadImg($dossier);
+            }
+           var_dump($_FILES);
 
         }
 
