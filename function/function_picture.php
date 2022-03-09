@@ -24,12 +24,17 @@ function uploadImg($dossier){
 
         $extensionAcceptee = ['jpg', 'jpeg','png'];
 
+        if(file_exists($cheminDossier)){
+            $name = $name."_copy";
+            $cheminDossier = "./picture_housing/".$dossier."/".$name;
+        }
+
         if (!(in_array($extensionFichier, $extensionAcceptee))){
             $errors[] = "Veuillez choisir une image valide (JPG ou PNG)";
         }
 
-        if ($size > 1000000){
-            $errors[] = "Taille de l'image trop grosse (maximum 1Mo)";
+        if ($size > 2000000){
+            $errors[] = "Taille de l'image trop grosse (maximum 2Mo)";
         }
 
         if ($error != 0){
