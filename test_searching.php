@@ -2,7 +2,7 @@
 
 	include_once "db.php";
 
-	include_once "function_db.php";
+	include_once "function/function_db.php";
 
 ?>
 
