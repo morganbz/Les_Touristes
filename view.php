@@ -14,10 +14,10 @@
     <nav>
         <ul>
             <li><a href="?page=recherche_activitee">Rechercher une activitée</a></li>
-            <?php
-            //<li><a href="?page=search_housing_text">Rechercher un logement texte</a></li>
-            //<li><a href="?page=test">TEST GOOGLE</a></li>
-            ?>
+            
+            <li><a href="?page=search_housing_text">Rechercher un logement texte</a></li>
+            <li><a href="?page=test">TEST GOOGLE</a></li>
+            
             <li><a href="?page=search_housing">Recherche logement</a></li>
             <?php 
                 if (isset($_SESSION["id_user"])){?>
