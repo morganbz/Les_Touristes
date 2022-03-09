@@ -207,6 +207,7 @@
             $dossier = strval($_SESSION["id_user"])."/".$_POST["id_housing_announce_update"];
 
             uploadImg($dossier);
+
         }
 
         // ---------------- CONNEXION UTILISATEURS --------------------------------
@@ -326,5 +327,11 @@
                 $pageCompte = "modifMDP";
             }
         }
+    } else if (!empty($_POST)&&array_key_exists("del_img", $_POST)) {
+        if(isset($_POST["del_img"])){
+            unlink($_POST["del_img"]);
+        }
+        var_dump($_POST["del_img"]);
     }
+    
 ?>
