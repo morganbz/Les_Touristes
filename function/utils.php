@@ -56,7 +56,8 @@ function getURL(){
 }
 
 function getDistance($addressFrom, $lat, $lng){
-    $addressTo = getAddress($lat, $lng);
+    $addressTo = urlencode(getAddress($lat, $lng));
+    $addressFrom = urlencode($addressFrom);
     $data = file_get_contents("https://maps.googleapis.com/maps/api/distancematrix/json?origins=$addressFrom&destinations=$addressTo&key=AIzaSyD6q4hVJGUioenp17tQTqiCS9dLDWbgATw&language=en-EN&sensor=false");
     $data = json_decode($data);
     $distance = 0;

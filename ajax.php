@@ -2,6 +2,8 @@
 
 include_once "db.php";
 
+include_once "function/utils.php";
+
 include_once "function/function_db.php";
 
 const HTTP_OK = 200;
