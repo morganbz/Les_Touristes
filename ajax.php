@@ -39,7 +39,7 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtoupper($_SERVER['HTTP_X_REQU
             $distance = $_POST['distance'];
         }
         $message = "OK";
-        $data = searchAnnounce($price_min, $price_max, $arrive, $departure);
+        $data = searchAnnounce($price_min, $price_max, $arrive, $departure, $destination, $distance);
     }
 
     response($response_code, $message, $destination, $arrive, $departure, $price_min, $price_max, $distance, $data);
