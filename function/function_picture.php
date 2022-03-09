@@ -25,7 +25,7 @@ function uploadImg($dossier){
         $extensionAcceptee = ['jpg', 'jpeg','png'];
 
         if(file_exists($cheminDossier)){
-            $name = $name."_copy";
+            $name = "copy_".$name;
             $cheminDossier = "./picture_housing/".$dossier."/".$name;
         }
 
