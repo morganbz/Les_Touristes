@@ -19,10 +19,10 @@
             }
             #contener {
                 display: flex;
-                height: calc(100% - 5%);
+                height: calc(100% - 8%);
             }
             #search_housing_list {
-                height: calc(100% - 5%);
+                height: calc(100% - 8%);
                 width: 50%;
                 overflow-y: scroll;
                 position: fixed;
@@ -39,7 +39,7 @@
             }
             .searchbar{
                 display: flex;
-                height: 5%;
+                height: 8%;
             }
             .flex{
                 flex-grow: 1;
