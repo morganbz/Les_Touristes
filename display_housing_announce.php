@@ -24,8 +24,8 @@ foreach ($listeAnnounces as $announce){
     </div>
 
     <div>
-        <label for="id_owner_housing">Type de logement</label>
-        <select name="type_housing" id="id_owner_housing">
+        <label for="type_housing">Type de logement</label>
+        <select name="type_housing" id="type_housing">
             <?php
                 $indice = 0;
                 foreach($TYPE_HOUSING as $type){

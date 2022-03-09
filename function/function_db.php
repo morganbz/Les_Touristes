@@ -75,8 +75,6 @@ function updateHousingAnnounce($id, $name, $latitude, $longitude, $type, $descri
 
         $update_housing = $base->query($sql);
 
-        echo $sql;
-
         if ($update_housing){
                 unset($_SESSION["errors_update_housing"]);
         } else {
