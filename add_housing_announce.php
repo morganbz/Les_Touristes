@@ -5,7 +5,7 @@
             <?php
                 $indice = 0;
                 foreach($TYPE_HOUSING as $type){
-                    echo "<option value=$indice>$type</option>";
+                    echo "\n<option value=$indice>$type</option>";
                     $indice++;
                 }
             ?>
@@ -13,7 +13,7 @@
     </div>
 
     <div>
-        <input placeholder="Latitude"type="float" name="latitude_housing" id="latitude_housing" required>
+        <input placeholder="Latitude" type="float" name="latitude_housing" id="latitude_housing" required>
         <label for="latitude_housing">Latitude</label>
     </div>
 
