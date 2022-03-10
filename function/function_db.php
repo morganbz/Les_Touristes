@@ -432,7 +432,8 @@ function addHousingAnnounceDate($id, $price, $date) {
         $prix = mysqli_real_escape_string($base, $price);
         $date = mysqli_real_escape_string($base, $date);
 
-        $sql = "INSERT INTO announce (date, price) VALUES ($date, $prix)" ;
+        $sql = "INSERT INTO announce (date, price, isTaken, id_housing) VALUES ('$date', $prix, 0, $id)" ;
+        echo $sql;
 
         $insert_add_housing_announce_date = $base->query($sql);
 
