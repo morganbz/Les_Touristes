@@ -30,6 +30,7 @@
         if ($page == "home"){
             echo "home";
         }
+        else if ($page == "")
         else if ($page == "recherche_activitee"){
             
             //displaySearch(searchAnnounce(0, 1000, "1900-01-01", "2070-01-01"));
