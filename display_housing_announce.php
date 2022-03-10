@@ -110,24 +110,17 @@ foreach ($listeAnnounces as $announce){
 
        //echo "<p>" . $prix . " " . $date . " " . $dispo . " </p>";
        ?> 
+       <p><?php echo $date;?></p>
+       <p><?php echo $dispo;?></p>
        <form>
             <div>
                 <label for="price_announce_update">Prix</label>
                 <input placeholder="prix" value="<?php echo $prix;?>" type="text" name="prix_announce_update" id="prix_announce_update" required>
             </div>
 
-            <div>
-                <label for="date_announce_update">Date</label>
-                <textarea placeholder="Date" name="date_announce_update" id="date_announce_update"><?php echo $date;?></textarea>
-            </div>
-
-            <div>
-                <label for="disponible_announce_update">Disponibilité</label>
-                <textarea placeholder="Disponible" name="disponible_announce_update" id="disponible_announce_update"><?php echo $dispo;?></textarea>
-            </div>
-
             <input value="<?php echo $idAnnonce;?>" type="hidden" name="id_announce_update" id="id_announce_update">
-    </form>
+        </form>
+
     <?php
     }
     
