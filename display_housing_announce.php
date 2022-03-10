@@ -80,7 +80,7 @@ foreach ($listeAnnounces as $announce){
                 echo "<img src='".$imgLink."' alt='".$nom."'/>";
                 ?>
                 <form action="index.php" method="post">
-                    <button id="del_img" name="del_img" value="<?php echo $imgLink;?>">Supprimer</button>
+                    <button id="del_img" name="del_img" value="<?php echo $imgLink;?>" type = "submit">Supprimer</button>
                 </form>
                 <?php
             }
@@ -119,6 +119,8 @@ foreach ($listeAnnounces as $announce){
             </div>
 
             <input value="<?php echo $idAnnonce;?>" type="hidden" name="id_announce_update" id="id_announce_update">
+
+            <button id="submit" name="submit" value="modif_price" type = "submit">Modifier le prix</button>
         </form>
 
     <?php
