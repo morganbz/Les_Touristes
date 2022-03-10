@@ -69,8 +69,8 @@ function setMarkers(map,locations) {
                 infoWindow.setContent(
                     "<div id='infoWindow'>"
                     +"<p>Nom : "+station['nom']+"<p>"
+                    +"<p>Type de logement : " + station['type'] + "<p>"
                     +"<p>Adresse : "+station['adresse']+"<p>"
-                    +"<p>Description : "+station['description']+"<p>"
                     +"<p>Prix à la nuit : " + station['price'] + "<p>"
                     +"</div>"
                 );
