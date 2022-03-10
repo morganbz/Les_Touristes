@@ -1,3 +1,11 @@
+<?php
+
+	include_once "db.php";
+
+	include_once "function/function_db.php";
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
