@@ -58,7 +58,7 @@ function setMarkers(map,locations) {
             position: myLatLng,
             map: map,
             title: station['marker_ville'],
-            icon: new google.maps.MarkerImage('ressources/house.png')
+            icon: new google.maps.MarkerImage('ressources/home_map_marker_icon_135501.png')
         });
 
         (function(i){
