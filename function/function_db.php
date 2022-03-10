@@ -409,4 +409,20 @@ function bookHousingPeriod($id_housing, $id_customer, $date_start, $date_end){
         }
 
 }
+
+function updatePriceAnnounce($id, $price) {
+        global $base;
+        $prix = mysqli_real_escape_string($base, $price);
+        $sql = "UPDATE announce SET price = $prix WHERE id = $id";
+
+        $insert_update_price_announce = $base->query($sql);
+
+        if ($insert_update_price_announce){
+                unset($_SESSION["errors_update_price_announce"]);
+        } else {
+                $errors[] = "Erreur au moment de l'ajout dans la base de donnée";
+                $_SESSION["errors_update_price_announce"] = $errors;
+        }
+}
+
 ?>
