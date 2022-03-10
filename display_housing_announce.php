@@ -121,10 +121,28 @@ foreach ($listeAnnounces as $announce){
             <input value="<?php echo $idAnnonce;?>" type="hidden" name="id_announce_update" id="id_announce_update">
 
             <button id="submit" name="submit" value="modif_price" type = "submit">Modifier le prix</button>
+
+            <button id="submit" name="submit" value="del_announce" type = "submit">Supprimer cette date</button>
         </form>
 
     <?php
     }
-    
+    ?>
+    <form action="index.php" method="post">
+        <div>
+            <label for="price_date">Prix de la nuit</label>
+            <input placeholder="Prix de la nuit" type="int" name="price_date" id="price_date" required>
+        </div>
+
+        <div>
+            <label for="date_start_date">Date de l'annonce</label>
+            <input placeholder="Date de l'annonce" type="date" name="date_start_date" id="date_start_date" required>
+        </div>
+
+        <input value="<?php echo $id;?>" type="hidden" name="id_housing_announce" id="id_housing_announce">
+        
+        <button id="submit" name="submit" value="Add_date" type="submit">Ajouter la date</button>
+    </form>
+    <?php
 }
 ?>
