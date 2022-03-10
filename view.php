@@ -6,12 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
     <title>Les Touristes</title>
-    <style>
-        html, body{ 
-  min-height: 100vh;
-  overflow: auto;
-}
-    </style>
 </head>
 <body>
     <nav>
