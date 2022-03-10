@@ -232,6 +232,13 @@
             updatePriceAnnounce($id, $prix);
         }
 
+        if ($submit == "add_date") {
+            $price = $_POST["price_date"];
+            $date = $_POST["date_start_date"];
+            $id = $_POST["id_housing_announce"];
+            addHousingAnnounceDate($id, $price, $date);
+        }
+
         // ---------------- CONNEXION UTILISATEURS --------------------------------
 
         if($submit == "Login"){
