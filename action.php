@@ -232,7 +232,7 @@
             updatePriceAnnounce($id, $prix);
         }
 
-        if ($submit == "add_date") {
+        if ($submit == "Add_date") {
             $price = $_POST["price_date"];
             $date = $_POST["date_start_date"];
             $id = $_POST["id_housing_announce"];

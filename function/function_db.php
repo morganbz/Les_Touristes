@@ -433,8 +433,7 @@ function addHousingAnnounceDate($id, $price, $date) {
         $date = mysqli_real_escape_string($base, $date);
 
         $sql = "INSERT INTO announce (date, price, isTaken, id_housing) VALUES ('$date', $prix, 0, $id)" ;
-        echo $sql;
-
+       
         $insert_add_housing_announce_date = $base->query($sql);
 
         if ($insert_add_housing_announce_date){
@@ -443,5 +442,7 @@ function addHousingAnnounceDate($id, $price, $date) {
                 $errors[] = "Erreur au moment de l'ajout dans la base de donnée";
                 $_SESSION["errors_add_housing_date"] = $errors;
         }
+
+        echo $sql;
 }
 ?>
