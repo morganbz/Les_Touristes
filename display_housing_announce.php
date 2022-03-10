@@ -101,7 +101,13 @@ foreach ($listeAnnounces as $announce){
        //var_dump ($reservations);
        $prix = $reservations['price'];
        $date = $reservations['date_start'];
-       $dispo = $reservations['isTaken'];
+       $taken = $reservations['isTaken'];
+       $dispo = NULL;
+       if ($taken == 0) {
+           $dispo = "disponible";
+       } else {
+           $dispo = "indisponible";
+       }
        echo $prix . " " . $date . " " . $dispo . " ";
 
     }
