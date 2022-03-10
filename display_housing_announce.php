@@ -139,6 +139,8 @@ foreach ($listeAnnounces as $announce){
             <input placeholder="Date de l'annonce" type="date" name="date_start_date" id="date_start_date" required>
         </div>
 
+        <input value="<?php echo $id;?>" type="hidden" name="id_housing_announce" id="id_housing_announce">
+        
         <button id="submit" name="submit" value="Add_date" type="submit">Ajouter la date</button>
     </form>
     <?php
