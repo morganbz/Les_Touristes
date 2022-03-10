@@ -84,6 +84,9 @@
         else if($page == "test"){
             include_once "test.php";
         }  
+        else if($page == "reservation"){
+            include_once "reservation.php";
+        }  
     ?>
 </body>
 </html>
