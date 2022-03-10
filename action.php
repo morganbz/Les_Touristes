@@ -229,7 +229,7 @@
         if ($submit == "modif_price") {
             $id = $_POST["id_announce_update"];
             $prix = $_POST["prix_announce_update"];
-            updatePriceAnnounce($id, $price);
+            updatePriceAnnounce($id, $prix);
         }
 
         // ---------------- CONNEXION UTILISATEURS --------------------------------
