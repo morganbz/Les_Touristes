@@ -130,13 +130,13 @@ foreach ($listeAnnounces as $announce){
     ?>
     <form action="index.php" method="post">
         <div>
-            <input placeholder="Prix de la nuit" type="int" name="price_date" id="price_date" required>
             <label for="price_date">Prix de la nuit</label>
+            <input placeholder="Prix de la nuit" type="int" name="price_date" id="price_date" required>
         </div>
 
         <div>
-            <input placeholder="Date du début de l'annonce" type="date" name="date_start_date" id="date_start_date" required>
-            <label for="date_start_date">Date du début de l'annonce</label>
+            <label for="date_start_date">Date de l'annonce</label>
+            <input placeholder="Date de l'annonce" type="date" name="date_start_date" id="date_start_date" required>
         </div>
 
         <button id="submit" name="submit" value="Add_date" type="submit">Ajouter la date</button>
