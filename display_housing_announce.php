@@ -80,7 +80,7 @@ foreach ($listeAnnounces as $announce){
                 echo "<img src='".$imgLink."' alt='".$nom."'/>";
                 ?>
                 <form action="index.php" method="post">
-                    <button id="del_img" name="del_img" value="<?php echo $imgLink;?>">Supprimer</button>
+                    <button id="del_img" name="del_img" value="<?php echo $imgLink;?>" type = "submit">Supprimer</button>
                 </form>
                 <?php
             }
@@ -95,5 +95,54 @@ foreach ($listeAnnounces as $announce){
         echo "</ul>";
     }
 
+    $infos = getAnnounceByIdHousing($id);
+    foreach ($infos as $reservation){
+       $prix = $reservation['price'];
+       $date = $reservation['date_start'];
+       $taken = $reservation['isTaken'];
+       $idAnnonce = $reservation['id'];
+
+       if ($taken == 0) {
+           $dispo = "disponible";
+       } else {
+           $dispo = "indisponible";
+       }
+
+       //echo "<p>" . $prix . " " . $date . " " . $dispo . " </p>";
+       ?> 
+       <p><?php echo $date;?></p>
+       <p><?php echo $dispo;?></p>
+       <form>
+            <div>
+                <label for="price_announce_update">Prix</label>
+                <input placeholder="prix" value="<?php echo $prix;?>" type="text" name="prix_announce_update" id="prix_announce_update" required>
+            </div>
+
+            <input value="<?php echo $idAnnonce;?>" type="hidden" name="id_announce_update" id="id_announce_update">
+
+            <button id="submit" name="submit" value="modif_price" type = "submit">Modifier le prix</button>
+
+            <button id="submit" name="submit" value="del_announce" type = "submit">Supprimer cette date</button>
+        </form>
+
+    <?php
+    }
+    ?>
+    <form action="index.php" method="post">
+        <div>
+            <label for="price_date">Prix de la nuit</label>
+            <input placeholder="Prix de la nuit" type="int" name="price_date" id="price_date" required>
+        </div>
+
+        <div>
+            <label for="date_start_date">Date de l'annonce</label>
+            <input placeholder="Date de l'annonce" type="date" name="date_start_date" id="date_start_date" required>
+        </div>
+
+        <input value="<?php echo $id;?>" type="hidden" name="id_housing_announce" id="id_housing_announce">
+        
+        <button id="submit" name="submit" value="Add_date" type="submit">Ajouter la date</button>
+    </form>
+    <?php
 }
 ?>
