@@ -98,7 +98,12 @@ foreach ($listeAnnounces as $announce){
 
     $infos = getAnnounceByIdHousing($id);
     foreach ($infos as $reservations){
-        var_dump ($reservations);
+       // var_dump ($reservations);
+       $prix = $reservations['prix'];
+       $date = $reservations['date_start'];
+       $dispo = $reservations['isTaken'];
+       echo $prix . $date . $dispo;
+
     }
 }
 ?>
