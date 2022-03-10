@@ -7,9 +7,3 @@ html, body {
 img{
     max-height: 500px;
 }
-
-nav {
-    height: 20%;
-    margin: 0;
-    padding: 0;
-}
