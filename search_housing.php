@@ -7,14 +7,13 @@
         <title>Document</title>
         <style>
             #page_content{
-                height: 100%;
+                height: calc(100% - 20%);
             }
             #contener {
                 display: flex;
                 height: calc(100% - 8%);
             }
             #search_housing_list {
-                height: calc(100% - 8%);
                 width: 50%;
                 overflow-y: scroll;
                 position: fixed;

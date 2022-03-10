@@ -13,17 +13,7 @@
     </div>
 
     <div>
-        <input placeholder="Latitude" type="double" name="latitude_housing" id="latitude_housing" >
-        <label for="latitude_housing">Latitude</label>
-    </div>
-
-    <div>
-        <input placeholder="Longitude" type="double" name="longitude_housing" id="longitude_housing" >
-        <label for="longitude_housing">Longitude</label>
-    </div>
-
-    <div>
-        <input placeholder="adress" type="text" name="adress" id="adress_housing" required>
+        <input placeholder="01 rue de la paix 75000 Paris" type="text" name="adress" id="adress_housing" required>
         <label for="adress_housing">Adresse</label>
     </div>
 
