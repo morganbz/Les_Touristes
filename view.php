@@ -7,11 +7,10 @@
     <link rel="stylesheet" href="./style.css">
     <title>Les Touristes</title>
     <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
+        html, body{ 
+  min-height: 100vh;
+  overflow: auto;
+}
     </style>
 </head>
 <body>
