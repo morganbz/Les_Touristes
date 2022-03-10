@@ -95,5 +95,10 @@ foreach ($listeAnnounces as $announce){
         echo "</ul>";
     }
 
+
+    $infos = getAnnounceByIdHousing($id);
+    foreach ($infos as $reservations){
+        var_dump ($reservations);
+    }
 }
 ?>
