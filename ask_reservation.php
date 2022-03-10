@@ -11,7 +11,9 @@
         </div>
 
         <div>
-            <input placeholder="Description" type="date" name="date_end_reservation" id="date_end_reservation" value = <?php $_GET["date_end"] ?> >
+            <?php
+            echo "<input placeholder='Description' type='date' name='date_start_reservation' id='date_start_reservation' value ='".$_GET['date_end']."' required>"
+            ?>            
             <label for="date_end_reservation">Date de fin du sejour</label>
         </div>
 
