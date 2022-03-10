@@ -7,7 +7,7 @@
         <title>Document</title>
         <style>
             #page_content{
-                height: calc(100%);
+                height: 100%;
             }
             #contener {
                 display: flex;
