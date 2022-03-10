@@ -14,7 +14,6 @@
                 height: calc(100% - 8%);
             }
             #search_housing_list {
-                height: calc(100% - 8%);
                 width: 50%;
                 overflow-y: scroll;
                 position: fixed;
