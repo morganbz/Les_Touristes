@@ -229,14 +229,32 @@
         if ($submit == "modif_price") {
             $id = $_POST["id_announce_update"];
             $prix = $_POST["prix_announce_update"];
+
             updatePriceAnnounce($id, $prix);
+
+            $page = "user_page"; 
+            $pageCompte = "voirAnnonces";
         }
 
         if ($submit == "Add_date") {
             $price = $_POST["price_date"];
             $date = $_POST["date_start_date"];
             $id = $_POST["id_housing_announce"];
+
             addHousingAnnounceDate($id, $price, $date);
+
+            $page = "user_page"; 
+            $pageCompte = "voirAnnonces";
+        }
+
+        if ($submit == "del_announce") {
+            $id = $_POST["id_announce_update"];
+            
+            delDateAnnounceHousing($id);
+
+            $page = "user_page"; 
+            $pageCompte = "voirAnnonces";
+ 
         }
 
         // ---------------- CONNEXION UTILISATEURS --------------------------------

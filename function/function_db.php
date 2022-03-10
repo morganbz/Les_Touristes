@@ -445,4 +445,22 @@ function addHousingAnnounceDate($id, $price, $date) {
 
         echo $sql;
 }
+
+function delDateAnnounceHousing($id) {
+        global $base;
+
+        $sql = "DELETE FROM announce WHERE id = $id";
+
+        $insert_del_date_announce_housing = $base->query($sql);
+
+        if ($insert_del_date_announce_housing){
+                unset($_SESSION["errors_del_housing_date"]);
+        } else {
+                $errors[] = "Erreur au moment de l'ajout dans la base de donnée";
+                $_SESSION["errors_del_housing_date"] = $errors;
+        }
+
+        echo $sql;
+
+}
 ?>
