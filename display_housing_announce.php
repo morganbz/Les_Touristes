@@ -102,7 +102,7 @@ foreach ($listeAnnounces as $announce){
        $prix = $reservations['price'];
        $date = $reservations['date_start'];
        $dispo = $reservations['isTaken'];
-       echo $prix . $date . $dispo;
+       echo $prix . " " . $date . " " . $dispo . " ";
 
     }
 }
