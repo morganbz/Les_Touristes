@@ -95,13 +95,12 @@ foreach ($listeAnnounces as $announce){
         echo "</ul>";
     }
 
-
     $infos = getAnnounceByIdHousing($id);
-    foreach ($infos as $reservations){
-       //var_dump ($reservations);
-       $prix = $reservations['price'];
-       $date = $reservations['date_start'];
-       $taken = $reservations['isTaken'];
+    foreach ($infos as $reservation){
+       $prix = $reservation['price'];
+       $date = $reservation['date_start'];
+       $taken = $reservation['isTaken'];
+       $idAnnonce = $reservation['id'];
 
        if ($taken == 0) {
            $dispo = "disponible";
@@ -109,8 +108,28 @@ foreach ($listeAnnounces as $announce){
            $dispo = "indisponible";
        }
 
-       echo "<p>" . $prix . " " . $date . " " . $dispo . " </p>";
+       //echo "<p>" . $prix . " " . $date . " " . $dispo . " </p>";
+       ?> 
+       <form>
+            <div>
+                <label for="price_announce_update">Prix</label>
+                <input placeholder="prix" value="<?php echo $prix;?>" type="text" name="prix_announce_update" id="prix_announce_update" required>
+            </div>
 
+            <div>
+                <label for="date_announce_update">Date</label>
+                <textarea placeholder="Date" name="date_announce_update" id="date_announce_update"><?php echo $date;?></textarea>
+            </div>
+
+            <div>
+                <label for="disponible_announce_update">Disponibilité</label>
+                <textarea placeholder="Disponible" name="disponible_announce_update" id="disponible_announce_update"><?php echo $dispo;?></textarea>
+            </div>
+
+            <input value="<?php echo $idAnnonce;?>" type="hidden" name="id_announce_update" id="id_announce_update">
+    </form>
+    <?php
     }
+    
 }
 ?>
