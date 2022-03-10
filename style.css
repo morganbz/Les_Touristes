@@ -9,6 +9,5 @@ img{
 
 body {
     height: 100%;
-    display: flex;
     overflow-y: hidden;
 }
