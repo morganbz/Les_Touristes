@@ -443,7 +443,6 @@ function addHousingAnnounceDate($id, $price, $date) {
                 $_SESSION["errors_add_housing_date"] = $errors;
         }
 
-        echo $sql;
 }
 
 function delDateAnnounceHousing($id) {
@@ -459,8 +458,6 @@ function delDateAnnounceHousing($id) {
                 $errors[] = "Erreur au moment de l'ajout dans la base de donnée";
                 $_SESSION["errors_del_housing_date"] = $errors;
         }
-
-        echo $sql;
 
 }
 ?>
