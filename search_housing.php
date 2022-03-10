@@ -7,7 +7,7 @@
         <title>Document</title>
         <style>
             #page_content{
-                height: 100%;
+                height: calc(100%);
             }
             #contener {
                 display: flex;
@@ -23,11 +23,6 @@
                 height: 100%;
                 width: 50%;
                 margin-left: 50%;
-            }
-            html, body {
-                height: 100%;
-                margin: 0;
-                padding: 0;
             }
             .searchbar{
                 display: flex;
