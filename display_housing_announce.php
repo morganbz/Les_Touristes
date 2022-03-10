@@ -115,7 +115,7 @@ foreach ($listeAnnounces as $announce){
        <form action="index.php" method="post">
             <div>
                 <label for="price_announce_update">Prix</label>
-                <input placeholder="prix" value="<?php echo $prix;?>" type="text" name="prix_announce_update" id="prix_announce_update" required>
+                <input placeholder="prix" value="<?php echo $prix;?>" type="int" name="prix_announce_update" id="prix_announce_update" required>
             </div>
 
             <input value="<?php echo $idAnnonce;?>" type="hidden" name="id_announce_update" id="id_announce_update">
