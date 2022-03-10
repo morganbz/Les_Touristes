@@ -7,11 +7,8 @@
     <link rel="stylesheet" href="./style.css">
     <title>Les Touristes</title>
     <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
+        html { height:100%; }
+        body { position:absolute; top:0; bottom:0; right:0; left:0; }
     </style>
 </head>
 <body>
