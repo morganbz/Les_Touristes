@@ -1,11 +1,3 @@
-<?php
-
-	include_once "db.php";
-
-	include_once "function/function_db.php";
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -15,7 +7,7 @@
         <title>Document</title>
         <style>
             #page_content{
-                height: 100%;
+                height: calc(100% - 25%);
             }
             #contener {
                 display: flex;
