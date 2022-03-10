@@ -4,7 +4,9 @@
 
     <form action="index.php" method="post">
         <div>
-            <input placeholder="Description" type="date" name="date_start_reservation" id="date_start_reservation" value = <?php $_GET["date_start"] ?> required>
+            <?php
+            echo "<input placeholder='Description' type='date' name='date_start_reservation' id='date_start_reservation' value =". $_GET['date_start'] ."required>"
+            ?>
             <label for="date_start_reservation">Date de début du sejour</label>
         </div>
 
