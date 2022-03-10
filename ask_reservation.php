@@ -19,6 +19,6 @@
 
         <input type = "hidden" name = id_housing value = <?php $_GET["id_housing"] ?>>
 
-        <button id="submit" name="submit" value="reservation" type="submit">Ajouter le logement</button>
+        <button id="submit" name="submit" value="reservation" type="submit">Reserver</button>
     </form>
 </section>
