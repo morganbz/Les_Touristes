@@ -24,6 +24,11 @@
                 width: 50%;
                 margin-left: 50%;
             }
+            html, body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
             .searchbar{
                 display: flex;
                 height: 8%;
