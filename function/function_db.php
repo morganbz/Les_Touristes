@@ -412,6 +412,7 @@ function bookHousingPeriod($id_housing, $id_customer, $date_start, $date_end){
 
 function updatePriceAnnounce($id, $price) {
         global $base;
+
         $prix = mysqli_real_escape_string($base, $price);
         $sql = "UPDATE announce SET price = $prix WHERE id = $id";
 
@@ -425,4 +426,38 @@ function updatePriceAnnounce($id, $price) {
         }
 }
 
+function addHousingAnnounceDate($id, $price, $date) {
+        global $base;
+
+        $prix = mysqli_real_escape_string($base, $price);
+        $date = mysqli_real_escape_string($base, $date);
+
+        $sql = "INSERT INTO announce (date_start, price, isTaken, id_housing) VALUES ('$date', $prix, 0, $id)" ;
+       
+        $insert_add_housing_announce_date = $base->query($sql);
+
+        if ($insert_add_housing_announce_date){
+                unset($_SESSION["errors_add_housing_date"]);
+        } else {
+                $errors[] = "Erreur au moment de l'ajout dans la base de donnée";
+                $_SESSION["errors_add_housing_date"] = $errors;
+        }
+
+}
+
+function delDateAnnounceHousing($id) {
+        global $base;
+
+        $sql = "DELETE FROM announce WHERE id = $id";
+
+        $insert_del_date_announce_housing = $base->query($sql);
+
+        if ($insert_del_date_announce_housing){
+                unset($_SESSION["errors_del_housing_date"]);
+        } else {
+                $errors[] = "Erreur au moment de l'ajout dans la base de donnée";
+                $_SESSION["errors_del_housing_date"] = $errors;
+        }
+
+}
 ?>

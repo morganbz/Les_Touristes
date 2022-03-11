@@ -108,7 +108,6 @@ foreach ($listeAnnounces as $announce){
            $dispo = "indisponible";
        }
 
-       //echo "<p>" . $prix . " " . $date . " " . $dispo . " </p>";
        ?> 
        <p><?php echo $date;?></p>
        <p><?php echo $dispo;?></p>
