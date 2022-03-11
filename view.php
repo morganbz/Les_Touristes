@@ -8,7 +8,6 @@
     <title>Les Touristes</title>
 </head>
 <body>
-    &nbsp;
     <nav>
         <ul>
             <li><a href="?page=recherche_activitee">Rechercher une activitée</a></li>
