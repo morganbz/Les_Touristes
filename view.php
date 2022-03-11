@@ -17,7 +17,7 @@
                 if (isset($_SESSION["id_user"])){?>
                     <li><a href="?page=user_page">Compte</a></li>
                     <li><a href="?page=deconnexion">Déconnexion</a></li>
-            <?php
+            <?php 
                 } else { ?>
                     <li><a href="?page=register">Inscription</a></li>
                     <li><a href="?page=login">Connexion</a></li>
