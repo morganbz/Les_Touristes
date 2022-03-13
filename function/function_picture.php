@@ -1,12 +1,12 @@
 <?php
 
-function createFolder($folder, $name_FILES){
+function createFolder($folder){
     if (!file_exists($folder)){
         mkdir($folder, 0777, true);
     }    
 }
 
-function uploadImg($dossier){
+function uploadImg($dossier, $name_FILES){
     global $base;
 
     $errors = [];
