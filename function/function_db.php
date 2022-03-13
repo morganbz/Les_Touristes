@@ -116,7 +116,7 @@ function addUser($mail, $firstname, $lastname, $birth_date, $phone, $password, $
                         $sql = "SELECT id FROM user WHERE mail = '$mail'";
                         $result = mysqli_query ($base, $sql);
                         $id = mysqli_fetch_assoc($result);
-                        $_SESSION["id_user"] = $id;
+                        $_SESSION["id_user"] = $id["id"];
                 } else {
                         $errors[] = "Erreur au moment de l'ajout dans la base de donnée";
                         $_SESSION["errors_register"] = $errors;
