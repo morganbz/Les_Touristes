@@ -224,7 +224,7 @@
 
             if (isset($_FILES)){
                 if ($_FILES["modification_image"]["error"] != 4){
-                    uploadImg($dossier);
+                    uploadImg($dossier, "modification_image");
                 }   
             }
 
@@ -360,7 +360,7 @@
                             unlink($file);
                         }
                     }
-                    uploadImg($dossier);
+                    uploadImg($dossier, "modification_profile_picture");
                 }   
             }
         }

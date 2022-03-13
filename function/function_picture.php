@@ -1,6 +1,6 @@
 <?php
 
-function createFolder($folder){
+function createFolder($folder, $name_FILES){
     if (!file_exists($folder)){
         mkdir($folder, 0777, true);
     }    
@@ -12,11 +12,11 @@ function uploadImg($dossier){
     $errors = [];
 
     if (isset($_FILES)){
-        $tmpName = $_FILES["modification_image"]['tmp_name'];
-        $typefile = $_FILES["modification_image"]['type'];
-        $name = $_FILES["modification_image"]['name'];
-        $size = $_FILES["modification_image"]['size'];
-        $error = $_FILES["modification_image"]['error'];
+        $tmpName = $_FILES["$name_FILES"]['tmp_name'];
+        $typefile = $_FILES["$name_FILES"]['type'];
+        $name = $_FILES["$name_FILES"]['name'];
+        $size = $_FILES["$name_FILES"]['size'];
+        $error = $_FILES["$name_FILES"]['error'];
 
         $cheminDossier = "./picture_housing/".$dossier."/".$name;
 
