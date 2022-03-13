@@ -18,7 +18,7 @@ function uploadImg($dossier, $name_FILES){
         $size = $_FILES[$name_FILES]['size'];
         $error = $_FILES[$name_FILES]['error'];
 
-        $cheminDossier = "./picture_housing/".$dossier."/".$name;
+        $cheminDossier = $dossier."/".$name;
 
         $extensionFichier = strtolower(basename($typefile));
 
@@ -26,7 +26,7 @@ function uploadImg($dossier, $name_FILES){
 
         if(file_exists($cheminDossier)){
             $name = "copy_".$name;
-            $cheminDossier = "./picture_housing/".$dossier."/".$name;
+            $cheminDossier = $dossier."/".$name;
         }
 
         if (!(in_array($extensionFichier, $extensionAcceptee))){

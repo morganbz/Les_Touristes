@@ -218,7 +218,7 @@
             $description = $_POST["description_housing_announce_update"];
             $id = $_POST["id_housing_announce_update"];
 
-            $dossier = strval($_SESSION["id_user"])."/".$_POST["id_housing_announce_update"];
+            $dossier = "picture_housing/".strval($_SESSION["id_user"])."/".$_POST["id_housing_announce_update"];
 
             updateHousingAnnounce($id, $name, $latitude, $longitude, $type, $description);
 
