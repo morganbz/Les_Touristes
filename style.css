@@ -16,5 +16,6 @@ h1{
     color: rgb(1, 56, 81);
     height: 15vh;
     text-align: center;
-    
+    font-size : calc(1.5rem + 2vw);
+    line-height : calc(1.5rem + 2vw);
 }
