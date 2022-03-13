@@ -37,10 +37,10 @@ body {
 
 /* ----- Home ----- */
 
-.user_page #user_page_home img{
+section.user_page img{ 
     height: 50px;
 }
 
-.user_page #user_page_home h2{
+section.user_page h2{
     border-bottom: solid 2px;
 }
