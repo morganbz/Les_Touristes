@@ -345,6 +345,7 @@
             }
             if($good_firstname && $good_lastname && $good_phone && $good_description){
                 updateUser($firstname, $lastname, $birth_date, $phone, $description);
+                $page = "user_page";
             } else {
                 $page = "user_page";
                 $pageCompte = "modifInfos";
@@ -363,6 +364,7 @@
                     uploadImg($dossier, "modification_profile_picture");
                 }   
             }
+            $page = "user_page";
         }
 
         // ---------------- MODIFICATION MOT DE PASSE UTILISATEURS --------------------------------
