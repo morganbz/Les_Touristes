@@ -94,6 +94,12 @@
             }
             if($good_firstname && $good_lastname && $good_mail && $good_phone && $good_conf_pass && !($user_exist)){
                 addUser($mail, $firstname, $lastname, $birth_date, $phone, hash_password($pass), $admin);
+                if(isset($_SESSION["id_user"])){
+                    $id = $_SESSION["id_user"];
+                    $dossier = "./picture_profile/".strval($id);
+                    createFolder("$dossier");
+                }
+                
             } else {
                 $page = "register";
             }
