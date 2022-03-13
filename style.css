@@ -1,7 +1,20 @@
-html, body {
+html {
     margin: 0px;
+    padding: 0px;
+}
+
+body {
+    font-family: sans-serif;
 }
 
 img{
     max-height: 500px;
+}
+
+h1{
+    background-color: rgb(38, 123, 162);
+    color: rgb(1, 56, 81);
+    height: 15vh;
+    text-align: center;
+    
 }

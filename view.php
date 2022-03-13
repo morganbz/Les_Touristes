@@ -8,19 +8,20 @@
     <title>Les Touristes</title>
 </head>
 <body>
+    <h1>Les touristes</h1>
     <nav>
         <ul>
-            <li><a href="?page=recherche_activitee">Rechercher une activitée</a></li>
+            <li class="list_research" id="list_research_activity"><a href="?page=recherche_activitee">Rechercher une activitée</a></li>
             <li style="display: none"><a href="?page=test">TEST GOOGLE</a></li>
-            <li><a href="search_housing.php">Recherche logement</a></li>
+            <li class="list_research" id="list_research_housing"><a href="search_housing.php">Recherche logement</a></li>
             <?php 
                 if (isset($_SESSION["id_user"])){?>
-                    <li><a href="?page=user_page">Compte</a></li>
-                    <li><a href="?page=deconnexion">Déconnexion</a></li>
+                    <li class="list_account" id="list_account_my_account"><a href="?page=user_page">Compte</a></li>
+                    <li class="list_account" id="list_account_disconnect"><a href="?page=deconnexion">Déconnexion</a></li>
             <?php
                 } else { ?>
-                    <li><a href="?page=register">Inscription</a></li>
-                    <li><a href="?page=login">Connexion</a></li>
+                    <li class="list_account" id="list_account_register"><a href="?page=register">Inscription</a></li>
+                    <li class="list_account" id="list_account_connect"><a href="?page=login">Connexion</a></li>
             <?php
                 }
             ?> 
