@@ -357,7 +357,7 @@
                     $files = scandir ($dossier);
                     foreach($files as $file){
                         if ($file != "." && $file != ".."){
-                            unlink($file);
+                            unlink($dossier.$file);
                         }
                     }
                     uploadImg($dossier, "modification_profile_picture");
