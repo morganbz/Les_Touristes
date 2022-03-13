@@ -31,7 +31,7 @@
     <div>
         <label for="modification_profile_picture"><img src="<?php echo $profile_picture;?>" alt="Profile picture"></label>
         <input type='file' name='modification_profile_picture' id='modification_profile_picture'>
-        <button id="del_img" name="del_img" value="<?php echo $profile_picture;?>" type="del_img">Supprimer</button>
+        <button id="del_img_profile" name="del_img_profile" value="<?php echo $profile_picture;?>" type="del_img_profile">Supprimer</button>
     </div>
     <div>
         <label for="firstname_modification">Prénom</label>

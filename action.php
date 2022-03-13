@@ -400,6 +400,11 @@
         }
         $page = "user_page";
         $pageCompte = "voirAnnonces";
+    } else if (!empty($_POST)&&array_key_exists("del_img_profile", $_POST)) {
+        if(isset($_POST["del_img_profile"])){
+            unlink($_POST["del_img_profile"]);
+        }
+        $page = "user_page";
     }
     
 ?>
