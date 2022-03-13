@@ -42,5 +42,5 @@ body {
 }
 
 .user_page #user_page_home h2{
-    border-bottom: solid 2px var(--text_body_color);
+    border-bottom: solid var(--text_body_color) 2px;
 }
