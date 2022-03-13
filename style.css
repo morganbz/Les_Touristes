@@ -37,10 +37,16 @@ body {
 
 /* ----- Home ----- */
 
-section.user_page img{ 
-    height: 50px;
+section.user_page_home{
+    max-width: 60vw;
 }
 
-section.user_page h2{
+section.user_page_home img{ 
+    height: 7vh;
+    max-height: 150px;
+    min-height: 100px;
+}
+
+section.user_page_home h2{
     border-bottom: solid 2px;
 }

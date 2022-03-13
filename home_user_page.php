@@ -10,7 +10,7 @@
     }
 ?>
 
-<section class="user_page" id="user_page_home">
+<section class="user_page_home">
     <img src="ressources/profile_picture.png" alt="Profile picture">
     <div>
         <h2><?php echo $firstname . " " . $lastname;?></h2>

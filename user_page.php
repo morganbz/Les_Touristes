@@ -2,7 +2,7 @@
   if (isset($_SESSION["id_user"])){
 ?>
 
-<nav>
+<nav class="user_page_nav">
   <ul>
     <li><a href="?page=user_page&pageCompte=modifInfos">Modifier mes informations</a></li>
     <li><a href="?page=user_page&pageCompte=modifMDP">Modifier mon mot de passe</a></li>
