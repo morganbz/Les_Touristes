@@ -12,11 +12,11 @@ function uploadImg($dossier){
     $errors = [];
 
     if (isset($_FILES)){
-        $tmpName = $_FILES["$name_FILES"]['tmp_name'];
-        $typefile = $_FILES["$name_FILES"]['type'];
-        $name = $_FILES["$name_FILES"]['name'];
-        $size = $_FILES["$name_FILES"]['size'];
-        $error = $_FILES["$name_FILES"]['error'];
+        $tmpName = $_FILES[$name_FILES]['tmp_name'];
+        $typefile = $_FILES[$name_FILE]['type'];
+        $name = $_FILES[$name_FILE]['name'];
+        $size = $_FILES[$name_FILE]['size'];
+        $error = $_FILES[$name_FILE]['error'];
 
         $cheminDossier = "./picture_housing/".$dossier."/".$name;
 
