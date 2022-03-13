@@ -16,7 +16,7 @@
 <?php 
   
     if ($pageCompte == "home"){
-      echo "page home du compte";
+      include_once "home_user_page.php";
     }
     else if ($pageCompte == "modifInfos"){
       include_once "modif_infos_user.php";

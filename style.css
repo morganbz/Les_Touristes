@@ -3,6 +3,10 @@
     padding: 0px;
 }
 
+:root{
+    --text_body_color: rgb(0, 0, 0);
+}
+
 body {
     font-family: sans-serif;
 }
@@ -20,11 +24,19 @@ h1{
     min-height: calc(1.5rem + 2vw);
     max-height: 300px;
     text-align: center;
-    font-size : calc(1.5rem + 2vw);
-    line-height : 15vh;
+    font-size: calc(1.5rem + 2vw);
+    line-height: 15vh;
 }
 
 body {
     background-color: rgb(224, 247, 217);
-    color: rgb(0, 0, 0);
+    color: var(--text_body_color);
+}
+
+/* ----------------- Page compte ----------------- */
+
+/* ----- Home ----- */
+
+.user_page #user_page_home h2{
+    border-bottom: 2px var(--text_body_color);
 }
