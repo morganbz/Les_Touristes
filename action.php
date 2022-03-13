@@ -96,8 +96,11 @@
                 addUser($mail, $firstname, $lastname, $birth_date, $phone, hash_password($pass), $admin);
                 if(isset($_SESSION["id_user"])){
                     $id = $_SESSION["id_user"];
+                    var_dump($id);
+                    var_dump($_SESSION);
                     $dossier = "./picture_profile/".$id;
-                    createFolder("$dossier");
+                    var_dump($dossier);
+                    //createFolder("$dossier");
                 }
                 
             } else {
