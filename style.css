@@ -37,6 +37,10 @@ body {
 
 /* ----- Home ----- */
 
+.user_page #user_page_home img{
+    height: 50px;
+}
+
 .user_page #user_page_home h2{
-    border-bottom: 2px var(--text_body_color);
+    border-bottom: solid 2px var(--text_body_color);
 }
