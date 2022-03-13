@@ -7,11 +7,22 @@
         $birth_date = $user["birth_date"];
         $phone = $user["phone"];
         $description = $user["description"];
+
+        $profile_picture = "ressources/profile_picture.png";
+        $profile_picture_folder = "picture_profile/".$_SESSION["id_user"];
+        if (isset($profile_picture_folder)){
+            $files = scandir ($profile_picture_folder);
+            foreach($files as $file){
+                if ($file != "." && $file != ".."){
+                    $profile_picture = $profile_picture_folder."/".$file;
+                }
+            }
+        }
     }
 ?>
 
 <section class="user_page_home">
-    <img src="ressources/profile_picture.png" alt="Profile picture">
+    <img src="<?php echo $profile_picture;?>" alt="Profile picture">
     <div>
         <h2><?php echo $firstname . " " . $lastname;?></h2>
         <p>Date de naissance : <?php echo $birth_date;?></p>

@@ -4,6 +4,7 @@
      $birth_date = "";
      $phone = "";
      $description = "";
+     $profile_picture = "ressources/profile_picture.png";
     
     if(isset($_SESSION["id_user"])){
         $user = getUserById($_SESSION["id_user"]);
@@ -13,10 +14,24 @@
         $birth_date = $user["birth_date"];
         $phone = $user["phone"];
         $description = $user["description"];
+
+        $profile_picture_folder = "picture_profile/".$_SESSION["id_user"];
+        if (isset($profile_picture_folder)){
+            $files = scandir ($profile_picture_folder);
+            foreach($files as $file){
+                if ($file != "." && $file != ".."){
+                    $profile_picture = $profile_picture_folder."/".$file;
+                }
+            }
+        }
     }
 ?>
 
-<form action="index.php" method="post">
+<form action="index.php" method="post" enctype= 'multipart/form-data'>
+    <div>
+        <img src="<?php echo $profile_picture;?>" alt="Profile picture">
+        <input type='file' name='modification_profile_picture' id='modification_profile_picture'>
+    </div>
     <div>
         <label for="firstname_modification">Prénom</label>
         <input placeholder="Prénom" value="<?php echo $firstname;?>" type="text" name="firstname_modification" id="firstname_modification" required>

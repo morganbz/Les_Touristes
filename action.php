@@ -349,6 +349,20 @@
                 $page = "user_page";
                 $pageCompte = "modifInfos";
             }
+
+            $dossier = "picture_profile/".$_SESSION["id_user"];
+
+            if (isset($_FILES)){
+                if ($_FILES["modification_image"]["error"] != 4){
+                    $files = scandir ($profile_picture_folder);
+                    foreach($files as $file){
+                        if ($file != "." && $file != ".."){
+                            unlink($file);
+                        }
+                    }
+                    uploadImg($dossier);
+                }   
+            }
         }
 
         // ---------------- MODIFICATION MOT DE PASSE UTILISATEURS --------------------------------
