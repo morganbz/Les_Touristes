@@ -10,6 +10,7 @@
           <option value="Cinema">Cinéma</option>
           <option value="baignade">Baignade</option>
         </select>
+        <label for="type_activite">type d'activité</label>
     </div>
 
     <div>
