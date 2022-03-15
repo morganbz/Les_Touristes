@@ -6,9 +6,10 @@
 
     <div>
         <select name="type_activite">
-          <option value="randonnee">Randonnée</option>
-          <option value="Cinema">Cinéma</option>
-          <option value="baignade">Baignade</option>
+            <option value="null">type d'activité</option>
+            <option value="randonnee">Randonnée</option>
+            <option value="Cinema">Cinéma</option>
+            <option value="baignade">Baignade</option>
         </select>
         <label for="type_activite">type d'activité</label>
     </div>
