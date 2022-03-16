@@ -65,3 +65,7 @@ html, body {
     0%{background-color: white}
     100%{background-color: lightgray}
 }
+
+img{
+    max-height: 500px;
+}
