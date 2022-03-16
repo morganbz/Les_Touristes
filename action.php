@@ -10,20 +10,6 @@
         $pageCompte = $_GET["pageCompte"];
     }
 
-    if($page=="login"){
-        $back_page = "home";
-        if(isset($_GET["back_page"])){
-            $back_page = $_GET["back_page"];
-            echo "PUTEEEEEEE";
-        }
-        echo "PUTEEEEEEE";
-    }
-    else if($page=="register"){
-        $back_page = "home";
-        if(isset($_GET["back_page"])){
-            $back_page = $_GET["back_page"];
-        }
-    }
 
     // ---------------------- POST FORMULAIRE ----------------------------
     if(!empty($_POST)&&array_key_exists("submit", $_POST)){
