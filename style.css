@@ -47,7 +47,7 @@ html, body {
 }
 .data_search:hover{
     background-color: lightgray;
-    animation: change 3s 1;
+    animation: change 1s 1;
 }
 .link_announce{
     display:block;
