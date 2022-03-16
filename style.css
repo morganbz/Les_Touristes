@@ -46,7 +46,8 @@ html, body {
     height: auto;
 }
 .data_search:hover{
-    animation: change 2s 1;
+    background-color: lightgray;
+    animation: change 3s 1;
 }
 .link_announce{
     display:block;
