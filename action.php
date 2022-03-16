@@ -14,12 +14,18 @@
         $back_page = "home";
         if(isset($_GET["back_page"])){
             $back_page = $_GET["back_page"];
+            if ($back_page == "login") {
+                $back_page = "home";
+            }
         }
     }
     else if($page=="register"){
         $back_page = "home";
         if(isset($_GET["back_page"])){
             $back_page = $_GET["back_page"];
+            if ($back_page == "register") {
+                $back_page = "home";
+            }
         }
     }
 
