@@ -69,7 +69,7 @@ function setMarkers(map,locations) {
                 infoWindow.setContent(
                     "<div id='infoWindow'>"
                     +"<p>Nom : "+station['nom']+"<p>"
-                    //+"<p>Type de logement : " + station['type'] + "<p>"
+                    +"<p>Type de logement : " + station['type'] + "<p>"
                     +"<p>Adresse : "+station['adresse']+"<p>"
                     +"<p>Prix à la nuit : " + station['price'] + "<p>"
                     +"</div>"
@@ -106,7 +106,7 @@ function getLocation()
             }
             $("#search_housing_list").empty();
             for(let i = 0; i < results.length; i++){
-                $("#search_housing_list").append("<div class='data_search'><p>Nom : " + results[i]['nom'] + "<p>"/*<p>Type de logement : " + results[i]['type'] + <p>*/+ "<p>Adresse : " + results[i]['adresse'] + "<p><p>Prix à la nuit : " + results[i]['price'] + "<p><p>Description : " + results[i]['description'] + "<p><p><a href='./?page=ask_reservation&id_housing="+ results[i]["id"] + "&date_start="+ response["arrive"] +"&date_end=" + response["departure"] + "'>Réserver</a></div>");
+                $("#search_housing_list").append("<div class='data_search'><p>Nom : " + results[i]['nom'] + "<p><p>Type de logement : " + results[i]['type'] + "<p><p>Adresse : " + results[i]['adresse'] + "<p><p>Prix à la nuit : " + results[i]['price'] + "<p><p>Description : " + results[i]['description'] + "<p><p><a href='./?page=ask_reservation&id_housing="+ results[i]["id"] + "&date_start="+ response["arrive"] +"&date_end=" + response["departure"] + "'>Réserver</a></div>");
             }
         },
         error: function (response) {

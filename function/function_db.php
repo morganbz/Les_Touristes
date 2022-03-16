@@ -250,7 +250,8 @@ function searchAnnounce($priceMin, $priceMax, $date_start, $date_end, $dest, $di
         price, 
         MIN(date_start) AS min_date,
         MAX(date_start) AS max_date,
-        isTaken
+        isTaken,
+        type
                 FROM housing JOIN announce ON housing.id = id_housing
                 WHERE (price BETWEEN $priceMin AND $priceMax) AND date_start <= '$date_end'
                 GROUP BY id_housing";
