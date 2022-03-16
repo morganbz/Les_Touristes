@@ -193,7 +193,10 @@
             $id_housing = $_POST["id_housing"];
             if(getHousingById($id_housing) != null){
                 AskBookHousingPeriod($id_housing, $id_customer, $date_start_reservation, $date_end_reservation);
+                $url = getURL()."?page=user_page&message=booking_completed&start=".$date_start_reservation."&end=".$date_end_reservation;
             }
+
+            header('Location: '.$url.'');
         }
 
 
