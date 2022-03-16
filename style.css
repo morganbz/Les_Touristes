@@ -45,7 +45,9 @@ html, body {
     border: black solid 1px;
     height: auto;
 }
-
+.data_search:hover{
+    background-color: lightgray;
+}
 .link_announce{
     display:block;
     width:100%;
