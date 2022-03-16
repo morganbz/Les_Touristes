@@ -279,7 +279,7 @@
 
         if($submit == "Login"){
             $mail = $_POST["mail_user"];
-            $password = $_POST["passWord"];
+            $password = $_POST["password"];
 
             $user = getUser($mail);
             $errors = [];
