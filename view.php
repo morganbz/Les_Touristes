@@ -36,10 +36,10 @@
                         <?php
                     } else {
                         echo '<li class="nav-item active">';
-                            echo '<a class="nav-link" href="?page=register&backpage='.$page.'">Inscription</a>';
+                            echo '<a class="nav-link" href="?page=register&back_page='.$page.'">Inscription</a>';
                         echo '</li>';
                         echo '<li class="nav-item active">';
-                            echo '<a class="nav-link" href="?page=login&backpage='.$page.'">Connexion</a>';
+                            echo '<a class="nav-link" href="?page=login&back_page='.$page.'">Connexion</a>';
                         echo '</li>';
                     }
                 ?> 
