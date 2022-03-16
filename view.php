@@ -25,7 +25,8 @@
                     <a class="nav-link" href="?page=search_housing">Recherche logement</a>
                 </li>
                 <?php 
-                    if (isset($_SESSION["id_user"])){?>
+                    if (isset($_SESSION["id_user"])){
+                ?>
                         <li class="nav-item active">
                             <a class="nav-link" href="?page=user_page">Compte</a>
                         </li>
@@ -33,7 +34,9 @@
                             <a class="nav-link" href="?page=deconnexion">Déconnexion</a>
                         </li>
                 <?php
-                    } else { ?>
+                    } 
+                    else { 
+                ?>
                         <li class="nav-item active">
                             <a class="nav-link" href="?page=register">Inscription</a>
                         </li>
