@@ -5,37 +5,6 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
-        <style>
-            #page_content{
-                height: 100%;
-            }
-            #contener {
-                display: flex;
-                height: calc(100% - 10%);
-            }
-            #search_housing_list {
-                height: calc(100% - 17%);
-                width: 50%;
-                overflow-y: scroll;
-                position: fixed;
-            }
-            #search_housing_map {
-                height: 100%;
-                width: 50%;
-                margin-left: 50%;
-            }
-            .searchbar{
-                display: flex;
-                height: 10%;
-            }
-            .flex{
-                flex-grow: 1;
-            }
-            .data_search{
-                border: black solid 1px;
-                height: auto;
-            }
-        </style>
     </head>
     <body>
         <div id="page_content">

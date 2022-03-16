@@ -15,3 +15,38 @@ html, body {
     height: 100%;
     width: 100%;
 }
+
+#page_content{
+    height: 100%;
+}
+#contener {
+    display: flex;
+    height: calc(100% - 8%);
+}
+#search_housing_list {
+    height: calc(100% - 8%);
+    width: 50%;
+    overflow-y: scroll;
+    position: fixed;
+}
+#search_housing_map {
+    height: 100%;
+    width: 50%;
+    margin-left: 50%;
+}
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+.searchbar{
+    display: flex;
+    height: 8%;
+}
+.flex{
+    flex-grow: 1;
+}
+.data_search{
+    border: black solid 1px;
+    height: auto;
+}
