@@ -334,6 +334,20 @@ function getIdByInfos($id_owner, $type, $name, $latitude, $longitude){
         
 }
 
+function getHousingById($id){
+        global $base;
+
+        $housings = [];
+
+        $sql = "SELECT id, id_owner, type, latitude, longitude, nom, image_folder, description 
+                FROM housing
+                WHERE id = $id";
+        $result = mysqli_query($base, $sql);
+
+        return mysqli_fetch_assoc($result);
+
+}
+
 function getHousingByIdOwner($id){
         global $base;
 

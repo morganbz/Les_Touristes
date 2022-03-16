@@ -1,7 +1,7 @@
 <?php
 
 
-function displaySearch($array_housing){
+/*function displaySearch($array_housing){
     $TYPE_HOUSING = array("Maison", "Appartement", "Chalet", "Refuge");
 
     echo "<section>";
@@ -34,6 +34,15 @@ function displaySearch($array_housing){
             }
         }
     echo "</section>";
+}*/
+
+function displayHousingForBooking($id_housing){
+
+    $housing = getHousingById($id_housing);
+    $announces = getAnnounceByIdHousing($id_housing);
+
+    
+
 }
 
 
