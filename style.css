@@ -46,7 +46,7 @@ html, body {
     height: auto;
 }
 .data_search:hover{
-    animation: change 1s infinite;
+    animation: change 2s 1;
 }
 .link_announce{
     display:block;
