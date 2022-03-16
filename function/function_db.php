@@ -270,7 +270,7 @@ function searchAnnounce($priceMin, $priceMax, $date_start, $date_end, $dest, $di
                                                 }
                                         }
                                         else{
-                                                $row["adresse"] = getAddress($row["latitude"], $row["longitude"]);
+                                                $row["adresse"] = "BITE";
                                                 $row["type"] = $TYPE_HOUSING[$row["type"]];
                                                 array_push($result, $row);
                                         }
