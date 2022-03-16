@@ -1,11 +1,3 @@
-<?php
-
-	include_once "db.php";
-
-	include_once "function/function_db.php";
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -19,10 +11,10 @@
             }
             #contener {
                 display: flex;
-                height: calc(100% - 8%);
+                height: calc(100% - 10%);
             }
             #search_housing_list {
-                height: calc(100% - 8%);
+                height: calc(100% - 17%);
                 width: 50%;
                 overflow-y: scroll;
                 position: fixed;
@@ -32,14 +24,9 @@
                 width: 50%;
                 margin-left: 50%;
             }
-            html, body {
-                height: 100%;
-                margin: 0;
-                padding: 0;
-            }
             .searchbar{
                 display: flex;
-                height: 8%;
+                height: 10%;
             }
             .flex{
                 flex-grow: 1;
