@@ -405,8 +405,8 @@ function AskBookHousingPeriod($id_housing, $id_customer, $date_start, $date_end)
         date_start
         FROM housing INNER JOIN announce ON housing.id = announce.id_housing
 
-                WHERE housing.id = $id_housing AND date_start >=  '$date_start' AND date_start <= '$date_end'";
-        
+                WHERE id_housing = $id_housing AND date_start >=  '$date_start' AND date_start <= '$date_end'";
+        echo $sql;
         $announce = mysqli_query($base, $sql);
 
         while($row = mysqli_fetch_array($announce)){
