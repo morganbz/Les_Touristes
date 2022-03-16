@@ -21,6 +21,6 @@
         echo "<input type = 'hidden' name = id_housing value =  ".$_GET['id_housing']." >";
         ?>
 
-        <button id="submit" name="submit" value="AskReservation" type="submit">Reserver</button>
+        <button id="submit" name="submit" value="Ask_reservation" type="submit">Reserver</button>
     </form>
 </section>

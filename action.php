@@ -186,7 +186,7 @@
         }
         // ---------------- RESERVATION HEBERGEMENT --------------------------------
 
-        if($submit == "AskReservation"){
+        if($submit == "Ask_reservation"){
             $id_customer = $_SESSION["id_user"];
             $date_start_reservation = $_POST["date_start_reservation"];
             $date_end_reservation = $_POST["date_end_reservation"];
