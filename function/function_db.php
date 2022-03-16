@@ -441,6 +441,7 @@ function alreadyBookPeriod($id_housing, $id_customer, $date_start, $date_end){
         global $base;
 
         $res = false;
+        $test = "";
 
         $sql = "SELECT housing.id AS id_housing,
 	`id_owner`,
@@ -454,12 +455,13 @@ function alreadyBookPeriod($id_housing, $id_customer, $date_start, $date_end){
         $announce = mysqli_query($base, $sql);
 
         while($row = mysqli_fetch_array($announce) && $res = false){
+                $test = $test + "BITE";
                 $res = alreadyBookAnnounce($row['id_announce'], $id_customer);
 
         }
 
         //return $res;
-        return $sql;
+        return $test;
 }
 
 function bookAnnounce($id_announce, $id_customer){
