@@ -262,9 +262,19 @@ function searchAnnounce($priceMin, $priceMax, $date_start, $date_end, $dest, $di
                 if(!isTakenDuration($row["id"], $date_start, $date_end)){
                         if(getDistance($dest, $row["latitude"], $row["longitude"]) <= $distance * 1000){
                                 if($row['min_date'] <= $date_start && $row['max_date'] >= $date_end){
-                                        $row["adresse"] = getAddress($row["latitude"], $row["longitude"]);
-                                        $row["type"] = $TYPE_HOUSING[$row["type"]];
-                                        array_push($result, $row);
+                                        if(isset($_SESSION["id_user"])){
+                                                if(!alreadyBookPeriod($row["id"], $_SESSION["id_user"], $date_start, $date_end)){
+                                                        $row["adresse"] = getAddress($row["latitude"], $row["longitude"]);
+                                                        $row["type"] = $TYPE_HOUSING[$row["type"]];
+                                                        array_push($result, $row);    
+                                                }
+                                        }
+                                        else{
+                                                $row["adresse"] = getAddress($row["latitude"], $row["longitude"]);
+                                                $row["type"] = $TYPE_HOUSING[$row["type"]];
+                                                array_push($result, $row);
+                                        }
+
                                 }
 
                         }
@@ -407,14 +417,48 @@ function AskBookHousingPeriod($id_housing, $id_customer, $date_start, $date_end)
         FROM housing INNER JOIN announce ON housing.id = announce.id_housing
 
                 WHERE id_housing = $id_housing AND date_start >=  '$date_start' AND date_start <= '$date_end'";
-        echo $sql;
         $announce = mysqli_query($base, $sql);
 
         while($row = mysqli_fetch_array($announce)){
                 AskBookAnnounce($row['id_announce'], $id_customer);
         }
-        return $sql;
 
+}
+
+function alreadyBookAnnounce($id_announce, $id_customer){
+        $res = false;
+        global $base;
+
+        $sql = "SELECT `id` FROM `reservation` WHERE id_user = $id_customer AND id_announce = $id_announce";
+        $result = mysqli_query($base, $sql);
+        if(mysqli_fetch_assoc($result) != null){
+                $res = true;
+        }
+        return $res;
+}
+
+function alreadyBookPeriod($id_housing, $id_customer, $date_start, $date_end){
+        global $base;
+
+        $res = false;
+
+        $sql = "SELECT housing.id AS id_housing,
+	`id_owner`,
+        announce.id AS id_announce,
+        reservation.id_user AS id_user
+        FROM housing 
+        INNER JOIN announce ON housing.id = announce.id_housing
+        INNER JOIN reservation on announce.id = reservation.id_announce
+
+                WHERE id_housing = $id_housing AND date_start >=  '$date_start' AND date_start <= '$date_end'";
+        $announce = mysqli_query($base, $sql);
+
+        while($row = mysqli_fetch_array($announce) && $res = false){
+                $res = alreadyBookAnnounce($row['id_announce'], $id_customer);
+
+        }
+
+        return $res;
 }
 
 function bookAnnounce($id_announce, $id_customer){
