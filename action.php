@@ -193,17 +193,7 @@
             $id_housing = $_POST["id_housing"];
             if(getHousingById($id_housing) != null){
                 AskBookHousingPeriod($id_housing, $id_customer, $date_start_reservation, $date_end_reservation);
-                $url = getURL()."?page=user_page&message=booking_completed&start=".$date_start_reservation."&end=".$date_end_reservation.";
-            }
-
-            if(strtotime($date_start) > strtotime($date_end)){
-                $url = getURL()."?page=search_housing_text&statut_search=failed&error=date";
-            }
-            else if($price_min > $price_max){
-                $url = getURL()."?page=search_housing_text&statut_search=failed&error=price";
-            }
-            else{
-                $url = getURL()."?page=search_housing_text&statut_search=send&price_min=".$price_min."&price_max=".$price_max."&date_start=".$date_start."&date_end=".$date_end;   
+                $url = getURL()."?page=user_page&message=booking_completed&start=".$date_start_reservation."&end=".$date_end_reservation;
             }
 
             header('Location: '.$url.'');
