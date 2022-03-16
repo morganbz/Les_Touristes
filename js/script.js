@@ -37,11 +37,11 @@ function addressCoord(next){
     }
 }
 
-function loadMapAddress(data = null){
+function loadMapAddress(data = null, zoom = 22){
     addressCoord(function(){
         var map = new google.maps.Map(document.getElementById('search_housing_map'), {
             center: new google.maps.LatLng(latitude, longitude),
-            zoom: 15
+            zoom: zoom
         });
         
         setMarkers(map,data);
@@ -97,7 +97,13 @@ function getLocation()
         dataType: "json",
         success: function (response) {
             var results = response["data"];
-            loadMapAddress(results);
+            if(response["distance"] == 0){
+                loadMapAddress(results, 22);
+            }
+            else{
+                var zoom = 22 - Math.ceil(Math.log(response["distance"]*120)/Math.log(2));
+                loadMapAddress(results, zoom);
+            }
             $("#search_housing_list").empty();
             for(let i = 0; i < results.length; i++){
                 $("#search_housing_list").append("<div class='data_search'><p>Nom : " + results[i]['nom'] + "<p><p>Type de logement : " + results[i]['type'] + "<p><p>Adresse : " + results[i]['adresse'] + "<p><p>Prix à la nuit : " + results[i]['price'] + "<p><p>Description : " + results[i]['description'] + "<p><p><a href='./?page=ask_reservation&id_housing="+ results[i]["id"] + "&date_start="+ response["arrive"] +"&date_end=" + response["departure"] + "'>Réserver</a></div>");

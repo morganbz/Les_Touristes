@@ -1,93 +1,82 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
-    <title>Les Touristes</title>
-</head>
-<body>
-    <h1>Les touristes</h1>
-    <nav>
-        <ul>
-            <li class="list_research" id="list_research_activity"><a href="?page=recherche_activitee">Rechercher une activitée</a></li>
-            <li style="display: none"><a href="?page=test">TEST GOOGLE</a></li>
-            <li class="list_research" id="list_research_housing"><a href="search_housing.php">Recherche logement</a></li>
-            <?php 
-                if (isset($_SESSION["id_user"])){?>
-                    <li class="list_account" id="list_account_my_account"><a href="?page=user_page">Compte</a></li>
-                    <li class="list_account" id="list_account_disconnect"><a href="?page=deconnexion">Déconnexion</a></li>
-            <?php
-                } else { ?>
-                    <li class="list_account" id="list_account_register"><a href="?page=register">Inscription</a></li>
-                    <li class="list_account" id="list_account_connect"><a href="?page=login">Connexion</a></li>
-            <?php
-                }
-            ?> 
-        </ul>
-    </nav>
-    <?php
-        if ($page == "home"){
-            echo "home";
-        }
-        else if ($page == "recherche_activitee"){
-            
-            //displaySearch(searchAnnounce(0, 1000, "1900-01-01", "2070-01-01"));
-            //searchAnnounce(0, 1000, "1900-01-01", "2070-01-01");
-            //isTakenDuration(14 , "1900-01-01",  "2070-01-01");
-        }
-        else if ($page == "search_housing_text"){
-            if(isset($_GET["statut_search"])){
-                if($_GET["statut_search"] == "send"){
-                    $result = searchAnnounce(intval($_GET["price_min"]),intval($_GET["price_max"]),$_GET["date_start"],$_GET["date_end"]);
-                    displaySearch($result);
-                    
-                }
-                else if($_GET["statut_search"] == "failed"){
-                    if($_GET["error"] == "date"){
-                        echo "dates invalide";
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    <link rel="stylesheet" href="./style.css">
+        <title>Les Touristes</title>
+    </head>
+    <body>
+        <nav class="navbar top-0 w-100 navbar-dark navbar-expand-sm bg-dark justify-content-center">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="?page=home">Accueil</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="?page=recherche_activitee">Rechercher une activitée</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="?page=test_google">TEST GOOGLE</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="?page=search_housing">Recherche logement</a>
+                </li>
+                <?php 
+                    if (isset($_SESSION["id_user"])){?>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="?page=user_page">Compte</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="?page=deconnexion">Déconnexion</a>
+                        </li>
+                <?php
+                    } else { ?>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="?page=register">Inscription</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="?page=login">Connexion</a>
+                        </li>
+                <?php
                     }
-                    if($_GET["error"] == "price"){
-                        echo "prix invalide";
-                    }
+                ?> 
+            </ul>
+        </nav>
+        <div class="main_container">
 
-                    include_once "formulaire/search_housing_text.php";
-                }
+            <?php
+            if ($page == "home"){
+                echo "home";
             }
-            else{
-                include_once "formulaire/search_housing_text.php";
+            else if ($page == "recherche_activitee"){
+                
             }
-            //displaySearch(searchAnnounce(0, 1000, "1900-01-01", "2070-01-01"));
-        }
-        else if ($page == "user_page"){
-            include_once "user_page.php";
-        }
-        else if($page == "register"){
-            include_once "register.php";
-        }
-        /*else if($page == "add_housing"){
-            include_once "add_housing.php";
-        }
-        else if($page == "add_announce"){
-            include_once "add_announce.php";
-        }*/
-        else if($page == "login"){
-            include_once "login.php";
-        }
-        else if ($page == "deconnexion"){
-            header("Location: .");
-            session_unset();
-        }
-        else if($page == "search_housing"){
-            include_once "search_housing.php";
-        } 
-        else if($page == "test"){
-            include_once "test.php";
-        }  
-        else if($page == "ask_reservation"){
-            include_once "ask_reservation.php";
-        }  
-    ?>
-</body>
+            else if ($page == "user_page"){
+                include_once "user_page.php";
+            }
+            else if($page == "register"){
+                include_once "register.php";
+            }
+            else if($page == "login"){
+                include_once "login.php";
+            }
+            else if ($page == "deconnexion"){
+                header("Location: .");
+                session_unset();
+            }
+            else if($page == "search_housing"){
+                include_once "search_housing.php";
+            } 
+            else if($page == "test_google"){
+                include_once "test_google.php";
+            }  
+            else if($page == "ask_reservation"){
+                include_once "ask_reservation.php";
+            }  
+            ?>
+        </div>
+    </body>
 </html>
