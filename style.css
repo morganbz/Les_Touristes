@@ -48,7 +48,7 @@ html, body {
 .data_search:hover{
     background-color: lightgray;
     transition-delay: 0.5s;
-    transition-property: background-color;
+    transition-property: all;
 }
 .link_announce{
     display:block;
