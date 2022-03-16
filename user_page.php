@@ -17,6 +17,14 @@
 
 <?php 
   
+    if(isset($_GET["message"])){
+      $message = $_GET["message"];
+      if($message = "booking_completed"){
+        $start = $_GET["start"];
+        $end = $_GET["end"];
+        echo "<p>Votre demande de reservation du ".$start." au ".$end." a été envoyé.<p>";
+      }
+    }
     if ($pageCompte == "home"){
       include_once "home_user_page.php";
     }
