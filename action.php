@@ -10,10 +10,24 @@
         $pageCompte = $_GET["pageCompte"];
     }
 
+    if($page=="login"){
+        $back_page = "home";
+        if(isset($_GET["back_page"])){
+            $back_page = $_GET["back_page"];
+        }
+    }
+    else if($page=="register"){
+        $back_page = "home";
+        if(isset($_GET["back_page"])){
+            $back_page = $_GET["back_page"];
+        }
+    }
+
     // ---------------------- POST FORMULAIRE ----------------------------
     if(!empty($_POST)&&array_key_exists("submit", $_POST)){
         $submit = $_POST["submit"];
         if($submit == "Register"){
+            $back_page = $_POST["back_page"];
             $mail = $_POST["mail_register"];
             $firstname = $_POST["firstname_register"];
             $lastname = $_POST["lastname_register"];
@@ -103,6 +117,8 @@
             } else {
                 $page = "register";
             }
+            $url = "./?page=".$back_page;
+            header("Location: ".$url);
         }
         if($submit == "Add_housing"){
             $id_owner = $_POST["id_owner_housing"];
@@ -283,6 +299,7 @@
         if($submit == "Login"){
             $mail = $_POST["mail_user"];
             $password = $_POST["password"];
+            $back_page = $_POST["back_page"];
 
             $user = getUser($mail);
             $errors = [];
@@ -312,6 +329,8 @@
                     $page = "login";
                 }	
 			}
+            $url = "./?page=".$back_page;
+            header("Location: ".$url);
             
         }
         // ---------------- MODIFICATION DONNÉES UTILISATEURS --------------------------------
