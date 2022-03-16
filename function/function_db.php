@@ -412,6 +412,7 @@ function AskBookHousingPeriod($id_housing, $id_customer, $date_start, $date_end)
         while($row = mysqli_fetch_array($announce)){
                 AskBookAnnounce($row['id_announce'], $id_customer);
         }
+        return $sql;
 
 }
 
