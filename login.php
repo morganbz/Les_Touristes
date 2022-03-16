@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <?php
-                    echo '<input type="text" class="display_none" name="back_page" id="back_page" value="'.$back_page.'">';
+                    echo '<input type="text" class="d-none" name="back_page" id="back_page" value="'.$back_page.'">';
                 ?>
 
                 <button class="w-100 btn btn-primary btn-lg px-4 me-sm-3" id="submit" name="submit" value="Login" type="submit">Connexion</button>
