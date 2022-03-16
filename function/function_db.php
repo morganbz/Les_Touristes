@@ -441,7 +441,7 @@ function alreadyBookPeriod($id_housing, $id_customer, $date_start, $date_end){
         global $base;
 
         $res = false;
-        $test = "";
+        $test = "BITE";
 
         $sql = "SELECT housing.id AS id_housing,
 	`id_owner`,
