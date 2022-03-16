@@ -241,19 +241,31 @@ function searchAnnounce($priceMin, $priceMax, $date_start, $date_end, $dest, $di
         global $base;
         $TYPE_HOUSING = array("Maison", "Appartement", "Chalet", "Refuge");
 
-        $sql = "SELECT housing.id, id_owner, type, latitude, longitude, nom, price, date_start, isTaken, description
-        FROM housing INNER JOIN announce ON housing.id = announce.id_housing
-        WHERE (price BETWEEN $priceMin AND $priceMax) AND (NOT isTaken) AND date_start >=  '$date_start' AND date_start <= '$date_end'
-        GROUP BY housing.id";
+        $sql = "SELECT housing.id, 
+        id_owner, 
+        latitude, 
+        longitude, 
+        nom, 
+        description, 
+        price, 
+        MIN(date_start) AS min_date,
+        MAX(date_start) AS max_date,
+        isTaken
+                FROM housing JOIN announce ON housing.id = id_housing
+                WHERE (price BETWEEN $priceMin AND $priceMax) AND date_start <= '$date_end'
+                GROUP BY id_housing";
         
         $announce = mysqli_query($base, $sql);
         $result = [];
         while($row = mysqli_fetch_assoc($announce)){
                 if(!isTakenDuration($row["id"], $date_start, $date_end)){
                         if(getDistance($dest, $row["latitude"], $row["longitude"]) <= $distance * 1000){
-                                $row["adresse"] = getAddress($row["latitude"], $row["longitude"]);
-                                $row["type"] = $TYPE_HOUSING[$row["type"]];
-                                array_push($result, $row);
+                                if($row['min_date'] <= $date_start && $row['max_date'] >= $date_end){
+                                        $row["adresse"] = getAddress($row["latitude"], $row["longitude"]);
+                                        $row["type"] = $TYPE_HOUSING[$row["type"]];
+                                        array_push($result, $row);
+                                }
+
                         }
                 }
         }
