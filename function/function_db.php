@@ -263,7 +263,7 @@ function searchAnnounce($priceMin, $priceMax, $date_start, $date_end, $dest, $di
                         if(getDistance($dest, $row["latitude"], $row["longitude"]) <= $distance * 1000){
                                 if($row['min_date'] <= $date_start && $row['max_date'] >= $date_end){
                                         if(isset($_SESSION["id_user"])){
-                                                if(true)){
+                                                if(true){
                                                         $row["adresse"] = alreadyBookPeriod($row["id"], $_SESSION["id_user"], $date_start, $date_end);
                                                         $row["type"] = $TYPE_HOUSING[$row["type"]];
                                                         array_push($result, $row);    
