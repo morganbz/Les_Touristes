@@ -334,7 +334,7 @@ function getIdByInfos($id_owner, $type, $name, $latitude, $longitude){
         
 }
 
-function getHousingById($id){
+/*function getHousingById($id){
         global $base;
 
         $housings = [];
@@ -346,7 +346,7 @@ function getHousingById($id){
 
         return mysqli_fetch_assoc($result);
 
-}
+}*/
 
 function getHousingByIdOwner($id){
         global $base;
