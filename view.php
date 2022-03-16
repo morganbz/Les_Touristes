@@ -33,17 +33,14 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="?page=deconnexion">Déconnexion</a>
                         </li>
-                <?php
-                    } 
-                    else { 
-                ?>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="?page=register">Inscription</a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="?page=login">Connexion</a>
-                        </li>
-                <?php
+                        <?php
+                    } else {
+                        echo '<li class="nav-item active">';
+                            echo '<a class="nav-link" href="?page=register&backpage='.$page.'">Inscription</a>';
+                        echo '</li>';
+                        echo '<li class="nav-item active">';
+                            echo '<a class="nav-link" href="?page=login&backpage='.$page.'">Connexion</a>';
+                        echo '</li>';
                     }
                 ?> 
             </ul>
