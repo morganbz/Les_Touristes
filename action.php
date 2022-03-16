@@ -192,7 +192,7 @@
             $date_end_reservation = $_POST["date_end_reservation"];
             $id_housing = $_POST["id_housing"];
             if(getHousingById($id_housing) != null){
-                echo bookHouingPeriod($id_housing, $id_customer, $date_start_reservation, $date_end_reservation);
+                AskBookHousingPeriod($id_housing, $id_customer, $date_start_reservation, $date_end_reservation);
             }
         }
 

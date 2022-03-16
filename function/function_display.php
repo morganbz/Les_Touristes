@@ -36,14 +36,14 @@
     echo "</section>";
 }*/
 
-function displayHousingForBooking($id_housing){
+/*function displayHousingForBooking($id_housing){
 
     $housing = getHousingById($id_housing);
     $announces = getAnnounceByIdHousing($id_housing);
 
-    
 
-}
+
+}*/
 
 
 

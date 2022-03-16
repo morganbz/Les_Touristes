@@ -342,6 +342,7 @@ function getHousingById($id){
         $sql = "SELECT id, id_owner, type, latitude, longitude, nom, image_folder, description 
                 FROM housing
                 WHERE id = $id";
+        echo $sql;
         $result = mysqli_query($base, $sql);
 
         return mysqli_fetch_assoc($result);
