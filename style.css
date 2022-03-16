@@ -47,7 +47,6 @@ html, body {
 }
 .data_search:hover{
     background-color: lightgray;
-    transition-delay:0.5s;
 }
 .link_announce{
     display:block;
