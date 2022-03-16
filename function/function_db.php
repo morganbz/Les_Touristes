@@ -455,8 +455,8 @@ function alreadyBookPeriod($id_housing, $id_customer, $date_start, $date_end){
         $announce = mysqli_query($base, $sql);
 
         while($row = mysqli_fetch_array($announce)){
-                $test = $test . "BITE";
-                if($res == false){
+                 if($res == false){
+                        $test = $test . "BITE";
                         $res = alreadyBookAnnounce($row['id_announce'], $id_customer);
                 }
 
