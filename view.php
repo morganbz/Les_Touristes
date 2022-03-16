@@ -74,7 +74,7 @@
                 include_once "test_google.php";
             }  
             else if($page == "ask_reservation"){
-                include_once "ask_reservation.php";
+                include_once "formulaire/ask_reservation.php";
             }  
             ?>
         </div>
