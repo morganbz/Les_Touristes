@@ -47,6 +47,7 @@ html, body {
 }
 .data_search:hover{
     background-color: lightgray;
+    animation: change 1s 1;
 }
 .link_announce{
     display:block;
@@ -58,4 +59,13 @@ html, body {
 .link_announce:hover {
     color: black;
     text-decoration: none;
+}
+
+@keyframes change {
+    0%{background-color: white}
+    100%{background-color: lightgray}
+}
+
+img{
+    max-height: 500px;
 }
