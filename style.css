@@ -69,3 +69,7 @@ html, body {
 img{
     max-height: 500px;
 }
+
+#map {
+    height: 100%;
+}

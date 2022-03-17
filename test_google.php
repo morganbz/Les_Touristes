@@ -4,20 +4,8 @@
         <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
         <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
         <title>Using MySQL and PHP with Google Maps</title>
-        <style>
-            #map {
-                height: 100%;
-            }
-            /* Optional: Makes the sample page fill the window. */
-            html, body {
-                height: 100%;
-                margin: 0;
-                padding: 0;
-            }
-        </style>
     </head>
 	<body>
-		<a href="test_searching.php">Search</a><br>
 		<input type="text" id="lat">latitude
         <br>
 		<input type="text" id="lng">longitude
