@@ -263,8 +263,8 @@ function searchAnnounce($priceMin, $priceMax, $date_start, $date_end, $dest, $di
                         if(getDistance($dest, $row["latitude"], $row["longitude"]) <= $distance * 1000){
                                 if($row['min_date'] <= $date_start && $row['max_date'] >= $date_end){
                                         if(isset($_SESSION["id_user"])){
-                                                if(true){
-                                                        $row["adresse"] = alreadyBookPeriod($row["id"], $_SESSION["id_user"], $date_start, $date_end);
+                                                if(!alreadyBookPeriod($row["id"], $_SESSION["id_user"], $date_start, $date_end)){
+                                                        $row["adresse"] = getAddress($row["latitude"], $row["longitude"]);
                                                         $row["type"] = $TYPE_HOUSING[$row["type"]];
                                                         array_push($result, $row);    
                                                 }
@@ -441,6 +441,7 @@ function alreadyBookPeriod($id_housing, $id_customer, $date_start, $date_end){
         global $base;
 
         $res = false;
+        $test = "BITE";
 
         $sql = "SELECT housing.id AS id_housing,
 	`id_owner`,
@@ -453,13 +454,15 @@ function alreadyBookPeriod($id_housing, $id_customer, $date_start, $date_end){
                 WHERE id_housing = $id_housing AND date_start >=  '$date_start' AND date_start <= '$date_end'";
         $announce = mysqli_query($base, $sql);
 
-        while($row = mysqli_fetch_array($announce) && $res = false){
-                $res = alreadyBookAnnounce($row['id_announce'], $id_customer);
+        while($row = mysqli_fetch_array($announce)){
+ 
+                if($res == false){
+                        $res = alreadyBookAnnounce($row['id_announce'], $id_customer);
+                }
 
         }
 
-        //return $res;
-        return $sql;
+        return $res;
 }
 
 function bookAnnounce($id_announce, $id_customer){
