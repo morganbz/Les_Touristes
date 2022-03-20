@@ -1,11 +1,12 @@
-function initMap() {
-    var map = new google.maps.Map(document.getElementById('search_housing_map'), {
+function initMapTest() {
+    let zoom = parseFloat(document.querySelector('#zoom').value);
+    var map = new google.maps.Map(document.getElementById('map'), {
         center: new google.maps.LatLng(46, 2),
-        zoom: 6
+        zoom: zoom
     });
 }
 
-function loadMapCoord() {
+function loadMapCoordTest() {
     let lat = parseFloat(document.querySelector('#lat').value);
     let lng = parseFloat(document.querySelector('#lng').value);
     let zoom = parseFloat(document.querySelector('#zoom').value);
@@ -17,6 +18,48 @@ function loadMapCoord() {
     let marker = new google.maps.Marker({
         position: new google.maps.LatLng(lat, lng),
         map: map
+    });
+}
+
+
+function addressCoordTest(next){
+    var adresse = document.querySelector('#address').value;
+    if(adresse != ""){
+        var geocoder =  new google.maps.Geocoder();
+        geocoder.geocode( { 'address': adresse}, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                latitude = results[0].geometry.location.lat();
+                longitude = results[0].geometry.location.lng();
+                console.log(latitude);
+                console.log(longitude);
+            }
+            else {
+                alert("Something got wrong " + status);
+            }
+            next();
+        });
+    }
+}
+
+function loadMapAddressTest(){
+    addressCoordTest(function(){
+        let zoom = parseFloat(document.querySelector('#zoom').value);
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: new google.maps.LatLng(latitude, longitude),
+            zoom: zoom
+        });
+        
+        let marker = new google.maps.Marker({
+            position: new google.maps.LatLng(latitude, longitude),
+            map: map
+        });
+    });
+}
+
+function initMap() {
+    var map = new google.maps.Map(document.getElementById('search_housing_map'), {
+        center: new google.maps.LatLng(46, 2),
+        zoom: 6
     });
 }
 
