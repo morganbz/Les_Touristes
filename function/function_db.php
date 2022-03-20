@@ -18,7 +18,6 @@ function addHousing($id_owner, $type, $latitude, $longitude, $name, $description
 
         $sql = "INSERT INTO `Average_rate`(`id_rated`, `is_for_housing`) VALUES ($id_housing,1)";
         mysqli_query($base, $sql);
-        return $sql;
 
 }
 

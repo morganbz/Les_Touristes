@@ -52,7 +52,7 @@
                 echo "home";
             }
             else if ($page == "recherche_activitee"){
-                echo addHousing(7, 0, 45.5673395, 5.9153691, 'logement de samsam', 'xcyvgubhi jo');
+                //echo addHousing(7, 0, 45.5673395, 5.9153691, 'logement de samsam', 'xcyvgubhi jo');
             }
             else if ($page == "user_page"){
                 include_once "user_page.php";
