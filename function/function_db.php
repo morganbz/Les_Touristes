@@ -579,7 +579,7 @@ function add_rating($id_rated, $id_rater, $rate, $title, $message, $is_housing){
         $result = mysqli_query($base, $sql);
 
         if ($result != false){
-                update_average($id_rated, $rate, $);
+                update_average($id_rated, $rate, $is_housing);
         }
 
 
