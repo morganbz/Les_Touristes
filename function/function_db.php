@@ -12,7 +12,13 @@ function addHousing($id_owner, $type, $latitude, $longitude, $name, $description
         $sql = "INSERT INTO housing (id_owner, type, latitude, longitude, nom, description) 
                 VALUES ($id_owner, $type, $latitude, $longitude, '$name', '$description')";
 
-        mysqli_query($base, $sql);        
+        mysqli_query($base, $sql);
+        
+        $id_housing = $base->insert_id;
+
+        $sql = "INSERT INTO `Average_rate`(`id_rated`, `is_for_housing`) VALUES ($id_housing,1)";
+        mysqli_query($base, $sql);
+
 }
 
 function addAnnounce($price, $date_start, $id_housing){
@@ -117,6 +123,12 @@ function addUser($mail, $firstname, $lastname, $birth_date, $phone, $password, $
                         $result = mysqli_query ($base, $sql);
                         $id = mysqli_fetch_assoc($result);
                         $_SESSION["id_user"] = $id["id"];
+
+                        $id_user = $base->insert_id;
+
+                        $sql = "INSERT INTO `Average_rate`(`id_rated`, `is_for_housing`) VALUES ($id_user,0)";
+                        mysqli_query($base, $sql);
+
                 } else {
                         $errors[] = "Erreur au moment de l'ajout dans la base de donnée";
                         $_SESSION["errors_register"] = $errors;
@@ -549,4 +561,28 @@ function delDateAnnounceHousing($id) {
         }
 
 }
+
+function update_average($id_rated, $rate, $is_housing){
+        global $base;
+        $sql = "UPDATE `Average_rate` SET nb_rate= nb_rate + 1 ,average = ((nb_rate - 1) * average + $rate)/ nb_rate  WHERE id_rated = $id_rated
+                AND is_for_housing = $is_housing";
+
+        $result = mysqli_query($base, $sql);
+
+}
+
+function add_rating($id_rated, $id_rater, $rate, $title, $message, $is_housing){
+        global $base;
+
+        $sql = "INSERT INTO `Rate`(`id_rated`, `id_rater`, `rate`, `title`, `message`, `is_for_housing`) VALUES ($id_rated,$id_rater,$rate,'$title', '$message',$is_housing)";
+        
+        $result = mysqli_query($base, $sql);
+
+        if ($result != false){
+                update_average($id_rated, $rate, $)
+        }
+
+
+}
+
 ?>

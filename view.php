@@ -52,7 +52,7 @@
                 echo "home";
             }
             else if ($page == "recherche_activitee"){
-                
+                add_rating(10, 5, 5, 'TEST', 'ceci est une description', 0);
             }
             else if ($page == "user_page"){
                 include_once "user_page.php";
