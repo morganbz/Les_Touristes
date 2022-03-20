@@ -95,9 +95,12 @@ function addUser($mail, $firstname, $lastname, $birth_date, $phone, $password, $
 
         $insert_user_info = $base->query($sql);
 
+
         if ($insert_user_info){
                 $sql = "INSERT INTO user(mail, password, admin) 
                 VALUES ('$mail', '$password', $isAdmin)";
+
+                $id_user = $base->insert_id;
 
                 $insert_user = $base->query($sql);   
 
@@ -108,7 +111,6 @@ function addUser($mail, $firstname, $lastname, $birth_date, $phone, $password, $
                         $id = mysqli_fetch_assoc($result);
                         $_SESSION["id_user"] = $id["id"];
 
-                        $id_user = $base->insert_id;
 
                         $sql = "INSERT INTO `Average_rate`(`id_rated`, `is_for_housing`) VALUES ($id_user,0)";
                         mysqli_query($base, $sql);
