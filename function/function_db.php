@@ -2,25 +2,6 @@
 
 // ----------------------------------------------------- ADD  ----------------------------------------
 
-function addHousing($id_owner, $type, $latitude, $longitude, $name, $description){
-        global $base;
-
-        mysqli_real_escape_string($base, $name);
-
-        mysqli_real_escape_string($base, $description);
-
-        $sql = "INSERT INTO housing (id_owner, type, latitude, longitude, nom, description) 
-                VALUES ($id_owner, $type, $latitude, $longitude, '$name', '$description')";
-
-        $result = mysqli_query($base, $sql);
-        
-        $id_housing = $base->insert_id;
-
-        $sql = "INSERT INTO `Average_rate`(`id_rated`, `is_for_housing`) VALUES ($id_housing,1)";
-        mysqli_query($base, $sql);
-
-}
-
 function addAnnounce($price, $date_start, $id_housing){
         global $base;
 
@@ -41,6 +22,9 @@ function addHousingAndAnnounce($id_owner, $type, $latitude, $longitude, $name, $
         mysqli_query($base, $sql);
 
         $id_housing = mysqli_insert_id($base);
+
+        $sql = "INSERT INTO `Average_rate`(`id_rated`, `is_for_housing`) VALUES ($id_housing,1)";
+        mysqli_query($base, $sql);
 
         $dateDifference = abs(strtotime($date_end) - strtotime($date_start));
         $years  = floor($dateDifference / (365 * 60 * 60 * 24));
