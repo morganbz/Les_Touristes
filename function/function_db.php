@@ -12,7 +12,8 @@ function addHousing($id_owner, $type, $latitude, $longitude, $name, $description
         $sql = "INSERT INTO housing (id_owner, type, latitude, longitude, nom, description) 
                 VALUES ($id_owner, $type, $latitude, $longitude, '$name', '$description')";
 
-        mysqli_query($base, $sql);
+        $result = mysqli_query($base, $sql);
+        var_dump($result);
         
         /*$id_housing = $base->insert_id;
 
