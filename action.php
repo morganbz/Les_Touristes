@@ -1,13 +1,13 @@
 <?php
     $page = "home";
-    $pageCompte = "home";
+    $page_account = "home";
 
     if(isset($_GET["page"])){
         $page = $_GET["page"];
     }
 
-    if(isset($_GET["pageCompte"])){
-        $pageCompte = $_GET["pageCompte"];
+    if(isset($_GET["page_account"])){
+        $page_account = $_GET["page_account"];
     }
 
     if($page=="login"){
@@ -126,65 +126,6 @@
             $url = "./?page=".$back_page;
             header("Location: ".$url);
         }
-        if($submit == "Add_housing"){
-            $id_owner = $_POST["id_owner_housing"];
-            $type = $_POST["type_housing"];
-            $latitude = $_POST["latitude_housing"];
-            $longitude = $_POST["longitude_housing"];
-            $name = $_POST["name_housing"];
-            $description = $_POST["description_housing"];
-
-            $good_id_owner = false;
-            $good_type = false;
-            $good_latitude = false;
-            $good_longitude = false;
-            $good_name = false;
-            $good_description = false;
-
-            if(isTextGoodLength($name, 50)){
-                $good_name = true;
-            }
-            if(is_float($longitude)){
-                $good_longitude = true;
-            }
-            if(is_float($latitude)){
-                $good_latitude = true;
-            }
-            if(is_int($type)){
-                $good_type = true;
-            }
-            if(is_int($id_owner)){
-                $good_id_owner = true;
-            }
-            if(is_string($description)){
-                $good_description = true;
-            }
-            if($good_id_owner && $good_type && $good_latitude && $good_longitude && $good_name && $good_description){
-                addHousing($id_owner, $type, $latitude, $longitude, $name, $description);
-            }
-        }
-        if($submit == "Add_announce"){
-            $id_housing = $_POST["id_housing_announce"];
-            $price = $_POST["price_announce"];
-            $date_start = $_POST["price_announce"];
-
-            $good_id_housing = false;
-            $good_price = false;
-            $good_date_start = false;
-
-            if(is_int($type)){
-                $good_type = true;
-            }
-            if(is_int($id_housing)){
-                $good_id_housing = true;
-            }
-            if(isGoodDateBeforeToday($date_start)){
-                $good_date_start = true;
-            }
-            if($good_date_start && $good_id_housing && $good_type){
-                addAnnounce($price, $date_start, $id_housing);
-            }
-        }
         if($submit == "Search_Announce"){
                 
         }
@@ -266,7 +207,7 @@
             }
 
             $page = "user_page";
-            $pageCompte = "voirAnnonces";
+            $page_account = "see_announce";
         }
 
         if ($submit == "modif_price") {
@@ -276,7 +217,7 @@
             updatePriceAnnounce($id, $prix);
 
             $page = "user_page"; 
-            $pageCompte = "voirAnnonces";
+            $page_account = "see_announce";
         }
 
         if ($submit == "Add_date") {
@@ -287,7 +228,7 @@
             addHousingAnnounceDate($id, $price, $date);
 
             $page = "user_page"; 
-            $pageCompte = "voirAnnonces";
+            $page_account = "see_announce";
         }
 
         if ($submit == "del_announce") {
@@ -296,7 +237,7 @@
             delDateAnnounceHousing($id);
 
             $page = "user_page"; 
-            $pageCompte = "voirAnnonces";
+            $page_account = "see_announce";
  
         }
 
@@ -388,7 +329,7 @@
                 $page = "user_page";
             } else {
                 $page = "user_page";
-                $pageCompte = "modifInfos";
+                $page_account = "change_info";
             }
 
             $dossier = "picture_profile/".$_SESSION["id_user"];
@@ -433,7 +374,7 @@
                 modificationPassUser(hash_password($pass));
             } else {
                 $page = "user_page";
-                $pageCompte = "modifMDP";
+                $page_account = "change_password";
             }
         }
     } else if (!empty($_POST)&&array_key_exists("del_img", $_POST)) {
@@ -441,7 +382,7 @@
             unlink($_POST["del_img"]);
         }
         $page = "user_page";
-        $pageCompte = "voirAnnonces";
+        $page_account = "see_announce";
     } else if (!empty($_POST)&&array_key_exists("del_img_profile", $_POST)) {
         if(isset($_POST["del_img_profile"])){
             unlink($_POST["del_img_profile"]);

@@ -45,6 +45,7 @@
                 ?> 
             </ul>
         </nav>
+
         <div class="main_container">
 
             <?php
@@ -52,16 +53,16 @@
                 echo "home";
             }
             else if ($page == "recherche_activitee"){
-                //echo addHousing(7, 0, 45.5673395, 5.9153691, 'logement de samsam', 'xcyvgubhi jo');
+                
             }
             else if ($page == "user_page"){
-                include_once "user_page.php";
+                include_once "account/user_page.php";
             }
             else if($page == "register"){
-                include_once "register.php";
+                include_once "forms/register.php";
             }
             else if($page == "login"){
-                include_once "login.php";
+                include_once "forms/login.php";
             }
             else if ($page == "deconnexion"){
                 header("Location: .");
@@ -74,7 +75,7 @@
                 include_once "test_google.php";
             }  
             else if($page == "ask_reservation"){
-                include_once "formulaire/ask_reservation.php";
+                include_once "forms/ask_reservation.php";
             }  
             ?>
         </div>
