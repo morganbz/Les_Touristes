@@ -95,6 +95,7 @@ function getPays($address){
         if($add_comp[$cpt]->{'types'}[0] == "country"){
             $trouve = true;
             $res = $add_comp[$cpt]->{'long_name'};
+            $cpt++;
         }
     }
     return $res;
