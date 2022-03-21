@@ -80,7 +80,7 @@ function getCoords($address){
 
 }
 
-function getPays($address){
+function getCountry($address){
     $address = str_replace(" ", "", $address);
     $json = file_get_contents("https://maps.google.com/maps/api/geocode/json?address=$address&key=AIzaSyD6q4hVJGUioenp17tQTqiCS9dLDWbgATw&sensor=false");
     $json = json_decode($json);
