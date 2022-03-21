@@ -52,9 +52,9 @@
             if ($page == "home"){
                 echo "home";
             }
-            else if ($page == "Pékin"){
+            else if ($page == "recherche_activitee"){
                 //bookHousingPeriod(118, 7, '2022-03-22', '2022-03-29');
-                echo getPays("Basse-Terre");
+                echo getPays("Pékin");
             }
             else if ($page == "user_page"){
                 include_once "account/user_page.php";
