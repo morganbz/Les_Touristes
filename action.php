@@ -247,7 +247,7 @@
             $date_end = $_POST['date_end'];
             $id_customer = $_POST['id_user'];
 
-            bookHousingPeriod($id_housing, $id_customer, $date_start, $date_end)
+            bookHousingPeriod($id_housing, $id_customer, $date_start, $date_end);
 
         }
 
