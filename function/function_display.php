@@ -57,7 +57,7 @@ function displayAskReservation($data){
                 echo "<div class='ask_info_housing'>";
                 echo "<p>".$info["nom"]."</p>";
                 $id_housing = $info["id_housing"];
-                echo "<a href='?page=ask_reservation&id_housing=".$id_housing."' class='btn btn-info' role='button'>Annonce</a>";
+                echo "<a href='?page=ask_reservation&id_housing=".$id_housing."' class='btn btn-secondary' role='button'>Annonce</a>";
             }
             $user = getUserById($info["id_user"]);
             echo "<div class='ask_info'>";
@@ -71,7 +71,7 @@ function displayAskReservation($data){
                     echo "<input type='hidden' name='date_start' id='date_start' value=".$info["date_start"]." required>";
                     echo "<input type='hidden' name='date_end' id='date_end' value=".$info["date_end"]." required>";
                     echo "<input type='hidden' name='id_user' id='id_user' value=".$info["id_user"]." required>";
-                    echo "<button id='submit' name='submit' value='Validate_reservation' type='submit'>Valider la demande de reservation</button>";
+                    echo "<button id='submit' class='btn-secondary' name='submit' value='Validate_reservation' type='submit'>Valider la demande de reservation</button>";
                 echo "</form>";
             echo "</div>";
         }
