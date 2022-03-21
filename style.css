@@ -73,3 +73,13 @@ img{
 #map {
     height: 100%;
 }
+
+.ask_info{
+    border: black solid 1px;
+    height: auto;
+}
+
+.asking_section{
+    height: 100%;
+    width: 100%;
+}
