@@ -55,9 +55,16 @@ function displayAskReservation($data){
                     echo "</div>";
                 }
                 echo "<div class='ask_info'>";
+                echo "<p>".$info["nom"]."</p>";
                 $id_housing = $info["id_housing"];
             }
-            echo "<p>".$info["nom"]."</p>";
+            $user = getUserById($info["id_user"]);
+            echo "<p>Client ".$user["firstname"]." ".$user["lastname"]."</p>";
+            echo "<p>Du ".$info["date_start"]." au ".$info["date_end"]."</p>";
+            echo "<p>Nombre de jour ".$info["nb_day"]."</p>";
+            echo "<p>Prix à la nuit ".$info["price_by_night"]."</p>";
+            echo "<p>Prix total ".$info["nb_day"] * $info["price_by_night"]."</p>";
+
         }
         echo "</div>";
     echo "</section>";
