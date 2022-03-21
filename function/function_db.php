@@ -581,7 +581,7 @@ function delDateAnnounceHousing($id) {
 }
 
 function get_average ($id_rated, $is_for_housing){
-        global $bdd
+        global $bdd;
 
         $sql = "SELECT rate FROM Rate WHERE id_rated = $id_rated AND is_for_housing = $is_for_housing";
 
