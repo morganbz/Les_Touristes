@@ -15,9 +15,10 @@ function addAnnounce($price, $date_start, $id_housing){
 
 function addHousingAndAnnounce($id_owner, $type, $latitude, $longitude, $name, $description, $price, $date_start, $date_end){
         global $base;
+        $country = getPays($address);
 
-        $sql = "INSERT INTO housing (id_owner, type, latitude, longitude, nom, description) 
-                VALUES ($id_owner, $type, $latitude, $longitude, '$name', '$description');";
+        $sql = "INSERT INTO housing (id_owner, type, latitude, longitude, nom, description, country) 
+                VALUES ($id_owner, $type, $latitude, $longitude, '$name', '$description', '$country');";
 
         mysqli_query($base, $sql);
 
