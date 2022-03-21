@@ -77,6 +77,28 @@ function getCoords($address){
     $res["latitude"] = $lat;
     $res["longitude"] = $long;
     return $res;
+
+}
+
+function getCountry($address){
+    $address = str_replace(" ", "", $address);
+    $json = file_get_contents("https://maps.google.com/maps/api/geocode/json?address=$address&key=AIzaSyD6q4hVJGUioenp17tQTqiCS9dLDWbgATw&sensor=false");
+    $json = json_decode($json);
+
+    $cpt = 0;
+    $trouve = false;
+    $res = "not_found";
+
+    $add_comp = $json->{'results'}[0]->{'address_components'};
+
+    while($cpt < count($add_comp) && !$trouve){
+        if($add_comp[$cpt]->{'types'}[0] == "country"){
+            $trouve = true;
+            $res = $add_comp[$cpt]->{'long_name'};
+        }
+        $cpt++;
+    }
+    return $res;
 }
 
 ?>
