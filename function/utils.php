@@ -89,7 +89,7 @@ function getPays($address){
     $trouve = false;
     $res = "not_found";
 
-    $add_comp = $json->{'results'}[0]->{'adress_components'};
+    $add_comp = $json->{'results'}[0]->{'address_components'};
 
     while($cpt < count($add_comp) && !$trouve){
         if($add_comp[$cpt]->{'types'}[0] == "country"){
