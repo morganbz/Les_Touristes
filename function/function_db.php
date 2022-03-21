@@ -564,11 +564,17 @@ function add_rating($id_rated, $id_rater, $rate, $title, $message, $is_housing){
         
         $result = mysqli_query($base, $sql);
 
-        if ($result != false){
-                update_average($id_rated, $rate, $is_housing);
-        }
-
-
 }
+
+function add_rating_user($id_rated, $id_rater, $rate, $title, $message){
+        add_rating($id_rated, $id_rater, $rate, $title, $message, 0);
+}
+
+function add_rating_housing($id_rated, $id_rater, $rate, $title, $message){
+        add_rating($id_rated, $id_rater, $rate, $title, $message, 1);
+}
+
+
+
 
 ?>
