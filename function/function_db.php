@@ -436,7 +436,6 @@ function getAllBookAskByIdOwner($id_owner){
         price,
         reservation.id_user AS id_user,
         COUNT(housing.id) AS nb_day,
-        announce.id AS id_announce,
         price AS price_by_night
         FROM housing INNER JOIN announce ON housing.id = announce.id_housing
         			INNER JOIN reservation ON announce.id = reservation.id_announce
