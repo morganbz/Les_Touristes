@@ -445,7 +445,7 @@ function getAllBookAskByIdOwner($id_owner){
                 GROUP BY reservation.id_user, announce.nb_for_housing";
 
         $result = mysqli_query($base, $sql);
-        while($row = mysqli_fetch_assoc($announce)){
+        while($row = mysqli_fetch_assoc($result)){
                 array_push($demands, $row);
                 var_dump($row);
         }
