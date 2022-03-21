@@ -240,6 +240,16 @@
             $page_account = "see_announce";
  
         }
+        // ---------------- RESERVATION ANNONCES --------------------------------
+        if($submit == "Validate_reservation"){
+            $id_housing = $_POST['id_housing'];
+            $date_start = $_POST['date_start'];
+            $date_end = $_POST['date_end'];
+            $id_customer = $_POST['id_user'];
+
+            bookHousingPeriod($id_housing, $id_customer, $date_start, $date_end)
+
+        }
 
         // ---------------- CONNEXION UTILISATEURS --------------------------------
 
