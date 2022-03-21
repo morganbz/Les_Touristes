@@ -57,7 +57,7 @@ function displayAskReservation($data){
                 echo "<div class='ask_info_housing'>";
                 echo "<p>".$info["nom"]."</p>";
                 $id_housing = $info["id_housing"];
-                echo "<a href='?page=ask_reservation&id_housing=".$id_housing."' class='btn btn-info' role='button'>Annonce</a>";
+                echo "<a href='?page=ask_reservation&id_housing=".$id_housing."' class='btn btn-light' role='button'>Annonce</a>";
             }
             $user = getUserById($info["id_user"]);
             echo "<div class='ask_info'>";
