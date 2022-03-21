@@ -13,8 +13,18 @@
     </div>
 
     <div>
-        <input placeholder="01 rue de la paix 75000 Paris" type="text" name="adress" id="adress_housing" required>
-        <label for="adress_housing">Adresse</label>
+        <input placeholder="01 rue de la paix" type="text" name="address_housing" id="address_housing" required>
+        <label for="address_housing">Adresse</label>
+    </div>
+
+    <div>
+        <input placeholder="75000" type="text" name="postal_code_housing" id="postal_code_housing" required>
+        <label for="postal_code_housing">Code Postal</label>
+    </div>
+
+    <div>
+        <input placeholder="Paris" type="text" name="city_housing" id="city_housing" required>
+        <label for="city_housing">Ville</label>
     </div>
 
     <div>
