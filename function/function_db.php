@@ -423,6 +423,37 @@ function AskBookHousingPeriod($id_housing, $id_customer, $date_start, $date_end)
 
 }
 
+function getAllBookAskByIdOwner($id_owner){
+        
+        $demands = [];
+
+        global $base;
+        $sql = "SELECT housing.id AS id_housing,
+	`id_owner`,
+        `nom`,
+        MIN(date_start) AS date_start,
+        MAX(date_start) AS date_end,
+        price,
+        reservation.id_user AS id_user,
+        COUNT(housing.id) AS nb_day,
+        announce.id AS id_announce,
+        price AS price_by_night
+        FROM housing INNER JOIN announce ON housing.id = announce.id_housing
+        			INNER JOIN reservation ON announce.id = reservation.id_announce
+
+                WHERE id_owner = $id_owner AND accepted = 0
+                GROUP BY reservation.id_user, announce.nb_for_housing";
+
+        $result = mysqli_query($base, $sql);
+        while($row = mysqli_fetch_assoc($result)){
+                array_push($demands, $row);
+        }
+
+        return $demands;
+
+
+}
+
 function alreadyBookAnnounce($id_announce, $id_customer){
         $res = false;
         global $base;
@@ -549,24 +580,38 @@ function delDateAnnounceHousing($id) {
 }
 
 function get_average ($id_rated, $is_for_housing){
+<<<<<<< HEAD
         global $bdd
 
         $sql = "SELECT rate FROM Rate WHERE id_rated = $id_rated AND is_for_housing = $is_for_housing";
         
+=======
+        global $bdd;
+
+        $sql = "SELECT rate FROM Rate WHERE id_rated = $id_rated AND is_for_housing = $is_for_housing";
+
+>>>>>>> 6ee5bc50a34a6643368ba6fc00893ce9bb5a24a7
         $results =  mysqli_query($base, $sql);
 
         $nb_rates = mysqli_num_rows($results);
 
         $som_rates = 0;
         while ($row = mysqli_fetch_assoc($results)){
+<<<<<<< HEAD
 
                 $som_rates += $row['rate'];
         }
 
+=======
+
+                $som_rates += $row['rate'];
+        }
+
+>>>>>>> 6ee5bc50a34a6643368ba6fc00893ce9bb5a24a7
         return $som_rates / $nb_rates;
 }
 
-function add_rating($id_rated, $id_rater, $rate, $title, $message, $is_housing){
+function addRating($id_rated, $id_rater, $rate, $title, $message, $is_housing){
         global $base;
 
         $sql = "INSERT INTO `Rate`(`id_rated`, `id_rater`, `rate`, `title`, `message`, `is_for_housing`) VALUES ($id_rated,$id_rater,$rate,'$title', '$message',$is_housing)";
@@ -575,13 +620,31 @@ function add_rating($id_rated, $id_rater, $rate, $title, $message, $is_housing){
 
 }
 
-function add_rating_user($id_rated, $id_rater, $rate, $title, $message){
-        add_rating($id_rated, $id_rater, $rate, $title, $message, 0);
+function addRatingUser($id_rated, $id_rater, $rate, $title, $message){
+        addRating($id_rated, $id_rater, $rate, $title, $message, 0);
 }
 
-function add_rating_housing($id_rated, $id_rater, $rate, $title, $message){
-        add_rating($id_rated, $id_rater, $rate, $title, $message, 1);
+function addRatingHousing($id_rated, $id_rater, $rate, $title, $message){
+        addRating($id_rated, $id_rater, $rate, $title, $message, 1);
 }
+
+function numberAnnounceDistinctByIdHousing($id_housing){
+        global $base;
+        $cpt = 0;
+
+        $sql = "SELECT `id` FROM `announce` WHERE id_housing = $id_housing
+                GROUP BY id_housing";
+
+        $announces = mysqli_query($base, $sql);
+
+        while($row = mysqli_fetch_assoc($announces)){
+                $cpt++;
+        }
+        return $cpt;
+
+}
+
+
 
 
 

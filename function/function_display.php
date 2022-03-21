@@ -45,6 +45,23 @@
 
 }*/
 
+function displayAskReservation($data){
+    $id_housing = -1;
+    echo "<section class='asking_section'>";
+        for($index = 0; $index < count($data); $index++){
+            $info = $data[$index];
+            if($id_housing != $info["id_housing"]){
+                if ($id_housing != -1){
+                    echo "</div>";
+                }
+                echo "<div class='ask_info'>";
+                $id_housing = $info["id_housing"];
+            }
+            echo "<p>".$info["nom"]."</p>";
+        }
+        echo "</div>";
+    echo "</section>";
+}
 
 
 ?>

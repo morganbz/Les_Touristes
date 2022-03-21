@@ -53,7 +53,7 @@
                 echo "home";
             }
             else if ($page == "recherche_activitee"){
-                
+                bookHousingPeriod(118, 7, '2022-03-22', '2022-03-29');
             }
             else if ($page == "user_page"){
                 include_once "account/user_page.php";
