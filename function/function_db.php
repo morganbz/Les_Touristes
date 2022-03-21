@@ -436,7 +436,6 @@ function getAllBookAskByIdOwner($id_owner){
         price,
         reservation.id_user AS id_user,
         COUNT(housing.id) AS nb_day,
-        announce.id AS id_announce,
         price AS price_by_night
         FROM housing INNER JOIN announce ON housing.id = announce.id_housing
         			INNER JOIN reservation ON announce.id = reservation.id_announce
@@ -580,34 +579,20 @@ function delDateAnnounceHousing($id) {
 }
 
 function get_average ($id_rated, $is_for_housing){
-<<<<<<< HEAD
-        global $bdd
+        global $base;
 
         $sql = "SELECT rate FROM Rate WHERE id_rated = $id_rated AND is_for_housing = $is_for_housing";
         
-=======
-        global $bdd;
-
-        $sql = "SELECT rate FROM Rate WHERE id_rated = $id_rated AND is_for_housing = $is_for_housing";
-
->>>>>>> 6ee5bc50a34a6643368ba6fc00893ce9bb5a24a7
         $results =  mysqli_query($base, $sql);
 
         $nb_rates = mysqli_num_rows($results);
 
         $som_rates = 0;
         while ($row = mysqli_fetch_assoc($results)){
-<<<<<<< HEAD
 
                 $som_rates += $row['rate'];
         }
 
-=======
-
-                $som_rates += $row['rate'];
-        }
-
->>>>>>> 6ee5bc50a34a6643368ba6fc00893ce9bb5a24a7
         return $som_rates / $nb_rates;
 }
 
