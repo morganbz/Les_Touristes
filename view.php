@@ -53,7 +53,7 @@
                 echo "home";
             }
             else if ($page == "recherche_activitee"){
-                
+                getAllBookAskByIdOwner(7);
             }
             else if ($page == "user_page"){
                 include_once "account/user_page.php";

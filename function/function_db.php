@@ -447,6 +447,7 @@ function getAllBookAskByIdOwner($id_owner){
         $result = mysqli_query($base, $sql);
         while($row = mysqli_fetch_assoc($announce)){
                 array_push($demands, $row);
+                var_dump($row);
         }
 
         return $demands;
