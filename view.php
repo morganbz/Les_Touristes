@@ -52,7 +52,7 @@
             if ($page == "home"){
                 echo "home";
             }
-            else if ($page == "recherche_activitee"){
+            else if ($page == "Pekin"){
                 //bookHousingPeriod(118, 7, '2022-03-22', '2022-03-29');
                 echo getPays("Basse-Terre");
             }
