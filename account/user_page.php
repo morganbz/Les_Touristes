@@ -9,6 +9,7 @@
     <li><a href="?page=user_page&page_account=see_recommandation">Voir mes recommandations</a></li>
     <li><a href="?page=user_page&page_account=add_recommandation">Ajouter une recommandation</a></li>
     <li><a href="?page=user_page&page_account=see_announce">Voir mes annonces</a></li>
+    <li><a href="?page=user_page&page_account=see_asking">Voir mes demandes de reservation</a></li>
     <li><a href="?page=user_page&page_account=add_announce">Ajouter une annonce</a></li>
     <li><a href="?page=user_page&page_account=see_activity">Voir mes activités</a></li>
     <li><a href="?page=user_page&page_account=add_activity">Ajouter une activité</a></li>
@@ -33,6 +34,9 @@
     }
     else if ($page_account == "change_password"){
       include_once "modif_mdp_user.php";
+    }
+    else if ($page_account == "see_asking"){
+      include_once "asking_view.php";
     }
     else if ($page_account == "see_recommandation"){
 
