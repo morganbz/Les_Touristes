@@ -441,13 +441,12 @@ function getAllBookAskByIdOwner($id_owner){
         FROM housing INNER JOIN announce ON housing.id = announce.id_housing
         			INNER JOIN reservation ON announce.id = reservation.id_announce
 
-                WHERE id_owner = 7 AND accepted = 0
+                WHERE id_owner = $id_owner AND accepted = 0
                 GROUP BY reservation.id_user, announce.nb_for_housing";
 
         $result = mysqli_query($base, $sql);
         while($row = mysqli_fetch_assoc($result)){
                 array_push($demands, $row);
-                var_dump($row);
         }
 
         return $demands;
