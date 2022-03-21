@@ -77,11 +77,13 @@ img{
 .ask_info{
     border: black solid 1px;
     height: auto;
+    width: auto;
 }
 
 .ask_info_housing{
     border: black solid 1px;
     height: auto;
+    width: auto; 
 }
 
 .asking_section{
