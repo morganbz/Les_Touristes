@@ -56,6 +56,7 @@ function displayAskReservation($data){
                 }
                 echo "<div class='ask_info_housing'>";
                 echo "<p>".$info["nom"]."</p>";
+                echo "<a href='?page=ask_reservation&id_housing=".$id_housing."' class='button'>Annonce</a>";
                 $id_housing = $info["id_housing"];
             }
             $user = getUserById($info["id_user"]);
@@ -65,6 +66,10 @@ function displayAskReservation($data){
                 echo "<p>Nombre de jour ".$info["nb_day"]."</p>";
                 echo "<p>Prix à la nuit ".$info["price_by_night"]."</p>";
                 echo "<p>Prix total ".$info["nb_day"] * $info["price_by_night"]."</p>";
+                echo "<form action='index.php' method='post'>";
+                    echo "<input type='hidden' name='id_housing' id='id_housing' value=".$id_housing." required>"
+                    echo "<button id='submit' name='submit' value='Validate_reservation' type='submit'>Valider la demande de reservation</button>";
+                echo "</form>";
             echo "</div>";
         }
         echo "</div>";
