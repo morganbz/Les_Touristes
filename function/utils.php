@@ -78,25 +78,26 @@ function getCoords($address){
     $res["longitude"] = $long;
     return $res;
 
-    function getPays($address){
-        $address = str_replace(" ", "", $address);
-        $json = file_get_contents("https://maps.google.com/maps/api/geocode/json?address=$address&key=AIzaSyD6q4hVJGUioenp17tQTqiCS9dLDWbgATw&sensor=false");
-        $json = json_decode($json);
+}
 
-        $cpt = 0;
-        $trouve = false;
-        $res = "not_found";
+function getPays($address){
+    $address = str_replace(" ", "", $address);
+    $json = file_get_contents("https://maps.google.com/maps/api/geocode/json?address=$address&key=AIzaSyD6q4hVJGUioenp17tQTqiCS9dLDWbgATw&sensor=false");
+    $json = json_decode($json);
 
-        $add_comp = $json->{'results'}[0]->{'adress_components'};
+    $cpt = 0;
+    $trouve = false;
+    $res = "not_found";
 
-        while($cpt < count($add_comp) && !$trouve){
-            if($add_comp[$cpt]->{'types'}[0] == "country"){
-                $trouve = true;
-                $res = $add_comp[$cpt]->{'long_name'};
-            }
+    $add_comp = $json->{'results'}[0]->{'adress_components'};
+
+    while($cpt < count($add_comp) && !$trouve){
+        if($add_comp[$cpt]->{'types'}[0] == "country"){
+            $trouve = true;
+            $res = $add_comp[$cpt]->{'long_name'};
         }
-        return $res;
-
+    }
+    return $res;
 }
 
 ?>
