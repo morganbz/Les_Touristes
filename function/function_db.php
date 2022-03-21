@@ -580,6 +580,24 @@ function delDateAnnounceHousing($id) {
 
 }
 
+function get_average ($id_rated, $is_for_housing){
+        global $bdd
+
+        $sql = "SELECT rate FROM Rate WHERE id_rated = $id_rated AND is_for_housing = $is_for_housing";
+
+        $results =  mysqli_query($base, $sql);
+
+        $nb_rates = mysqli_num_rows($results);
+
+        $som_rates = 0;
+        while ($row = mysqli_fetch_assoc($results)){
+
+                $som_rates += $row['rate'];
+        }
+
+        return $som_rates / $nb_rates;
+}
+
 function addRating($id_rated, $id_rater, $rate, $title, $message, $is_housing){
         global $base;
 
