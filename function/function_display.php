@@ -68,6 +68,9 @@ function displayAskReservation($data){
                 echo "<p>Prix total ".$info["nb_day"] * $info["price_by_night"]."</p>";
                 echo "<form action='index.php' method='post'>";
                     echo "<input type='hidden' name='id_housing' id='id_housing' value=".$id_housing." required>";
+                    echo "<input type='hidden' name='date_start' id='date_start' value=".$info["date_start"]." required>";
+                    echo "<input type='hidden' name='date_end' id='date_end' value=".$info["date_end"]." required>";
+                    echo "<input type='hidden' name='id_user' id='id_user' value=".$info["id_user"]." required>";
                     echo "<button id='submit' name='submit' value='Validate_reservation' type='submit'>Valider la demande de reservation</button>";
                 echo "</form>";
             echo "</div>";
