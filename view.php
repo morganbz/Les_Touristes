@@ -54,7 +54,7 @@
             }
             else if ($page == "recherche_activitee"){
                 //bookHousingPeriod(118, 7, '2022-03-22', '2022-03-29');
-                echo getPays("86 rue des ecoles 73000 France");
+                echo getPays("86 rue des ecoles 73000 Chambery");
             }
             else if ($page == "user_page"){
                 include_once "account/user_page.php";
