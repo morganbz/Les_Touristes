@@ -76,8 +76,7 @@
             }  
             else if($page == "ask_reservation"){
                 include_once "forms/ask_reservation.php";
-            } 
-            var_dump(get_average(10, 0));
+            }
             ?>
         </div>
     </body>
