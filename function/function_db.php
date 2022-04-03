@@ -651,6 +651,13 @@ function addDistinctAnnounce($id_housing, $date_start, $date_end, $price){
 }
 
 function announceExist($id_housing, $date){
+        global $base;
+
+        $sql = "SELECT `id` FROM `announce` WHERE id_housing = $id_housing and date_start = '$date'";
+
+        $announce = mysqli_query($base, $sql);
+
+        return mysqli_fetch_assoc($announce) != null;
 
 }
 
