@@ -1,4 +1,10 @@
- 
+ <?php
+
+$housing = getHousingById($_GET["id_housing"]);
+
+?>
+
+
 <section>
 
 
@@ -24,3 +30,32 @@
         <button id="submit" name="submit" value="Ask_reservation" type="submit">Reserver</button>
     </form>
 </section>
+
+<?php
+echo'<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">';
+  echo'<ol class="carousel-indicators">';
+    echo'<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>';
+    echo'<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>';
+    echo'<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>';
+  echo'</ol>';
+  echo'<div class="carousel-inner">';
+    echo'<div class="carousel-item active">';
+      echo'<img class="d-block w-100" src="./picture_housing/'.$housing['id_owner'].'/'.$housing['id'].'" alt="First slide">';
+    echo'</div>';
+    echo'<div class="carousel-item">';
+      echo'<img class="d-block w-100" src="./picture_housing/'.$housing['id_owner'].'/'.$housing['id'].'" alt="Second slide">';
+    echo'</div>';
+    echo'<div class="carousel-item">';
+      echo'<img class="d-block w-100" src="./picture_housing/'.$housing['id_owner'].'/'.$housing['id'].'" alt="Third slide">';
+    echo'</div>';
+  echo'</div>';
+  echo'<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">';
+    echo'<span class="carousel-control-prev-icon" aria-hidden="true"></span>';
+    echo'<span class="sr-only">Previous</span>';
+  echo'</a>';
+  echo'<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">';
+    echo'<span class="carousel-control-next-icon" aria-hidden="true"></span>';
+    echo'<span class="sr-only">Next</span>';
+  echo'</a>';
+  echo'</div>';
+?>
