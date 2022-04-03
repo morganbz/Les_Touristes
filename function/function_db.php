@@ -629,6 +629,22 @@ function numberAnnounceDistinctByIdHousing($id_housing){
 
 }
 
+function getAnnounceByNb($id_housing, $nb_announce){
+        global $base;
+        $result = [];
+        
+        $sql = "SELECT `id`, `price`, `date_start`, `isTaken`, `id_housing`, `nb_for_housing` FROM `announce` 
+                        WHERE id_housing = $id_housing AND nb_for_housing = $nb_announce";
+        
+        $announces = mysqli_query($base, $sql);
+
+        while($row = mysqli_fetch_assoc($announces)){
+                array_push($result, $row);
+        }
+        return $result;
+
+}
+
 function addDistinctAnnounce($id_housing, $date_start, $date_end, $price){
         global $base;
         $nb_announce_distinct = numberAnnounceDistinctByIdHousing($id_housing);
