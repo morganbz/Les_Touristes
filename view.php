@@ -54,7 +54,7 @@
             }
             else if ($page == "recherche_activitee"){
                 //bookHousingPeriod(118, 7, '2022-03-22', '2022-03-29');
-                echo getPays("Pékin");
+                searchAnnounce(0,9999999,"2022-03-20","2022-03-24", "Chambéry", 20);
             }
             else if ($page == "user_page"){
                 include_once "account/user_page.php";
