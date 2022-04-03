@@ -55,7 +55,7 @@
                 echo "home";
             }
             else if ($page == "recherche_activitee"){
-                include_once "test_calendar.php"
+                include_once "test_calendar.php";
 
             }
             else if ($page == "user_page"){
