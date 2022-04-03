@@ -279,7 +279,6 @@ function searchAnnounce($priceMin, $priceMax, $date_start, $date_end, $dest, $di
                         }
                 }
         }
-        echo $sql;
         return $result;
 }
 
