@@ -351,7 +351,6 @@ function getHousingById($id){
         $sql = "SELECT id, id_owner, type, latitude, longitude, nom, image_folder, description 
                 FROM housing
                 WHERE id = $id";
-        echo $sql;
         $result = mysqli_query($base, $sql);
 
         return mysqli_fetch_assoc($result);
@@ -648,6 +647,10 @@ function addDistinctAnnounce($id_housing, $date_start, $date_end, $price){
                 $currDate = date("Y-m-d", strtotime($currDate.'+ 1 days'));
 
         }
+
+}
+
+function announceExist($id_housing, $date){
 
 }
 
