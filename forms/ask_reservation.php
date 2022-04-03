@@ -1,4 +1,17 @@
- <?php
+
+<link rel="canonical" href="https://getbootstrap.com/docs/4.0/components/carousel/">
+
+<!-- Bootstrap core CSS -->
+
+<link href="/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+<!-- Documentation extras -->
+
+<link href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" rel="stylesheet">
+
+<link href="/docs/4.0/assets/css/docs.min.css" rel="stylesheet">
+<?php
 
 $housing = getHousingById($_GET["id_housing"]);
 
