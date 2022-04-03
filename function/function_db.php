@@ -2,13 +2,13 @@
 
 // ----------------------------------------------------- ADD  ----------------------------------------
 
-function addAnnounce($price, $date_start, $id_housing){
+function addAnnounce($price, $date_start, $id_housing, $nb_annouce = 0){
         global $base;
 
         $date = mysqli_real_escape_string($base, $date_start);
 
-        $sql = "INSERT INTO announce(price, date_start, isTaken, id_housing)
-                VALUES ($price, '$date', 0, $id_housing)";
+        $sql = "INSERT INTO announce(price, date_start, isTaken, id_housing, nb_for_housing)
+                VALUES ($price, '$date', 0, $id_housing, $nb_annouce)";
 
         mysqli_query($base, $sql);
 }
@@ -619,7 +619,7 @@ function numberAnnounceDistinctByIdHousing($id_housing){
         $cpt = 0;
 
         $sql = "SELECT `id` FROM `announce` WHERE id_housing = $id_housing
-                GROUP BY id_housing";
+                GROUP BY id_housing, nb_for_housing";
 
         $announces = mysqli_query($base, $sql);
 
@@ -627,6 +627,27 @@ function numberAnnounceDistinctByIdHousing($id_housing){
                 $cpt++;
         }
         return $cpt;
+
+}
+
+function addDistinctAnnounce($id_housing, $date_start, $date_end, $price){
+        global $base;
+        $nb_announce_distinct = numberAnnounceDistinctByIdHousing($id_housing);
+
+        $dateDifference = abs(strtotime($date_end) - strtotime($date_start));
+        $years  = floor($dateDifference / (365 * 60 * 60 * 24));
+        $months = floor(($dateDifference - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
+        $days   = floor(($dateDifference - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 *24) / (60 * 60 * 24));
+
+        $currDate = $date_start;
+
+        for($i = 1; $i <= $days + 1; $i++ ){
+
+                addAnnounce($price, $currDate, $id_housing, $nb_announce_distinct);
+
+                $currDate = date("Y-m-d", strtotime($currDate.'+ 1 days'));
+
+        }
 
 }
 
