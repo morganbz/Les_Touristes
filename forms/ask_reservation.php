@@ -1,6 +1,21 @@
- <?php
+
+<link rel="canonical" href="https://getbootstrap.com/docs/4.0/components/carousel/">
+
+<!-- Bootstrap core CSS -->
+
+<link href="/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+<!-- Documentation extras -->
+
+<link href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" rel="stylesheet">
+
+<link href="/docs/4.0/assets/css/docs.min.css" rel="stylesheet">
+<?php
 
 $housing = getHousingById($_GET["id_housing"]);
+
+$log_directory = './picture_housing/'.$housing['id_owner'].'/'.$housing['id'];
 
 ?>
 
@@ -39,15 +54,11 @@ echo'<div id="carouselExampleIndicators" class="carousel slide" data-ride="carou
     echo'<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>';
   echo'</ol>';
   echo'<div class="carousel-inner">';
-    echo'<div class="carousel-item active">';
-      echo'<img class="d-block w-100" src="./picture_housing/'.$housing['id_owner'].'/'.$housing['id'].'" alt="First slide">';
-    echo'</div>';
-    echo'<div class="carousel-item">';
-      echo'<img class="d-block w-100" src="./picture_housing/'.$housing['id_owner'].'/'.$housing['id'].'" alt="Second slide">';
-    echo'</div>';
-    echo'<div class="carousel-item">';
-      echo'<img class="d-block w-100" src="./picture_housing/'.$housing['id_owner'].'/'.$housing['id'].'" alt="Third slide">';
-    echo'</div>';
+    foreach(glob($log_directory.'/*.*') as $file) {
+        echo'<div class="carousel-item active">';
+        echo'<img class="d-block w-100" src="'.$log_directory.'/'.$file.'" alt="First slide">';
+        echo'</div>';
+    }
   echo'</div>';
   echo'<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">';
     echo'<span class="carousel-control-prev-icon" aria-hidden="true"></span>';
