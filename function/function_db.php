@@ -252,7 +252,7 @@ function searchAnnounce($priceMin, $priceMax, $date_start, $date_end, $dest, $di
         isTaken,
         type
                 FROM housing JOIN announce ON housing.id = id_housing
-                WHERE (price BETWEEN $priceMin AND $priceMax) AND date_start <= '$date_end' AND country = $country
+                WHERE (price BETWEEN $priceMin AND $priceMax) AND date_start <= '$date_end' AND country = '$country'
                 GROUP BY id_housing";
         
         $announce = mysqli_query($base, $sql);
