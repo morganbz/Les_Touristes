@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
         right: 'dayGridMonth,dayGridWeek,dayGridDay'
       },
       initialDate: '2014-11-10',
-    initialView: 'timeGridWeek',
+    initialView: 'timeGridMonth',
     events: [
             {
             start: '2014-11-10T10:00:00',
