@@ -657,7 +657,7 @@ function announceExist($id_housing, $date){
 
         $announce = mysqli_query($base, $sql);
 
-        return mysqli_fetch_assoc($announces) != null;
+        return mysqli_fetch_assoc($announce) != null;
 
 }
 
