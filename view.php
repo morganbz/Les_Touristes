@@ -53,7 +53,7 @@
                 echo "home";
             }
             else if ($page == "recherche_activitee"){
-                addDistinctAnnounce(120, "2023-01-01", "2023-01-10", 100);
+                //addDistinctAnnounce(120, "2023-01-01", "2023-01-10", 100);
                 //bookHousingPeriod(118, 7, '2022-03-22', '2022-03-29');
                 
             }
