@@ -3,7 +3,7 @@
 
 $housing = getHousingById($_GET["id_housing"]);
 
-$log_directory = './picture_housing/'.$housing['id_owner'].'/'.$housing['id'];
+$log_directory = $housing["image_folder"];
 
 $images = [];
 
