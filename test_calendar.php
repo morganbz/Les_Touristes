@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
       headerToolbar: {
-        themeSystem: 'bootstrap5',
         left: 'prevYear,prev,next,nextYear today',
         center: 'title',
         right: 'dayGridMonth,dayGridWeek,dayGridDay'
