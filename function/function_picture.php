@@ -12,7 +12,6 @@ function uploadImg($dossier, $name_FILES){
     $errors = [];
 
     if (isset($_FILES)){
-        var_dump($_FILES);
         $tmpName = $_FILES[$name_FILES]['tmp_name'];
         $typefile = $_FILES[$name_FILES]['type'];
         $name = $_FILES[$name_FILES]['name'];
