@@ -11,9 +11,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
       headerToolbar: {
-        left: 'prevYear,prev,next,nextYear today',
-        center: 'title',
-        right: 'dayGridMonth,dayGridWeek,dayGridDay'
+        start: 'title', // will normally be on the left. if RTL, will be on the right
+        center: '',
+        end: 'today prev,next' // will normally be on the right. if RTL, will be on the left
       },
       <?php
       echo "initialDate: ".$today.",";
