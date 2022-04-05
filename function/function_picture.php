@@ -30,7 +30,7 @@ function uploadImg($dossier, $name_FILES){
         }
 
         if (!(in_array($extensionFichier, $extensionAcceptee))){
-            $errors[] = "Veuillez choisir une image valide (JPG ou PNG)";
+            $errors[] = "Veuillez choisir une image valide (JPG ou PNG)".$extensionFichier;
         }
 
         if ($size > 2000000){
