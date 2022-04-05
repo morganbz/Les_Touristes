@@ -55,7 +55,8 @@
                 echo "home";
             }
             else if ($page == "recherche_activitee"){
-                include_once "test_calendar.php";
+                var_dump(getCoords("73000 Chambery 86 rue des ecoles"));
+                //include_once "test_calendar.php";
 
             }
             else if ($page == "user_page"){
