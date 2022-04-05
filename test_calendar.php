@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   #calendar {
-    max-width: 1100px;
+    max-width: 800px;
     margin: 0 auto;
   }
 
