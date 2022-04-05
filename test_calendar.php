@@ -1,3 +1,9 @@
+<?php
+$today = date("Y-m-d");
+?>
+
+
+
 <script>
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -9,7 +15,10 @@ document.addEventListener('DOMContentLoaded', function() {
         center: 'title',
         right: 'dayGridMonth,dayGridWeek,dayGridDay'
       },
-      initialDate: '2020-09-12',
+      <?php
+      echo "initialDate: ".$today.",";
+      ?>
+      //initialDate: '2020-09-12',
       navLinks: true, // can click day/week names to navigate views
       editable: true,
       dayMaxEvents: true, // allow "more" link when too many events
