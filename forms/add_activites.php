@@ -4,7 +4,15 @@
         <label for="id_activite">Id de l'activité</label>
     </div>
 
-
+    <div>
+        <?php
+            $indice = 0;
+            foreach($TYPE_ACTIVITY as $type){
+                echo "\n<option value=$indice>$type</option>";
+                $indice++;
+            }
+        ?>
+    </div>
 
     <div>
         <input placeholder="Prix de l'activite" type="int" name="price_activite" id="price_activite" required>
