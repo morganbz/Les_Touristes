@@ -5,13 +5,13 @@
     </div>
 
     <div>
-        <select name="type_activite">
-            <option value="null">type d'activité</option>
-            <option value="randonnee">Randonnée</option>
-            <option value="Cinema">Cinéma</option>
-            <option value="baignade">Baignade</option>
-        </select>
-        <label for="type_activite">type d'activité</label>
+        <?php
+            $indice = 0;
+            foreach($TYPE_ACTIVITY as $type){
+                echo "\n<option value=$indice>$type</option>";
+                $indice++;
+            }
+        ?>
     </div>
 
     <div>
