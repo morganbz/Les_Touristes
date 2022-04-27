@@ -197,8 +197,10 @@
 
         if($submit == "housing_announce_update"){
             $type = $_POST["type_housing"];
-            $latitude = $_POST["latitude_housing_announce_update"];
-            $longitude = $_POST["longitude_housing_announce_update"];
+            $address = $_POST["address_housing_announce_update"];
+            $coord = getCoords($address);
+            $latitude = $coord["latitude"];
+            $longitude = $coord["longitude"];
             $name = $_POST["name_housing_announce_update"];
             $description = $_POST["description_housing_announce_update"];
             $id = $_POST["id_housing_announce_update"];
