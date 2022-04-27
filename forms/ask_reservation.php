@@ -102,7 +102,7 @@ $nb_images = count($images);
     <div id="housing_booking">
         
         <section>
-            <form class="d-flex flex-column justify-content-center" action="index.php" method="post">
+            <form class="d-flex flex-column justify-content-center align-items-center" action="index.php" method="post">
                 <div class="form-floating w-50">
                     <input class="form-control" placeholder="Date de Naissance" type="date" name="birth_date_register" id="birth_date_register" minlenght="8" required>
                     <label class="form-label" for="birth_date_register">Date de Naissance</label>
