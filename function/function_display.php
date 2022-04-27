@@ -80,4 +80,95 @@ function displayAskReservation($data){
 }
 
 
+function displayHousingAccount($housing){
+
+    global $TYPE_HOUSING;
+
+    $nom = $housing['nom'];
+    $latitude = $housing['latitude'];
+    $longitude = $housing['longitude'];
+    $description = $housing['description'];
+    $type = $housing['type'];
+    $adresse = getAddress($latitude, $longitude);
+    $id = $housing['id'];
+
+    $log_directory = $housing["image_folder"];
+
+    $images = [];
+
+    foreach(glob($log_directory.'/*.*') as $file) {
+        $images[] = $file;
+    }
+    $nb_images = count($images);
+
+    $announces = getAllAnnounceOrderByDistinct($id);
+
+    echo "<div class='data_search'>";
+
+    echo "<p>Nom : " .$nom. "</p><p>Type de logement : " .$TYPE_HOUSING[$type]. "</p><p>Adresse : " .$adresse. "</p><p>Description : ".$description. "</p>";
+
+    echo "<p>Periode de disponibilitées : ";
+
+    foreach ($announces as $announce){
+        echo "du ". $announce["date_start"] . " au " . $announce["date_end"];
+        echo "<br>";
+    }
+
+    echo "</p>";
+    ?>
+
+    <div id="myCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+    <?php
+    if($nb_images != 0){
+        echo '<ol class="carousel-indicators">';
+        for($index = 0; $index < $nb_images; $index++){
+            if ($index == 0) {
+                echo '<li data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></li>';
+            }
+            else {
+                echo '<li data-bs-target="#myCarousel" data-bs-slide-to="'.$index.'"></li>';
+            }
+        }
+            echo '</ol>';
+    }
+    ?>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <?php
+            if ($nb_images == 0) {
+                # code...
+            }
+            else {
+                echo '<div class="overlay-image" style="background-image:url('.$images[0].');"></div>';
+            }
+            ?>
+            <div class="container">
+                
+            </div>
+        </div>
+        <?php
+        for ($index = 1; $index < $nb_images; $index++) { 
+            echo '<div class="carousel-item">';
+            echo '<div class="overlay-image" style="background-image:url('.$images[$index].');"></div>';
+                echo '<div class="container">';
+            
+                echo '</div>';
+            echo '</div>';
+        }
+        ?>
+    </div>
+    <a href="#myCarousel" class="carousel-control-prev" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    </a>
+    <a href="#myCarousel" class="carousel-control-next" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    </a>
+</div>
+<?php
+
+    echo "</div>";
+
+
+}
+
 ?>
