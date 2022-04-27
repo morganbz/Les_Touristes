@@ -99,6 +99,7 @@ function displayHousingAccount($housing){
     foreach(glob($log_directory.'/*.*') as $file) {
         $images[] = $file;
     }
+    $nb_images = count($images);
 
     $announces = getAllAnnounceOrderByDistinct($id);
 
