@@ -125,6 +125,7 @@ function displayHousingAccount($housing){
     </form>
 
     </div>
+    <div>
 
     <form action="index.php" method="post">
     <?php
