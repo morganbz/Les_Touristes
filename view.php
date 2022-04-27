@@ -78,6 +78,9 @@
             else if($page == "ask_reservation"){
                 include_once "forms/ask_reservation.php";
             }
+            else if($page == "modif_housing"){
+                include_once "forms/modif_housing.php";
+            }
             ?>
         </div>
     </body>
