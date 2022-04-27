@@ -32,8 +32,8 @@ $address = getAddress($housing["latitude"], $housing["longitude"]);
 
 
     <div>
-        <label for="adresse_housing_announce_update">Adresse</label>
-        <input placeholder="adresse" value="<?php echo $address;?>" type="text" name="adresse_housing_announce_update" id="adresse_housing_announce_update" required>
+        <label for="address_housing_announce_update">Adresse</label>
+        <input placeholder="adresse" value="<?php echo $address;?>" type="text" name="address_housing_announce_update" id="address_housing_announce_update" required>
     </div>
 
     <div>
