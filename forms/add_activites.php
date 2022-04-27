@@ -7,7 +7,7 @@
     <div>
         <select name="type_activite" id="type_activite" required>
         <?php
-            $indice = 1;
+            $indice = 0;
             foreach($TYPE_ACTIVITY as $type){
                 echo "\n<option value=$indice>$type</option>";
                 $indice++;
@@ -18,18 +18,18 @@
     </div>
 
     <div>
-        <input placeholder="Pays de l'activite" type="text" name="country_activite" id="country_activite" required>
-        <label for="coutry_activite">Pays de l'activité</label>
+        <input placeholder="Ville de l'activite" type="text" name="city_activite" id="city_activite" required>
+        <label for="city_activite">Ville de l'activité</label>
     </div>
 
     <div>
-        <input placeholder="Latitude de l'activite" type="double" name="lat_activite" id="lat_activite" required>
-        <label for="lat_activite">Latitude de l'activité</label>
+        <input placeholder="Adresse de l'activite" type="text" name="adress_activite" id="adress_activite" required>
+        <label for="adress_activite">Adresse de l'activité</label>
     </div>
 
     <div>
-        <input placeholder="Longitude de l'activite" type="double" name="long_activite" id="long_activite" required>
-        <label for="long_activite">Longitude de l'activité</label>
+        <input placeholder="Code postal de l'activite" type="double" name="post_activite" id="post_activite" required>
+        <label for="post_activite">Code Postal de l'activité</label>
     </div>
 
     <div>
