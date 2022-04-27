@@ -705,6 +705,8 @@ function addActivity($nom, $idtype, $pays, $lat, $long, $id_user, $desc){
         $sql = "INSERT INTO `activity` (`id_owner`, `type`, `latitude`, `longitude`, `country`, `name`, `description`) VALUES ($id_user,$idtype, $lat, $long, '$pays', '$nom', '$desc')";
 
         mysqli_query($base, $sql);
+        var_dump(mysqli_error($base));
+        var_dump($sql);
 
         $id_activity = mysqli_insert_id($base);
 
@@ -713,8 +715,6 @@ function addActivity($nom, $idtype, $pays, $lat, $long, $id_user, $desc){
         $sql = "UPDATE `activity` SET `image_folder` = '$folder' WHERE `id_activity` = '$id_activity'";
 
         mysqli_query($base, $sql);
-        var_dump(mysqli_error($base));
-        var_dump($sql);
 
         return $id_activity;
 }
@@ -749,9 +749,6 @@ function updateActivity($id, $nom, $idtype, $pays, $lat, $long, $desc){
         $sql = "UPDATE activity SET name='$name', latitude=$latitude, longitude=$longitude, country='$pays', type=$type, description='$description' WHERE id_activity=$id";
 
         $update_housing = $base->query($sql);
-
-        var_dump($sql);
-        var_dump(mysqli_error($base));
 
         if ($update_housing){
                 unset($_SESSION["errors_update_activity"]);
