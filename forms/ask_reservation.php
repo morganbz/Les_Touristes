@@ -102,7 +102,7 @@ $nb_images = count($images);
     <div id="housing_booking">
         
         <section>
-            <form action="index.php" method="post">
+            <form class="bite" action="index.php" method="post">
                 <div>
                     <?php
                     echo "<input placeholder='Description' type='date' name='date_start_reservation' id='date_start_reservation' value ='".$_GET['date_start']."' required>"
