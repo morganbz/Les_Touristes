@@ -402,7 +402,9 @@
             if(isset($_POST["for_announce"])){
                 $url = getURL()."?page=update_housing_announces&id_housing=".$id_housing;
             }
-            $url = getURL()."?page=update_housing&id_housing=".$id_housing;   
+            else{
+                $url = getURL()."?page=update_housing&id_housing=".$id_housing;
+            }
             header('Location: '.$url.'');
         }
         if($submit = "AskUpdateHousingAnnounces"){
