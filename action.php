@@ -396,12 +396,18 @@
                 $page_account = "change_password";
             }
         }
-
-        if($submit = "AskModifHousing"){
+// ----------- MAJ LOGEMENTS -------------------------------
+        if($submit = "AskUpdateHousing"){
             $id_housing = $_POST["id_housing"];
-            $url = getURL()."?page=modif_housing&id_housing=".$id_housing;   
+            $url = getURL()."?page=update_housing&id_housing=".$id_housing;   
             header('Location: '.$url.'');
         }
+        if($submit = "AskUpdateHousingAnnounces"){
+            $id_housing = $_POST["id_housing"];
+            $url = getURL()."?page=update_housing_announces&id_housing=".$id_housing;   
+            header('Location: '.$url.'');
+        }
+        
 
 
  // ---------------- AJOUT D'ACTIVITES --------------------------------
