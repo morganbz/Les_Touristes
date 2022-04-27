@@ -578,7 +578,7 @@ function delDateAnnounceHousing($id) {
 
 }
 
-function get_average ($id_rated, $is_for_housing){
+function get_average($id_rated, $is_for_housing){
         global $base;
 
         $sql = "SELECT rate FROM Rate WHERE id_rated = $id_rated AND is_for_housing = $is_for_housing";
@@ -627,6 +627,20 @@ function numberAnnounceDistinctByIdHousing($id_housing){
         }
         return $cpt;
 
+}
+
+function getAllAnnounceOrderByDistinct($id_housing){
+        global $base;
+        $result = [];
+
+        $sql = "SELECT `id`, `price`, MIN(date_start) AS date_start, MAX(date_start) AS date_end FROM `announce` 
+        WHERE id_housing = 120 GROUP BY nb_for_housing";
+        $announces = mysqli_query($base, $sql);
+
+        while($row = mysqli_fetch_assoc($announces)){
+                array_push($result, $row);
+        }
+        return $result;
 }
 
 function getAnnounceByNb($id_housing, $nb_announce){
