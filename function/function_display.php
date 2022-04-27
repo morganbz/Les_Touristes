@@ -115,12 +115,22 @@ function displayHousingAccount($housing){
     }
     ?>
 
+    <div>
+
     <form action="index.php" method="post">
     <?php
         echo "<input  type='hidden' name='id_housing' id='id_housing' value =".$id." >";
     ?>
-        <button id="submit" name="submit" value="AskModifHousing" type="submit">Modifier</button>
+        <button id="submit" name="submit" value="AskUpdateHousing" type="submit">Modifier le logement </button>
     </form>
+
+    <form action="index.php" method="post">
+    <?php
+        echo "<input  type='hidden' name='id_housing' id='id_housing' value =".$id." >";
+    ?>
+        <button id="submit" name="submit" value="AskUpdateHousingAnnounces" type="submit">Modifier les periodes de disponibilités</button>
+    </form>
+
 
     <?php
 
