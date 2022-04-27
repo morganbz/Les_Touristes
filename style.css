@@ -41,8 +41,10 @@ html, body {
 
 #housing_description {
     width: 50%;
+    background-color: blue;
 }
 #housing_booking {
+    background-color: red;
     width: 50%;
     margin-left: 50%;
 }
