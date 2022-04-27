@@ -1,12 +1,15 @@
 <?php
 $id_housing = $_GET["id_housing"];
 echo $id_housing;
+$housing = getHousingById($id_housing);
 ?>
 
 <form action="index.php" method="post" enctype= 'multipart/form-data'>
     <div>
         <label for="name_housing_announce_update">Nom</label>
-        <input placeholder="Nom de l'annonce" value="<?php echo $nom;?>" type="text" name="name_housing_announce_update" id="name_housing_announce_update" required>
+        <?php
+        echo "<input placeholder=".$housing["nom"]."type='text' name='name_housing_announce_update' id='name_housing_announce_update' required>";
+        ?>
     </div>
 
     <div>
@@ -42,7 +45,10 @@ echo $id_housing;
 
     <div>
         <label for="description_housing_announce_update">Description</label>
-        <textarea placeholder="Description" name="description_housing_announce_update" id="description_housing_announce_update"><?php echo $description;?></textarea>
+        <?php
+        //echo "<textarea placeholder=".$housing["description"]."type='text' name='name_housing_announce_update' id='name_housing_announce_update' required>";
+        echo "<textarea name='description_housing_announce_update' id='description_housing_announce_update'>".$housing["description"]."</textarea>";
+        ?>
     </div>
 
     <div>
