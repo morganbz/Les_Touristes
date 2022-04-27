@@ -119,7 +119,7 @@ function displayHousingAccount($housing){
     <?php
         echo "<input  type='hidden' name='id_housing' id='id_housing' value =".$id." >";
     ?>
-        <button id="submit" name="submit" value="ModifHousing" type="submit">Modifier</button>
+        <button id="submit" name="submit" value="AskModifHousing" type="submit">Modifier</button>
     </form>
 
     <?php
@@ -128,6 +128,11 @@ function displayHousingAccount($housing){
 
     echo "</div>";
 
+
+}
+
+function ModifHousing($housing){
+    global $TYPE_HOUSING;
 
 }
 

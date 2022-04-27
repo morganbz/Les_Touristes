@@ -395,6 +395,12 @@
             }
         }
 
+        if($submit = "AskModifHousing"){
+            $id_housing = $_POST["id_housing"];
+            $url = getURL()."?page=modif_housing&id_housing=".$id_housing;   
+            header('Location: '.$url.'');
+        }
+
 
  // ---------------- AJOUT D'ACTIVITES --------------------------------
         if($submit == "Add_activite"){
