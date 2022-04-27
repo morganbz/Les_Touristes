@@ -49,7 +49,7 @@ $address = getAddress($housing["latitude"], $housing["longitude"]);
         <input type='file' name='modification_image' id='modification_image'>
     </div>
 
-    <input value="<?php echo $id;?>" type="hidden" name="id_housing_announce_update" id="id_housing_announce_update">
+    <input value="<?php echo $id_housing;?>" type="hidden" name="id_housing_announce_update" id="id_housing_announce_update">
 
     <button id="submit" name="submit" value="housing_announce_update" type="submit">Mettre à jour</button>
 
