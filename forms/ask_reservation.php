@@ -104,17 +104,18 @@ $nb_images = count($images);
         <section>
             <form class="bite" action="index.php" method="post">
                 <div>
+                    <label for="date_start_reservation">Date de début du sejour</label><br>
                     <?php
                     echo "<input placeholder='Description' type='date' name='date_start_reservation' id='date_start_reservation' value ='".$_GET['date_start']."' required>"
                     ?>
-                    <label for="date_start_reservation">Date de début du sejour</label>
                 </div>
+                <br>
         
                 <div>
+                    <label for="date_end_reservation">Date de fin du sejour</label><br>
                     <?php
                     echo "<input placeholder='Description' type='date' name='date_end_reservation' id='date_end_reservation' value ='".$_GET['date_end']."' required>"
                     ?>            
-                    <label for="date_end_reservation">Date de fin du sejour</label>
                 </div>
         
                 <?php
