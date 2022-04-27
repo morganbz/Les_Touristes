@@ -99,7 +99,7 @@ $nb_images = count($images);
             echo "<h1 class='bite'>".$housing["nom"]."</h1>";
         ?>
     </div>
-    <div id="housing_booking">
+    <div id="housing_booking" style="background-color:red">
         
         <section>
             <form class="d-flex flex-column justify-content-center align-items-center" action="index.php" method="post">
