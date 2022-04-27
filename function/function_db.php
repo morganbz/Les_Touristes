@@ -700,7 +700,7 @@ function addActivity($nom, $idtype, $pays, $lat, $long, $id_user, $desc){
         $pays = mysqli_real_escape_string($base, $pays);
         $lat = mysqli_real_escape_string($base, $lat);
         $long = mysqli_real_escape_string($base, $long);
-        $desc = mysqli_real_escape_string($base, $image);
+        $desc = mysqli_real_escape_string($base, $desc);
 
         $sql = "INSERT INTO `activity` (`type`, `latitude`, `longitude`, `country`, `name`, `descritpion`) VALUES ($idtype, $lat, $long, '$pays', '$nom', '$desc')";
 
@@ -710,7 +710,7 @@ function addActivity($nom, $idtype, $pays, $lat, $long, $id_user, $desc){
 
         $folder = "./picture_activity/".strval($id_user)."/".strval($id_activity);
 
-        $sql = "UPDATE `activity` SET `image_folder` = '$folder' WHERE `id` = '$id_activity'";
+        $sql = "UPDATE `activity` SET `image_folder` = '$folder' WHERE `id_activity` = '$id_activity'";
 
         mysqli_query($base, $sql);
 
