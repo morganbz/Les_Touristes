@@ -105,12 +105,16 @@ $nb_images = count($images);
             <form class="d-flex flex-column justify-content-center align-items-center" action="index.php" method="post">
                 <br>
                 <div class="form-floating w-50">
-                    <input class="form-control" placeholder="Date de début du sejour" type="date" name="date_start_reservation" id="date_start_reservation" required>
+                    <?php
+                        echo '<input class="form-control" placeholder="Date de début du sejour" type="date" name="date_start_reservation" id="date_start_reservation" value ="'.$_GET['date_start'].'" required>';
+                    ?>
                     <label class="form-label" for="date_start_reservation">Date de début du sejour</label>
                 </div>
                 <br>
                 <div class="form-floating w-50">
-                    <input class="form-control" placeholder="Date de fin du sejour" type="date" name="date_end_reservation" id="date_end_reservation" required>
+                    <?php
+                        echo '<input class="form-control" placeholder="Date de fin du sejour" type="date" name="date_end_reservation" id="date_end_reservation" value ="'.$_GET['date_end'].'" required>';
+                    ?>
                     <label class="form-label" for="date_end_reservation">Date de fin du sejour</label>
                 </div>
                 <!--
