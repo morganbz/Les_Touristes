@@ -94,7 +94,11 @@ $nb_images = count($images);
     </a>
 </div>
 
-<h1>TEST</h1>
+<?php
+    var_dump($housing);
+    echo "<h1>".$housing["title"]."</h1>";
+
+?>
 
 
 
