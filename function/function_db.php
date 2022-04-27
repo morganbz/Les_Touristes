@@ -705,8 +705,6 @@ function addActivity($nom, $idtype, $pays, $lat, $long, $id_user, $desc){
         $sql = "INSERT INTO `activity` (`id_owner`, `type`, `latitude`, `longitude`, `country`, `name`, `description`) VALUES ($id_user,$idtype, $lat, $long, '$pays', '$nom', '$desc')";
 
         mysqli_query($base, $sql);
-        var_dump(mysqli_error($base));
-        var_dump($sql);
 
         $id_activity = mysqli_insert_id($base);
 
