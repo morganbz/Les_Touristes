@@ -104,6 +104,7 @@ $nb_images = count($images);
         <section>
             <form class="bite" action="index.php" method="post">
                 <div>
+                    <br>
                     <label for="date_start_reservation">Date de début du sejour</label><br>
                     <?php
                     echo "<input placeholder='Description' type='date' name='date_start_reservation' id='date_start_reservation' value ='".$_GET['date_start']."' required>"
