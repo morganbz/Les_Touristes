@@ -63,6 +63,7 @@ function updateHousingAnnounce($id, $name, $latitude, $longitude, $type, $descri
 
         $sql = "UPDATE housing SET nom='$name', latitude=$latitude, longitude=$longitude, type=$type, description='$description' WHERE id=$id";
 
+        echo $sql;
         $update_housing = $base->query($sql);
 
         if ($update_housing){
