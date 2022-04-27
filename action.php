@@ -271,6 +271,10 @@
             $password = $_POST["password"];
             $back_page = $_POST["back_page"];
 
+            if ($back_page == "register"){
+                $back_page = "user_page";
+            }
+
             $user = getUser($mail);
             $errors = [];
 
