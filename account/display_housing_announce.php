@@ -16,7 +16,7 @@ foreach ($listeHousing as $housing){
 
     displayHousingAccount($housing);
 
-
+}
 ?>
 
 
