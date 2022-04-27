@@ -63,7 +63,6 @@ function updateHousingAnnounce($id, $name, $latitude, $longitude, $type, $descri
 
         $sql = "UPDATE housing SET nom='$name', latitude=$latitude, longitude=$longitude, type=$type, description='$description' WHERE id=$id";
 
-        echo $sql;
         $update_housing = $base->query($sql);
 
         if ($update_housing){
@@ -635,7 +634,7 @@ function getAllAnnounceOrderByDistinct($id_housing){
         $result = [];
 
         $sql = "SELECT `id`, `price`, MIN(date_start) AS date_start, MAX(date_start) AS date_end FROM `announce` 
-        WHERE id_housing = $id_housing GROUP BY nb_for_housing";
+        WHERE id_housing = 120 GROUP BY nb_for_housing";
         $announces = mysqli_query($base, $sql);
 
         while($row = mysqli_fetch_assoc($announces)){
@@ -703,7 +702,7 @@ function addActivity($nom, $idtype, $pays, $lat, $long, $id_user, $desc){
         $long = mysqli_real_escape_string($base, $long);
         $desc = mysqli_real_escape_string($base, $desc);
 
-        $sql = "INSERT INTO `activity` (`type`, `latitude`, `longitude`, `country`, `name`, `descritpion`) VALUES ($idtype, $lat, $long, '$pays', '$nom', '$desc')";
+        $sql = "INSERT INTO `activity` (`id_owner`, `type`, `latitude`, `longitude`, `country`, `name`, `description`) VALUES ($id_user,$idtype, $lat, $long, '$pays', '$nom', '$desc')";
 
         mysqli_query($base, $sql);
 
@@ -714,12 +713,53 @@ function addActivity($nom, $idtype, $pays, $lat, $long, $id_user, $desc){
         $sql = "UPDATE `activity` SET `image_folder` = '$folder' WHERE `id_activity` = '$id_activity'";
 
         mysqli_query($base, $sql);
+        var_dump(mysqli_error($base));
+        var_dump($sql);
 
         return $id_activity;
-
-
 }
 
+function getActivityByIdOwner($id){
+        global $base;
+
+        $activity = [];
+
+        $sql = "SELECT id_activity, type, latitude, longitude, country, name, description, image_folder
+                FROM activity
+                WHERE id_owner = $id";
+        $result = mysqli_query($base, $sql);
+
+        while($row = mysqli_fetch_assoc($result)){
+            $activity[] = $row;
+        }
+
+        return $activity;       
+}
+
+function updateActivity($id, $nom, $idtype, $pays, $lat, $long, $desc){
+        global $base;
+
+        $name = mysqli_real_escape_string($base, $nom);
+        $type = mysqli_real_escape_string($base, $idtype);
+        $pays = mysqli_real_escape_string($base, $pays);
+        $latitude = mysqli_real_escape_string($base, $lat);
+        $longitude = mysqli_real_escape_string($base, $long);
+        $description = mysqli_real_escape_string($base, $desc);
+
+        $sql = "UPDATE activity SET name='$name', latitude=$latitude, longitude=$longitude, country='$pays', type=$type, description='$description' WHERE id_activity=$id";
+
+        $update_housing = $base->query($sql);
+
+        var_dump($sql);
+        var_dump(mysqli_error($base));
+
+        if ($update_housing){
+                unset($_SESSION["errors_update_activity"]);
+        } else {
+                $errors[] = "Erreur au moment de l'ajout dans la base de donnée";
+                $_SESSION["errors_update_housing"] = $errors;
+        }
+}
 
 
 ?>
