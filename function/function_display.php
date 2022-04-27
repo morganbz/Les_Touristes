@@ -80,4 +80,34 @@ function displayAskReservation($data){
 }
 
 
+function displayHousingAccount($housing){
+    $nom = $housing['nom'];
+    $latitude = $housing['latitude'];
+    $longitude = $housing['longitude'];
+    $description = $housing['description'];
+    $type = $housing['type'];
+
+    $announces = getAllAnnounceOrderByDistinct($id);
+
+    $adresse = getAddress($latitude, $longitude);
+
+    $id = $housing['id'];
+
+    echo "<div class='data_search'>";
+
+    echo "<p>Nom : " .$nom. "</p><p>Type de logement : " .$type. "</p><p>Adresse : " .$adresse. "</p><p>Description : ".$description. "</p>";
+
+    echo "<p>Periode de disponibilitées : ";
+
+    foreach ($announces as $announce){
+        echo "du ". $announce["date_start"] . " au " . $announce["date_end"];
+    }
+
+    echo "</p>";
+
+    echo "</div>";
+
+
+}
+
 ?>

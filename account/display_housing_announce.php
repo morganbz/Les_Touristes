@@ -1,22 +1,35 @@
 <?php
 
 
-$listeAnnounces  = getHousingByIdOwner($_SESSION["id_user"]);
+$listeHousing  = getHousingByIdOwner($_SESSION["id_user"]);
 
-foreach ($listeAnnounces as $announce){
-    $nom = $announce['nom'];
-    $latitude = $announce['latitude'];
-    $longitude = $announce['longitude'];
-    $description = $announce['description'];
-    $type = $announce['type'];
+foreach ($listeHousing as $housing){
+    $nom = $housing['nom'];
+    $latitude = $housing['latitude'];
+    $longitude = $housing['longitude'];
+    $description = $housing['description'];
+    $type = $housing['type'];
 
     $adresse = getAddress($latitude, $longitude);
 
-    $id = $announce['id'];
+    $id = $housing['id'];
+
+    displayHousingAccount($housing);
 
 
 ?>
 
+
+
+
+
+
+
+
+
+<?
+
+/*
 <form action="index.php" method="post" enctype= 'multipart/form-data'>
     <div>
         <label for="name_housing_announce_update">Nom</label>
@@ -144,4 +157,6 @@ foreach ($listeAnnounces as $announce){
     </form>
     <?php
 }
+?>
+*/
 ?>
