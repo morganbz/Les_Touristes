@@ -215,8 +215,8 @@
                 }   
             }
 
-            $page = "user_page";
-            $page_account = "see_announce";
+            //$page = "user_page";
+            //$page_account = "see_announce";
         }
 
         if ($submit == "modif_price") {
