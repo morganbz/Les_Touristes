@@ -94,7 +94,11 @@ $nb_images = count($images);
     </a>
 </div>
 
-<h1>TEST</h1>
+<?php
+
+    echo "<h1>".$housing["title"]."</h1>";
+
+?>
 
 
 
