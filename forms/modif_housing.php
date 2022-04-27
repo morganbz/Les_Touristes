@@ -2,6 +2,7 @@
 $id_housing = $_GET["id_housing"];
 echo $id_housing;
 $housing = getHousingById($id_housing);
+$address = getAddress($housing["latitude"], $housing["longitude"]);
 ?>
 
 <form action="index.php" method="post" enctype= 'multipart/form-data'>
@@ -29,18 +30,10 @@ $housing = getHousingById($id_housing);
         </select>
     </div>
 
-    <div>
-        <label for="latitude_housing_announce_update">Latitude</label>
-        <input placeholder="latitude" value="<?php echo $latitude;?>" type="text" name="latitude_housing_announce_update" id="latitude_housing_announce_update" required>
-    </div>
 
     <div>
-        <label for="longitude_housing_announce_update">Longitude</label>
-        <input placeholder="longitude" value="<?php echo $longitude;?>" type="text" name="longitude_housing_announce_update" id="longitude_housing_announce_update" required>
-    </div>
-
-    <div>
-        <p>Ce qui correspond à l'adresse : <?php echo $adresse;?></p> 
+        <label for="adresse_housing_announce_update">Adresse</label>
+        <input placeholder="adresse" value="<?php echo $address;?>" type="text" name="adresse_housing_announce_update" id="adresse_housing_announce_update" required>
     </div>
 
     <div>
