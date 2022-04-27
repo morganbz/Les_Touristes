@@ -117,7 +117,7 @@ function displayHousingAccount($housing){
 
         <div>
 
-            <form action="index.php" method="post" enctype= 'multipart/form-data'>
+            <form action="index.php" method="post" id="form1">
             <?php
                 echo "<input  type='hidden' name='id_housing' id='id_housing' value =".$id." >";
             ?>
@@ -127,7 +127,7 @@ function displayHousingAccount($housing){
         </div>
 
         <div>
-            <form action="index.php" method="post">
+            <form action="index.php" method="post" id="form2">
             <?php
                 echo "<input  type='hidden' name='id_housing' id='id_housing' value =".$id." >";
             ?>
