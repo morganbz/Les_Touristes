@@ -103,8 +103,8 @@ $nb_images = count($images);
         
         <section>
             <form class="bite" action="index.php" method="post">
-                <div class="form-floating w-50 bite">
-                    <input class="form-control" placeholder="Date de Naissance" type="date" name="birth_date_register" id="birth_date_register" minlenght="8" required>
+                <div class="form-floating w-50">
+                    <input class="form-control bite" placeholder="Date de Naissance" type="date" name="birth_date_register" id="birth_date_register" minlenght="8" required>
                     <label class="form-label" for="birth_date_register">Date de Naissance</label>
                 </div>
                 <br>
