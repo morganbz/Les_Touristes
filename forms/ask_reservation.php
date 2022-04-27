@@ -93,13 +93,16 @@ $nb_images = count($images);
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
     </a>
 </div>
+<div id="contener">
+    <div id="housing_description">
+        <?php
+            echo "<h1 class='bite'>".$housing["nom"]."</h1>";
+        ?>
+    </div>
+    <div id="housing_booking">
 
-<?php
-    var_dump($housing);
-    echo "<h1>".$housing["title"]."</h1>";
-
-?>
-
+    </div>
+</div>
 
 
 <!--

@@ -38,6 +38,19 @@ html, body {
     width: 50%;
     margin-left: 50%;
 }
+
+#housing_description {
+    height: calc(100% - 10% - 50px);
+    width: 50%;
+    overflow-y: scroll;
+    position: fixed;
+}
+#housing_booking {
+    height: 100%;
+    width: 50%;
+    margin-left: 50%;
+}
+
 .flex{
     flex-grow: 1;
 }
@@ -87,4 +100,8 @@ img{
 .asking_section{
     height: 100%;
     width: 100%;
+}
+
+.bite{
+    text-align: center;
 }
