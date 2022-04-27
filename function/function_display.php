@@ -105,40 +105,40 @@ function displayHousingAccount($housing){
 
     echo "<div class='data_search'>";
 
-    echo "<p>Nom : " .$nom. "</p><p>Type de logement : " .$TYPE_HOUSING[$type]. "</p><p>Adresse : " .$adresse. "</p><p>Description : ".$description. "</p>";
+        echo "<p>Nom : " .$nom. "</p><p>Type de logement : " .$TYPE_HOUSING[$type]. "</p><p>Adresse : " .$adresse. "</p><p>Description : ".$description. "</p>";
 
-    echo "<p>Periode de disponibilitées : ";
+        echo "<p>Periode de disponibilitées : ";
 
-    foreach ($announces as $announce){
-        echo "du ". $announce["date_start"] . " au " . $announce["date_end"];
-        echo "<br>";
-    }
-    ?>
+        foreach ($announces as $announce){
+            echo "du ". $announce["date_start"] . " au " . $announce["date_end"];
+            echo "<br>";
+        }
+        ?>
 
-    <div>
+        <div>
 
-    <form action="index.php" method="post">
-    <?php
-        echo "<input  type='hidden' name='id_housing' id='id_housing' value =".$id." >";
-    ?>
-        <button id="submit" name="submit" value="AskUpdateHousing" type="submit">Modifier le logement </button>
-    </form>
+            <form action="index.php" method="post" id="form1">
+            <?php
+                echo "<input  type='hidden' name='id_housing' id='id_housing' value =".$id." >";
+            ?>
+                <button id="submit1" name="submit" value="AskUpdateHousing" type="submit">Modifier le logement </button>
+            </form>
 
-    </div>
-    <div>
+        </div>
 
-    <form action="index.php" method="post">
-    <?php
-        echo "<input  type='hidden' name='id_housing' id='id_housing' value =".$id." >";
-    ?>
-        <button id="submit" name="submit" value="AskUpdateHousingAnnounces" type="submit">Modifier les periodes de disponibilités</button>
-    </form>
+        <div>
+            <form action="index.php" method="post" id="form2">
+            <?php
+                echo "<input  type='hidden' name='id_housing' id='id_housing' value =".$id." >";
+            ?>
+                <button id="submit2" name="submit" value="AskUpdateHousingAnnounces" type="submit">Modifier les periodes de disponibilités</button>
+            </form>
 
-    </div>
+        </div>
 
-    <?php
+        <?php
 
-    echo "</p>";
+        echo "</p>";
 
     echo "</div>";
 
