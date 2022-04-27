@@ -131,7 +131,8 @@ function displayHousingAccount($housing){
             <?php
                 echo "<input  type='hidden' name='id_housing' id='id_housing' value =".$id." >";
             ?>
-                <button id="submit2" name="submit" value="AskUpdateHousingAnnounces" type="submit">Modifier les periodes de disponibilités</button>
+                <input type='hidden' name='for_announce' id='for_announce' value = 1>;
+                <button id="submit2" name="submit" value="AskUpdateHousing" type="submit">Modifier les periodes de disponibilités</button>
             </form>
 
         </div>
