@@ -8,7 +8,7 @@ $housing = getHousingById($id_housing);
     <div>
         <label for="name_housing_announce_update">Nom</label>
         <?php
-        echo "<input placeholder=".$housing["nom"]."type='text' name='name_housing_announce_update' id='name_housing_announce_update' required>";
+        echo "<input value =".$housing["nom"]." type='text' name='name_housing_announce_update' id='name_housing_announce_update' required>";
         ?>
     </div>
 
