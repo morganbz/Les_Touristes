@@ -100,9 +100,8 @@ $nb_images = count($images);
         ?>
     </div>
     <div id="housing_booking">
+        
         <section>
-        
-        
             <form class="bite" action="index.php" method="post">
                 <div>
                     <?php
@@ -122,7 +121,7 @@ $nb_images = count($images);
                 echo "<input type = 'hidden' name = id_housing value =  ".$_GET['id_housing']." >";
                 ?>
         
-                <button id="submit" name="submit" value="Ask_reservation" type="submit">Reserver</button>
+                <button class="btn btn-primary btn-lg" id="submit" name="submit" value="Ask_reservation" type="submit">Reserver</button>
             </form>
         </section>
     </div>
