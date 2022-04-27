@@ -163,7 +163,7 @@ function displayHousingAccount($housing){
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
     </a>
 </div>
-<?
+<?php
 
     echo "</div>";
 
