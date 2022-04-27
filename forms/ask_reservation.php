@@ -122,7 +122,7 @@ $nb_images = count($images);
                 echo "<input type = 'hidden' name = id_housing value =  ".$_GET['id_housing']." >";
                 ?>
         
-                <button class="btn btn-primary btn-lg" id="submit" name="submit" value="Ask_reservation" type="submit">Reserver</button>
+                <button class="btn btn-primary btn-lg px-4 me-sm-3" id="submit" name="submit" value="Ask_reservation" type="submit">Reserver</button>
             </form>
         </section>
     </div>
