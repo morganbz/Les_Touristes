@@ -40,12 +40,10 @@ html, body {
 }
 
 #housing_description {
-    width: 50%;
-    background-color: blue;
+    width: 75%;
 }
 #housing_booking {
-    background-color: red;
-    width: 50%;
+    width: 25%;
 }
 
 .flex{
