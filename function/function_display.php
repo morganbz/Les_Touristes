@@ -81,6 +81,9 @@ function displayAskReservation($data){
 
 
 function displayHousingAccount($housing){
+
+    global $TYPE_HOUSING;
+
     $nom = $housing['nom'];
     $latitude = $housing['latitude'];
     $longitude = $housing['longitude'];
@@ -93,7 +96,7 @@ function displayHousingAccount($housing){
 
     echo "<div class='data_search'>";
 
-    echo "<p>Nom : " .$nom. "</p><p>Type de logement : " .$type. "</p><p>Adresse : " .$adresse. "</p><p>Description : ".$description. "</p>";
+    echo "<p>Nom : " .$nom. "</p><p>Type de logement : " .$TYPE_HOUSING[$type]. "</p><p>Adresse : " .$adresse. "</p><p>Description : ".$description. "</p>";
 
     echo "<p>Periode de disponibilitées : ";
 
