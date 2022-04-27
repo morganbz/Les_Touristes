@@ -678,7 +678,32 @@ function announceExist($id_housing, $date){
 }
 
 
+function addActivity($nom, $idtype, $pays, $lat, $long, $id_user, $desc){
+        global $base;
 
+        $nom = mysqli_real_escape_string($base, $nom);
+        $idtype = mysqli_real_escape_string($base, $idtype);
+        $pays = mysqli_real_escape_string($base, $pays);
+        $lat = mysqli_real_escape_string($base, $lat);
+        $long = mysqli_real_escape_string($base, $long);
+        $desc = mysqli_real_escape_string($base, $image);
+
+        $sql = "INSERT INTO `activity` (`type`, `latitude`, `longitude`, `country`, `name`, `descritpion`) VALUES ($idtype, $lat, $long, '$pays', '$nom', '$desc')";
+
+        mysqli_query($base, $sql);
+
+        $id_activity = mysqli_insert_id($base);
+
+        $folder = "./picture_activity/".strval($id_user)."/".strval($id_activity);
+
+        $sql = "UPDATE `activity` SET `image_folder` = '$folder' WHERE `id` = '$id_activity'";
+
+        mysqli_query($base, $sql);
+
+        return $id_activity;
+
+
+}
 
 
 

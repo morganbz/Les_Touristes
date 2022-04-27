@@ -394,6 +394,29 @@
                 $page_account = "change_password";
             }
         }
+
+
+ // ---------------- AJOUT D'ACTIVITES --------------------------------
+        if($submit == "Add_activite"){
+
+            $name = $_POST["nom_activite"];
+            $type = $_POST["type_activite"];
+            $country = $_POST["country_activite"];
+            $lat = $_POST["lat_activite"];
+            $long = $_POST["long_activite"];
+            $id_user = $_SESSION["id_user"];
+            $desc = $_POST["desc_activite"];
+
+            $id_activity = addActivity($name, $type, $country, $lat, $long, $id_user, $desc);
+
+            $folder = "./picture_activity/".strval($id_user);
+            createFolder("$folder");
+
+            $folder = $folder."/".strval($id_activity);
+            createFolder("$folder");
+
+        }
+
     } else if (!empty($_POST)&&array_key_exists("del_img", $_POST)) {
         if(isset($_POST["del_img"])){
             unlink($_POST["del_img"]);
@@ -406,5 +429,5 @@
         }
         $page = "user_page";
     }
-    
+
 ?>
