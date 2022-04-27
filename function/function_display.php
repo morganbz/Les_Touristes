@@ -86,12 +86,10 @@ function displayHousingAccount($housing){
     $longitude = $housing['longitude'];
     $description = $housing['description'];
     $type = $housing['type'];
+    $adresse = getAddress($latitude, $longitude);
+    $id = $housing['id'];
 
     $announces = getAllAnnounceOrderByDistinct($id);
-
-    $adresse = getAddress($latitude, $longitude);
-
-    $id = $housing['id'];
 
     echo "<div class='data_search'>";
 
