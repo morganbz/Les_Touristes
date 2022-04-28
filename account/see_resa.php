@@ -1,7 +1,7 @@
 <?php
 
 $id_owner = $_SESSION["id_user"];
-$housings = getHousingByIdOwner();
+$housings = getHousingByIdOwner($id_owner);
 
 ?>
 <section>
