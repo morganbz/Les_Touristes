@@ -51,7 +51,7 @@
       include_once "forms/add_housing_announce.php";
     } 
     else if ($page_account == "see_activity"){
-
+      include_once "display_activity.php";
     }
     else if ($page_account == "add_activity"){
       include_once "forms/add_activites.php";

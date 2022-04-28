@@ -197,17 +197,21 @@
 
         if($submit == "housing_announce_update"){
             $type = $_POST["type_housing"];
-            $address = $_POST["address_housing_announce_update"];
-            $coord = getCoords($address);
-            $latitude = $coord["latitude"];
-            $longitude = $coord["longitude"];
+            $city = $_POST["city_housing_announce_update"];
+            $postal_code = $_POST["postal_code_housing_announce_update"];
+            $address = $_POST["adress_housing_announce_update"];
             $name = $_POST["name_housing_announce_update"];
             $description = $_POST["description_housing_announce_update"];
             $id = $_POST["id_housing_announce_update"];
 
+            $address_activity = $postal_code." ".$city." ".$address;
+
+            $coord = getCoords($address_activity);
+            $pays = getCountry($address_activity);
+
             $dossier = "picture_housing/".strval($_SESSION["id_user"])."/".$_POST["id_housing_announce_update"];
 
-            updateHousingAnnounce($id, $name, $latitude, $longitude, $type, $description);
+            updateHousingAnnounce($id, $name, $coord["latitude"], $coord["longitude"], $type, $description);
 
             if (isset($_FILES)){
                 if ($_FILES["modification_image"]["error"] != 4){
@@ -215,8 +219,8 @@
                 }   
             }
 
-            //$page = "user_page";
-            //$page_account = "see_announce";
+            $page = "user_page";
+            $page_account = "see_announce";
         }
 
         if ($submit == "modif_price") {
@@ -266,6 +270,10 @@
             $mail = $_POST["mail_user"];
             $password = $_POST["password"];
             $back_page = $_POST["back_page"];
+
+            if ($back_page == "register"){
+                $back_page = "user_page";
+            }
 
             $user = getUser($mail);
             $errors = [];
@@ -396,23 +404,6 @@
                 $page_account = "change_password";
             }
         }
-// ----------- MAJ LOGEMENTS -------------------------------
-        if($submit = "AskUpdateHousing"){
-            $id_housing = $_POST["id_housing"];
-            if(isset($_POST["for_announce"])){
-                $url = getURL()."?page=update_housing_announces&id_housing=".$id_housing;
-            }
-            else{
-                $url = getURL()."?page=update_housing&id_housing=".$id_housing;
-            }
-            header('Location: '.$url.'');
-        }
-        /*if($submit = "AskUpdateHousingAnnounces"){
-            $id_housing = $_POST["id_housing"];
-            $url = getURL()."?page=update_housing_announces&id_housing=".$id_housing;   
-            header('Location: '.$url.'');
-        }*/
-        
 
 
  // ---------------- AJOUT D'ACTIVITES --------------------------------
@@ -420,13 +411,18 @@
 
             $name = $_POST["nom_activite"];
             $type = $_POST["type_activite"];
-            $country = $_POST["country_activite"];
-            $lat = $_POST["lat_activite"];
-            $long = $_POST["long_activite"];
+            $address = $_POST["adress_activite"];
+            $postal_code = $_POST["post_activite"];
+            $city = $_POST["city_activite"];
             $id_user = $_SESSION["id_user"];
             $desc = $_POST["desc_activite"];
 
-            $id_activity = addActivity($name, $type, $country, $lat, $long, $id_user, $desc);
+            $address_activity = $postal_code." ".$city." ".$address;
+
+            $coord = getCoords($address_activity);
+            $country = getCountry($address_activity);
+
+            $id_activity = addActivity($name, $type, $country, $coord["latitude"], $coord["longitude"], $id_user, $desc);
 
             $folder = "./picture_activity/".strval($id_user);
             createFolder("$folder");
@@ -434,7 +430,39 @@
             $folder = $folder."/".strval($id_activity);
             createFolder("$folder");
 
+            $page = "user_page";
+            $page_account = "see_activity";
         }
+             // ---------------- MODIFICATION ACTIVITE --------------------------------
+
+        if($submit == "activity_update"){
+            $type = $_POST["type_activity"];
+            $city = $_POST["city_activity_update"];
+            $postal_code = $_POST["postal_code_activity_update"];
+            $address = $_POST["adress_activity_update"];
+            $name = $_POST["name_activity_update"];
+            $description = $_POST["description_activity_update"];
+            $id = $_POST["id_activity_update"];
+
+            $address_activity = $postal_code." ".$city." ".$address;
+
+            $coord = getCoords($address_activity);
+            $pays = getCountry($address_activity);
+
+            $dossier = "picture_activity/".strval($_SESSION["id_user"])."/".$id;
+
+            updateActivity($id, $name, $type, $pays, $coord["latitude"], $coord["longitude"],  $description);
+
+            if (isset($_FILES)){
+                if ($_FILES["modification_image"]["error"] != 4){
+                    uploadImg($dossier, "modification_image");
+                }   
+            }
+
+            $page = "user_page";
+            $page_account = "see_activity";
+        }
+
 
     } else if (!empty($_POST)&&array_key_exists("del_img", $_POST)) {
         if(isset($_POST["del_img"])){
@@ -448,5 +476,4 @@
         }
         $page = "user_page";
     }
-
 ?>

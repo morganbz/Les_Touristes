@@ -1,23 +1,153 @@
 <?php
 
 
-$listeHousing  = getHousingByIdOwner($_SESSION["id_user"]);
+$listeAnnounces  = getHousingByIdOwner($_SESSION["id_user"]);
 
-foreach ($listeHousing as $housing){
-    $nom = $housing['nom'];
-    $latitude = $housing['latitude'];
-    $longitude = $housing['longitude'];
-    $description = $housing['description'];
-    $type = $housing['type'];
+foreach ($listeAnnounces as $announce){
+    $nom = $announce['nom'];
+    $latitude = $announce['latitude'];
+    $longitude = $announce['longitude'];
+    $description = $announce['description'];
+    $type = $announce['type'];
 
-    $adresse = getAddress($latitude, $longitude);
+    $adress_all = explode("," ,getAddress($latitude, $longitude));
 
-    $id = $housing['id'];
+    $adress = $adress_all[0];
+    $city_all = $adress_all[1];
+    $postal_code = explode(" ", $city_all)[1];
+    $city = explode(" ", $city_all)[2];
 
-    displayHousingAccount($housing);
+    $id = $announce['id'];
 
-}
+
 ?>
 
+<form action="index.php" method="post" enctype= 'multipart/form-data'>
+    <div>
+        <label for="name_housing_announce_update">Nom</label>
+        <input placeholder="Nom de l'annonce" value="<?php echo $nom;?>" type="text" name="name_housing_announce_update" id="name_housing_announce_update" required>
+    </div>
 
+    <div>
+        <label for="type_housing">Type de logement</label>
+        <select name="type_housing" id="type_housing">
+            <?php
+                $indice = 0;
+                foreach($TYPE_HOUSING as $type){
+                    if($type == $indice){
+                        echo "\n<option value=$indice selected>$type</option>";
+                    } else {
+                        echo "\n<option value=$indice>$type</option>";
+                    }
+                    $indice++;
+                }
+            ?>
+        </select>
+    </div>
 
+    <div>
+        <label for="adress_housing_announce_update">Adresse</label>
+        <input placeholder="Adresse" value="<?php echo $adress;?>" type="text" name="adress_housing_announce_update" id="adress_housing_announce_update" required>
+    </div>
+
+    <div>
+        <label for="postal_code_housing_announce_update">Code postal</label>
+        <input placeholder="Code postal" value="<?php echo $postal_code;?>" type="text" name="postal_code_housing_announce_update" id="postal_code_housing_announce_update" required>
+    </div>
+
+    <div>
+        <label for="city_housing_announce_update">Ville</label>
+        <input placeholder="Ville" value="<?php echo $city;?>" type="text" name="city_housing_announce_update" id="city_housing_announce_update" required>
+    </div>
+
+    <div>
+        <label for="description_housing_announce_update">Description</label>
+        <textarea placeholder="Description" name="description_housing_announce_update" id="description_housing_announce_update"><?php echo $description;?></textarea>
+    </div>
+
+    <div>
+        <label for='modification_image'>Image :</label>
+        <input type='file' name='modification_image' id='modification_image'>
+    </div>
+
+    <input value="<?php echo $id;?>" type="hidden" name="id_housing_announce_update" id="id_housing_announce_update">
+
+    <button id="submit" name="submit" value="housing_announce_update" type="submit">Mettre à jour</button>
+
+</form>
+<?php
+    $cheminImg = $announce["image_folder"];
+
+    if (isset ($cheminImg)){
+        $images = scandir($cheminImg);
+        foreach($images as $image){
+            if ($image != "." && $image != ".."){
+                $imgLink = $cheminImg."/".$image;
+                echo "<img src='".$imgLink."' alt='".$nom."'/>";
+                ?>
+                <form action="index.php" method="post">
+                    <button id="del_img" name="del_img" value="<?php echo $imgLink;?>" type = "submit">Supprimer</button>
+                </form>
+                <?php
+            }
+        }
+    }
+    
+    if (isset($_SESSION["errors_modification_image"])){
+        echo "<p class='error'>Erreurs sur l'ajout d'image :</p>";
+        echo "<ul>";
+        foreach($_SESSION["errors_modification_image"] as $error_upload_img)
+            echo "<li class='error'>$error_upload_img</li>";
+        echo "</ul>";
+    }
+
+    $infos = getAnnounceByIdHousing($id);
+    foreach ($infos as $reservation){
+       $prix = $reservation['price'];
+       $date = $reservation['date_start'];
+       $taken = $reservation['isTaken'];
+       $idAnnonce = $reservation['id'];
+
+       if ($taken == 0) {
+           $dispo = "disponible";
+       } else {
+           $dispo = "indisponible";
+       }
+
+       ?> 
+       <p><?php echo $date;?></p>
+       <p><?php echo $dispo;?></p>
+       <form action="index.php" method="post">
+            <div>
+                <label for="price_announce_update">Prix</label>
+                <input placeholder="prix" value="<?php echo $prix;?>" type="int" name="prix_announce_update" id="prix_announce_update" required>
+            </div>
+
+            <input value="<?php echo $idAnnonce;?>" type="hidden" name="id_announce_update" id="id_announce_update">
+
+            <button id="submit" name="submit" value="modif_price" type = "submit">Modifier le prix</button>
+
+            <button id="submit" name="submit" value="del_announce" type = "submit">Supprimer cette date</button>
+        </form>
+
+    <?php
+    }
+    ?>
+    <form action="index.php" method="post">
+        <div>
+            <label for="price_date">Prix de la nuit</label>
+            <input placeholder="Prix de la nuit" type="int" name="price_date" id="price_date" required>
+        </div>
+
+        <div>
+            <label for="date_start_date">Date de l'annonce</label>
+            <input placeholder="Date de l'annonce" type="date" name="date_start_date" id="date_start_date" required>
+        </div>
+
+        <input value="<?php echo $id;?>" type="hidden" name="id_housing_announce" id="id_housing_announce">
+
+        <button id="submit" name="submit" value="Add_date" type="submit">Ajouter la date</button>
+    </form>
+    <?php
+}
+?>
