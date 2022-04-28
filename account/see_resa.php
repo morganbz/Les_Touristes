@@ -21,7 +21,7 @@ $housings = getHousingByIdOwner($id_owner);
                 <div class="d-flex justify-content-end">
                 
                 <?php
-                echo "<a class='btn btn-primary' href='?page=?page=user_page&page_account=see_ask_resa&id_housing=".$housing['id']."' role='button'>Voir demande de reservation</a>"
+                echo "<a class='btn btn-primary' href='?page=user_page&page_account=see_ask_resa&id_housing=".$housing['id']."' role='button'>Voir demande de reservation</a>"
                 ?>
                 </div>
                 <?php
