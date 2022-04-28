@@ -10,7 +10,7 @@ $housings = getHousingByIdOwner($id_owner);
         ?>
 
         <div>
-            <h1>><?php echo $housing["nom"] ?></h1>
+            <h1><?php echo $housing["nom"]; ?></h1>
 
         </div>
 
