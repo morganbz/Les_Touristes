@@ -10,8 +10,19 @@ $housings = getHousingByIdOwner($id_owner);
         
 
         ?>
-        <div class="d-flex justify-content-center"> <p>Nom de l'appartement : <?php echo $housing["nom"]; ?></p> </div>
-        <div class="d-flex justify-content-end">...</div>
+        <div class="d-flex justify-content-center"> <h6><?php echo $housing["nom"]; ?></h6> </div>
+
+        <?php
+        if(hasAskBooking($housing["id"])){
+            ?>
+            <div class="d-flex justify-content-end">
+            <a class="btn btn-primary" href="?page=home" role="button">Voir demande de reservation</a>
+            </div>
+            <?php
+
+        }
+        ?>
+
         <div>
             <?php
             if(hasBooking($housing["id"])){
