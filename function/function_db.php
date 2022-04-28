@@ -485,6 +485,30 @@ function hasAskBooking($id_housing){
 
 }
 
+function getAllBookByIdHousing($id_housing){
+        $announces = [];
+        global $base;
+        $sql = "SELECT 
+                MAX(date_start) AS date_end,
+                MIN(date_start) AS date_start,
+                reservation.id_user AS id_user
+                
+                FROM `announce` 
+                INNER JOIN reservation ON announce.id = reservation.id_announce
+                WHERE isTaken = 1 AND id_housing = $id_housing 
+                GROUP BY nb_for_housing, reservation.id_user
+                ORDER BY date_start";
+
+        $result_sql = mysqli_query($base, $sql);
+
+        while($row = mysqli_fetch_assoc($result_sql)){
+                array_push($announces, $row);
+        }
+        return $announces;
+
+
+}
+
 function hasBooking($id_housing){
         global $base;
         $sql = "SELECT announce.id
