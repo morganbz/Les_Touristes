@@ -115,7 +115,7 @@ function displayHousingAccount($housing){
         }
         ?>
 
-        <div>
+        <div class="d-flex justify-content-around">
 
             <form action="index.php" method="post" id="form1">
             <?php
@@ -124,9 +124,6 @@ function displayHousingAccount($housing){
                 <button class="btn btn-primary" id="submit1" name="submit" value="AskUpdateHousing" type="submit">Modifier le logement </button>
             </form>
 
-        </div>
-
-        <div>
             <form action="index.php" method="post" id="form2">
             <?php
                 echo "<input  type='hidden' name='id_housing' id='id_housing' value =".$id." >";
