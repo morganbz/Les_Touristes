@@ -580,9 +580,10 @@ function bookAnnounce($id_announce, $id_customer){
         echo $sql;
         $result = mysqli_query($base, $sql);
 
-        $sql = "UPDATE `reservation` SET `accepted`=1 WHERE id_user = $id_customer AND id_announce = $id_announce
+        $sql = "UPDATE `reservation` SET `accepted` = 1 WHERE id_user = $id_customer AND id_announce = $id_announce
         ";
         echo $sql;
+        var_dump($sql);
         $result = mysqli_query($base, $sql);
 
         $sql = "DELETE FROM `reservation` WHERE id_user != $id_customer AND id_announce = $id_announce
