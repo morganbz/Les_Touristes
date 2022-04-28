@@ -2,17 +2,17 @@
   if (isset($_SESSION["id_user"])){
 ?>
 
-<nav class="user_page_nav">
-  <ul>
-    <li><a href="?page=user_page&page_account=change_info">Modifier mes informations</a></li>
-    <li><a href="?page=user_page&page_account=change_password">Modifier mon mot de passe</a></li>
-    <li><a href="?page=user_page&page_account=see_recommandation">Voir mes recommandations</a></li>
-    <li><a href="?page=user_page&page_account=add_recommandation">Ajouter une recommandation</a></li>
-    <li><a href="?page=user_page&page_account=see_announce">Voir mes logements</a></li>
-    <li><a href="?page=user_page&page_account=see_asking">Voir mes demandes de reservation</a></li>
-    <li><a href="?page=user_page&page_account=add_announce">Ajouter un logement</a></li>
-    <li><a href="?page=user_page&page_account=see_activity">Voir mes activités</a></li>
-    <li><a href="?page=user_page&page_account=add_activity">Ajouter une activité</a></li>
+<nav class="navbar top-0 w-100 navbar-dark navbar-expand-sm bg-dark justify-content-center">
+  <ul class="navbar-nav">
+    <li class="nav-item active"><a class="nav-link" href="?page=user_page&page_account=change_info">Modifier mes informations</a></li>
+    <li class="nav-item active"><a class="nav-link" href="?page=user_page&page_account=change_password">Modifier mon mot de passe</a></li>
+    <li class="nav-item active"><a class="nav-link" href="?page=user_page&page_account=see_recommandation">Voir mes recommandations</a></li>
+    <li class="nav-item active"><a class="nav-link" href="?page=user_page&page_account=add_recommandation">Ajouter une recommandation</a></li>
+    <li class="nav-item active"><a class="nav-link" href="?page=user_page&page_account=see_announce">Voir mes logements</a></li>
+    <li class="nav-item active"><a class="nav-link" href="?page=user_page&page_account=see_asking">Voir mes demandes de reservation</a></li>
+    <li class="nav-item active"><a class="nav-link" href="?page=user_page&page_account=add_announce">Ajouter un logement</a></li>
+    <li class="nav-item active"><a class="nav-link" href="?page=user_page&page_account=see_activity">Voir mes activités</a></li>
+    <li class="nav-item active"><a class="nav-link" href="?page=user_page&page_account=add_activity">Ajouter une activité</a></li>
   </ul>
 </nav>
 
