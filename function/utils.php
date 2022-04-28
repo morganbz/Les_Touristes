@@ -84,7 +84,6 @@ function getCountry($address){
     $address = str_replace(" ", "", $address);
     $json = file_get_contents("https://maps.google.com/maps/api/geocode/json?address=$address&key=AIzaSyD6q4hVJGUioenp17tQTqiCS9dLDWbgATw&sensor=false");
     $json = json_decode($json);
-
     $cpt = 0;
     $trouve = false;
     $res = "not_found";
@@ -98,6 +97,94 @@ function getCountry($address){
         }
         $cpt++;
     }
+    return $res;
+}
+
+function getNumber($address){
+    $address = str_replace(" ", "", $address);
+    $json = file_get_contents("https://maps.google.com/maps/api/geocode/json?address=$address&key=AIzaSyD6q4hVJGUioenp17tQTqiCS9dLDWbgATw&sensor=false");
+    $json = json_decode($json);
+    $cpt = 0;
+    $trouve = false;
+    $res = "not_found";
+
+    $add_comp = $json->{'results'}[0]->{'address_components'};
+
+    while($cpt < count($add_comp) && !$trouve){
+        if($add_comp[$cpt]->{'types'}[0] == "street_number"){
+            $trouve = true;
+            $res = $add_comp[$cpt]->{'long_name'};
+        }
+        $cpt++;
+    }
+
+    return $res;
+}
+
+function getRoute($address){
+    $address = str_replace(" ", "", $address);
+    $json = file_get_contents("https://maps.google.com/maps/api/geocode/json?address=$address&key=AIzaSyD6q4hVJGUioenp17tQTqiCS9dLDWbgATw&sensor=false");
+    $json = json_decode($json);
+    $cpt = 0;
+    $trouve = false;
+    $res = "not_found";
+
+    $add_comp = $json->{'results'}[0]->{'address_components'};
+
+    while($cpt < count($add_comp) && !$trouve){
+        if($add_comp[$cpt]->{'types'}[0] == "route"){
+            $trouve = true;
+            $res = $add_comp[$cpt]->{'long_name'};
+        }
+        $cpt++;
+    }
+
+    return $res;
+}
+
+function getRouteAndNumber($address){
+    return getNumber($address)." ".getRoute($address);
+}
+
+function getPostalCode($address){
+    $address = str_replace(" ", "", $address);
+    $json = file_get_contents("https://maps.google.com/maps/api/geocode/json?address=$address&key=AIzaSyD6q4hVJGUioenp17tQTqiCS9dLDWbgATw&sensor=false");
+    $json = json_decode($json);
+    $cpt = 0;
+    $trouve = false;
+    $res = "not_found";
+
+    $add_comp = $json->{'results'}[0]->{'address_components'};
+
+    while($cpt < count($add_comp) && !$trouve){
+        if($add_comp[$cpt]->{'types'}[0] == "postal_code"){
+            $trouve = true;
+            $res = $add_comp[$cpt]->{'long_name'};
+        }
+        $cpt++;
+    }
+
+    return $res;
+}
+
+function getCity($address){
+    $address = str_replace(" ", "", $address);
+    $json = file_get_contents("https://maps.google.com/maps/api/geocode/json?address=$address&key=AIzaSyD6q4hVJGUioenp17tQTqiCS9dLDWbgATw&sensor=false");
+    $json = json_decode($json);
+    $cpt = 0;
+    $trouve = false;
+    $res = "not_found";
+
+    $add_comp = $json->{'results'}[0]->{'address_components'};
+
+    while($cpt < count($add_comp) && !$trouve){
+        if($add_comp[$cpt]->{'types'}[0] == "locality"){
+            $trouve = true;
+            $res = $add_comp[$cpt]->{'long_name'};
+        }
+        $cpt++;
+    }
+
     return $res;
 }
 
