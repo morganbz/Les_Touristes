@@ -11,7 +11,7 @@ if (isset($_SESSION["errors_update_activity"])){
 $listeActivity  = getActivityByIdOwner($_SESSION["id_user"]);
 
 foreach ($listeActivity as $activity){
-    $nom = $activity['name'];
+    $nom = $activity['nom'];
     $latitude = $activity['latitude'];
     $longitude = $activity['longitude'];
     $description = $activity['description'];
