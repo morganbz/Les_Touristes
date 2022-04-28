@@ -11,6 +11,8 @@
     <li class="nav-item active"><a class="nav-link" href="?page=user_page&page_account=see_announce">Voir mes logements</a></li>
     <li class="nav-item active"><a class="nav-link" href="?page=user_page&page_account=see_asking">Voir mes demandes de reservation</a></li>
     <li class="nav-item active"><a class="nav-link" href="?page=user_page&page_account=add_announce">Ajouter un logement</a></li>
+    <li class="nav-item active"><a class="nav-link" href="?page=user_page&page_account=see_ask_resa">Voir les demandes de réservations</a></li>
+    <li class="nav-item active"><a class="nav-link" href="?page=user_page&page_account=see_resa">Voir les réservations</a></li>
     <li class="nav-item active"><a class="nav-link" href="?page=user_page&page_account=see_activity">Voir mes activités</a></li>
     <li class="nav-item active"><a class="nav-link" href="?page=user_page&page_account=add_activity">Ajouter une activité</a></li>
   </ul>
@@ -55,6 +57,13 @@
     }
     else if ($page_account == "add_activity"){
       include_once "forms/add_activites.php";
-    }  
+    }
+    else if ($page_account == "see_ask_resa"){
+      include_once "account/see_ask_resa.php";
+    }
+    else if ($page_account == "see_resa"){
+      include_once "account/see_resa.php";
+
+    }
 }
 ?>
