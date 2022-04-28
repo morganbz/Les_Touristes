@@ -95,6 +95,7 @@ $nb_images = count($images);
 </div>
 <div id="contener">
     <div id="housing_description">
+        <br>
         <?php
             echo "<h1 class='bite'>".$housing["nom"]."</h1>";
             echo "<p>".$housing["description"]."</p>";
