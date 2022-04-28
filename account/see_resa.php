@@ -37,7 +37,7 @@ $housings = getHousingByIdOwner($id_owner);
                                 <th scope="row"><?php echo $cpt; ?></th>
                                 <td><?php echo $reservation["date_start"]; ?></td>
                                 <td><?php echo $reservation["date_end"]; ?></td>
-                                <td><?php echo $user["user.mail"]; ?></td>
+                                <td><?php echo $user["mail"]; ?></td>
                             </tr>
                           <?php
                           $cpt++;
