@@ -37,7 +37,15 @@ $cpt = 0;
                 <td><?php echo $user["mail"]; ?></td>
                 <td>50</td>
                 <td>
-                    
+                    <form action="index.php" method="post" id="form1">
+                    <?php
+                        echo "<input  type='hidden' name='id_housing' id='id_housing' value =".$id_housing." >";
+                        echo "<input  type='hidden' name='id_user' id='id_user' value =".$demand['id_user']." >";
+                        echo "<input  type='hidden' name='date_start' id='date_start' value =".$demand['date_start']." >";
+                        echo "<input  type='hidden' name='date_end' id='date_end' value =".$demand['date_end']." >";
+                    ?>
+                        <button class="btn btn-primary" id="submit1" name="submit" value="BookHousing" type="submit">Accepter </button>
+                    </form>
                 </td>
             </tr>
             <?php
