@@ -465,11 +465,40 @@ function alreadyBookAnnounce($id_announce, $id_customer){
         return $res;
 }
 
+function hasAskBooking($id_housing){
+        global $base;
+        $res = false;
+        $cpt = 0;
+        $announces = getAnnounceByIdHousing($id_housing);
+        while( !$res && $cpt < count($announces)){
+                $sql = "SELECT * FROM `reservation` 
+                        INNER JOIN announce ON announce.id = reservation.id_announce
+                        WHERE accepted = 0 AND announce.id =".$announces[$cpt]['id'];
+
+                $result = mysqli_query($base, $sql);
+                if(mysqli_fetch_assoc($result) != null){
+                        $res = true;
+                }
+                $cpt++;
+        }
+        return $res;
+
+}
+
+function hasBooking($id_housing){
+        global $base;
+        $sql = "SELECT announce.id
+        FROM announce JOIN housing ON housing.id = announce.id_housing
+        WHERE isTaken = 1";
+
+        $result = mysqli_query($base, $sql);
+        return mysqli_fetch_assoc($result) != null;
+}
+
 function alreadyBookPeriod($id_housing, $id_customer, $date_start, $date_end){
         global $base;
 
         $res = false;
-        $test = "BITE";
 
         $sql = "SELECT housing.id AS id_housing,
 	`id_owner`,
