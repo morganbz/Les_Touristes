@@ -107,7 +107,7 @@ function displayHousingAccount($housing){
 
         echo "<p>Nom : " .$nom. "</p><p>Type de logement : " .$TYPE_HOUSING[$type]. "</p><p>Adresse : " .$adresse. "</p><p>Description : ".$description. "</p>";
 
-        echo "<p>Periode de disponibilitées : ";
+        echo "<p>Periode de disponibilités : ";
 
         foreach ($announces as $announce){
             echo "du ". $announce["date_start"] . " au " . $announce["date_end"];
