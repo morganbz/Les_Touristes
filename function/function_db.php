@@ -492,7 +492,7 @@ function hasBooking($id_housing){
         WHERE isTaken = 1";
 
         $result = mysqli_query($base, $sql);
-        return mysqli_fetch_assoc($result) != null;
+        return isset(mysqli_fetch_assoc($result)["id"]);
 }
 
 function alreadyBookPeriod($id_housing, $id_customer, $date_start, $date_end){
