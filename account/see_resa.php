@@ -31,12 +31,13 @@ $housings = getHousingByIdOwner($id_owner);
                     <tbody>
                         <?php
                         foreach($reservations as $reservation){
+                            $user = getUserById($reservation["id_user"]);
                             ?>
                             <tr>
                                 <th scope="row"><?php echo $cpt; ?></th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
+                                <td><?php echo $reservation["date_start"]; ?></td>
+                                <td><?php echo $reservation["date_end"]; ?></td>
+                                <td><?php echo $user["user.mail"]; ?></td>
                             </tr>
                           <?php
                           $cpt++;
