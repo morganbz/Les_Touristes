@@ -97,7 +97,7 @@ $nb_images = count($images);
     <div id="housing_description">
         <br>
         <?php
-        var_dump($housing);
+        echo getAddress($housing["latitude"], $housing["longitude"]);
             echo "<h1 class='bite'>".$housing["nom"]."</h1>";
             echo "<p>".$housing["description"]."</p>";
         ?>
