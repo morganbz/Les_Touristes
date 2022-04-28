@@ -7,11 +7,18 @@ $housings = getHousingByIdOwner($id_owner);
 <section>
 <?php
     foreach($housings as $housing){
+        
 
         ?>
+        <div class="d-flex justify-content-start">...</div>
+<div class="d-flex justify-content-end">...</div>
+<div class="d-flex justify-content-center">...</div>
+<div class="d-flex justify-content-between">...</div>
+<div class="d-flex justify-content-around">...</div>
+<div class="d-flex justify-content-evenly">...</div>
 
         <div>
-            <h5><?php echo $housing["nom"]; ?></h5>
+            <p>Nom de l'appartement : <?php echo $housing["nom"]; ?></p>
 
             <?php
             if(hasBooking($housing["id"])){
@@ -45,7 +52,7 @@ $housings = getHousingByIdOwner($id_owner);
                         ?>
                     </tbody>
                 </table>
-                ><?php
+                <?php
 
             }
             else{
