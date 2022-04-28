@@ -489,7 +489,7 @@ function hasBooking($id_housing){
         global $base;
         $sql = "SELECT announce.id
         FROM announce JOIN housing ON housing.id = announce.id_housing
-        WHERE isTaken = 1";
+        WHERE isTaken = 1 AND housing.id = $id_housing";
 
         $result = mysqli_query($base, $sql);
         return isset(mysqli_fetch_assoc($result)["id"]);
