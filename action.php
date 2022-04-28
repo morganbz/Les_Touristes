@@ -407,7 +407,7 @@
         }
 
         // ----------- MAJ LOGEMENTS -------------------------------
-        if($submit = "AskUpdateHousing"){
+        if($submit == "AskUpdateHousing"){
             $id_housing = $_POST["id_housing"];
             if(isset($_POST["for_announce"])){
                 $url = getURL()."?page=update_housing_announces&id_housing=".$id_housing;
