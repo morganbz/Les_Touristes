@@ -418,7 +418,21 @@
             header('Location: '.$url.'');
         }
 
+//--------------------- RESERVATION LOGEMENT ---------------------------------
+        if($submit == "BookHousing"){
 
+            $id_housing = $_POST["id_housing"];
+            $id_user = $_POST["id_user"];
+            $date_start = $_POST["date_start"];
+            $date_end = $_POST["date_end"];
+
+            bookHousingPeriod($id_housing, $id_customer, $date_start, $date_end);
+
+            $url = getURL()."?page=user_page&page_account=see_resa";
+            header('Location: '.$url.'');
+
+
+        }
 
  // ---------------- AJOUT D'ACTIVITES --------------------------------
         if($submit == "Add_activite"){
