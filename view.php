@@ -50,7 +50,7 @@
 
             <?php
             if ($page == "home"){
-                
+                include_once "home.php";
             }
             else if ($page == "recherche_activitee"){
                 include_once "test_calendar.php";
