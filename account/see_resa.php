@@ -7,10 +7,20 @@ $housings = getHousingByIdOwner($id_owner);
 <section>
 <?php
     foreach($housings as $housing){
+
         ?>
 
         <div>
             <h5><?php echo $housing["nom"]; ?></h5>
+
+            <?php
+            if(hasBooking($housing["id"])){
+                echo "resa";
+            }
+            else{
+                echo "pas resa";
+            }
+            ?>
 
         </div>
 
