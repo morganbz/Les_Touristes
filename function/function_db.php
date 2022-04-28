@@ -453,6 +453,33 @@ function getAllBookAskByIdOwner($id_owner){
 
 }
 
+function getAllBookAskByIdHousing($id_housing){
+
+        $demands = [];
+
+        global $base;
+        $sql = "SELECT housing.id AS id_housing,
+	`id_owner`,
+        MIN(date_start) AS date_start,
+        MAX(date_start) AS date_end,
+        price * COUNT(reservation.id) AS price,
+        reservation.id_user AS id_user,
+        COUNT(housing.id) AS nb_day,
+        price AS price_by_night
+        FROM housing INNER JOIN announce ON housing.id = announce.id_housing
+        			INNER JOIN reservation ON announce.id = reservation.id_announce
+
+                WHERE id_housing = 120 AND accepted = 0
+                GROUP BY announce.nb_for_housing, reservation.id_user";
+
+        $result = mysqli_query($base, $sql);
+        while($row = mysqli_fetch_assoc($result)){
+                array_push($demands, $row);
+        }
+
+        return $demands;
+}
+
 function alreadyBookAnnounce($id_announce, $id_customer){
         $res = false;
         global $base;
