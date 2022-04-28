@@ -584,8 +584,6 @@ function get_average($id_rated, $is_for_housing){
         $sql = "SELECT rate FROM rate WHERE id_rated = $id_rated AND is_for_housing = $is_for_housing";
         
         $results =  mysqli_query($base, $sql);
-        var_dump(mysqli_error($base));
-        var_dump($sql);
 
         $nb_rates = mysqli_num_rows($results);
 
