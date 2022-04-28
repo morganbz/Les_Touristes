@@ -640,7 +640,7 @@ function getAllAnnounceOrderByDistinct($id_housing){
         $result = [];
 
         $sql = "SELECT `id`, `price`, MIN(date_start) AS date_start, MAX(date_start) AS date_end FROM `announce` 
-        WHERE id_housing = 120 GROUP BY nb_for_housing";
+        WHERE id_housing = $id_housing GROUP BY nb_for_housing";
         $announces = mysqli_query($base, $sql);
 
         while($row = mysqli_fetch_assoc($announces)){
