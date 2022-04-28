@@ -220,8 +220,8 @@
                 }   
             }
 
-            $url = "http://os-vps418.infomaniak.ch:1180/l2_info_10/Les_Touristes/index.php?page=user_page&page_account=see_announce";
-            header('Location: '.$url.'');
+            $url = getURL()."?page=user_page&page_account=see_announce";
+            header("Location: ".$url);
         }
 
         if ($submit == "modif_price") {
