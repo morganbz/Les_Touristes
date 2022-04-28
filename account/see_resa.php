@@ -11,16 +11,18 @@ $housings = getHousingByIdOwner($id_owner);
         $hasAskBook = hasAskBooking($housing["id"]);
 
         if($hasBook || $hasAskBook){
-        
 
             ?>
-            <div class="d-flex justify-content-center"> <h6><?php echo $housing["nom"]; ?></h6> </div>
+            <div class="d-flex justify-content-center"> <h4><?php echo $housing["nom"]; ?></h4> </div>
 
             <?php
             if($hasAskBook){
                 ?>
                 <div class="d-flex justify-content-end">
-                <a class="btn btn-primary" href="?page=home" role="button">Voir demande de reservation</a>
+                
+                <?php
+                echo "<a class='btn btn-primary' href='?page=?page=user_page&page_account=see_ask_resa&id_housing=".$housing['id']."' role='button'>Voir demande de reservation</a>"
+                ?>
                 </div>
                 <?php
 
