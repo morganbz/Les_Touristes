@@ -35,7 +35,7 @@ $housings = getHousingByIdOwner($id_owner);
                 <?php
                 if($hasBook){
                     $reservations = getAllBookByIdHousing($housing["id"]);
-                    $cpt = 0;
+                    $cpt = 1;
 
                     ?>
                     <table class="table">

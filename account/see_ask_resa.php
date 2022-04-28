@@ -5,7 +5,7 @@ $id_housing = $_GET["id_housing"];
 $housing = getHousingById($id_housing);
 
 $demands = getAllBookAskByIdHousing($id_housing);
-$cpt = 0;
+$cpt = 1;
 
 ?>
 
@@ -49,6 +49,7 @@ $cpt = 0;
                 </td>
             </tr>
             <?php
+            $cpt++;
         }
 
         ?>
