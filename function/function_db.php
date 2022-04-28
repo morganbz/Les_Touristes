@@ -593,7 +593,13 @@ function get_average($id_rated, $is_for_housing){
                 $som_rates += $row['rate'];
         }
 
-        return $som_rates / $nb_rates;
+        if ($nb_rates == 0){
+                $average = 0;
+        } else {
+                $average = $som_rates / $nb_rates;
+        }
+
+        return $average;
 }
 
 function addRating($id_rated, $id_rater, $rate, $title, $message, $is_housing){
@@ -734,6 +740,21 @@ function getActivityByIdOwner($id){
         return $activity;       
 }
 
+function getActivityById($id){
+        global $base;
+
+        $activity = [];
+
+        $sql = "SELECT id_activity, type, latitude, longitude, country, name, description, image_folder
+                FROM activity
+                WHERE id_activity = $id";
+        $result = mysqli_query($base, $sql);
+
+        $activity = mysqli_fetch_assoc($result);
+
+        return $activity;       
+}
+
 function updateActivity($id, $nom, $idtype, $pays, $lat, $long, $desc){
         global $base;
 
@@ -756,5 +777,36 @@ function updateActivity($id, $nom, $idtype, $pays, $lat, $long, $desc){
         }
 }
 
+function getAllHousingID(){
+        global $base;
+
+        $sql = "SELECT id FROM housing";
+
+        $results = mysqli_query($base, $sql);
+
+        $ids = Array();
+
+        while ($row = mysqli_fetch_assoc($results)){
+                $ids[] = $row["id"];
+        }
+
+        return $ids;
+}
+
+function getAllActivityID(){
+        global $base;
+
+        $sql = "SELECT id_activity FROM activity";
+
+        $results = mysqli_query($base, $sql);
+
+        $ids = Array();
+
+        while ($row = mysqli_fetch_assoc($results)){
+                $ids[] = $row["id_activity"];
+        }
+
+        return $ids;
+}
 
 ?>

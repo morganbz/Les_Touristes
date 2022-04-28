@@ -188,4 +188,45 @@ function getCity($address){
     return $res;
 }
 
+
+function getFiveBestAnnounces(){
+    $ids_housing = getAllHousingID();
+
+    $averages = Array();
+    
+    foreach ($ids_housing as $id_housing){
+        $average["id"] = $id_housing;
+        $average["is_housing"] = true;
+        $average["average"] = get_average($id_housing, 1);
+
+        $averages[] = $average;
+    }
+
+    $ids_activity = getAllActivityID();
+
+    foreach ($ids_activity as $id_activity){
+        $average["id"] = $id_activity;
+        $average["is_housing"] = false;
+        $average["average"] = get_average($id_activity, 0);
+
+        $averages[] = $average;
+    }
+
+    $average_not_sort = array();
+
+    foreach($averages as $key => $row){
+        $average_not_sort[$key] = $row["average"];
+        
+    }
+    array_multisort($average_not_sort, SORT_DESC, $averages);
+
+    $FiveBest = array();
+
+    for($i=0; $i<5; $i++){
+        $FiveBest[] = $averages[$i];
+    }
+
+    return $FiveBest;
+}
+
 ?>
