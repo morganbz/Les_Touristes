@@ -219,8 +219,8 @@
                 }   
             }
 
-            $page = "user_page";
-            $page_account = "see_announce";
+            $url = getURL()."?page=user_page&page_account=see_announce";
+            header('Location: '.$url.'');
         }
 
         if ($submit == "modif_price") {
