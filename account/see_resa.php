@@ -20,6 +20,7 @@ $housings = getHousingByIdOwner($id_owner);
             else{
                 echo "pas resa";
             }
+            echo $housing["id"];
             ?>
 
         </div>
