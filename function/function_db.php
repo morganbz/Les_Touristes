@@ -708,7 +708,7 @@ function addActivity($nom, $idtype, $pays, $lat, $long, $id_user, $desc){
         $long = mysqli_real_escape_string($base, $long);
         $desc = mysqli_real_escape_string($base, $desc);
 
-        $sql = "INSERT INTO `activity` (`id_owner`, `type`, `latitude`, `longitude`, `country`, `name`, `description`) VALUES ($id_user,$idtype, $lat, $long, '$pays', '$nom', '$desc')";
+        $sql = "INSERT INTO `activity` (`id_owner`, `type`, `latitude`, `longitude`, `country`, `nom`, `description`) VALUES ($id_user,$idtype, $lat, $long, '$pays', '$nom', '$desc')";
 
         mysqli_query($base, $sql);
 
@@ -728,7 +728,7 @@ function getActivityByIdOwner($id){
 
         $activity = [];
 
-        $sql = "SELECT id_activity, type, latitude, longitude, country, name, description, image_folder
+        $sql = "SELECT id_activity, type, latitude, longitude, country, nom, description, image_folder
                 FROM activity
                 WHERE id_owner = $id";
         $result = mysqli_query($base, $sql);
@@ -745,7 +745,7 @@ function getActivityById($id){
 
         $activity = [];
 
-        $sql = "SELECT id_activity, type, latitude, longitude, country, name, description, image_folder
+        $sql = "SELECT id_activity, type, latitude, longitude, country, nom, description, image_folder
                 FROM activity
                 WHERE id_activity = $id";
         $result = mysqli_query($base, $sql);
@@ -765,7 +765,7 @@ function updateActivity($id, $nom, $idtype, $pays, $lat, $long, $desc){
         $longitude = mysqli_real_escape_string($base, $long);
         $description = mysqli_real_escape_string($base, $desc);
 
-        $sql = "UPDATE activity SET name='$name', latitude=$latitude, longitude=$longitude, country='$pays', type=$type, description='$description' WHERE id_activity=$id";
+        $sql = "UPDATE activity SET nom='$name', latitude=$latitude, longitude=$longitude, country='$pays', type=$type, description='$description' WHERE id_activity=$id";
 
         $update_housing = $base->query($sql);
 
