@@ -39,7 +39,7 @@ if(count($announces) > 0){
 ?>
 
 <div id ="housing_booking">
-    <h4>Ajouter des créneaux :</h4>
+    <h5>Ajouter des créneaux :</h5>
     <form class = "d-flex flex-column justify-content-center" action="index.php" method="post">
 
         <div class="form-floating w-30">
