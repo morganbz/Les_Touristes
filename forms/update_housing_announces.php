@@ -1,3 +1,7 @@
+$housing
+
+
+
 <div id ="housing_booking">
     <form class = "d-flex flex-column justify-content-center" action="index.php" method="post">
 
