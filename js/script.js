@@ -65,6 +65,15 @@ function setMarkers(map,locations) {
             if (station['type'] == "Restauration") {
                 map_icon = new google.maps.MarkerImage('ressources/restauration.png');
             }
+            if (station['type'] == "Randonnée") {
+                map_icon = new google.maps.MarkerImage('ressources/randonnee.png');
+            }
+            if (station['type'] == "Baignade") {
+                map_icon = new google.maps.MarkerImage('ressources/baignade.png');
+            }
+            if (station['type'] == "Espace Culturel") {
+                map_icon = new google.maps.MarkerImage('ressources/espace_culturel.png');
+            }
             else{
                 map_icon = new google.maps.MarkerImage('ressources/house.png');
             }
