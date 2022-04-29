@@ -90,6 +90,11 @@
             else if($page == "update_housing_announces"){
                 include_once "forms/update_housing_announces.php";
             }
+            else if ($page == "housing" ){
+                if (isset($_GET["h"])){
+                    displayHousing($_GET["h"]);
+                }
+            }
             else if ($page == "activity" ){
                 if (isset($_GET["a"])){
                     displayActivity($_GET["a"]);

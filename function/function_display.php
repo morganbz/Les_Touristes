@@ -148,6 +148,33 @@ function ModifHousing($housing){
 
 }
 
+function displayHousing($id){
+    global $TYPE_HOUSING;
+    
+    $infos = getHousingById($id);
+
+    $adresse = getAddress($infos["latitude"], $infos["longitude"]);
+
+    ?>
+     <div>
+        <h2><?php echo $infos["nom"];?></h2>
+        <p>Type d'hébergement : <?php echo $TYPE_HOUSING[$infos["type"]];?></p>
+        <p>Adresse : <?php echo $adresse;?></p>
+        <p>Pays : <?php echo getCountry($adresse);?></p>
+        <p>Description : <?php echo $infos["description"];?></p>
+    </div>
+
+    <?php
+
+    if (isset($_SESSION["id_user"]) && !isAlreadyRated($id, $_SESSION["id_user"], 3)){
+        displayFormRateAndComment($id, 1);
+    } 
+
+    echo "<h3>Moyenne des notes : ". getAverage($id, 1)."/5</h3>";
+
+    displayRate($id, 1);
+}
+
 function displayActivity($id){
     global $TYPE_ACTIVITY;
 
@@ -310,7 +337,7 @@ function displayUser($id){
     <?php
 
     if (isset($_SESSION["id_user"]) && $_SESSION["id_user"] != $id && !isAlreadyRated($id, $_SESSION["id_user"], 3)){
-        displayFormRateAndComment($id, 2);
+        displayFormRateAndComment($id, 3);
     } 
 
     echo "<h3>Moyenne des notes : ". getAverage($id, 3)."/5</h3>";
