@@ -14,7 +14,16 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtoupper($_SERVER['HTTP_X_REQU
 {
     $response_code = HTTP_BAD_REQUEST;
     $message = "Il manque le paramètre ACTION";
-
+    
+    $price_min = null;
+    $price_max = null;
+    $arrive = null;
+    $departure = null;
+    $destination = null;
+    $distance = null;
+    $data = null;
+    $date = null;
+    
     if ($_POST['action'] == "getLocation" && isset($_POST['destination']))
     {
         $response_code = HTTP_OK;
@@ -47,7 +56,7 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtoupper($_SERVER['HTTP_X_REQU
         $data = searchAnnounce($price_min, $price_max, $arrive, $departure, $destination, $distance);
     }
 
-    elseif ($_POST['action'] == "getLocation" && isset($_POST['destination'])) 
+    elseif ($_POST['action'] == "getLocationActivity" && isset($_POST['destination'])) 
     {
         $response_code = HTTP_OK;
         $destination = $_POST['destination'];
