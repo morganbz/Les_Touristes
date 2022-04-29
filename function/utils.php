@@ -197,7 +197,7 @@ function getFiveBestAnnounces(){
     foreach ($ids_housing as $id_housing){
         $average["id"] = $id_housing;
         $average["is_housing"] = true;
-        $average["average"] = get_average($id_housing, 1);
+        $average["average"] = getAverage($id_housing, 1);
 
         $averages[] = $average;
     }
@@ -207,7 +207,7 @@ function getFiveBestAnnounces(){
     foreach ($ids_activity as $id_activity){
         $average["id"] = $id_activity;
         $average["is_housing"] = false;
-        $average["average"] = get_average($id_activity, 0);
+        $average["average"] = getAverage($id_activity, 0);
 
         $averages[] = $average;
     }

@@ -461,7 +461,7 @@
             $page = "user_page";
             $page_account = "see_activity";
         }
-             // ---------------- MODIFICATION ACTIVITE --------------------------------
+        // ---------------- MODIFICATION ACTIVITE --------------------------------
 
         if($submit == "activity_update"){
             $type = $_POST["type_activity"];
@@ -486,6 +486,22 @@
                     uploadImg($dossier, "modification_image");
                 }   
             }
+
+            $page = "user_page";
+            $page_account = "see_activity";
+        }
+        // ---------------- AJOUT D'UNE NOTE ET COMMENTAIRE --------------------------------
+
+        if($submit == "submit_rate_and_comment"){
+            $rate = $_POST["rate"];
+            $title = $_POST["title"];
+            $message = $_POST["message"];
+            $is_housing = $_POST["rated_is_housing"];
+            $id_rated = $_POST["id_rated"];
+
+            $id_rater = $_SESSION["id_user"];
+
+            addRating($id_rated, $id_rater, $rate, $title, $message, $is_housing);
 
             $page = "user_page";
             $page_account = "see_activity";

@@ -659,10 +659,10 @@ function delDateAnnounceHousing($id) {
 
 }
 
-function getAverage($id_rated, $is_for_housing){
+function getAverage($id_rated, $type_rated){
         global $base;
 
-        $sql = "SELECT rate FROM rate WHERE id_rated = $id_rated AND is_for_housing = $is_for_housing";
+        $sql = "SELECT rate FROM rate WHERE id_rated = $id_rated AND type_rated = $type_rated";
         
         $results =  mysqli_query($base, $sql);
 
@@ -693,21 +693,51 @@ function getNbNotes($id_rated, $is_for_housing){
 
 }
 
-function addRating($id_rated, $id_rater, $rate, $title, $message, $is_housing){
+function addRating($id_rated, $id_rater, $rate, $title, $message, $type_rated){
         global $base;
 
-        $sql = "INSERT INTO `Rate`(`id_rated`, `id_rater`, `rate`, `title`, `message`, `is_for_housing`) VALUES ($id_rated,$id_rater,$rate,'$title', '$message',$is_housing)";
+        $sql = "INSERT INTO `Rate`(`id_rated`, `id_rater`, `rate`, `title`, `message`, `type_rated`) VALUES ($id_rated,$id_rater,$rate,'$title', '$message',$type_rated)";
         
         $result = mysqli_query($base, $sql);
 
 }
 
 function addRatingUser($id_rated, $id_rater, $rate, $title, $message){
-        addRating($id_rated, $id_rater, $rate, $title, $message, 0);
+        addRating($id_rated, $id_rater, $rate, $title, $message, 3);
 }
 
 function addRatingHousing($id_rated, $id_rater, $rate, $title, $message){
         addRating($id_rated, $id_rater, $rate, $title, $message, 1);
+}
+
+function addRatingActivity($id_rated, $id_rater, $rate, $title, $message){
+        addRating($id_rated, $id_rater, $rate, $title, $message, 2);
+}
+
+function isAlreadyRated($id_rated, $id_rater, $type_rated){
+        global $base;
+
+        $sql = "SELECT id FROM rate WHERE id_rated = $id_rated AND id_rater = $id_rater AND type_rated = $type_rated";
+
+        $result = mysqli_query($base, $sql);
+
+        return !empty(mysqli_fetch_assoc($result));
+}
+
+function getRates($id_rated, $type_rated){
+        global $base;
+
+        $sql = "SELECT id_rater, rate, title, message FROM rate WHERE id_rated = $id_rated AND type_rated = $type_rated";
+
+        $results = mysqli_query($base, $sql);
+
+        $rates = array();
+
+        while($row = mysqli_fetch_assoc($results)){
+                array_push($rates, $row);
+        }
+
+        return $rates;
 }
 
 function numberAnnounceDistinctByIdHousing($id_housing){
@@ -809,7 +839,7 @@ function addActivity($nom, $idtype, $pays, $lat, $long, $id_user, $desc){
 
         $sql = "UPDATE `activity` SET `image_folder` = '$folder' WHERE `id_activity` = '$id_activity'";
 
-        mysqli_query($base, $sql);
+        mysqli_query($base, $sql); 
 
         return $id_activity;
 }

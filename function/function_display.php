@@ -253,13 +253,65 @@ function displayActivity($id){
     */
     ?>
     <div>
-    <h2><?php echo $infos["nom"];?></h2>
-    <p>Type d'activité : <?php echo $TYPE_ACTIVITY[$infos["type"]];?></p>
-    <p>Adresse : <?php echo getAddress($infos["latitude"], $infos["longitude"]);?></p>
-    <p>Pays : <?php echo $infos["country"];?></p>
-    <p>Description : <?php echo $infos["description"];?></p>
+        <h2><?php echo $infos["nom"];?></h2>
+        <p>Type d'activité : <?php echo $TYPE_ACTIVITY[$infos["type"]];?></p>
+        <p>Adresse : <?php echo getAddress($infos["latitude"], $infos["longitude"]);?></p>
+        <p>Pays : <?php echo $infos["country"];?></p>
+        <p>Description : <?php echo $infos["description"];?></p>
     </div>
+
     <?php
+
+    if (isset($_SESSION["id_user"]) and !isAlreadyRated($id, $_SESSION["id_user"], 2)){
+        displayFormRateAndComment($id, 2);
+    } 
+
+    echo "<h3>Moyenne des notes : ". getAverage($id, 2)."/5</h3>";
+    echo "<h3>Anciens commentaires :</h3>";
+    displayRate($id, 2);
 }
 
+function displayFormRateAndComment($id, $type_rated){
+?>
+    <form action="index.php" method="post">
+        <div>
+            <label for="rate">Note :</label>
+            <NOBR>0</NOBR>   
+            <input type="range" id="rate" name="rate" min="0" max="5" step="0,2" require>
+            <NOBR>5</NOBR>   
+        </div>
+
+        <div>
+            <label for="title">Titre : </label>
+            <input placeholder="Titre" type="text" name="title" id="title">
+        </div>
+
+        <div>
+            <label for="message">Message : </label>
+            <input placeholder="Message" type="text" name="message" id="message">
+        </div>
+
+        <input value="<?php echo $id;?>" type="hidden" name="id_rated" id="id_rated">
+
+        <input value="<?php echo $type_rated;?>" type="hidden" name="rated_is_housing" id="rated_is_housing">
+
+        <button class="w-30 btn btn-primary btn-lg px-4 me-sm-3" id="submit" name="submit" value="submit_rate_and_comment" type="submit">Envoyer</button>
+    </form>
+<?php
+}
+
+function displayRate($id, $type_rated){
+    $rates = getRates($id, $type_rated);
+
+    foreach($rates as $rate) {
+    ?>
+    <div class="rate_and_comment"> 
+        <h4><?php echo $rate["title"];?></h4>
+        <p><?php echo $rate["rate"];?></p>
+        <p><?php echo $rate["message"];?></p>
+        <p> - <?php echo getUserById($rate["id_rater"])["firstname"]." ".getUserById($rate["id_rater"])["lastname"];?></p>
+    </div>
+    <?php
+    }
+}
 ?>
