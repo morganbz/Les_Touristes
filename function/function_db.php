@@ -959,4 +959,23 @@ function addHousingHistory($begin_date, $end_date, $id_user, $id_housing){
 
 }
 
+function searchActivity($dest, $distance){
+        global $base;
+        global $TYPE_ACTIVITY;
+        $country = getCountry($dest);
+
+        $sql = "SELECT * FROM `activity` WHERE country = '$country'";
+
+
+        $result = mysqli_query($base, $sql);
+
+        while($row = mysqli_fetch_assoc($result)){
+                if(getDistance($dest, $row["latitude"], $row["longitude"]) <= $distance * 1000){
+                        $activity[] = $row;
+                }
+        }
+
+        return $activity;   
+}
+
 ?>
