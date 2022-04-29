@@ -42,7 +42,11 @@ $cpt = 1;
                 <td>
                     <?php
                     if($nbNotes > 0){
-                        echo $average."/5 (".$nbNotes." notes)";
+                        if($nbNotes == 1){
+                            echo $average."/5 (".$nbNotes." note)";
+                        } else {
+                            echo $average."/5 (".$nbNotes." notes)";
+                        }
                     }
                     else{
                         echo "N/A";
