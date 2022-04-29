@@ -107,7 +107,7 @@ function displayHousingAccount($housing){
 
         echo "<p>Nom : " .$nom. "</p><p>Type de logement : " .$TYPE_HOUSING[$type]. "</p><p>Adresse : " .$adresse. "</p><p>Description : ".$description. "</p>";
 
-        echo "<p>Periode de disponibilitées : ";
+        echo "<p>Periode de disponibilités : ";
 
         foreach ($announces as $announce){
             echo "du ". $announce["date_start"] . " au " . $announce["date_end"];
@@ -115,24 +115,21 @@ function displayHousingAccount($housing){
         }
         ?>
 
-        <div>
+        <div class="d-flex justify-content-around">
 
             <form action="index.php" method="post" id="form1">
             <?php
                 echo "<input  type='hidden' name='id_housing' id='id_housing' value =".$id." >";
             ?>
-                <button id="submit1" name="submit" value="AskUpdateHousing" type="submit">Modifier le logement </button>
+                <button class="btn btn-primary" id="submit1" name="submit" value="AskUpdateHousing" type="submit">Modifier le logement </button>
             </form>
 
-        </div>
-
-        <div>
             <form action="index.php" method="post" id="form2">
             <?php
                 echo "<input  type='hidden' name='id_housing' id='id_housing' value =".$id." >";
             ?>
                 <input type='hidden' name='for_announce' id='for_announce' value = 1>
-                <button id="submit2" name="submit" value="AskUpdateHousing" type="submit">Modifier les periodes de disponibilités</button>
+                <button class="btn btn-primary" id="submit2" name="submit" value="AskUpdateHousing" type="submit">Modifier les periodes de disponibilités</button>
             </form>
 
         </div>
@@ -149,6 +146,120 @@ function displayHousingAccount($housing){
 function ModifHousing($housing){
     global $TYPE_HOUSING;
 
+}
+
+function displayActivity($id){
+    global $TYPE_ACTIVITY;
+
+    $infos = getActivityById($id);
+    /*
+    <div>
+        <div
+        id="carouselVideoExample"
+        class="carousel slide carousel-fade"
+        data-mdb-ride="carousel"
+        >
+        <!-- Indicators -->
+        <div class="carousel-indicators">
+            <button
+            type="button"
+            data-mdb-target="#carouselVideoExample"
+            data-mdb-slide-to="0"
+            class="active"
+            aria-current="true"
+            aria-label="Slide 1"
+            ></button>
+            <button
+            type="button"
+            data-mdb-target="#carouselVideoExample"
+            data-mdb-slide-to="1"
+            aria-label="Slide 2"
+            ></button>
+            <button
+            type="button"
+            data-mdb-target="#carouselVideoExample"
+            data-mdb-slide-to="2"
+            aria-label="Slide 3"
+            ></button>
+        </div>
+
+        <!-- Inner -->
+        <div class="carousel-inner">
+            <!-- Single item -->
+            <div class="carousel-item active">
+            <video class="img-fluid" autoplay loop muted>
+                <source src="https://mdbcdn.b-cdn.net/img/video/Tropical.mp4" type="video/mp4" />
+            </video>
+            <div class="carousel-caption d-none d-md-block">
+                <h5>First slide label</h5>
+                <p>
+                Nulla vitae elit libero, a pharetra augue mollis interdum.
+                </p>
+            </div>
+            </div>
+
+            <!-- Single item -->
+            <div class="carousel-item">
+            <video class="img-fluid" autoplay loop muted>
+                <source src="https://mdbcdn.b-cdn.net/img/video/forest.mp4" type="video/mp4" />
+            </video>
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Second slide label</h5>
+                <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                </p>
+            </div>
+            </div>
+
+            <!-- Single item -->
+            <div class="carousel-item">
+            <video class="img-fluid" autoplay loop muted>
+                <source
+                src="https://mdbcdn.b-cdn.net/img/video/Agua-natural.mp4"
+                type="video/mp4"
+                />
+            </video>
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Third slide label</h5>
+                <p>
+                Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+                </p>
+            </div>
+            </div>
+        </div>
+        <!-- Inner -->
+
+        <!-- Controls -->
+        <button
+            class="carousel-control-prev"
+            type="button"
+            data-mdb-target="#carouselVideoExample"
+            data-mdb-slide="prev"
+        >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+            class="carousel-control-next"
+            type="button"
+            data-mdb-target="#carouselVideoExample"
+            data-mdb-slide="next"
+        >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+        </div>
+    </div>
+    */
+    ?>
+    <div>
+    <h2><?php echo $infos["nom"];?></h2>
+    <p>Type d'activité : <?php echo $TYPE_ACTIVITY[$infos["type"]];?></p>
+    <p>Adresse : <?php echo getAddress($infos["latitude"], $infos["longitude"]);?></p>
+    <p>Pays : <?php echo $infos["country"];?></p>
+    <p>Description : <?php echo $infos["description"];?></p>
+    </div>
+    <?php
 }
 
 ?>

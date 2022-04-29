@@ -453,6 +453,33 @@ function getAllBookAskByIdOwner($id_owner){
 
 }
 
+function getAllBookAskByIdHousing($id_housing){
+
+        $demands = [];
+
+        global $base;
+        $sql = "SELECT housing.id AS id_housing,
+	`id_owner`,
+        MIN(date_start) AS date_start,
+        MAX(date_start) AS date_end,
+        price * COUNT(reservation.id) AS price,
+        reservation.id_user AS id_user,
+        COUNT(housing.id) AS nb_day,
+        price AS price_by_night
+        FROM housing INNER JOIN announce ON housing.id = announce.id_housing
+        			INNER JOIN reservation ON announce.id = reservation.id_announce
+
+                WHERE id_housing = 120 AND accepted = 0
+                GROUP BY announce.nb_for_housing, reservation.id_user";
+
+        $result = mysqli_query($base, $sql);
+        while($row = mysqli_fetch_assoc($result)){
+                array_push($demands, $row);
+        }
+
+        return $demands;
+}
+
 function alreadyBookAnnounce($id_announce, $id_customer){
         $res = false;
         global $base;
@@ -465,11 +492,64 @@ function alreadyBookAnnounce($id_announce, $id_customer){
         return $res;
 }
 
+function hasAskBooking($id_housing){
+        global $base;
+        $res = false;
+        $cpt = 0;
+        $announces = getAnnounceByIdHousing($id_housing);
+        while( !$res && $cpt < count($announces)){
+                $sql = "SELECT * FROM `reservation` 
+                        INNER JOIN announce ON announce.id = reservation.id_announce
+                        WHERE accepted = 0 AND announce.id =".$announces[$cpt]['id'];
+
+                $result = mysqli_query($base, $sql);
+                if(mysqli_fetch_assoc($result) != null){
+                        $res = true;
+                }
+                $cpt++;
+        }
+        return $res;
+
+}
+
+function getAllBookByIdHousing($id_housing){
+        $announces = [];
+        global $base;
+        $sql = "SELECT 
+                MAX(date_start) AS date_end,
+                MIN(date_start) AS date_start,
+                reservation.id_user AS id_user
+                
+                FROM `announce` 
+                INNER JOIN reservation ON announce.id = reservation.id_announce
+                WHERE isTaken = 1 AND id_housing = $id_housing 
+                GROUP BY nb_for_housing, reservation.id_user
+                ORDER BY date_start";
+
+        $result_sql = mysqli_query($base, $sql);
+
+        while($row = mysqli_fetch_assoc($result_sql)){
+                array_push($announces, $row);
+        }
+        return $announces;
+
+
+}
+
+function hasBooking($id_housing){
+        global $base;
+        $sql = "SELECT announce.id
+        FROM announce JOIN housing ON housing.id = announce.id_housing
+        WHERE isTaken = 1 AND housing.id = $id_housing";
+
+        $result = mysqli_query($base, $sql);
+        return isset(mysqli_fetch_assoc($result)["id"]);
+}
+
 function alreadyBookPeriod($id_housing, $id_customer, $date_start, $date_end){
         global $base;
 
         $res = false;
-        $test = "BITE";
 
         $sql = "SELECT housing.id AS id_housing,
 	`id_owner`,
@@ -500,9 +580,10 @@ function bookAnnounce($id_announce, $id_customer){
         echo $sql;
         $result = mysqli_query($base, $sql);
 
-        $sql = "UPDATE `reservation` SET `accepted`=1 WHERE id_user = $id_customer AND id_announce = $id_announce
+        $sql = "UPDATE `reservation` SET `accepted` = 1 WHERE id_user = $id_customer AND id_announce = $id_announce
         ";
         echo $sql;
+        var_dump($sql);
         $result = mysqli_query($base, $sql);
 
         $sql = "DELETE FROM `reservation` WHERE id_user != $id_customer AND id_announce = $id_announce
@@ -581,7 +662,7 @@ function delDateAnnounceHousing($id) {
 function get_average($id_rated, $is_for_housing){
         global $base;
 
-        $sql = "SELECT rate FROM Rate WHERE id_rated = $id_rated AND is_for_housing = $is_for_housing";
+        $sql = "SELECT rate FROM rate WHERE id_rated = $id_rated AND is_for_housing = $is_for_housing";
         
         $results =  mysqli_query($base, $sql);
 
@@ -593,7 +674,13 @@ function get_average($id_rated, $is_for_housing){
                 $som_rates += $row['rate'];
         }
 
-        return $som_rates / $nb_rates;
+        if ($nb_rates == 0){
+                $average = 0;
+        } else {
+                $average = $som_rates / $nb_rates;
+        }
+
+        return $average;
 }
 
 function addRating($id_rated, $id_rater, $rate, $title, $message, $is_housing){
@@ -634,7 +721,7 @@ function getAllAnnounceOrderByDistinct($id_housing){
         $result = [];
 
         $sql = "SELECT `id`, `price`, MIN(date_start) AS date_start, MAX(date_start) AS date_end FROM `announce` 
-        WHERE id_housing = 120 GROUP BY nb_for_housing";
+        WHERE id_housing = $id_housing GROUP BY nb_for_housing";
         $announces = mysqli_query($base, $sql);
 
         while($row = mysqli_fetch_assoc($announces)){
@@ -702,7 +789,7 @@ function addActivity($nom, $idtype, $pays, $lat, $long, $id_user, $desc){
         $long = mysqli_real_escape_string($base, $long);
         $desc = mysqli_real_escape_string($base, $desc);
 
-        $sql = "INSERT INTO `activity` (`id_owner`, `type`, `latitude`, `longitude`, `country`, `name`, `description`) VALUES ($id_user,$idtype, $lat, $long, '$pays', '$nom', '$desc')";
+        $sql = "INSERT INTO `activity` (`id_owner`, `type`, `latitude`, `longitude`, `country`, `nom`, `description`) VALUES ($id_user,$idtype, $lat, $long, '$pays', '$nom', '$desc')";
 
         mysqli_query($base, $sql);
 
@@ -722,7 +809,7 @@ function getActivityByIdOwner($id){
 
         $activity = [];
 
-        $sql = "SELECT id_activity, type, latitude, longitude, country, name, description, image_folder
+        $sql = "SELECT id_activity, type, latitude, longitude, country, nom, description, image_folder
                 FROM activity
                 WHERE id_owner = $id";
         $result = mysqli_query($base, $sql);
@@ -730,6 +817,21 @@ function getActivityByIdOwner($id){
         while($row = mysqli_fetch_assoc($result)){
             $activity[] = $row;
         }
+
+        return $activity;       
+}
+
+function getActivityById($id){
+        global $base;
+
+        $activity = [];
+
+        $sql = "SELECT id_activity, type, latitude, longitude, country, nom, description, image_folder
+                FROM activity
+                WHERE id_activity = $id";
+        $result = mysqli_query($base, $sql);
+
+        $activity = mysqli_fetch_assoc($result);
 
         return $activity;       
 }
@@ -744,7 +846,7 @@ function updateActivity($id, $nom, $idtype, $pays, $lat, $long, $desc){
         $longitude = mysqli_real_escape_string($base, $long);
         $description = mysqli_real_escape_string($base, $desc);
 
-        $sql = "UPDATE activity SET name='$name', latitude=$latitude, longitude=$longitude, country='$pays', type=$type, description='$description' WHERE id_activity=$id";
+        $sql = "UPDATE activity SET nom='$name', latitude=$latitude, longitude=$longitude, country='$pays', type=$type, description='$description' WHERE id_activity=$id";
 
         $update_housing = $base->query($sql);
 
@@ -756,5 +858,36 @@ function updateActivity($id, $nom, $idtype, $pays, $lat, $long, $desc){
         }
 }
 
+function getAllHousingID(){
+        global $base;
+
+        $sql = "SELECT id FROM housing";
+
+        $results = mysqli_query($base, $sql);
+
+        $ids = Array();
+
+        while ($row = mysqli_fetch_assoc($results)){
+                $ids[] = $row["id"];
+        }
+
+        return $ids;
+}
+
+function getAllActivityID(){
+        global $base;
+
+        $sql = "SELECT id_activity FROM activity";
+
+        $results = mysqli_query($base, $sql);
+
+        $ids = Array();
+
+        while ($row = mysqli_fetch_assoc($results)){
+                $ids[] = $row["id_activity"];
+        }
+
+        return $ids;
+}
 
 ?>

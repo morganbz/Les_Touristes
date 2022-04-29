@@ -11,22 +11,19 @@ if (isset($_SESSION["errors_update_activity"])){
 $listeActivity  = getActivityByIdOwner($_SESSION["id_user"]);
 
 foreach ($listeActivity as $activity){
-    $nom = $activity['name'];
+    $nom = $activity['nom'];
     $latitude = $activity['latitude'];
     $longitude = $activity['longitude'];
     $description = $activity['description'];
     $type = $activity['type'];
 
-    $adress_all = explode("," ,getAddress($latitude, $longitude));
+    $adress_all = getAddress($latitude, $longitude);
 
-    $adress = $adress_all[0];
-    $city_all = $adress_all[1];
-    $postal_code = explode(" ", $city_all)[1];
-    $city = explode(" ", $city_all)[2];
+    $adress = getRouteAndNumber($adress_all);
+    $city = getCity($adress_all);
+    $postal_code = getPostalCode($adress_all);
 
     $id = $activity['id_activity'];
-
-
 ?>
 
 <form action="index.php" method="post" enctype= 'multipart/form-data'>
@@ -40,11 +37,11 @@ foreach ($listeActivity as $activity){
         <select name="type_activity" id="type_activity">
             <?php
                 $indice = 0;
-                foreach($TYPE_ACTIVITY as $type){
+                foreach($TYPE_ACTIVITY as $name_activity){
                     if($type == $indice){
-                        echo "\n<option value=$indice selected>$type</option>";
+                        echo "\n<option value=$indice selected>$name_activity</option>";
                     } else {
-                        echo "\n<option value=$indice>$type</option>";
+                        echo "\n<option value=$indice>$name_activity</option>";
                     }
                     $indice++;
                 }

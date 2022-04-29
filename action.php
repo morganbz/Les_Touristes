@@ -197,9 +197,10 @@
 
         if($submit == "housing_announce_update"){
             $type = $_POST["type_housing"];
-            $city = $_POST["city_housing_announce_update"];
-            $postal_code = $_POST["postal_code_housing_announce_update"];
-            $address = $_POST["adress_housing_announce_update"];
+            $address = $_POST["address_housing_announce_update"];
+            $coord = getCoords($address);
+            $latitude = $coord["latitude"];
+            $longitude = $coord["longitude"];
             $name = $_POST["name_housing_announce_update"];
             $description = $_POST["description_housing_announce_update"];
             $id = $_POST["id_housing_announce_update"];
@@ -219,8 +220,8 @@
                 }   
             }
 
-            $page = "user_page";
-            $page_account = "see_announce";
+            $url = getURL()."?page=user_page&page_account=see_announce";
+            header("Location: ".$url);
         }
 
         if ($submit == "modif_price") {
@@ -405,6 +406,33 @@
             }
         }
 
+        // ----------- MAJ LOGEMENTS -------------------------------
+        if($submit == "AskUpdateHousing"){
+            $id_housing = $_POST["id_housing"];
+            if(isset($_POST["for_announce"])){
+                $url = getURL()."?page=update_housing_announces&id_housing=".$id_housing;
+            }
+            else{
+                $url = getURL()."?page=update_housing&id_housing=".$id_housing;
+            }
+            header('Location: '.$url.'');
+        }
+
+//--------------------- RESERVATION LOGEMENT ---------------------------------
+        if($submit == "BookHousing"){
+
+            $id_housing = $_POST["id_housing"];
+            $id_user = $_POST["id_user"];
+            $date_start = $_POST["date_start"];
+            $date_end = $_POST["date_end"];
+
+            bookHousingPeriod($id_housing, $id_user, $date_start, $date_end);
+
+            $url = getURL()."?page=user_page&page_account=see_resa";
+            header('Location: '.$url.'');
+
+
+        }
 
  // ---------------- AJOUT D'ACTIVITES --------------------------------
         if($submit == "Add_activite"){
