@@ -105,31 +105,37 @@ $nb_images = count($images);
         ?>
     </div>
     <div id="housing_booking">
-        
-        <section>
-            <form class="d-flex flex-column justify-content-center align-items-center" action="index.php" method="post">
-                <br>
-                <div class="form-floating w-75">
+        <?php
+        if(isset($_GET['date_start'] && $_GET['date_end'])){
+
+            ?>
+            <section>
+                <form class="d-flex flex-column justify-content-center align-items-center" action="index.php" method="post">
+                    <br>
+                    <div class="form-floating w-75">
+                        <?php
+                            echo '<input class="form-control" placeholder="Date de début du sejour" type="date" name="date_start_reservation" id="date_start_reservation" value ="'.$_GET['date_start'].'" required>';
+                        ?>
+                        <label class="form-label" for="date_start_reservation">Date de début du sejour</label>
+                    </div>
+                    <br>
+                    <div class="form-floating w-75">
+                        <?php
+                            echo '<input class="form-control" placeholder="Date de fin du sejour" type="date" name="date_end_reservation" id="date_end_reservation" value ="'.$_GET['date_end'].'" required>';
+                        ?>
+                        <label class="form-label" for="date_end_reservation">Date de fin du sejour</label>
+                    </div>
+            
                     <?php
-                        echo '<input class="form-control" placeholder="Date de début du sejour" type="date" name="date_start_reservation" id="date_start_reservation" value ="'.$_GET['date_start'].'" required>';
+                        echo "<input type = 'hidden' name = id_housing value =  ".$_GET['id_housing']." >";
                     ?>
-                    <label class="form-label" for="date_start_reservation">Date de début du sejour</label>
-                </div>
-                <br>
-                <div class="form-floating w-75">
-                    <?php
-                        echo '<input class="form-control" placeholder="Date de fin du sejour" type="date" name="date_end_reservation" id="date_end_reservation" value ="'.$_GET['date_end'].'" required>';
-                    ?>
-                    <label class="form-label" for="date_end_reservation">Date de fin du sejour</label>
-                </div>
-        
-                <?php
-                    echo "<input type = 'hidden' name = id_housing value =  ".$_GET['id_housing']." >";
-                ?>
-                <br>
-                <button class="btn btn-primary btn-lg w-75" id="submit" name="submit" value="Ask_reservation" type="submit">Reserver</button>
-            </form>
-        </section>
+                    <br>
+                    <button class="btn btn-primary btn-lg w-75" id="submit" name="submit" value="Ask_reservation" type="submit">Reserver</button>
+                </form>
+            </section>
+            <?php
+        }
+        ?>
     </div>
 </div>
 
