@@ -262,13 +262,60 @@ function displayActivity($id){
 
     <?php
 
-    if (isset($_SESSION["id_user"]) and !isAlreadyRated($id, $_SESSION["id_user"], 2)){
+    if (isset($_SESSION["id_user"]) && !isAlreadyRated($id, $_SESSION["id_user"], 2)){
         displayFormRateAndComment($id, 2);
     } 
 
     echo "<h3>Moyenne des notes : ". getAverage($id, 2)."/5</h3>";
     echo "<h3>Anciens commentaires :</h3>";
     displayRate($id, 2);
+}
+
+function displayUser($id){
+    $infos = getUserById($id);
+    $firstname = $infos["firstname"];
+    $lastname = $infos["lastname"];
+    $birth_date = $infos["birth_date"];
+    $phone = $infos["phone"];
+    $description = $infos["description"];
+
+    $profile_picture = "./ressources/profile_picture.png";
+    $profile_picture_folder = "picture_profile/".$_SESSION["id_user"];
+    if (isset($profile_picture_folder)){
+        $files = scandir ($profile_picture_folder);
+        foreach($files as $file){
+            if ($file != "." && $file != ".."){
+                $profile_picture = $profile_picture_folder."/".$file;
+            }
+        }
+    }
+    ?>
+    <img src="<?php echo $profile_picture;?>" alt="Profile picture">
+    <div>
+        <h2><?php echo $firstname . " " . $lastname;?></h2>
+        <p>Date de naissance : <?php echo $birth_date;?></p>
+        <p>Numéro de téléphone : <?php echo $phone;?></p>
+        <p>Description : <?php echo $description;?></p>
+    </div>
+    <div>
+        <h2>Coups de coeurs</h2>
+    </div>
+    <div>
+        <h2>Badges</h2>
+    </div>
+    <div>
+        <h2>Evaluations</h2>
+    </div>
+
+    <?php
+
+    if (isset($_SESSION["id_user"]) && $_SESSION["id_user"] != $id && !isAlreadyRated($id, $_SESSION["id_user"], 3)){
+        displayFormRateAndComment($id, 2);
+    } 
+
+    echo "<h3>Moyenne des notes : ". getAverage($id, 3)."/5</h3>";
+
+    displayRate($id, 3);
 }
 
 function displayFormRateAndComment($id, $type_rated){

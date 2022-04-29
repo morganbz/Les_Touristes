@@ -95,6 +95,11 @@
                     displayActivity($_GET["a"]);
                 }
             }
+            else if ($page == "user" ){
+                if (isset($_GET["u"])){
+                    displayUser($_GET["u"]);
+                }
+            }
             ?>
         </div>
     </body>
