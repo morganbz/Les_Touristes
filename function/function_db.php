@@ -953,7 +953,7 @@ function getAllActivityID(){
 function addHousingHistory($begin_date, $end_date, $id_user, $id_housing){
         global $base;
 
-        $sql = " INSERT INTO `housing_history` (`begin_date`, `end_date`, `id_user`, `id_housing`) VALUES ($begin_date, $end_date, $id_user, $id_housing)";
+        $sql = " INSERT INTO `housing_history` (`begin_date`, `end_date`, `id_user`, `id_housing`) VALUES ('$begin_date', '$end_date', $id_user, $id_housing)";
 
         mysqli_query($base, $sql);
 
