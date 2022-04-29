@@ -6,8 +6,8 @@
   <ul class="navbar-nav">
     <li class="nav-item active"><a class="nav-link" href="?page=user_page&page_account=change_info">Modifier mes informations</a></li>
     <li class="nav-item active"><a class="nav-link" href="?page=user_page&page_account=change_password">Modifier mon mot de passe</a></li>
-    <li class="nav-item active"><a class="nav-link" href="?page=user_page&page_account=see_recommandation">Voir mes recommandations</a></li>
-    <li class="nav-item active"><a class="nav-link" href="?page=user_page&page_account=add_recommandation">Ajouter une recommandation</a></li>
+    <?php //<li class="nav-item active"><a class="nav-link" href="?page=user_page&page_account=see_recommandation">Voir mes recommandations</a></li>
+    //<li class="nav-item active"><a class="nav-link" href="?page=user_page&page_account=add_recommandation">Ajouter une recommandation</a></li>*/ ?>
     <li class="nav-item active"><a class="nav-link" href="?page=user_page&page_account=see_announce">Voir mes logements</a></li>
     <li class="nav-item active"><a class="nav-link" href="?page=user_page&page_account=add_announce">Ajouter un logement</a></li>
     <li class="nav-item active"><a class="nav-link" href="?page=user_page&page_account=see_resa">Voir les réservations</a></li>
@@ -37,13 +37,13 @@
     }
     else if ($page_account == "see_asking"){
       include_once "asking_view.php";
-    }
+    }/*
     else if ($page_account == "see_recommandation"){
 
     }
     else if ($page_account == "add_recommandation"){
 
-    }
+    }*/
     else if ($page_account == "see_announce"){
       include_once "display_housing_announce.php";
     }
