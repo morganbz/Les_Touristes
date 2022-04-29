@@ -263,6 +263,8 @@
 
             bookHousingPeriod($id_housing, $id_customer, $date_start, $date_end);
 
+            addHousingHistory($date_start, $date_end, $id_user, $id_housing);
+
         }
 
         // ---------------- CONNEXION UTILISATEURS --------------------------------
@@ -428,6 +430,8 @@
 
             bookHousingPeriod($id_housing, $id_user, $date_start, $date_end);
 
+            addHousingHistory($date_start, $date_end, $id_user, $id_housing);
+
             $url = getURL()."?page=user_page&page_account=see_resa";
             header('Location: '.$url.'');
 
@@ -461,6 +465,7 @@
             $page = "user_page";
             $page_account = "see_activity";
         }
+
         // ---------------- MODIFICATION ACTIVITE --------------------------------
 
         if($submit == "activity_update"){
@@ -489,7 +494,8 @@
 
             $page = "user_page";
             $page_account = "see_activity";
-        }
+        }   
+        
         // ---------------- AJOUT D'UNE NOTE ET COMMENTAIRE --------------------------------
 
         if($submit == "submit_rate_and_comment"){
