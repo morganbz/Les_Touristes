@@ -145,8 +145,8 @@ function getLocationActivity()
         url: "ajax.php",
         data: {
             action: "getLocationActivity",
-            destination: document.querySelector('#place_search_activity').value,
-            distance: document.querySelector('#distance_search').value
+            destination_activity: document.querySelector('#place_search_activity').value,
+            distance_activity: document.querySelector('#distance_search_activity').value
         },
         dataType: "json",
         success: function (response) {

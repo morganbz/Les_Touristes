@@ -16,9 +16,9 @@
                 </div>
 
                 <div class="flex">
-                    <label for="distance_search">Distance</label>
+                    <label for="distance_search_activity">Distance</label>
                     <br>
-                    <input placeholder="Jusqu'où en km" type="float" name="distance_search" id="distance_search" required>
+                    <input placeholder="Jusqu'où en km" type="float" name="distance_search_activity" id="distance_search_activity" required>
                 </div>
                 
                 <button class="flex" class= "search_btn" onclick="getLocationActivity()">Rechercher</button>

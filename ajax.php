@@ -55,16 +55,13 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtoupper($_SERVER['HTTP_X_REQU
         $data = searchAnnounce($price_min, $price_max, $arrive, $departure, $destination, $distance);
     }
 
-    elseif ($_POST['action'] == "getLocationActivity" && isset($_POST['destination'])) 
+    elseif ($_POST['action'] == "getLocationActivity" && isset($_POST['destination_activity'])) 
     {
         $response_code = HTTP_OK;
-        $destination = $_POST['destination'];
-        if(isset($_POST['arrive'])){
-            $arrive = $_POST['arrive'];
-        }
-        if(isset($_POST['distance'])){
-            $distance = $_POST['distance'];
-            if($_POST['distance'] == ''){
+        $destination = $_POST['destination_activity'];
+        if(isset($_POST['distance_activity'])){
+            $distance = $_POST['distance_activity'];
+            if($_POST['distance_activity'] == ''){
                 $distance = 20;
             }
         }
