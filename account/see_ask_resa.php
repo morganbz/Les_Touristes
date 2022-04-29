@@ -18,7 +18,7 @@ $cpt = 1;
             <th scope="col">nombre de jour</th>
             <th scope="col">prix total</th>
             <th scope="col">utilisateur</th>
-            <th scope="col">points</th>
+            <th scope="col">note</th>
             <th scope="col"></th>
         </tr>
     </thead>
