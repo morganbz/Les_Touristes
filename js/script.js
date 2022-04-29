@@ -29,6 +29,23 @@ function addressCoord(next){
     }
 }
 
+function addressCoordActivity(next){
+    var adresse = document.querySelector('#place_search_activity').value;
+    if(adresse != ""){
+        var geocoder =  new google.maps.Geocoder();
+        geocoder.geocode( { 'address': adresse}, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                latitude = results[0].geometry.location.lat();
+                longitude = results[0].geometry.location.lng();
+            }
+            else {
+                alert("Something got wrong " + status);
+            }
+            next();
+        });
+    }
+}
+
 function loadMapAddress(data = null, zoom = 22){
     addressCoord(function(){
         var map = new google.maps.Map(document.getElementById('search_housing_map'), {
@@ -41,7 +58,7 @@ function loadMapAddress(data = null, zoom = 22){
 }
 
 function loadMapAddressActivity(data = null, zoom = 22){
-    addressCoord(function(){
+    addressCoordActivity(function(){
         var map = new google.maps.Map(document.getElementById('search_activity_map'), {
             center: new google.maps.LatLng(latitude, longitude),
             zoom: zoom
