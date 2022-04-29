@@ -11,6 +11,8 @@ foreach($best_annouces as $announce){
         $infos = getActivityById($announce["id"]);
     }
 
+    $announce_w_img["is_housing"] = $announce["is_housing"];
+
     $announce_w_img["infos"] = $infos;
 
     $images_dispo = array();
@@ -83,7 +85,12 @@ $nb_images = count($best_annouces_w_img);
             else {
                 echo '<div class="overlay-image" style="background-image:url('.$best_annouces_w_img[0]["img"].');"></div>';
                 echo '<div class="container">';
-                echo "<h1 class='bite'>".$best_annouces_w_img[0]["infos"]["nom"]."</h1>";
+                if (! $best_annouces_w_img[0]["is_housing"]){
+                    echo "<a class='home_page_link' href='?page=activity&a=".$best_annouces_w_img[0]["infos"]["id_activity"]."'>";
+                } else {
+                    echo "<a class='home_page_link' href='?page=activity&a=".$best_annouces_w_img[0]["infos"]["id"]."'>";
+                }
+                echo "<h1 class='bite'>".$best_annouces_w_img[0]["infos"]["nom"]."</h1></a>";
                 echo '</div>';
             }
             ?>
@@ -96,7 +103,12 @@ $nb_images = count($best_annouces_w_img);
             echo '<div class="carousel-item">';
             echo '<div class="overlay-image" style="background-image:url('.$best_annouces_w_img[$index]["img"].');"></div>';
                 echo '<div class="container">';
-                echo "<h1 class='bite'>".$best_annouces_w_img[$index]["infos"]["nom"]."</h1>";
+                if (! $best_annouces_w_img[$index]["is_housing"]){
+                    echo "<a class='home_page_link' href='?page=activity&a=".$best_annouces_w_img[$index]["infos"]["id_activity"]."'>";
+                }  else {
+                    echo "<a class='home_page_link' href='?page=ask_reservation&id_housing=".$best_annouces_w_img[$index]["infos"]["id"]."'>";
+                }
+                echo "<h1 class='bite'>".$best_annouces_w_img[$index]["infos"]["nom"]."</h1></a>";
                 echo '</div>';
             echo '</div>';
         }

@@ -39,6 +39,18 @@ html, body {
     margin-left: 50%;
 }
 
+#search_activity_list {
+    height: calc(100% - 10% - 50px);
+    width: 50%;
+    overflow-y: scroll;
+    position: fixed;
+}
+#search_activity_map {
+    height: 100%;
+    width: 50%;
+    margin-left: 50%;
+}
+
 #housing_description {
     width: 75%;
 }
@@ -97,6 +109,6 @@ img{
     width: 100%;
 }
 
-.bite{
+.center-align{
     text-align: center;
 }

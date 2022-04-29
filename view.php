@@ -24,6 +24,9 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="?page=search_housing">Recherche logement</a>
                 </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="?page=search_activity">Recherche Activité</a>
+                </li>
                 <?php 
                     if (isset($_SESSION["id_user"])){
                 ?>
@@ -72,6 +75,9 @@
             else if($page == "search_housing"){
                 include_once "search_housing.php";
             } 
+            else if($page == "search_activity"){
+                include_once "search_activity.php";
+            } 
             else if($page == "test_google"){
                 include_once "test_google.php";
             }  
@@ -83,6 +89,11 @@
             }
             else if($page == "update_housing_announces"){
                 include_once "forms/update_housing_announces.php";
+            }
+            else if ($page == "activity" ){
+                if (isset($_GET["a"])){
+                    displayActivity($_GET["a"]);
+                }
             }
             ?>
         </div>
