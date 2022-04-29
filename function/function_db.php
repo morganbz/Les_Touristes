@@ -703,6 +703,8 @@ function addRating($id_rated, $id_rater, $rate, $title, $message, $type_rated){
         
         $result = mysqli_query($base, $sql);
 
+        var_dump($sql);
+        var_dump(mysqli_error($base));
 }
 
 function addRatingUser($id_rated, $id_rater, $rate, $title, $message){
