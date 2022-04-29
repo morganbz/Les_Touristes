@@ -21,6 +21,7 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtoupper($_SERVER['HTTP_X_REQU
     $departure = null;
     $destination = null;
     $distance = null;
+    $data = null;
     $date = null;
     
     if ($_POST['action'] == "getLocation" && isset($_POST['destination']))
