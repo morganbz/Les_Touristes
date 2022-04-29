@@ -27,6 +27,10 @@ $cpt = 1;
         <?php
         foreach($demands as $demand){
             $user = getUserById($demand["id_user"]);
+            $nbNotes = getNbNotes($user["id"], 0);
+            if($nbNotes > 0){
+                $average = getAverage($user["id"], 0);
+            }
             ?>
             <tr>
                 <th scope="row"><?php echo $cpt; ?></th>
@@ -35,7 +39,16 @@ $cpt = 1;
                 <td><?php echo $demand["nb_day"]; ?></td>
                 <td><?php echo $demand["price"]." €"; ?></td>
                 <td><?php echo $user["mail"]; ?></td>
-                <td>50</td>
+                <td>
+                    <?php
+                    if($nbNotes > 0){
+                        echo $average." (".$nbNotes." notes)";
+                    }
+                    else{
+                        echo "N/A";
+                    }
+                    ?>
+                </td>
                 <td>
                     <form action="index.php" method="post" id="form1">
                     <?php
