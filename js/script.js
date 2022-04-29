@@ -57,6 +57,8 @@ function setMarkers(map,locations) {
         var myLatLng = new google.maps.LatLng(station['latitude'], station['longitude']);
         var infoWindow = new google.maps.InfoWindow();
 
+        var test = new google.maps.MarkerImage('ressources/house.png');
+
         var marker = new google.maps.Marker({
             position: myLatLng,
             map: map,
