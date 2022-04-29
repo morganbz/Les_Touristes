@@ -57,11 +57,25 @@ function setMarkers(map,locations) {
         var myLatLng = new google.maps.LatLng(station['latitude'], station['longitude']);
         var infoWindow = new google.maps.InfoWindow();
 
+        var map_icon;
+        if(station['isHousing'] == 1){
+            map_icon = new google.maps.MarkerImage('ressources/house.png');
+        }
+        else{
+            if (station['type'] == "Restauration") {
+                map_icon = new google.maps.MarkerImage('ressources/restauration.png');
+            }
+            else{
+                map_icon = new google.maps.MarkerImage('ressources/house.png');
+            }
+        }
+        
+
         var marker = new google.maps.Marker({
             position: myLatLng,
             map: map,
             title: station['marker_ville'],
-            icon: new google.maps.MarkerImage('ressources/house.png')
+            icon: map_icon
         });
 
         (function(i){
