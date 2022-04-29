@@ -953,10 +953,31 @@ function getAllActivityID(){
 function addHousingHistory($begin_date, $end_date, $id_user, $id_housing){
         global $base;
 
-        $sql = " INSERT INTO `housing_history` (`begin_date`, `end_date`, `id_user`, `id_housing`) VALUES ($begin_date, $end_date, $id_user, $id_housing)";
+        $sql = " INSERT INTO `housing_history` (`begin_date`, `end_date`, `id_user`, `id_housing`) VALUES ('$begin_date', '$end_date', $id_user, $id_housing)";
 
         mysqli_query($base, $sql);
 
+}
+
+function searchActivity($dest, $distance){
+        global $base;
+        global $TYPE_ACTIVITY;
+        $country = getCountry($dest);
+
+        $sql = "SELECT * FROM `activity` WHERE country = '$country'";
+
+
+        $result = mysqli_query($base, $sql);
+
+        while($row = mysqli_fetch_assoc($result)){
+                if(getDistance($dest, $row["latitude"], $row["longitude"]) <= $distance * 1000){
+                        $row["adresse"] = getAddress($row["latitude"], $row["longitude"]);
+                        $row["type"] = $TYPE_ACTIVITY[$row["type"]];
+                        $activity[] = $row;
+                }
+        }
+
+        return $activity;   
 }
 
 ?>

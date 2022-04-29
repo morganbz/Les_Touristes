@@ -40,6 +40,17 @@ function loadMapAddress(data = null, zoom = 22){
     });
 }
 
+function loadMapAddressActivity(data = null, zoom = 22){
+    addressCoord(function(){
+        var map = new google.maps.Map(document.getElementById('search_activity_map'), {
+            center: new google.maps.LatLng(latitude, longitude),
+            zoom: zoom
+        });
+        
+        setMarkers(map,data);
+    });
+}
+
 function setMarkers(map,locations) {
     for(var i=0; i<locations.length; i++){
         var station = locations[i];
@@ -118,22 +129,21 @@ function getLocationActivity()
         data: {
             action: "getLocationActivity",
             destination: document.querySelector('#place_search').value,
-            date: document.querySelector('#date_search').value,
             distance: document.querySelector('#distance_search').value
         },
         dataType: "json",
         success: function (response) {
             var results = response["data"];
             if(response["distance"] == 0){
-                loadMapAddress(results, 22);
+                loadMapAddressActivity(results, 22);
             }
             else{
                 var zoom = 22 - Math.ceil(Math.log(response["distance"]*100)/Math.log(2));
-                loadMapAddress(results, zoom);
+                loadMapAddressActivity(results, zoom);
             }
             $("#search_activity_list").empty();
             for(let i = 0; i < results.length; i++){
-                $("#search_activity_list").append("<div class='data_search'></div>");
+                $("#search_activity_list").append("<div class='data_search'><a href='#' class='link_announce'><p>Nom : " + results[i]['nom'] + "</p><p>Type de logement : " + results[i]['type'] + "</p><p>Adresse : " + results[i]['adresse'] + "</p><p>Description : " + results[i]['description'] + "</p></a></div>");
             }
         },
         error: function (response) {
