@@ -75,7 +75,7 @@ function setMarkers(map,locations) {
             position: myLatLng,
             map: map,
             title: station['marker_ville'],
-            icon: test
+            icon: map_icon
         });
 
         (function(i){
