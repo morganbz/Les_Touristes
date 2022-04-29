@@ -1,4 +1,4 @@
-<form class = "d-flex flex-column justify-content-center align-items-center" action="index.php" method="post">
+<form class = "d-flex flex-column justify-content-center align-items-center w-100" action="index.php" method="post">
 
     <div class="form-floating w-75">
         <input class = "form-control" placeholder="date de début" type="date" name="date_start" id="date_start" required>
