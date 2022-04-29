@@ -1,4 +1,4 @@
-<div class = w-150>
+<div class ="form-floating w-150">
     <form class = "d-flex flex-column justify-content-center align-items-center" action="index.php" method="post">
 
         <div class="form-floating w-75">
