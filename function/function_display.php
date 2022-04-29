@@ -307,7 +307,7 @@ function displayUser($id){
     $description = $infos["description"];
 
     $profile_picture = "./ressources/profile_picture.png";
-    $profile_picture_folder = "picture_profile/".$_SESSION["id_user"];
+    $profile_picture_folder = "picture_profile/".$id;
     if (isset($profile_picture_folder)){
         $files = scandir ($profile_picture_folder);
         foreach($files as $file){
@@ -351,7 +351,7 @@ function displayFormRateAndComment($id, $type_rated){
         <div>
             <label for="rate">Note :</label>
             <NOBR>0</NOBR>   
-            <input type="range" id="rate" name="rate" min="0" max="5" step="0,2" require>
+            <input type="range" id="rate" name="rate" min="0" max="5" step="0.2" require>
             <NOBR>5</NOBR>   
         </div>
 
