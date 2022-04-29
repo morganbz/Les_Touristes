@@ -979,7 +979,7 @@ function searchActivity($dest, $distance){
                         $row["isHousing"] = 0;
                         $activity[] = $row;
                 }
-                varr_dump($row);
+                var_dump($row);
         }
 
         return $activity;   
