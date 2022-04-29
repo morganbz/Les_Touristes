@@ -351,7 +351,7 @@ function displayFormRateAndComment($id, $type_rated){
         <div>
             <label for="rate">Note :</label>
             <NOBR>0</NOBR>   
-            <input type="range" id="rate" name="rate" min="0" max="5" step="0,2" require>
+            <input type="range" id="rate" name="rate" min="0" max="5" step="0.2" require>
             <NOBR>5</NOBR>   
         </div>
 
