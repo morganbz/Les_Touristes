@@ -65,6 +65,9 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtoupper($_SERVER['HTTP_X_REQU
         }
         if(isset($_POST['date'])){
             $date = $_POST['date'];
+            if($_POST['date'] == ''){
+                $date = 0;
+            }
         }
         if(isset($_POST['distance'])){
             $distance = $_POST['distance'];
@@ -73,7 +76,7 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtoupper($_SERVER['HTTP_X_REQU
             }
         }
         $message = "OK";
-        $data = searchAnnounce($price_min, $price_max, $arrive, $departure, $destination, $distance, $date);
+        $data = searchActivity($destination, $date, $date);
     }
 
     response($response_code, $message, $destination, $arrive, $departure, $price_min, $price_max, $distance, $data, $date);
