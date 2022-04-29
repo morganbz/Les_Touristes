@@ -22,7 +22,6 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtoupper($_SERVER['HTTP_X_REQU
     $destination = null;
     $distance = null;
     $data = null;
-    $date = null;
     
     if ($_POST['action'] == "getLocation" && isset($_POST['destination']))
     {
@@ -63,9 +62,6 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtoupper($_SERVER['HTTP_X_REQU
         if(isset($_POST['arrive'])){
             $arrive = $_POST['arrive'];
         }
-        if(isset($_POST['date'])){
-            $date = $_POST['date'];
-        }
         if(isset($_POST['distance'])){
             $distance = $_POST['distance'];
             if($_POST['distance'] == ''){
@@ -73,10 +69,10 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtoupper($_SERVER['HTTP_X_REQU
             }
         }
         $message = "OK";
-        $data = searchAnnounce($price_min, $price_max, $arrive, $departure, $destination, $distance, $date);
+        $data = searchActivity($destination, $distance);
     }
 
-    response($response_code, $message, $destination, $arrive, $departure, $price_min, $price_max, $distance, $data, $date);
+    response($response_code, $message, $destination, $arrive, $departure, $price_min, $price_max, $distance, $data);
 }
 else
 {
@@ -86,7 +82,7 @@ else
     response($response_code, $message);
 }
 
-function response($response_code, $message, $destination = null, $arrive = null, $departure = null, $price_min = null, $price_max = null, $distance = null, $data = null, $date = null)
+function response($response_code, $message, $destination = null, $arrive = null, $departure = null, $price_min = null, $price_max = null, $distance = null, $data = null)
 {
     header('Content-Type: application/json');
     http_response_code($response_code);
@@ -100,8 +96,7 @@ function response($response_code, $message, $destination = null, $arrive = null,
         "price_min" => $price_min,
         "price_max" => $price_max,
         "distance" => $distance,
-        "data" => $data,
-        "date" => $date
+        "data" => $data
     ];
     
     echo json_encode($response);
