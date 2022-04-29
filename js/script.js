@@ -62,6 +62,7 @@ function setMarkers(map,locations) {
             map_icon = new google.maps.MarkerImage('ressources/house.png');
         }
         else{
+            map_icon = new google.maps.MarkerImage('ressources/house.png');
             if (station['type'] == "Restauration") {
                 map_icon = new google.maps.MarkerImage('ressources/restauration.png');
             }
@@ -73,9 +74,6 @@ function setMarkers(map,locations) {
             }
             if (station['type'] == "Espace Culturel") {
                 map_icon = new google.maps.MarkerImage('ressources/espace_culturel.png');
-            }
-            else{
-                map_icon = new google.maps.MarkerImage('ressources/house.png');
             }
         }
         
