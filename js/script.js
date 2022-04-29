@@ -67,8 +67,9 @@ function setMarkers(map,locations) {
         (function(i){
             google.maps.event.addListener(marker, "click",function(){
                 var station = locations[i];
+                console.log(station);
                 infoWindow.close();
-
+                
                 infoWindow.setContent(
                     "<div id='infoWindow'>"
                     +"<p>Nom : "+station['nom']+"<p>"
