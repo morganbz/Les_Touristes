@@ -390,14 +390,14 @@ function getAnnounceByIdHousing($id){
         return $announces;
 }
 
-function AskbookAnnounce($id_announce, $id_customer){
+function askbookAnnounce($id_announce, $id_customer){
         global $base;
 
         $sql = "INSERT INTO `reservation`(`id_user`, `id_announce`) VALUES ($id_customer,$id_announce)";
         mysqli_query($base, $sql);
 }
 
-function AskBookHousingPeriod($id_housing, $id_customer, $date_start, $date_end){
+function askBookHousingPeriod($id_housing, $id_customer, $date_start, $date_end){
 
         global $base;
 
@@ -418,7 +418,7 @@ function AskBookHousingPeriod($id_housing, $id_customer, $date_start, $date_end)
         $announce = mysqli_query($base, $sql);
 
         while($row = mysqli_fetch_array($announce)){
-                AskBookAnnounce($row['id_announce'], $id_customer);
+                askBookAnnounce($row['id_announce'], $id_customer);
         }
 
 }
