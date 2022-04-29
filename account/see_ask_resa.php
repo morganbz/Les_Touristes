@@ -38,7 +38,7 @@ $cpt = 1;
                 <td><?php echo $demand["date_end"]; ?></td>
                 <td><?php echo $demand["nb_day"]; ?></td>
                 <td><?php echo $demand["price"]." €"; ?></td>
-                <td><a href="?page=user&u=<?php echo $user["id"]; ?>"><?php echo $user["mail"]; ?></a></td>
+                <td><p href="?page=user&u=<?php echo $user["id"]; ?>"><?php echo $user["mail"]; ?></p></td>
                 <td>
                     <?php
                     if($nbNotes > 0){
