@@ -972,15 +972,12 @@ function searchActivity($dest, $distance){
         $result = mysqli_query($base, $sql);
 
         while($row = mysqli_fetch_assoc($result)){
-                var_dump($TYPE_ACTIVITY);
-                var_dump($row);
                 if(getDistance($dest, $row["latitude"], $row["longitude"]) <= $distance * 1000){
                         $row["adresse"] = getAddress($row["latitude"], $row["longitude"]);
                         $row["type"] = $TYPE_ACTIVITY[$row["type"]];
                         $row["isHousing"] = 0;
                         $activity[] = $row;
                 }
-                var_dump($row);
         }
 
         return $activity;   
