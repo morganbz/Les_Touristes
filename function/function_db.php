@@ -683,10 +683,10 @@ function getAverage($id_rated, $type_rated){
         return $average;
 }
 
-function getNbNotes($id_rated, $is_for_housing){
+function getNbNotes($id_rated, $type_rated){
         global $base;
 
-        $sql = "SELECT COUNT(id) AS nb FROM rate WHERE id_rated = $id_rated AND is_for_housing = $is_for_housing";
+        $sql = "SELECT COUNT(id) AS nb FROM rate WHERE id_rated = $id_rated AND type_rate = $type_rated";
         $result = mysqli_query($base, $sql);
 
         return mysqli_fetch_assoc($result)["nb"];
