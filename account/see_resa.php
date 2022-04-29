@@ -15,7 +15,7 @@ $housings = getHousingByIdOwner($id_owner);
             ?>
             <div class="d-flex justify-content-evenly">
             <div> <h4><?php echo $housing["nom"]; ?></h4> </div>
-            <div><a href="?page=ask_reservation&id_housing=<?php echo $housing["id_housing"]; ?>"><?php echo $housing["nom"]; ?></a></div>
+            <div><a href="?page=ask_reservation&id_housing=<?php echo $housing["id"]; ?>"><?php echo $housing["nom"]; ?></a></div>
 
             <?php
             if($hasAskBook){
