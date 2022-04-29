@@ -143,7 +143,7 @@ function getLocationActivity()
             }
             $("#search_activity_list").empty();
             for(let i = 0; i < results.length; i++){
-                $("#search_activity_list").append("<div class='data_search'><a href='#' class='link_announce'><p>Nom : " + results[i]['nom'] + "</p><p>Type de logement : " + results[i]['type'] + "</p><p>Adresse : " + results[i]['adresse'] + "</p><p>Description : " + results[i]['description'] + "</p></a></div>");
+                $("#search_activity_list").append("<div class='data_search'><a href='?page=activity&&id_housing="+ results[i]["id"]+"' class='link_announce'><p>Nom : " + results[i]['nom'] + "</p><p>Type de logement : " + results[i]['type'] + "</p><p>Adresse : " + results[i]['adresse'] + "</p><p>Description : " + results[i]['description'] + "</p></a></div>");
             }
         },
         error: function (response) {
