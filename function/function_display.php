@@ -307,7 +307,7 @@ function displayUser($id){
     $description = $infos["description"];
 
     $profile_picture = "./ressources/profile_picture.png";
-    $profile_picture_folder = "picture_profile/".$_SESSION["id_user"];
+    $profile_picture_folder = "picture_profile/".$id;
     if (isset($profile_picture_folder)){
         $files = scandir ($profile_picture_folder);
         foreach($files as $file){
