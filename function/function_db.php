@@ -659,7 +659,7 @@ function delDateAnnounceHousing($id) {
 
 }
 
-function get_average($id_rated, $is_for_housing){
+function getAverage($id_rated, $is_for_housing){
         global $base;
 
         $sql = "SELECT rate FROM rate WHERE id_rated = $id_rated AND is_for_housing = $is_for_housing";
@@ -681,6 +681,16 @@ function get_average($id_rated, $is_for_housing){
         }
 
         return $average;
+}
+
+function getNbNotes($id_rated, $is_for_housing){
+        global $base;
+
+        $sql = "SELECT COUNT(id) AS nb FROM rate WHERE id_rated = $id_rated AND is_for_housing = $is_for_housing";
+        $result = mysqli_query($base, $sql);
+
+        return mysqli_fetch_assoc($results)["nb"];
+
 }
 
 function addRating($id_rated, $id_rater, $rate, $title, $message, $is_housing){
