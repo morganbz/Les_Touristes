@@ -389,6 +389,21 @@ function getAnnounceByIdHousing($id){
 
         return $announces;
 }
+/*
+function getAnnounceGrpNbByIdHousing($id){
+        global $base;
+
+        $announces = [];
+
+        $sql = "SELECT id, price, date_start, isTaken, id_housing FROM announce WHERE id_housing = $id";
+        $result = mysqli_query($base, $sql);
+
+        while($row = mysqli_fetch_assoc($result)){
+            $announces[] = $row;
+        }
+
+        return $announces;
+}*/
 
 function askbookAnnounce($id_announce, $id_customer){
         global $base;
@@ -469,7 +484,8 @@ function getAllBookAskByIdHousing($id_housing){
         FROM housing INNER JOIN announce ON housing.id = announce.id_housing
         			INNER JOIN reservation ON announce.id = reservation.id_announce
 
-                WHERE id_housing = 120 AND accepted = 0
+                WHERE id_housing = $id_housing
+                 AND accepted = 0
                 GROUP BY announce.nb_for_housing, reservation.id_user";
 
         $result = mysqli_query($base, $sql);

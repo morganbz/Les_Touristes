@@ -16,9 +16,9 @@
                 </div>
                 
                 <div class="flex">
-                    <label for="date_seach_when">Quand</label>
+                    <label for="date_search">Quand</label>
                     <br>
-                    <input placeholder="Quand ?" type="date" name="date_seach_arrive" id="date_seach_arrive">
+                    <input placeholder="Quand ?" type="date" name="date_search" id="date_search">
                 </div>
 
                 <div class="flex">

@@ -1,4 +1,8 @@
-<div class ="housing_booking">
+$housing
+
+
+
+<div id ="housing_booking">
     <form class = "d-flex flex-column justify-content-center" action="index.php" method="post">
 
         <div class="form-floating w-30">
