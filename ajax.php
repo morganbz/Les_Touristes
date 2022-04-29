@@ -59,9 +59,6 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtoupper($_SERVER['HTTP_X_REQU
     {
         $response_code = HTTP_OK;
         $destination = $_POST['destination'];
-        if(isset($_POST['arrive'])){
-            $arrive = $_POST['arrive'];
-        }
         if(isset($_POST['distance'])){
             $distance = $_POST['distance'];
             if($_POST['distance'] == ''){

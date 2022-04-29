@@ -29,23 +29,6 @@ function addressCoord(next){
     }
 }
 
-function addressCoordActivity(next){
-    var adresse = document.querySelector('#place_search_activity').value;
-    if(adresse != ""){
-        var geocoder =  new google.maps.Geocoder();
-        geocoder.geocode( { 'address': adresse}, function(results, status) {
-            if (status == google.maps.GeocoderStatus.OK) {
-                latitude = results[0].geometry.location.lat();
-                longitude = results[0].geometry.location.lng();
-            }
-            else {
-                alert("Something got wrong " + status);
-            }
-            next();
-        });
-    }
-}
-
 function loadMapAddress(data = null, zoom = 22){
     addressCoord(function(){
         var map = new google.maps.Map(document.getElementById('search_housing_map'), {
@@ -58,7 +41,7 @@ function loadMapAddress(data = null, zoom = 22){
 }
 
 function loadMapAddressActivity(data = null, zoom = 22){
-    addressCoordActivity(function(){
+    addressCoord(function(){
         var map = new google.maps.Map(document.getElementById('search_activity_map'), {
             center: new google.maps.LatLng(latitude, longitude),
             zoom: zoom
@@ -145,8 +128,8 @@ function getLocationActivity()
         url: "ajax.php",
         data: {
             action: "getLocationActivity",
-            destination: document.querySelector('#place_search_activity').value,
-            distance: document.querySelector('#distance_search').value
+            destination_activity: document.querySelector('#place_search_activity').value,
+            distance_activity: document.querySelector('#distance_search_activity').value
         },
         dataType: "json",
         success: function (response) {

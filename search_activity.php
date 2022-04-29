@@ -10,9 +10,9 @@
         <div id="page_content">
             <div class="searchbar">
                 <div class="flex">
-                    <label for="place_search_activity">Destination</label>
+                    <label for="place_search">Destination</label>
                     <br>
-                    <input placeholder="Où allez vous ?" type="text" name="place_search_activity" id="place_search_activity" required>
+                    <input placeholder="Où allez vous ?" type="text" name="place_search" id="place_search" required>
                 </div>
 
                 <div class="flex">
