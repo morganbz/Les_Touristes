@@ -696,6 +696,9 @@ function getNbNotes($id_rated, $is_for_housing){
 function addRating($id_rated, $id_rater, $rate, $title, $message, $type_rated){
         global $base;
 
+        $title = mysqli_real_escape_string($base, $title);
+        $message = mysqli_real_escape_string($base, $message);
+
         $sql = "INSERT INTO `Rate`(`id_rated`, `id_rater`, `rate`, `title`, `message`, `type_rated`) VALUES ($id_rated,$id_rater,$rate,'$title', '$message',$type_rated)";
         
         $result = mysqli_query($base, $sql);
