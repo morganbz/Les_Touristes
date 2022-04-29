@@ -135,11 +135,11 @@ function getLocationActivity()
         success: function (response) {
             var results = response["data"];
             if(response["distance"] == 0){
-                loadMapAddress(results, 22);
+                loadMapAddressActivity(results, 22);
             }
             else{
                 var zoom = 22 - Math.ceil(Math.log(response["distance"]*100)/Math.log(2));
-                loadMapAddress(results, zoom);
+                loadMapAddressActivity(results, zoom);
             }
             $("#search_activity_list").empty();
             for(let i = 0; i < results.length; i++){
