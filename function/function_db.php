@@ -702,6 +702,7 @@ function addRating($id_rated, $id_rater, $rate, $title, $message, $type_rated){
         $sql = "INSERT INTO `rate`(`id_rated`, `id_rater`, `rate`, `title`, `message`, `type_rated`) VALUES ($id_rated,$id_rater,$rate,'$title', '$message',$type_rated)";
         
         $result = mysqli_query($base, $sql);
+
 }
 
 function addRatingUser($id_rated, $id_rater, $rate, $title, $message){
@@ -841,7 +842,7 @@ function addActivity($nom, $idtype, $pays, $lat, $long, $id_user, $desc){
 
         $sql = "UPDATE `activity` SET `image_folder` = '$folder' WHERE `id_activity` = '$id_activity'";
 
-        mysqli_query($base, $sql); 
+        mysqli_query($base, $sql);
 
         return $id_activity;
 }
@@ -930,6 +931,15 @@ function getAllActivityID(){
         }
 
         return $ids;
+}
+
+function addHousingHistory($begin_date, $end_date, $id_user, $id_housing){
+        global $base;
+
+        $sql = " INSERT INTO `housing_history` (`begin_date`, `end_date`, `id_user`, `id_housing`) VALUES ($begin_date, $end_date, $id_user, $id_housing)";
+
+        mysqli_query($base, $sql);
+
 }
 
 ?>
