@@ -686,7 +686,7 @@ function getAverage($id_rated, $type_rated){
 function getNbNotes($id_rated, $type_rated){
         global $base;
 
-        $sql = "SELECT COUNT(id) AS nb FROM rate WHERE id_rated = $id_rated AND type_rate = $type_rated";
+        $sql = "SELECT COUNT(id) AS nb FROM rate WHERE id_rated = $id_rated AND type_rated = $type_rated";
         $result = mysqli_query($base, $sql);
 
         return mysqli_fetch_assoc($result)["nb"];
