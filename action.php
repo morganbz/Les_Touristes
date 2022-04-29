@@ -177,7 +177,7 @@
             $date_start = $_POST["date_start_announce"];
             $date_end = $_POST["date_end_announce"];
 
-            $address_housing = $city." ".$postal_code." ".$address;
+            $address_housing = $postal_code." ".$city." ".$address;
 
             $coord = getCoords($address_housing);
             $country = getCountry($address_housing);
