@@ -40,6 +40,17 @@ function loadMapAddress(data = null, zoom = 22){
     });
 }
 
+function loadMapAddressActivity(data = null, zoom = 22){
+    addressCoord(function(){
+        var map = new google.maps.Map(document.getElementById('search_activity_map'), {
+            center: new google.maps.LatLng(latitude, longitude),
+            zoom: zoom
+        });
+        
+        setMarkers(map,data);
+    });
+}
+
 function setMarkers(map,locations) {
     for(var i=0; i<locations.length; i++){
         var station = locations[i];
