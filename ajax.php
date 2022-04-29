@@ -73,7 +73,7 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtoupper($_SERVER['HTTP_X_REQU
             }
         }
         $message = "OK";
-        $data = searchAnnounce($price_min, $price_max, $arrive, $departure, $destination, $distance, $date);
+        $data = searchActivity($destination, $date, $date);
     }
 
     response($response_code, $message, $destination, $arrive, $departure, $price_min, $price_max, $distance, $data, $date);
