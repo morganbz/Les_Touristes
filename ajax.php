@@ -65,6 +65,9 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtoupper($_SERVER['HTTP_X_REQU
         }
         if(isset($_POST['date'])){
             $date = $_POST['date'];
+            if($_POST['date'] == ''){
+                $date = 0;
+            }
         }
         if(isset($_POST['distance'])){
             $distance = $_POST['distance'];
