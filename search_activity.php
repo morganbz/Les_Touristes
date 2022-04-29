@@ -27,7 +27,7 @@
                     <input placeholder="Jusqu'où en km" type="float" name="distance_search" id="distance_search" required>
                 </div>
                 
-                <button class="flex" class= "search_btn" onclick="getLocation()">Rechercher</button>
+                <button class="flex" class= "search_btn" onclick="getLocationActivity()">Rechercher</button>
             </div>
             <div id="contener">
                 <div id="search_activity_list"></div>
