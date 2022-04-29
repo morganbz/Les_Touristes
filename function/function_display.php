@@ -103,7 +103,7 @@ function displayHousingAccount($housing){
 
     $announces = getAllAnnounceOrderByDistinct($id);
 
-    echo "<div class='data_search'>";
+    echo "<li class='list-group-item'>";
 
         echo "<p>Nom : " .$nom. "</p><p>Type de logement : " .$TYPE_HOUSING[$type]. "</p><p>Adresse : " .$adresse. "</p><p>Description : ".$description. "</p>";
 
@@ -138,7 +138,7 @@ function displayHousingAccount($housing){
 
         echo "</p>";
 
-    echo "</div>";
+    echo "</ul>";
 
 
 }
