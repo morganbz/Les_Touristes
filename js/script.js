@@ -118,10 +118,7 @@ function getLocationActivity()
         data: {
             action: "getLocationActivity",
             destination: document.querySelector('#place_search').value,
-            arrive: document.querySelector('#date_seach_arrive').value,
-            departure: document.querySelector('#date_seach_departure').value,
-            price_min: document.querySelector('#price_search_min').value,
-            price_max: document.querySelector('#price_search_max').value,
+            date: document.querySelector('#date_search').value,
             distance: document.querySelector('#distance_search').value
         },
         dataType: "json",
