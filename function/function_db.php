@@ -689,7 +689,7 @@ function getNbNotes($id_rated, $is_for_housing){
         $sql = "SELECT COUNT(id) AS nb FROM rate WHERE id_rated = $id_rated AND is_for_housing = $is_for_housing";
         $result = mysqli_query($base, $sql);
 
-        return mysqli_fetch_assoc($results)["nb"];
+        return mysqli_fetch_assoc($result)["nb"];
 
 }
 
