@@ -27,9 +27,9 @@ $cpt = 1;
         <?php
         foreach($demands as $demand){
             $user = getUserById($demand["id_user"]);
-            $nbNotes = getNbNotes($user["id"], 0);
+            $nbNotes = getNbNotes($user["id"], 3);
             if($nbNotes > 0){
-                $average = getAverage($user["id"], 0);
+                $average = getAverage($user["id"], 3);
             }
             ?>
             <tr>
