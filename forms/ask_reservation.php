@@ -106,7 +106,7 @@ $nb_images = count($images);
     </div>
     <div id="housing_booking">
         <?php
-        if(isset($_GET['date_start']) && isset($_GET['date_end']))){
+        if(isset($_GET['date_start']) && isset($_GET['date_end'])){
 
             ?>
             <section>
