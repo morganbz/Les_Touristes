@@ -699,12 +699,9 @@ function addRating($id_rated, $id_rater, $rate, $title, $message, $type_rated){
         $title = mysqli_real_escape_string($base, $title);
         $message = mysqli_real_escape_string($base, $message);
 
-        $sql = "INSERT INTO `Rate`(`id_rated`, `id_rater`, `rate`, `title`, `message`, `type_rated`) VALUES ($id_rated,$id_rater,$rate,'$title', '$message',$type_rated)";
+        $sql = "INSERT INTO `rate`(`id_rated`, `id_rater`, `rate`, `title`, `message`, `type_rated`) VALUES ($id_rated,$id_rater,$rate,'$title', '$message',$type_rated)";
         
         $result = mysqli_query($base, $sql);
-
-        var_dump($sql);
-        var_dump(mysqli_error($base));
 }
 
 function addRatingUser($id_rated, $id_rater, $rate, $title, $message){
