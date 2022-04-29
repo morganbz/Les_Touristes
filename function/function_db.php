@@ -389,13 +389,14 @@ function getAnnounceByIdHousing($id){
 
         return $announces;
 }
-/*
-function getAnnounceGrpNbByIdHousing($id){
+
+function getAnnounceGrpNbByIdHousing($id_housing){
         global $base;
 
         $announces = [];
 
-        $sql = "SELECT id, price, date_start, isTaken, id_housing FROM announce WHERE id_housing = $id";
+        $sql = "SELECT id, price, MIN(date_start) AS date_start, MAX(date_start) AS date_end, COUNT(id) AS nb_day, isTaken, id_housing 
+        FROM announce WHERE id_housing = $id_housing GROUP BY nb_for_housing";
         $result = mysqli_query($base, $sql);
 
         while($row = mysqli_fetch_assoc($result)){
@@ -403,7 +404,7 @@ function getAnnounceGrpNbByIdHousing($id){
         }
 
         return $announces;
-}*/
+}
 
 function askbookAnnounce($id_announce, $id_customer){
         global $base;
