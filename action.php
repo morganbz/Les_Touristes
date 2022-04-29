@@ -179,8 +179,6 @@
 
             $address_housing = $postal_code." ".$city." ".$address;
 
-            var_dump($address_housing);
-            echo $address_housing;
             $coord = getCoords($address_housing);
             $country = getCountry($address_housing);
     

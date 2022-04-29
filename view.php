@@ -15,12 +15,14 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="?page=home">Accueil</a>
                 </li>
+                <!--
                 <li class="nav-item active">
                     <a class="nav-link" href="?page=recherche_activitee">Rechercher une activitée</a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="?page=test_google">TEST GOOGLE</a>
                 </li>
+-->
                 <li class="nav-item active">
                     <a class="nav-link" href="?page=search_housing">Recherche logement</a>
                 </li>

@@ -265,12 +265,14 @@ function searchAnnounce($priceMin, $priceMax, $date_start, $date_end, $dest, $di
                                                 if(!alreadyBookPeriod($row["id"], $_SESSION["id_user"], $date_start, $date_end)){
                                                         $row["adresse"] = getAddress($row["latitude"], $row["longitude"]);
                                                         $row["type"] = $TYPE_HOUSING[$row["type"]];
+                                                        $row["isHousing"] = 1;
                                                         array_push($result, $row);    
                                                 }
                                         }
                                         else{
                                                 $row["adresse"] = getAddress($row["latitude"], $row["longitude"]);
                                                 $row["type"] = $TYPE_HOUSING[$row["type"]];
+                                                $row["isHousing"] = 1;
                                                 array_push($result, $row);
                                         }
 
@@ -961,7 +963,7 @@ function addHousingHistory($begin_date, $end_date, $id_user, $id_housing){
 
 function searchActivity($dest, $distance){
         global $base;
-        global $TYPE_ACTIVITY;
+        $TYPE_ACTIVITY = array("Randonnée", "Espace Culturel", "Restauration", "Baignade");
         $country = getCountry($dest);
 
         $sql = "SELECT * FROM `activity` WHERE country = '$country'";
@@ -973,6 +975,7 @@ function searchActivity($dest, $distance){
                 if(getDistance($dest, $row["latitude"], $row["longitude"]) <= $distance * 1000){
                         $row["adresse"] = getAddress($row["latitude"], $row["longitude"]);
                         $row["type"] = $TYPE_ACTIVITY[$row["type"]];
+                        $row["isHousing"] = 0;
                         $activity[] = $row;
                 }
         }
