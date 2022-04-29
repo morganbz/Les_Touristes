@@ -170,9 +170,12 @@ function displayHousing($id){
         displayFormRateAndComment($id, 1);
     } 
 
-    echo "<h3>Moyenne des notes : ". getAverage($id, 1)."/5</h3>";
-
-    displayRate($id, 1);
+    if (getNbNotes($id, 2) == 0){
+        echo "<h3>Aucune évaluations</h3>";
+    } else {
+        echo "<h3>Moyenne des notes : ". getAverage($id, 1)."/5</h3>";
+        displayRate($id, 1);
+    }
 }
 
 function displayActivity($id){
@@ -292,10 +295,14 @@ function displayActivity($id){
     if (isset($_SESSION["id_user"]) && !isAlreadyRated($id, $_SESSION["id_user"], 2)){
         displayFormRateAndComment($id, 2);
     } 
-
-    echo "<h3>Moyenne des notes : ". getAverage($id, 2)."/5</h3>";
-    echo "<h3>Anciens commentaires :</h3>";
-    displayRate($id, 2);
+    if (getNbNotes($id, 2) == 0){
+        echo "<h3>Aucune évaluations</h3>";
+    } else {
+         echo "<h3>Moyenne des notes : ". getAverage($id, 2)."/5</h3>";
+        echo "<h3>Anciens commentaires :</h3>";
+        displayRate($id, 2);
+    }
+   
 }
 
 function displayUser($id){
@@ -340,9 +347,12 @@ function displayUser($id){
         displayFormRateAndComment($id, 3);
     } 
 
-    echo "<h3>Moyenne des notes : ". getAverage($id, 3)."/5</h3>";
-
-    displayRate($id, 3);
+    if (getNbNotes($id, 2) == 0){
+        echo "<h3>Aucune évaluations</h3>";
+    } else {
+        echo "<h3>Moyenne des notes : ". getAverage($id, 3)."/5</h3>";
+        displayRate($id, 3);
+    }
 }
 
 function displayFormRateAndComment($id, $type_rated){
