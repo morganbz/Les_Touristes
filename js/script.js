@@ -67,17 +67,29 @@ function setMarkers(map,locations) {
         (function(i){
             google.maps.event.addListener(marker, "click",function(){
                 var station = locations[i];
-                console.log(station);
                 infoWindow.close();
                 
-                infoWindow.setContent(
-                    "<div id='infoWindow'>"
-                    +"<p>Nom : "+station['nom']+"<p>"
-                    +"<p>Type de logement : " + station['type'] + "<p>"
-                    +"<p>Adresse : "+station['adresse']+"<p>"
-                    +"<p>Prix à la nuit : " + station['price'] + "<p>"
-                    +"</div>"
-                );
+                if (station['isHousing'] == 0) {
+                    infoWindow.setContent(
+                        "<div id='infoWindow'>"
+                        +"<p>Nom : "+station['nom']+"<p>"
+                        +"<p>Type de logement : " + station['type'] + "<p>"
+                        +"<p>Adresse : "+station['adresse']+"<p>"
+                        +"</div>"
+                    );
+                }
+                else{
+                    infoWindow.setContent(
+                        "<div id='infoWindow'>"
+                        +"<p>Nom : "+station['nom']+"<p>"
+                        +"<p>Type de logement : " + station['type'] + "<p>"
+                        +"<p>Adresse : "+station['adresse']+"<p>"
+                        +"<p>Prix à la nuit : " + station['price'] + "<p>"
+                        +"</div>"
+                    );
+                }
+
+
                 infoWindow.open(map,this);
             });
         })(i);
