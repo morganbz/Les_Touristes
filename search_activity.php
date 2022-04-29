@@ -14,12 +14,6 @@
                     <br>
                     <input placeholder="Où allez vous ?" type="text" name="place_search" id="place_search" required>
                 </div>
-                
-                <div class="flex">
-                    <label for="date_search">Quand</label>
-                    <br>
-                    <input placeholder="Quand ?" type="date" name="date_search" id="date_search">
-                </div>
 
                 <div class="flex">
                     <label for="distance_search">Distance</label>
