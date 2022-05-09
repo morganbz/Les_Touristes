@@ -398,4 +398,5 @@ function displayRate($id, $type_rated){
     <?php
     }
 }
+
 ?>

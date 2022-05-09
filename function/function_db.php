@@ -690,6 +690,34 @@ function bookHousingPeriod($id_housing, $id_customer, $date_start, $date_end){
 
 }
 
+function getConflict($demands){
+        $res = [];
+        $size = sizeof($demands);
+        $cpt = 0;
+
+        while($demands != null){
+
+                $conflict = [];
+
+                $current_demand = $demands[0];
+
+                $date_start = $current_demand['date_start'];
+                $date_end = $current_demand['date_end'];
+
+                $demands = array_shift($demands);
+
+                foreach($demands as $demand){
+                        if(($demands['date_start'] > $date_start && $demands['date_start'] < $date_end)
+                        || ($demands['date_end'] > $date_start && $demands['date_end'] < $date_end)){
+
+                                $array_push($conflict, $demand);
+                        }
+                }
+                echo $conflict;
+        }
+
+}
+
 function updatePriceAnnounce($id, $price) {
         global $base;
 
@@ -1045,5 +1073,6 @@ function searchActivity($dest, $distance){
 
         return $activity;   
 }
+
 
 ?>
