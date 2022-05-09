@@ -661,9 +661,12 @@ function bookReservation($id_housing, $id_customer, $date_start, $date_end){
         $result = mysqli_query($base, $sql);
         
         $sql = "DELETE FROM `reservation`
-                WHERE id_housing = $id_housing 
-                AND (date_start BETWEEN '$date_start' AND '$date_end')
-                AND (date_end BETWEEN '$date_start' AND '$date_end') AND accepted = 0";
+                WHERE id_housing = $id_housing AND
+                (
+                (date_start BETWEEN '$date_start' AND '$date_end')
+                OR (date_end BETWEEN '$date_start' AND '$date_end')
+                )
+                AND accepted = 0";
         $result = mysqli_query($base, $sql);
 
         
