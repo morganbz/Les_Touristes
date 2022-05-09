@@ -665,7 +665,6 @@ function bookReservation($id_housing, $id_customer, $date_start, $date_end){
                 AND (date_start BETWEEN '$date_start' AND '$date_end')
                 AND (date_end BETWEEN '$date_start' AND '$date_end') AND accepted = 0";
         $result = mysqli_query($base, $sql);
-        var_dump($sql);
 
         
 }
@@ -676,7 +675,6 @@ function bookHousingPeriod($id_housing, $id_customer, $date_start, $date_end){
 
         $sql = "SELECT announce.id AS id FROM housing INNER JOIN announce ON housing.id = announce.id_housing
         WHERE housing.id = $id_housing AND date_start >=  '$date_start' AND date_start <= '$date_end'";
-        var_dump($sql);
         
         $announce = mysqli_query($base, $sql);
 
