@@ -392,6 +392,17 @@ function getAnnounceByIdHousing($id){
         return $announces;
 }
 
+function getPriceAnnounceByDate($id, $date_start){
+        global $base;
+
+        $sql = "SELECT id, price, date_start, isTaken, id_housing FROM announce WHERE id_housing = $id AND date_start = '$date_start'";
+        $result = mysqli_query($base, $sql);
+
+        $row = mysqli_fetch_assoc($result);
+
+        return $row['price'];
+}
+
 function getAnnounceGrpNbByIdHousing($id_housing){
         global $base;
 
@@ -408,10 +419,11 @@ function getAnnounceGrpNbByIdHousing($id_housing){
         return $announces;
 }
 
-function askbookAnnounce($id_announce, $id_customer){
+function askbookAnnounce($id_housing, $id_customer, $date_start, $date_end){
         global $base;
 
-        $sql = "INSERT INTO `reservation`(`id_user`, `id_announce`) VALUES ($id_customer,$id_announce)";
+        $sql = "INSERT INTO `reservation`(`id_user`, `id_housing`,`date_start`, `date_end`) 
+                VALUES ($id_customer,$id_housing,'$date_start', '$date_end')";
         mysqli_query($base, $sql);
 }
 
@@ -436,11 +448,11 @@ function askBookHousingPeriod($id_housing, $id_customer, $date_start, $date_end)
         $announce = mysqli_query($base, $sql);
 
         while($row = mysqli_fetch_array($announce)){
-                askBookAnnounce($row['id_announce'], $id_customer);
+                askBookAnnounce($row['id_announce'], $id_customer, $date_start, $date_end);
         }
 
 }
-
+/*
 function getAllBookAskByIdOwner($id_owner){
         
         $demands = [];
@@ -449,17 +461,16 @@ function getAllBookAskByIdOwner($id_owner){
         $sql = "SELECT housing.id AS id_housing,
 	`id_owner`,
         `nom`,
-        MIN(date_start) AS date_start,
-        MAX(date_start) AS date_end,
+        reservation.date_start AS date_start,
+        reservation.date_end AS date_end,
         price,
         reservation.id_user AS id_user,
         COUNT(housing.id) AS nb_day,
         price AS price_by_night
         FROM housing INNER JOIN announce ON housing.id = announce.id_housing
-        			INNER JOIN reservation ON announce.id = reservation.id_announce
+        			INNER JOIN reservation ON announce.id = reservation.id_housing
 
-                WHERE id_owner = $id_owner AND accepted = 0
-                GROUP BY reservation.id_user, announce.nb_for_housing";
+                WHERE id_owner = $id_owner AND accepted = 0";
 
         $result = mysqli_query($base, $sql);
         while($row = mysqli_fetch_assoc($result)){
@@ -470,35 +481,109 @@ function getAllBookAskByIdOwner($id_owner){
 
 
 }
+*/
+function getAllBookAskByIdOwner($id_owner){
+        
+        $demands = [];
+
+        global $base;
+        $sql = "SELECT 
+                        id_owner,
+                        date_start,
+                        date_end,
+                        housing.id AS id_housing,
+                        nom,
+                        reservation.id_user AS id_user
+                FROM reservation
+                JOIN housing ON housing.id = reservation.id_housing
+                WHERE housing.id_owner = $id_owner";
+
+        $result = mysqli_query($base, $sql);
+        while($row = mysqli_fetch_assoc($result)){
+
+                $dateDifference = abs(strtotime($row['date_end']) - strtotime($row['date_start']));
+                $years  = floor($dateDifference / (365 * 60 * 60 * 24));
+                $months = floor(($dateDifference - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
+                $days   = floor(($dateDifference - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 *24) / (60 * 60 * 24));
+
+                $currDate = $row['date_start'];
+                $nb_day = 0;
+
+                while($currDate <= $row['date_end'] ){
+                        $nb_day++;
+                        $currDate = date("Y-m-d", strtotime($currDate.'+ 1 days'));
+                }
+                $row['nb_day'] = $nb_day;
+
+                $row['price'] = getTotalPrice($row['id_housing'], $row['date_start'], $row['date_end']);
+
+                array_push($demands, $row);
+        }
+
+        return $demands;
+
+
+}
+
+function getTotalPrice($id_housing, $date_start, $date_end){
+        global $base;
+
+        $dateDifference = abs(strtotime($date_start) - strtotime($date_end));
+        $years  = floor($dateDifference / (365 * 60 * 60 * 24));
+        $months = floor(($dateDifference - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
+        $days   = floor(($dateDifference - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 *24) / (60 * 60 * 24));
+
+        $currDate = $date_start;
+        $price = 0;
+        while($currDate <= $date_end){
+                $price = $price + getPriceAnnounceByDate($id_housing, $currDate);
+                $currDate = date("Y-m-d", strtotime($currDate.'+ 1 days'));
+        }
+        return $price;
+}
+
 
 function getAllBookAskByIdHousing($id_housing){
 
         $demands = [];
 
         global $base;
-        $sql = "SELECT housing.id AS id_housing,
-	`id_owner`,
-        MIN(date_start) AS date_start,
-        MAX(date_start) AS date_end,
-        price * COUNT(reservation.id) AS price,
-        reservation.id_user AS id_user,
-        COUNT(housing.id) AS nb_day,
-        price AS price_by_night
-        FROM housing INNER JOIN announce ON housing.id = announce.id_housing
-        			INNER JOIN reservation ON announce.id = reservation.id_announce
-
-                WHERE id_housing = $id_housing
-                 AND accepted = 0
-                GROUP BY announce.nb_for_housing, reservation.id_user";
+        $sql = "SELECT 
+                        id_owner,
+                        date_start,
+                        date_end,
+                        housing.id AS id_housing,
+                        nom,
+                        reservation.id_user AS id_user
+                FROM reservation
+                JOIN housing ON housing.id = reservation.id_housing
+                WHERE housing.id = $id_housing AND accepted = 0";
 
         $result = mysqli_query($base, $sql);
         while($row = mysqli_fetch_assoc($result)){
+
+                $dateDifference = abs(strtotime($row['date_end']) - strtotime($row['date_start']));
+                $years  = floor($dateDifference / (365 * 60 * 60 * 24));
+                $months = floor(($dateDifference - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
+                $days   = floor(($dateDifference - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 *24) / (60 * 60 * 24));
+
+                $currDate = $row['date_start'];
+                $nb_day = 0;
+
+                while($currDate <= $row['date_end'] ){
+                        $nb_day++;
+                        $currDate = date("Y-m-d", strtotime($currDate.'+ 1 days'));
+                }
+                $row['nb_day'] = $nb_day;
+
+                $row['price'] = getTotalPrice($id_housing, $row['date_start'], $row['date_end']);
+
                 array_push($demands, $row);
         }
 
         return $demands;
 }
-
+/*
 function alreadyBookAnnounce($id_announce, $id_customer){
         $res = false;
         global $base;
@@ -509,24 +594,18 @@ function alreadyBookAnnounce($id_announce, $id_customer){
                 $res = true;
         }
         return $res;
-}
+}*/
 
 function hasAskBooking($id_housing){
         global $base;
         $res = false;
-        $cpt = 0;
-        $announces = getAnnounceByIdHousing($id_housing);
-        while( !$res && $cpt < count($announces)){
-                $sql = "SELECT * FROM `reservation` 
-                        INNER JOIN announce ON announce.id = reservation.id_announce
-                        WHERE accepted = 0 AND announce.id =".$announces[$cpt]['id'];
-
-                $result = mysqli_query($base, $sql);
-                if(mysqli_fetch_assoc($result) != null){
-                        $res = true;
-                }
-                $cpt++;
+        $sql = "SELECT id FROM `reservation` WHERE id_housing = $id_housing";
+        $result = mysqli_query($base, $sql);
+        if(mysqli_fetch_assoc($result) != null){
+                $res = true;
         }
+
+        
         return $res;
 
 }
@@ -535,15 +614,12 @@ function getAllBookByIdHousing($id_housing){
         $announces = [];
         global $base;
         $sql = "SELECT 
-                MAX(date_start) AS date_end,
-                MIN(date_start) AS date_start,
-                reservation.id_user AS id_user
-                
-                FROM `announce` 
-                INNER JOIN reservation ON announce.id = reservation.id_announce
-                WHERE isTaken = 1 AND id_housing = $id_housing 
-                GROUP BY nb_for_housing, reservation.id_user
-                ORDER BY date_start";
+                        date_start,
+                        date_end,
+                        reservation.id_user AS id_user
+                FROM reservation
+                JOIN housing ON housing.id = reservation.id_housing
+        WHERE housing.id = $id_housing AND accepted = 1";
 
         $result_sql = mysqli_query($base, $sql);
 
@@ -570,23 +646,17 @@ function alreadyBookPeriod($id_housing, $id_customer, $date_start, $date_end){
 
         $res = false;
 
-        $sql = "SELECT housing.id AS id_housing,
-	`id_owner`,
-        announce.id AS id_announce,
-        reservation.id_user AS id_user
-        FROM housing 
-        INNER JOIN announce ON housing.id = announce.id_housing
-        INNER JOIN reservation on announce.id = reservation.id_announce
+        $sql = "SELECT id FROM `reservation` WHERE 
+        accepted = 0 AND id_housing = $id_housing AND id_user = $id_customer
+        AND(
+            date_start BETWEEN '$date_start' AND '$date_end'
+            OR
+            date_end BETWEEN '$date_start' AND '$date_end'
+            )";
+        $result = mysqli_query($base, $sql);
 
-                WHERE id_housing = $id_housing AND date_start >=  '$date_start' AND date_start <= '$date_end'";
-        $announce = mysqli_query($base, $sql);
-
-        while($row = mysqli_fetch_array($announce)){
- 
-                if($res == false){
-                        $res = alreadyBookAnnounce($row['id_announce'], $id_customer);
-                }
-
+        if(mysqli_fetch_assoc($result) != null){
+                $res = true;
         }
 
         return $res;
@@ -596,34 +666,43 @@ function bookAnnounce($id_announce, $id_customer){
         global $base;
         $sql = "UPDATE `announce` SET `isTaken`=1 WHERE id = $id_announce
         ";
-        echo $sql;
         $result = mysqli_query($base, $sql);
 
-        $sql = "UPDATE `reservation` SET `accepted` = 1 WHERE id_user = $id_customer AND id_announce = $id_announce
-        ";
-        echo $sql;
+}
+
+function bookReservation($id_housing, $id_customer, $date_start, $date_end){
+        global $base;
+
+        $sql = "UPDATE `reservation` SET accepted = 1 
+                WHERE id_housing = $id_housing AND id_user = $id_customer AND date_start = '$date_start' AND date_end = '$date_end'";
+        $result = mysqli_query($base, $sql);
+        
+        $sql = "DELETE FROM `reservation`
+                WHERE id_housing = $id_housing 
+                AND (date_start BETWEEN '$date_start' AND '$date_end')
+                AND (date_end BETWEEN '$date_start' AND '$date_end') AND accepted = 0";
+        $result = mysqli_query($base, $sql);
         var_dump($sql);
-        $result = mysqli_query($base, $sql);
 
-        $sql = "DELETE FROM `reservation` WHERE id_user != $id_customer AND id_announce = $id_announce
-        ";
-        echo $sql;
-        $result = mysqli_query($base, $sql);
-
+        
 }
 
 function bookHousingPeriod($id_housing, $id_customer, $date_start, $date_end){
 
         global $base;
 
-        $sql = "SELECT * FROM housing INNER JOIN announce ON housing.id = announce.id_housing
+        $sql = "SELECT announce.id AS id FROM housing INNER JOIN announce ON housing.id = announce.id_housing
         WHERE housing.id = $id_housing AND date_start >=  '$date_start' AND date_start <= '$date_end'";
+        var_dump($sql);
         
         $announce = mysqli_query($base, $sql);
 
         while($row = mysqli_fetch_assoc($announce)){
                 bookAnnounce(intval($row['id']), $id_customer);
+
         }
+
+        bookReservation($id_housing, $id_customer, $date_start, $date_end);
 
 }
 
