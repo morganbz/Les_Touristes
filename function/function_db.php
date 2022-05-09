@@ -690,7 +690,7 @@ function bookHousingPeriod($id_housing, $id_customer, $date_start, $date_end){
 
 }
 
-function getConflict($demands){
+/*function getConflict($demands){
         $res = array();
         $cpt = 1;
         $num_conflict = 1;
@@ -724,7 +724,7 @@ function getConflict($demands){
 
 
         }
-}
+}*/
 
 function updatePriceAnnounce($id, $price) {
         global $base;
