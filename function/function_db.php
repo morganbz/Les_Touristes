@@ -691,32 +691,39 @@ function bookHousingPeriod($id_housing, $id_customer, $date_start, $date_end){
 }
 
 function getConflict($demands){
-        $res = [];
-        $size = sizeof($demands);
-        $cpt = 0;
-        var_dump($demands);
+        $res = array();
+        $cpt = 1;
+        $num_conflict = 1;
 
-        while($demands != null){
 
-                $conflict = [];
+        foreach($demands as $curr_demands){
 
-                $current_demand = $demands[0];
+                $conflicts = array(
+                        'num_conflict' => $num_conflict
+                        'conflicts' => array()
+                );
 
-                $date_start = $current_demand['date_start'];
-                $date_end = $current_demand['date_end'];
+                $curr_start = $curr_demands['date_start'];
+                $curr_end = $curr_demands['date_end'];
+                $new_demands = $demands;
 
-                $demands = array_shift($demands);
+                for($i = 0; $i < $cpt, $i++){
+                        $new_demands = array_shift($new_demands);
+                }
 
-                foreach($demands as $demand){
-                        if(($demands['date_start'] > $date_start && $demands['date_start'] < $date_end)
-                        || ($demands['date_end'] > $date_start && $demands['date_end'] < $date_end)){
-
-                                $array_push($conflict, $demand);
+                foreach($new_demands as $demands){
+                        if(($demands['date_start'] >= $curr_start && $demands['date_start'] <= $curr_end)
+                        || ($demands['date_end'] >= $curr_start && $demands['date_end'] <= $curr_end) ){
+                                array_push($conflicts['conflicts'], $demands);
                         }
                 }
-                var_dump($conflict);
-        }
 
+                if($conflicts['conflicts'] == []){
+                        
+                }
+
+
+        }
 }
 
 function updatePriceAnnounce($id, $price) {
