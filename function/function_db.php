@@ -431,26 +431,9 @@ function askBookHousingPeriod($id_housing, $id_customer, $date_start, $date_end)
 
         global $base;
 
-        $sql = "SELECT housing.id AS id_housing,
-	`id_owner`,
-        `type`,
-        `latitude`,
-        `longitude`,
-        `nom`,
-        `image_folder`,
-        `description`,
-        announce.id AS id_announce,
-        price,
-        date_start
-        FROM housing INNER JOIN announce ON housing.id = announce.id_housing
-
-                WHERE id_housing = $id_housing AND date_start >=  '$date_start' AND date_start <= '$date_end'";
+        $sql = "INSERT INTO `reservation`(`id_user`, `id_housing`,`date_start`, `date_end`) 
+        VALUES ($id_customer,$id_housing,'$date_start', '$date_end')";
         $announce = mysqli_query($base, $sql);
-
-        while($row = mysqli_fetch_array($announce)){
-                askBookAnnounce($row['id_announce'], $id_customer, $date_start, $date_end);
-        }
-
 }
 /*
 function getAllBookAskByIdOwner($id_owner){
