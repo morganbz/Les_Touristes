@@ -713,7 +713,7 @@ function getConflict($demands){
                                 $array_push($conflict, $demand);
                         }
                 }
-                echo $conflict;
+                var_dump($conflict);
         }
 
 }
