@@ -694,6 +694,7 @@ function getConflict($demands){
         $res = [];
         $size = sizeof($demands);
         $cpt = 0;
+        var_dump($demands);
 
         while($demands != null){
 
