@@ -582,7 +582,7 @@ function alreadyBookAnnounce($id_announce, $id_customer){
 function hasAskBooking($id_housing){
         global $base;
         $res = false;
-        $sql = "SELECT id FROM `reservation` WHERE id_housing = $id_housing";
+        $sql = "SELECT id FROM `reservation` WHERE id_housing = $id_housing AND accepted = 0";
         $result = mysqli_query($base, $sql);
         if(mysqli_fetch_assoc($result) != null){
                 $res = true;
