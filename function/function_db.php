@@ -733,14 +733,10 @@ function getConflict($demands){
                         else{
                                 array_push($conflicts, $curr_demands);
 
-                                /*
+                                
                                 $nb_day = array_column($conflicts, 'nb_day');
-                                array_multisort($nb_day, SORT_DESC, $conflicts);*/
-                                foreach ($conflicts as $key => $row) {
-                                        $nb_day[$key]  = $row['nb_day'];
-                                }
-                                $nb_day  = array_column($data, 'nb_day');
                                 array_multisort($nb_day, SORT_DESC, $conflicts);
+
 
                                 if(array_search($conflicts, $res) == false){
                                         array_push($res, $conflicts);
