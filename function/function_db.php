@@ -696,6 +696,8 @@ function getConflict($demands){
         $num_conflict = 1;
         $no_conflicts = [];
 
+        var_dump($demands);
+
 
         foreach($demands as $curr_demands){
 
