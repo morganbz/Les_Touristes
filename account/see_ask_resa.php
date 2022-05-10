@@ -5,11 +5,11 @@ $id_housing = $_GET["id_housing"];
 $housing = getHousingById($id_housing);
 
 $first_demands = getAllBookAskByIdHousing($id_housing);
-$cpt = 1;
 $conflicts = getConflict($first_demands);
 //var_dump($conflicts);
 
 foreach($conflicts as $demands){
+    $cpt = 1;
 
     if($demands == end($conflicts)){
         ?>
