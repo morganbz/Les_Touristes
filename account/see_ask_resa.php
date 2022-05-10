@@ -12,7 +12,7 @@ $conflicts = getConflict($first_demands);
 foreach($conflicts as $demands){
     if(sizeof($demands) == 0){
         ?>
-        BITE
+        <p> OK <p>
         <?php 
     }
 
