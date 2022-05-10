@@ -6,20 +6,18 @@ $housing = getHousingById($id_housing);
 
 $first_demands = getAllBookAskByIdHousing($id_housing);
 $conflicts = getConflict($first_demands);
+$nb_conflits = 1;
 
 foreach($conflicts as $demands){
+    $title = "";
+    $is_conflict = false;
     $cpt = 1;
 
-    if($demands == end($conflicts)){
-        ?>
-        <p> OK <p>
-        <?php 
+    if(!($demands == end($conflicts))){
+        $title = "Conflit n°". $nb_conflits;
+        $is_conflict = true;
     }
-    else{
-        ?>
-        <p> Conflit <p>
-        <?php 
-    }
+
 
 
     ?>
@@ -30,6 +28,7 @@ foreach($conflicts as $demands){
         ?>
 
         <table class="table">
+            <caption><?php echo $title; ?></caption>
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -96,6 +95,7 @@ foreach($conflicts as $demands){
 
     <?php
     }
+    $nb_conflits++;
 
 }
 ?>
