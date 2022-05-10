@@ -4,8 +4,9 @@ $id_owner = $_SESSION["id_user"];
 $id_housing = $_GET["id_housing"];
 $housing = getHousingById($id_housing);
 
-$demands = getAllBookAskByIdHousing($id_housing);
+$first_demands = getAllBookAskByIdHousing($id_housing);
 $cpt = 1;
+$demands = getConflict($first_demands);
 var_dump($demands);
 
 ?>
