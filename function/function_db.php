@@ -701,7 +701,7 @@ function getConflict($demands){
         foreach($demands as $curr_demands){
 
                 foreach($res as $curr_conflicts){
-                        if(array_search($curr_conflicts, $curr_demands) == false){
+                        if(array_search($curr_demands, $curr_conflicts) == false){
                                 $is_done = false;
                         }
                         else{
