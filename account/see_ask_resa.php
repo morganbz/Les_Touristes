@@ -10,9 +10,15 @@ $conflicts = getConflict($first_demands);
 //var_dump($conflicts);
 
 foreach($conflicts as $demands){
+
     if($demands == end($conflicts)){
         ?>
         <p> OK <p>
+        <?php 
+    }
+    else{
+        ?>
+        <p> Conflit <p>
         <?php 
     }
 
