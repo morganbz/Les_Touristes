@@ -27,7 +27,7 @@ foreach($conflicts as $demands){
 
         ?>
 
-        <table class="table">
+        <table class="table caption-top">
             <caption><?php echo $title; ?></caption>
             <thead>
                 <tr>
