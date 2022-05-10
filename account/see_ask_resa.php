@@ -31,7 +31,16 @@ foreach($conflicts as $demands){
         ?>
 
         <table class="table table-bordered caption-top">
-            <caption class = "text-danger"><?php echo $caption; ?></caption>
+            <?php 
+            if($is_conflict){
+                echo "<caption class = 'text-danger'>";
+            }
+            else{
+                echo "<caption>";
+            }
+            ?>
+                <?php echo $caption; ?>
+            </caption>
             <thead class="table-dark">
                 <tr class="text-center">
                     <th scope="col">#</th>
