@@ -738,10 +738,10 @@ function getConflict($demands){
                                 array_multisort($nb_day, SORT_DESC, $conflicts);
 
 
-                                if(array_search($conflicts, $res) == false){
+                                /*if(array_search($conflicts, $res) == false){
                                         array_push($res, $conflicts);
                                         echo $cpt;
-                                }
+                                }*/
                         }
 
                 }
