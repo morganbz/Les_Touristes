@@ -700,15 +700,6 @@ function getConflict($demands){
 
         foreach($demands as $curr_demands){
 
-                /*foreach($res as $curr_conflicts){
-                        if(array_search($curr_demands, $curr_conflicts) != false){
-                                $is_done = true;
-                                echo "bite1";
-                        }
-                        echo $cpt; 
-                        echo "bite2";
-
-                }*/
 
                 foreach($res as $curr_conflict){
                         if(in_array($curr_demands, $curr_conflict)){
@@ -723,11 +714,6 @@ function getConflict($demands){
                                 $curr_start = $curr_demands['date_start'];
                                 $curr_end = $curr_demands['date_end'];
                                 $new_demands = $demands;
-
-                                /*
-                                for($i = 0; $i < $cpt; $i++){
-                                        $new_demands = array_shift($new_demands);
-                                }*/
 
                                 foreach($new_demands as $demand){
 
@@ -755,11 +741,6 @@ function getConflict($demands){
                                         $nb_day = array_column($conflicts, 'nb_day');
                                         array_multisort($nb_day, SORT_DESC, $conflicts);
 
-
-                                        /*if(array_search($conflicts, $res) == false){
-                                                array_push($res, $conflicts);
-                                                echo $cpt;
-                                        }*/
                                         array_push($res, $conflicts);
                                 }
 
