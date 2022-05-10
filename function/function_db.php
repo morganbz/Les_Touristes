@@ -572,27 +572,36 @@ function getAllBookAskByIdHousing($id_housing){
         foreach($demands as $curr_demands){
 
                 $conflicts = [];
+                if(isset($curr_demands['date_start'] && $curr_demands['date_end'] )){
 
-                $curr_start = $curr_demands['date_start'];
-                $curr_end = $curr_demands['date_end'];
-                $new_demands = $demands;
+                        $curr_start = $curr_demands['date_start'];
+                        $curr_end = $curr_demands['date_end'];
+                        $new_demands = $demands;
 
-                for($i = 0; $i < $cpt; $i++){
-                        $new_demands = array_shift($new_demands);
-                }
-
-                foreach($new_demands as $demands){
-                        if(($demands['date_start'] >= $curr_start && $demands['date_start'] <= $curr_end)
-                        || ($demands['date_end'] >= $curr_start && $demands['date_end'] <= $curr_end) ){
-                                array_push($conflicts, $demands);
+                        for($i = 0; $i < $cpt; $i++){
+                                $new_demands = array_shift($new_demands);
                         }
-                }
 
-                if($conflicts == []){
-                        array_push($no_conflicts,$curr_demands);
-                }
-                else{
-                        array_push($res, $conflicts);
+                        foreach($new_demands as $demands){
+
+                                if(isset($demands['date_start']) && isset($demands['date_end'])){
+
+                                        if(($demands['date_start'] >= $curr_start && $demands['date_start'] <= $curr_end)
+                                        || ($demands['date_end'] >= $curr_start && $demands['date_end'] <= $curr_end) ){
+                                                array_push($conflicts, $demands);
+                                        }
+
+                                }
+
+                        }
+
+                        if($conflicts == []){
+                                array_push($no_conflicts,$curr_demands);
+                        }
+                        else{
+                                array_push($res, $conflicts);
+                        }
+
                 }
 
         }
