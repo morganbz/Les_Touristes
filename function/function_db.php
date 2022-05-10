@@ -700,7 +700,7 @@ function getConflict($demands){
 
         foreach($demands as $curr_demands){
 
-                foreach($res as $curr_conflicts){
+                /*foreach($res as $curr_conflicts){
                         if(array_search($curr_demands, $curr_conflicts) != false){
                                 $is_done = true;
                                 echo "bite1";
@@ -708,6 +708,12 @@ function getConflict($demands){
                         echo $cpt; 
                         echo "bite2";
 
+                }*/
+
+                foreach($res as $curr_conflict){
+                        if(!in_array($curr_demands, $curr_conflict)){
+                                $is_done = true;
+                        }
                 }
 
                 if(!$is_done){
