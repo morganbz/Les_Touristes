@@ -29,8 +29,8 @@ foreach($conflicts as $demands){
 
         <table class="table table-bordered caption-top">
             <caption><?php echo $title; ?></caption>
-            <thead>
-                <tr>
+            <thead class="table-dark">
+                <tr class="text-center">
                     <th scope="col">#</th>
                     <th scope="col">Début du séjour</th>
                     <th scope="col">Fin du séjour</th>
