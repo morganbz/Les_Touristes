@@ -711,13 +711,13 @@ function getConflict($demands){
                                 $new_demands = array_shift($new_demands);
                         }*/
 
-                        foreach($new_demands as $demands){
+                        foreach($new_demands as $demand){
 
-                                if(isset($demands['date_start']) && isset($demands['date_end'])){
+                                if(isset($demand['date_start']) && isset($demand['date_end'])){
 
-                                        if(($demands['date_start'] >= $curr_start && $demands['date_start'] <= $curr_end)
-                                        || ($demands['date_end'] >= $curr_start && $demands['date_end'] <= $curr_end) ){
-                                                array_push($conflicts, $demands);
+                                        if(($demand['date_start'] >= $curr_start && $demand['date_start'] <= $curr_end)
+                                        || ($demand['date_end'] >= $curr_start && $demand['date_end'] <= $curr_end) ){
+                                                array_push($conflicts, $demand);
                                         }
 
                                 }
