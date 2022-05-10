@@ -691,7 +691,7 @@ function bookHousingPeriod($id_housing, $id_customer, $date_start, $date_end){
 }
 
 function getConflict($demands){
-        $res = array();
+        $res = [];
         $cpt = 1;
         $num_conflict = 1;
         $no_conflicts = [];
