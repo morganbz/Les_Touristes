@@ -15,6 +15,7 @@ foreach($conflicts as $demands){
         ?>
         <p> OK <p>
         <?php 
+        var_dump($demands);
     }
     else{
         ?>
