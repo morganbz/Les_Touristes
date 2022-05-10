@@ -701,12 +701,10 @@ function getConflict($demands){
         foreach($demands as $curr_demands){
 
                 foreach($res as $curr_conflicts){
-                        if(array_search($curr_demands, $curr_conflicts) == false){
-                                $is_done = false;
-                        }
-                        else{
+                        if(!(array_search($curr_demands, $curr_conflicts) == false)){
                                 $is_done = true;
                         }
+
                 }
 
                 if(!$is_done){
@@ -744,7 +742,7 @@ function getConflict($demands){
                                 else{
                                         array_push($conflicts, $curr_demands);
 
-                                        
+                                        /*
                                         $nb_day = array_column($conflicts, 'nb_day');
                                         array_multisort($nb_day, SORT_DESC, $conflicts);
 
@@ -752,12 +750,14 @@ function getConflict($demands){
                                         if(array_search($conflicts, $res) == false){
                                                 array_push($res, $conflicts);
                                                 echo $cpt;
-                                        }
+                                        }*/
+                                        array_push($res, $conflicts);
                                 }
 
                         }
                         $cpt++;
                 }
+                $is_done = $false;
                 
 
         }
