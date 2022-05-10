@@ -6,7 +6,6 @@ $housing = getHousingById($id_housing);
 
 $first_demands = getAllBookAskByIdHousing($id_housing);
 $conflicts = getConflict($first_demands);
-//var_dump($conflicts);
 
 foreach($conflicts as $demands){
     $cpt = 1;
@@ -15,7 +14,6 @@ foreach($conflicts as $demands){
         ?>
         <p> OK <p>
         <?php 
-        var_dump($demands);
     }
     else{
         ?>
