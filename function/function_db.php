@@ -706,10 +706,10 @@ function getConflict($demands){
                         $curr_end = $curr_demands['date_end'];
                         $new_demands = $demands;
 
-                        /*
+                        
                         for($i = 0; $i < $cpt; $i++){
                                 $new_demands = array_shift($new_demands);
-                        }*/
+                        }
 
                         foreach($new_demands as $demand){
 
@@ -732,6 +732,7 @@ function getConflict($demands){
                         }
 
                 }
+                $cpt++;
 
         }
 
