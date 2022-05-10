@@ -10,7 +10,7 @@ $conflicts = getConflict($first_demands);
 //var_dump($conflicts);
 
 foreach($conflicts as $demands){
-    if(sizeof($demands) == 0){
+    if($demands == last($conflicts)){
         ?>
         <p> OK <p>
         <?php 
