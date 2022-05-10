@@ -706,6 +706,7 @@ function getConflict($demands){
                         }
                         else{
                                 $is_done = true;
+                                echo "bite";
                         }
                 }
 
