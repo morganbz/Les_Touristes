@@ -731,6 +731,7 @@ function getConflict($demands){
                                 array_push($no_conflicts,$curr_demands);
                         }
                         else{
+                                array_push($conflicts, $curr_demands);
                                 if(array_search($conflicts, $res) == false){
                                         array_push($res, $conflicts);
                                         echo $cpt;
