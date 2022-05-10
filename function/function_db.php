@@ -705,6 +705,7 @@ function getConflict($demands){
                                 $is_done = true;
                                 echo "bite1";
                         }
+                        echo $cpt; 
                         echo "bite2";
 
                 }
