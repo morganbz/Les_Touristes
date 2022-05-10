@@ -564,7 +564,42 @@ function getAllBookAskByIdHousing($id_housing){
                 array_push($demands, $row);
         }
 
-        return $demands;
+        $res = [];
+        $cpt = 1;
+        $num_conflict = 1;
+        $no_conflicts = [];
+
+        foreach($demands as $curr_demands){
+
+                $conflicts = [];
+
+                $curr_start = $curr_demands['date_start'];
+                $curr_end = $curr_demands['date_end'];
+                $new_demands = $demands;
+
+                for($i = 0; $i < $cpt; $i++){
+                        $new_demands = array_shift($new_demands);
+                }
+
+                foreach($new_demands as $demands){
+                        if(($demands['date_start'] >= $curr_start && $demands['date_start'] <= $curr_end)
+                        || ($demands['date_end'] >= $curr_start && $demands['date_end'] <= $curr_end) ){
+                                array_push($conflicts, $demands);
+                        }
+                }
+
+                if($conflicts == []){
+                        array_push($no_conflicts,$curr_demands);
+                }
+                else{
+                        array_push($res, $conflicts);
+                }
+
+        }
+
+        array_push($res, $no_conflicts);
+
+        return $res;
 }
 /*
 function alreadyBookAnnounce($id_announce, $id_customer){

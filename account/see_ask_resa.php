@@ -6,7 +6,7 @@ $housing = getHousingById($id_housing);
 
 $demands = getAllBookAskByIdHousing($id_housing);
 $cpt = 1;
-getConflict($demands);
+var_dump($demands);
 
 ?>
 
