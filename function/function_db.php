@@ -757,7 +757,7 @@ function getConflict($demands){
                         }
                         $cpt++;
                 }
-                $is_done = $false;
+                $is_done =  false;
                 
 
         }
