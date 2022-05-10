@@ -7,7 +7,7 @@ $housing = getHousingById($id_housing);
 $first_demands = getAllBookAskByIdHousing($id_housing);
 $cpt = 1;
 $conflicts = getConflict($first_demands);
-var_dump($conflicts);
+//var_dump($conflicts);
 
 foreach($conflicts as $demands){
 
