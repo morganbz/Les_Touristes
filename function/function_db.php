@@ -696,56 +696,70 @@ function getConflict($demands){
         $cpt = 1;
         $num_conflict = 1;
         $no_conflicts = [];
+        $is_done = false;
 
         foreach($demands as $curr_demands){
 
-                $conflicts = [];
-                if(isset($curr_demands['date_start']) && isset($curr_demands['date_end'] )){
-
-                        $curr_start = $curr_demands['date_start'];
-                        $curr_end = $curr_demands['date_end'];
-                        $new_demands = $demands;
-
-                        /*
-                        for($i = 0; $i < $cpt; $i++){
-                                $new_demands = array_shift($new_demands);
-                        }*/
-
-                        foreach($new_demands as $demand){
-
-                                if(isset($demand['date_start']) && isset($demand['date_end'])){
-
-                                        if($demand != $curr_demands){
-                                                if(($demand['date_start'] >= $curr_start && $demand['date_start'] <= $curr_end)
-                                                || ($demand['date_end'] >= $curr_start && $demand['date_end'] <= $curr_end) ){
-                                                        array_push($conflicts, $demand);
-                                                }
-                                        }
-
-
-                                }
-
-                        }
-
-                        if($conflicts == []){
-                                array_push($no_conflicts,$curr_demands);
+                foreach($res as $curr_conflicts){
+                        if(array_search($curr_conflicts, $curr_demands) == false){
+                                $is_done = false;
                         }
                         else{
-                                array_push($conflicts, $curr_demands);
-
-                                
-                                $nb_day = array_column($conflicts, 'nb_day');
-                                array_multisort($nb_day, SORT_DESC, $conflicts);
-
-
-                                if(array_search($conflicts, $res) == false){
-                                        array_push($res, $conflicts);
-                                        echo $cpt;
-                                }
+                                $is_done = true;
                         }
-
                 }
-                $cpt++;
+
+                if(!$is_done){
+                        $conflicts = [];
+                        if(isset($curr_demands['date_start']) && isset($curr_demands['date_end'] )){
+
+                                $curr_start = $curr_demands['date_start'];
+                                $curr_end = $curr_demands['date_end'];
+                                $new_demands = $demands;
+
+                                /*
+                                for($i = 0; $i < $cpt; $i++){
+                                        $new_demands = array_shift($new_demands);
+                                }*/
+
+                                foreach($new_demands as $demand){
+
+                                        if(isset($demand['date_start']) && isset($demand['date_end'])){
+
+                                                if($demand != $curr_demands){
+                                                        if(($demand['date_start'] >= $curr_start && $demand['date_start'] <= $curr_end)
+                                                        || ($demand['date_end'] >= $curr_start && $demand['date_end'] <= $curr_end) ){
+                                                                array_push($conflicts, $demand);
+                                                        }
+                                                }
+
+
+                                        }
+
+                                }
+
+                                if($conflicts == []){
+                                        array_push($no_conflicts,$curr_demands);
+                                }
+                                else{
+                                        array_push($conflicts, $curr_demands);
+
+                                        
+                                        $nb_day = array_column($conflicts, 'nb_day');
+                                        array_multisort($nb_day, SORT_DESC, $conflicts);
+
+
+                                        /*if(array_search($conflicts, $res) == false){
+                                                array_push($res, $conflicts);
+                                                echo $cpt;
+                                        }*/
+                                        array_push($res, $conflicts);
+                                }
+
+                        }
+                        $cpt++;
+                }
+                
 
         }
 
