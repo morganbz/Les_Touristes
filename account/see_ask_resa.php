@@ -9,13 +9,16 @@ $conflicts = getConflict($first_demands);
 $nb_conflits = 1;
 
 foreach($conflicts as $demands){
-    $title = "";
+    $caption = "";
     $is_conflict = false;
     $cpt = 1;
 
     if(!($demands == end($conflicts))){
-        $title = "Conflit n°". $nb_conflits;
+        $caption = "Conflit n°". $nb_conflits;
         $is_conflict = true;
+    }
+    else{
+        $caption = "Sans conflits";
     }
 
 
@@ -28,7 +31,7 @@ foreach($conflicts as $demands){
         ?>
 
         <table class="table table-bordered caption-top">
-            <caption><?php echo $title; ?></caption>
+            <caption><?php echo $caption; ?></caption>
             <thead class="table-dark">
                 <tr class="text-center">
                     <th scope="col">#</th>
