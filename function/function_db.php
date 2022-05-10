@@ -572,7 +572,7 @@ function getAllBookAskByIdHousing($id_housing){
         foreach($demands as $curr_demands){
 
                 $conflicts = [];
-                if(isset($curr_demands['date_start'] && $curr_demands['date_end'] )){
+                if(isset($curr_demands['date_start']) && isset($curr_demands['date_end'] )){
 
                         $curr_start = $curr_demands['date_start'];
                         $curr_end = $curr_demands['date_end'];
