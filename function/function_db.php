@@ -731,7 +731,11 @@ function getConflict($demands){
                                 array_push($no_conflicts,$curr_demands);
                         }
                         else{
-                                array_unshift($conflicts, $curr_demands);
+                                $nb_day = array_column($conflicts, 'nb_day');
+
+                                array_multisort($nb_day, SORT_DESC, $conflicts);
+
+
                                 if(array_search($conflicts, $res) == false){
                                         array_push($res, $conflicts);
                                         echo $cpt;
@@ -748,6 +752,8 @@ function getConflict($demands){
         return $res;
 
 }
+
+
 
 function updatePriceAnnounce($id, $price) {
         global $base;
