@@ -715,10 +715,13 @@ function getConflict($demands){
 
                                 if(isset($demand['date_start']) && isset($demand['date_end'])){
 
-                                        if(($demand['date_start'] >= $curr_start && $demand['date_start'] <= $curr_end)
-                                        || ($demand['date_end'] >= $curr_start && $demand['date_end'] <= $curr_end) ){
-                                                array_push($conflicts, $demand);
+                                        if($demand != $curr_demands){
+                                                if(($demand['date_start'] >= $curr_start && $demand['date_start'] <= $curr_end)
+                                                || ($demand['date_end'] >= $curr_start && $demand['date_end'] <= $curr_end) ){
+                                                        array_push($conflicts, $demand);
+                                                }
                                         }
+
 
                                 }
 
