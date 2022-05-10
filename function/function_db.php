@@ -728,7 +728,7 @@ function getConflict($demands){
                                 array_push($no_conflicts,$curr_demands);
                         }
                         else{
-                                if(array_search($conflicts, $res) == false){
+                                if(array_search($conflicts, $res) != false){
                                         array_push($res, $conflicts);
                                 }
                         }
