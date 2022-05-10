@@ -717,6 +717,11 @@ function getConflict($demands){
                                 $curr_end = $curr_demands['date_end'];
                                 $new_demands = $demands;
 
+                                /*
+                                for($i = 0; $i < $cpt; $i++){
+                                        $new_demands = array_shift($new_demands);
+                                }*/
+
                                 foreach($new_demands as $demand){
 
                                         if(isset($demand['date_start']) && isset($demand['date_end'])){
@@ -739,9 +744,15 @@ function getConflict($demands){
                                 else{
                                         array_push($conflicts, $curr_demands);
 
+                                        
                                         $nb_day = array_column($conflicts, 'nb_day');
                                         array_multisort($nb_day, SORT_DESC, $conflicts);
 
+
+                                        /*if(array_search($conflicts, $res) == false){
+                                                array_push($res, $conflicts);
+                                                echo $cpt;
+                                        }*/
                                         array_push($res, $conflicts);
                                 }
 
@@ -749,7 +760,9 @@ function getConflict($demands){
                         $cpt++;
                 }
                 
+
         }
+
         array_push($res, $no_conflicts);
 
         return $res;
