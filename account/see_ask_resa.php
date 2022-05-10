@@ -42,7 +42,7 @@ foreach($conflicts as $demands){
                 </tr>
             </thead>
 
-            <tbody>
+            <tbody class="text-center">
                 <?php
                 foreach($demands as $demand){
                     $user = getUserById($demand["id_user"]);
