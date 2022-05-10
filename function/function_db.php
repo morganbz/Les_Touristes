@@ -711,8 +711,9 @@ function getConflict($demands){
                 }*/
 
                 foreach($res as $curr_conflict){
-                        if(!in_array($curr_demands, $curr_conflict)){
+                        if(in_array($curr_demands, $curr_conflict)){
                                 $is_done = true;
+                                echo $cpt;
                         }
                 }
 
