@@ -1094,6 +1094,28 @@ function addHousingHistory($begin_date, $end_date, $id_user, $id_housing){
 
 }
 
+function getHistoryByIdUser($id){
+        $history = [];
+        global $base;
+
+        $sql = "SELECT * FROM housing_history WHERE id_user = $id";
+
+        $result = mysqli_query($base, $sql);
+
+        while($row = mysqli_fetch_assoc($result)){
+                array_push($history, $row);
+
+        }
+        return $history;
+}
+
+/*function fromResaToHistory(){
+        global $base;
+
+        $sql = 
+
+}*/
+
 function searchActivity($dest, $distance){
         global $base;
         $TYPE_ACTIVITY = array("Randonnée", "Espace Culturel", "Restauration", "Baignade");
