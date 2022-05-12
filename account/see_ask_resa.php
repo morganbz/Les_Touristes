@@ -57,7 +57,7 @@ foreach($conflicts as $demands){
             <tbody class="text-center">
                 <?php
                 foreach($demands as $demand){
-                    var_dumb($demand);
+                    var_dump($demand);
                     $user = getUserById($demand["id_user"]);
                     $nbNotes = getNbNotes($user["id"], 3);
                     if($nbNotes > 0){
