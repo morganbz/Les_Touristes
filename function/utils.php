@@ -230,6 +230,8 @@ function getFiveBestAnnounces(){
 }
 
 function getNiceDate($date){
+    global $DATE_FORMAT;
+    global $TIMEZONE;
     return strftime("%A %d %B %Y", strtotime($date));
 }
 
