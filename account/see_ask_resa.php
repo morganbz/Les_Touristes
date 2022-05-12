@@ -92,10 +92,37 @@ foreach($conflicts as $demands){
                                 echo "<input  type='hidden' name='date_start' id='date_start' value =".$demand['date_start']." >";
                                 echo "<input  type='hidden' name='date_end' id='date_end' value =".$demand['date_end']." >";
                             ?>
-                                <button class="btn btn-primary" id="submit1" name="submit" value="BookHousing" type="submit">Accepter </button>
+                                <button class="btn btn-primary" onclick ="confirmBooking(<?php echo $demand['id']; ?>)" >Accepter</button>
                             </form>
                         </td>
                     </tr>
+
+                    <div class="modal" id="<?php echo 'confirm_resa'.$demand['id']; ?>">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Confirmation</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Accepter cette réservation entrainera la suppression des autres demandes en conflit avec celle-ci.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                <form action="index.php" method="post" id="form1">
+                                <?php
+                                    echo "<input  type='hidden' name='id_housing' id='id_housing' value =".$id_housing." >";
+                                    echo "<input  type='hidden' name='id_user' id='id_user' value =".$demand['id_user']." >";
+                                    echo "<input  type='hidden' name='date_start' id='date_start' value =".$demand['date_start']." >";
+                                    echo "<input  type='hidden' name='date_end' id='date_end' value =".$demand['date_end']." >";
+                                ?>
+                                    <button class="btn btn-primary" id="submit1" name="submit" value="BookHousing" type="submit">Confirmer</button>
+                                </form>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <?php
                     $cpt++;
                 }
