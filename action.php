@@ -1,6 +1,7 @@
 <?php
     $page = "home";
     $page_account = "home";
+    fromResaToHistory();
 
     if(isset($_GET["page"])){
         $page = $_GET["page"];
