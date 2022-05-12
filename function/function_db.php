@@ -455,7 +455,7 @@ function durationDispo($id_housing, $date_start, $date_end){
         $dates = getAllNearDate($date_start, $date_end);
 
         foreach($dates as $date){
-                if(!isTakenDuration($id_housing , $date_start, $date_end)){
+                if(!isTakenDuration($id_housing , $date["date_start"], $date["date_end"])){
                         array_push($results, $date);
                 }
         }
