@@ -242,4 +242,18 @@ function getNiceDate($date){
     return $nice_date;
 }
 
+function getNbDay($date_start, $date_end){
+
+    $currDate = $date_start;
+    $nb_day = 0;
+
+    while($currDate <= $date_end ){
+            $nb_day++;
+            $currDate = date("Y-m-d", strtotime($currDate.'+ 1 days'));
+    }
+
+    return $nb_day;
+
+}
+
 ?>

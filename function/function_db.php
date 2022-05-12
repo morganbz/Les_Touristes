@@ -246,7 +246,7 @@ function getAllNearDate($date_start, $date_end){
                 $currDate = date("Y-m-d", strtotime($currDate.'+ 1 days'));
         }
 
-        for($i = 1; $i < $nb_day; $i++){
+        for($i = 1; $i < min(2,$nb_day); $i++){
                 array_push($dates,
                 array(
                         'date_start' => date("Y-m-d", strtotime($date_start.'+ '.$i.' days')),
@@ -272,10 +272,48 @@ function getAllNearDate($date_start, $date_end){
                 ));
 
         }
+        if($nb_day > 2){
+                array_push($dates,
+                array(
+                        'date_start' => date("Y-m-d", strtotime($date_start.'+ '.$nb_day.' days')),
+                        'date_end' => date("Y-m-d", strtotime($date_end.'+ '.$nb_day.' days'))
+                ));
+
+                array_push($dates,
+                array(
+                        'date_start' => date("Y-m-d", strtotime($date_start.'+ '.$nb_day.' days')),
+                        'date_end' => $date_end
+                ));
+
+                array_push($dates,
+                array(
+                        'date_start' => $date_start,
+                        'date_end' => date("Y-m-d", strtotime($date_end.'- '.$nb_day.' days'))
+                ));
+
+                array_push($dates,
+                array(
+                        'date_start' => date("Y-m-d", strtotime($date_start.'- '.$nb_day.' days')),
+                        'date_end' => date("Y-m-d", strtotime($date_end.'- '.$nb_day.' days'))
+                ));
+        }
 
         return $dates;
 
 }
+
+function searchNearDateAnnounce($priceMin, $priceMax, $date_start, $date_end, $dest, $distance){
+        $dates = getAllNearDate($date_start, $date_end);
+
+        $result = [];
+
+        foreach($dates as $date){
+                array_merge($result, searchAnnounce($priceMin, $priceMax, $date['date_start'], $date['date_end'], $dest, $distance));
+        }
+
+}
+
+
 
 function searchAnnounce($priceMin, $priceMax, $date_start, $date_end, $dest, $distance){
         global $base;
@@ -303,6 +341,11 @@ function searchAnnounce($priceMin, $priceMax, $date_start, $date_end, $dest, $di
                 if(!isTakenDuration($row["id"], $date_start, $date_end)){
                         if(getDistance($dest, $row["latitude"], $row["longitude"]) <= $distance * 1000){
                                 if($row['min_date'] <= $date_start && $row['max_date'] >= $date_end){
+
+                                        $row['dispo_start'] = $date_start;
+                                        $row['dispo_end'] = $date_end;
+                                        $row['nb_day'] = getNbDay($date_start, $date_end);
+
                                         if(isset($_SESSION["id_user"])){
                                                 if(!alreadyBookPeriod($row["id"], $_SESSION["id_user"], $date_start, $date_end)){
                                                         $row["adresse"] = getAddress($row["latitude"], $row["longitude"]);
