@@ -55,7 +55,7 @@
 
             <?php
             if ($page == "home"){
-                //var_dump(searchAnnounce(0, 10000, "2022-03-20", "2022-03-22", "Chambery", 99999));
+                var_dump(searchAnnounce(0, 10000, "2022-03-20", "2022-03-22", "Chambery", 99999));
                 //var_dump(durationDispo(119, "2022-03-20", "2022-03-22"));
 
                 include_once "home.php";
@@ -94,6 +94,11 @@
             }
             else if($page == "update_housing_announces"){
                 include_once "forms/update_housing_announces.php";
+            }
+            else if ($page == "housing_history"){
+                if (isset($_GET["h"])){
+                    displayHousingHistory($_GET["h"], false);
+                }
             }
             else if ($page == "housing" ){
                 if (isset($_GET["h"])){

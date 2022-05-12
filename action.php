@@ -406,14 +406,22 @@
         }
 
         // ----------- MAJ LOGEMENTS -------------------------------
-        if($submit == "AskUpdateHousing"){
+        if($submit == "AskUpdateHousingDates"){
             $id_housing = $_POST["id_housing"];
-            if(isset($_POST["for_announce"])){
-                $url = getURL()."?page=update_housing_announces&id_housing=".$id_housing;
-            }
-            else{
-                $url = getURL()."?page=update_housing&id_housing=".$id_housing;
-            }
+            $url = getURL()."?page=update_housing_announces&id_housing=".$id_housing;
+            header('Location: '.$url.'');
+        }
+
+        if($submit == "AskUpdateHousingInfos"){
+            $id_housing = $_POST["id_housing"];
+            $url = getURL()."?page=update_housing&id_housing=".$id_housing;
+            header('Location: '.$url.'');
+        }
+
+        //  ----------- HISTORIQUE LOGEMENTS ------------------------
+        if($submit == "ViewHousingHistory"){
+            $id_housing = $_POST["id_housing"];
+            $url = getURL()."?page=housing_history&h=".$id_housing;
             header('Location: '.$url.'');
         }
 
