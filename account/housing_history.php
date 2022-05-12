@@ -26,7 +26,7 @@ $housing_history  = getHousingHistoryByIdOwner($_SESSION["id_user"]);
                             ?>
                             <tr>
                                 <th scope="row"><?php echo $cpt; ?></th>
-                                <td><?php echo strftime("%A %d %B %Y", strtotime($housing["begin_date"])); ?></td>
+                                <td><?php echo getNiceDate($housing["begin_date"]); ?></td>
                                 <td><?php echo strftime("%A %d %B %Y", strtotime($housing["end_date"])); ?></td>
                                 <td><a href="?page=housing&h=<?php echo $id; ?>"><?php echo $housing["nom"]; ?></a></td>
                             </tr>

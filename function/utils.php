@@ -229,4 +229,8 @@ function getFiveBestAnnounces(){
     return $FiveBest;
 }
 
+function getNiceDate($date){
+    return strftime("%A %d %B %Y", strtotime($date));
+}
+
 ?>
