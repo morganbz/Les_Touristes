@@ -158,7 +158,7 @@ foreach($conflicts as $demands){
 <h2>2nd Modal</h2>
 
 <!-- Trigger/Open The Modal -->
-<button class="modal-button" href="#myModal2">Open Modal</button>
+<button class="modal-button" href="#7">Open Modal</button>
 
 <!-- The Modal -->
 <div id ="7" class="modal" tabindex="-1">
