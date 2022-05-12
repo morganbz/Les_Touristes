@@ -389,9 +389,10 @@ function searchAnnounce($priceMin, $priceMax, $date_start, $date_end, $dest, $di
                                                                         $row["adresse"] = getAddress($row["latitude"], $row["longitude"]);
                                                                         $row["type"] = $TYPE_HOUSING[$row["type"]];
                                                                         $row["isHousing"] = 1;
-                                                                        $row['dispo_start'] = $date_start;
-                                                                        $row['dispo_end'] = $date_end;
+                                                                        $row['date_start'] = $date_start;
+                                                                        $row['date_end'] = $date_end;
                                                                         $row['nb_day'] = getNbDay($date_start, $date_end);
+                                                                        $row['isNear'] = true;
                                                                         array_push($result, $row);    
                                                                 }
                                                         }
@@ -399,9 +400,10 @@ function searchAnnounce($priceMin, $priceMax, $date_start, $date_end, $dest, $di
                                                                 $row["adresse"] = getAddress($row["latitude"], $row["longitude"]);
                                                                 $row["type"] = $TYPE_HOUSING[$row["type"]];
                                                                 $row["isHousing"] = 1;
-                                                                $row['dispo_start'] = $date_start;
-                                                                $row['dispo_end'] = $date_end;
+                                                                $row['date_start'] = $date_start;
+                                                                $row['date_end'] = $date_end;
                                                                 $row['nb_day'] = getNbDay($date_start, $date_end);
+                                                                row['isNear'] = true;
                                                                 array_push($result, $row);
                                                         }
 
