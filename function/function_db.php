@@ -322,7 +322,7 @@ function searchNearDateAnnounce($priceMin, $priceMax, $date_start, $date_end, $d
         $result = [];
 
         foreach($dates as $date){
-                array_merge($result, searchAnnounce($priceMin, $priceMax, $date['date_start'], $date['date_end'], $dest, $distance));
+                $result = array_merge($result, searchAnnounce($priceMin, $priceMax, $date['date_start'], $date['date_end'], $dest, $distance));
         }
 
         $nb_day = array_column($result, 'nb_day');
