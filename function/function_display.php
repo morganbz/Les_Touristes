@@ -62,7 +62,7 @@ function displayAskReservation($data){
             $user = getUserById($info["id_user"]);
             echo "<div class='ask_info'>";
                 echo "<p>Client ".$user["firstname"]." ".$user["lastname"]."</p>";
-                echo "<p>Du ".$info["date_start"]." au ".$info["date_end"]."</p>";
+                echo "<p>Du ".getNiceDate($info["date_start"])." au ".getNiceDate($info["date_end"])."</p>";
                 echo "<p>Nombre de jour ".$info["nb_day"]."</p>";
                 echo "<p>Prix à la nuit ".$info["price_by_night"]."</p>";
                 echo "<p>Prix total ".$info["nb_day"] * $info["price_by_night"]."</p>";
@@ -110,7 +110,7 @@ function displayHousingAccount($housing){
         echo "<p>Periode de disponibilités : ";
 
         foreach ($announces as $announce){
-            echo "du ". $announce["date_start"] . " au " . $announce["date_end"];
+            echo "du ". getNiceDate($announce["date_start"]) . " au " . getNiceDate($announce["date_end"]);
             echo "<br>";
         }
         ?>
