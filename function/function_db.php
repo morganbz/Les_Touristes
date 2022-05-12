@@ -246,7 +246,7 @@ function getAllNearDate($date_start, $date_end){
                 $currDate = date("Y-m-d", strtotime($currDate.'+ 1 days'));
         }
 
-        for($i = 0; $i < $nb_day; $i++){
+        for($i = 1; $i < $nb_day; $i++){
                 array_push($dates,
                 array(
                         'date_start' => date("Y-m-d", strtotime($date_start.'+ '.$i.' days')),
