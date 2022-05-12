@@ -188,7 +188,3 @@ function getLocationActivity()
         }
     });
 }
-
-function confirmBooking(id_reservation){
-    document.getElementById("confirm_resa" + id_reservation).style.display = "block";
-}
