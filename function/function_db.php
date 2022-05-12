@@ -533,7 +533,6 @@ function getPriceAnnounceByDate($id, $date_start){
         global $base;
 
         $sql = "SELECT id, price, date_start, isTaken, id_housing FROM announce WHERE id_housing = $id AND date_start = '$date_start'";
-        echo $sql;
         $result = mysqli_query($base, $sql);
 
         $row = mysqli_fetch_assoc($result);
