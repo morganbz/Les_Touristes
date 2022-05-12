@@ -140,15 +140,18 @@ function displayHousingAccount($housing){
 }
 
 function displayHousingHistory($id, $isForUser){
-    global $ORDER;
+    global $ORDER_FOR_USER;
+    global $ORDER_FOR_OWNER;
 
     if ($isForUser){
+        $ORDER = $ORDER_FOR_USER;
         if (isset($_GET["order"])){
             $housing_history = getHousingHistoryByIdOwner($id, $_GET["order"]);
         } else {
             $housing_history = getHousingHistoryByIdOwner($id);
         } 
     } else {
+        $ORDER = $ORDER_FOR_OWNER;
         if (isset($_GET["order"])){
             $housing_history = getHousingHistoryByIdHousing($id, $_GET["order"]);
         } else {

@@ -1362,7 +1362,7 @@ function getHousingHistoryBy($what, $id, $order = DATE_ORDER){
 
         $history = [];
 
-        $sql = "SELECT h.id, h.type, h.latitude, h.longitude, h.nom, h.image_folder, h.description, hh.begin_date, hh.end_date, hh.id_user 
+        $sql = "SELECT DISTINCT h.id, h.type, h.latitude, h.longitude, h.nom, h.image_folder, h.description, hh.begin_date, hh.end_date, hh.id_user 
                 FROM `housing_history` hh INNER JOIN `housing` h 
                 ON hh.id_housing = h.id
                 WHERE hh.$what = $id
