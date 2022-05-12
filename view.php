@@ -55,6 +55,7 @@
 
             <?php
             if ($page == "home"){
+                var_dump(getAllNearDate("2022-03-20", "2022-03-25"));
                 include_once "home.php";
             }
             else if ($page == "recherche_activitee"){

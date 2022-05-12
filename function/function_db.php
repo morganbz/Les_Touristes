@@ -235,6 +235,48 @@ function modificationPassUser($pass){
 // ----------------------------------------------------- ANNOUNCE ----------------------------------------
 
 
+function getAllNearDate($date_start, $date_end){
+        $dates = [];
+        
+        $currDate = $row['date_start'];
+        $nb_day = 0;
+
+        while($currDate <= $row['date_end'] ){
+                $nb_day++;
+                $currDate = date("Y-m-d", strtotime($currDate.'+ 1 days'));
+        }
+
+        for($i = 0; $i < $nb_day; $i++){
+                array_push($dates,
+                array(
+                        'date_start' => date("Y-m-d", strtotime($date_start.'+ '$i' days')),
+                        'date_end' => date("Y-m-d", strtotime($date_end.'+ '$i' days'))
+                ));
+
+                array_push($dates,
+                array(
+                        'date_start' => date("Y-m-d", strtotime($date_start.'+ '$i' days')),
+                        'date_end' => $date_end
+                ));
+
+                array_push($dates,
+                array(
+                        'date_start' => $date_start,
+                        'date_end' => date("Y-m-d", strtotime($date_end.'- '$i' days'))
+                ));
+
+                array_push($dates,
+                array(
+                        'date_start' => date("Y-m-d", strtotime($date_start.'- '$i' days')),
+                        'date_end' => date("Y-m-d", strtotime($date_end.'- '$i' days'))
+                ));
+
+        }
+
+        return $dates;
+
+}
+
 function searchAnnounce($priceMin, $priceMax, $date_start, $date_end, $dest, $distance){
         global $base;
         $TYPE_HOUSING = array("Maison", "Appartement", "Chalet", "Refuge");
