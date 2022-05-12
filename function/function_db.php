@@ -1378,11 +1378,11 @@ function getHousingHistoryBy($what, $id, $order = DATE_ORDER){
 }
 
 function getHousingHistoryByIdOwner($id, $order = DATE_ORDER){
-        return getHousingHistoryBy("id_user", $id, $order = DATE_ORDER);
+        return getHousingHistoryBy("id_user", $id, $order);
 }
 
 function getHousingHistoryByIdHousing($id, $order = DATE_ORDER){
-        return getHousingHistoryBy("id_housing", $id, $order = DATE_ORDER);
+        return getHousingHistoryBy("id_housing", $id, $order);
 }
 
 ?>
