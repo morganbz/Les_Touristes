@@ -5,7 +5,12 @@ $TYPE_ACTIVITY = array("Randonnée", "Espace Culturel", "Restauration", "Baignad
 
 $TYPE_RATED = array(1 => "Logement", 2 => "Activités", 3 => "Utilisateur");
 
-var_dump(setlocale(LC_ALL, 'fr_FR.utf8','fra'));
+//ne marche pas sur le serveur car le français n'est pas installé
+setlocale(LC_TIME, 'fr_FR.utf8','fra');
 date_default_timezone_set('Europe/Paris');
-var_dump(phpinfo());
+
+//solution :
+$DAY_WEEK = array("dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi");
+$MOIS = array("janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre");
+
 ?>

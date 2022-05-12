@@ -230,7 +230,16 @@ function getFiveBestAnnounces(){
 }
 
 function getNiceDate($date){
-    return strftime("%A %d %B %Y", strtotime($date));
+    global $MOIS;
+    global $DAY_WEEK;
+
+    $day_week = strftime("%w", strtotime($date));
+    $day = strftime("%d", strtotime($date));
+    $month = strftime("%m", strtotime($date));
+    $year = strftime("%Y", strtotime($date));
+
+    $nice_date = $DAY_WEEK[$day_week]." ".$day." ".$MOIS[$month -1]." ".$year;
+    return $nice_date;
 }
 
 ?>
