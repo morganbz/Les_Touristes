@@ -85,15 +85,7 @@ foreach($conflicts as $demands){
                             ?>
                         </td>
                         <td>
-                            <form action="index.php" method="post" id="form1">
-                            <?php
-                                echo "<input  type='hidden' name='id_housing' id='id_housing' value =".$id_housing." >";
-                                echo "<input  type='hidden' name='id_user' id='id_user' value =".$demand['id_user']." >";
-                                echo "<input  type='hidden' name='date_start' id='date_start' value =".$demand['date_start']." >";
-                                echo "<input  type='hidden' name='date_end' id='date_end' value =".$demand['date_end']." >";
-                            ?>
-                                <button class="btn btn-primary" onclick ="confirmBooking(<?php echo $demand['id']; ?>)" >Accepter</button>
-                            </form>
+                            <button class="btn btn-primary" onclick ="confirmBooking(<?php echo $demand['id']; ?>)" >Accepter</button>
                         </td>
                     </tr>
 
