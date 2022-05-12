@@ -85,7 +85,7 @@ foreach($conflicts as $demands){
                             ?>
                         </td>
                         <td>
-                            <button class="btn btn-primary modal-button" href ="#<?php echo 'confirm_resa'.$demand['id']; ?>" >Accepter</button>
+                            <button class="modal-button" href ="#<?php echo 'confirm_resa'.$demand['id']; ?>" >Accepter</button>
                         </td>
                     </tr>
 
@@ -133,7 +133,7 @@ foreach($conflicts as $demands){
 
 <script>
 
-    var btn = document.querySelectorAll("button. modal-button");
+    var btn = document.querySelectorAll("button.modal-button");
 
     // All page modals
     var modals = document.querySelectorAll('.modal');
