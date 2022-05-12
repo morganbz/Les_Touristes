@@ -114,6 +114,7 @@ function displayHousingAccount($housing){
             echo "<br>";
         }
         ?>
+        </p>
 
         <div class="d-flex justify-content-around">
 
@@ -132,9 +133,7 @@ function displayHousingAccount($housing){
 
         <?php
 
-        echo "</p>";
-
-    echo "</ul>";
+    echo "</li>";
 
 
 }
