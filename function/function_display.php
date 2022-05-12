@@ -416,7 +416,7 @@ function displayUser($id){
                         <div class="about-text go-to">
                             <h3 class="dark-color"><?php echo $firstname . " " . $lastname;?></h3>
                             <h6 class="theme-color lead">À propos :</h6>
-                            <p><?php echo $description;?></p>
+                            <p><?php echo nl2br($description);?></p>
                             <div class="row about-list">
                                 <div class="col-md-6">
                                     <div class="media">
