@@ -879,6 +879,16 @@ function isAlreadyRated($id_rated, $id_rater, $type_rated){
         return !empty(mysqli_fetch_assoc($result));
 }
 
+function hasRatedHistory($id_history){
+        global $base;
+
+        $sql = "SELECT id FROM rate WHERE id_history = $id_history";
+
+        $result = mysqli_query($base, $sql);
+
+        return !empty(mysqli_fetch_assoc($result));
+}
+
 function getRates($id_rated, $type_rated){
         global $base;
 
@@ -893,6 +903,17 @@ function getRates($id_rated, $type_rated){
         }
 
         return $rates;
+}
+
+function getRate($id_history){
+        global $base;
+
+        $sql = "SELECT id_rater, rate, title, message FROM rate WHERE id_history = $id_history";
+
+        $results = mysqli_query($base, $sql);
+
+        return mysqli_fetch_assoc($results);
+
 }
 
 function numberAnnounceDistinctByIdHousing($id_housing){
@@ -1093,6 +1114,8 @@ function deleteReservationById($id){
         mysqli_query($base, $sql);
 }
 
+//---------------------------HISTORIQUE------------------------------
+
 function addHousingHistory($begin_date, $end_date, $id_user, $id_housing){
         global $base;
 
@@ -1116,6 +1139,23 @@ function getHistoryByIdUser($id){
         }
         return $history;
 }
+
+function getHistoryByIdHousing($id){
+        $history = [];
+        global $base;
+
+        $sql = "SELECT * FROM housing_history WHERE id_housing = $id";
+
+        $result = mysqli_query($base, $sql);
+
+        while($row = mysqli_fetch_assoc($result)){
+                array_push($history, $row);
+
+        }
+        return $history;
+}
+
+
 
 function fromResaToHistory(){
         $current_date = date("Y-m-d");

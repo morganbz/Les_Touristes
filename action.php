@@ -262,8 +262,6 @@
 
             bookHousingPeriod($id_housing, $id_customer, $date_start, $date_end);
 
-            addHousingHistory($date_start, $date_end, $id_user, $id_housing);
-
         }
 
         // ---------------- CONNEXION UTILISATEURS --------------------------------
@@ -428,8 +426,6 @@
             $date_end = $_POST["date_end"];
 
             bookHousingPeriod($id_housing, $id_user, $date_start, $date_end);
-
-            addHousingHistory($date_start, $date_end, $id_user, $id_housing);
 
             $url = getURL()."?page=user_page&page_account=see_resa";
             header('Location: '.$url.'');
