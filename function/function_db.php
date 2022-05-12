@@ -329,8 +329,8 @@ function searchNearDateAnnounce($priceMin, $priceMax, $date_start, $date_end, $d
         $dispo_start = array_column($result, 'dispo_start');
         $dispo_end = array_column($result, 'dispo_end');
         array_multisort($nb_day, SORT_DESC, $result);
-        array_multisort($date_start, SORT_ASC, $result);
-        array_multisort($date_end, SORT_ASC, $result);
+        array_multisort($dispo_start, SORT_ASC, $result);
+        array_multisort($dispo_end, SORT_ASC, $result);
 
         return $result;
 }
