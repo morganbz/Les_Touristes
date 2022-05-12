@@ -98,7 +98,6 @@ foreach($conflicts as $demands){
                             </div>
                             <div class="modal-body">
                                 <p>Accepter cette réservation entrainera la suppression des autres demandes en conflit avec celle-ci.</p>
-                                <p><?php echo $demand['id_reservation'] ?></p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary annuler" data-bs-dismiss="modal">Annuler</button>
