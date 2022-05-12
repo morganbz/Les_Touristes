@@ -32,7 +32,7 @@ if(!empty($reservations)){
                 <th scope="row"><?php echo $cpt; ?></th>
                 <td><?php echo $history["begin_date"]; ?></td>
                 <td><?php echo $history["end_date"]; ?></td>
-                <td><a class = "link_announce" href="?page=user&&id_housing=<?php echo $history["id_history"]; ?>"><?php echo $housing["nom"]; ?></a></td>
+                <td><a class = "link_announce" href="?page=user&id_housing=<?php echo $history["id_history"]; ?>"><?php echo $housing["nom"]; ?></a></td>
                 
                 <td>
                     <?php
