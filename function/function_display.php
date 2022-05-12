@@ -141,8 +141,26 @@ function displayHousingAccount($housing){
 
 function displayHousingHistory($id, $isForUser){
     global $ORDER;
-    ?>
-    <label for="order">Trier par :</label>
+
+    if ($isForUser){
+        if (isset($_GET["order"])){
+            $housing_history = getHousingHistoryByIdOwner($id, $_GET["order"]);
+        } else {
+            $housing_history = getHousingHistoryByIdOwner($id);
+        } 
+    } else {
+        if (isset($_GET["order"])){
+            $housing_history = getHousingHistoryByIdHousing($id, $_GET["order"]);
+        } else {
+            $housing_history = getHousingHistoryByIdHousing($id);
+        }
+    }
+
+    if (count($housing_history) == 0){
+        echo "<p> Pas d'anciennes réservations </p>";
+    } else {
+        ?>
+        <label for="order">Trier par :</label>
         <select name = 'order' id="order" onchange="window.location.href = (!(window.location.href.includes('&order='))) ? window.location.href.concat(this.value) : (window.location.href).substr(0, (window.location.href).indexOf('&order=')).concat(this.value)">
         <?php
         foreach($ORDER as $order){
@@ -157,56 +175,39 @@ function displayHousingHistory($id, $isForUser){
             }
             
         }
-        echo "</select>";
-        if ($isForUser){
-           if (isset($_GET["order"])){
-                $housing_history = getHousingHistoryByIdOwner($id, $_GET["order"]);
-            } else {
-                $housing_history = getHousingHistoryByIdOwner($id);
-            } 
-        } else {
-            if (isset($_GET["order"])){
-                $housing_history = getHousingHistoryByIdHousing($id, $_GET["order"]);
-            } else {
-                $housing_history = getHousingHistoryByIdHousing($id);
-            }
-        }
-
-        if (count($housing_history) == 0){
-            echo "<p> Pas d'anciennes réservations </p>";
-        } else {
-            echo "<div>";
-            $cpt = 1;
-            ?>
-                <table class="table">
-                    <thead>
-                        <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Début du séjour</th>
-                        <th scope="col">Fin du séjour</th>
-                        <th scope="col">Logement</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-                    foreach($housing_history as $housing){
-                        $id = $housing["id"];
-                        ?>
-                        <tr>
-                            <th scope="row"><?php echo $cpt; ?></th>
-                            <td><?php echo getNiceDate($housing["begin_date"]); ?></td>
-                            <td><?php echo getNiceDate($housing["end_date"]); ?></td>
-                            <td><a href="?page=housing&h=<?php echo $id; ?>"><?php echo $housing["nom"]; ?></a></td>
-                        </tr>
-                    <?php
-                    $cpt++;
-                    }
+        $cpt = 1;
+        ?>
+        </select>
+        <div>
+            <table class="table">
+                <thead>
+                    <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Début du séjour</th>
+                    <th scope="col">Fin du séjour</th>
+                    <th scope="col">Logement</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php
+                foreach($housing_history as $housing){
+                    $id = $housing["id"];
                     ?>
-                    </tbody>
-                </table>
-        </div>
-        <?php
-        }
+                    <tr>
+                        <th scope="row"><?php echo $cpt; ?></th>
+                        <td><?php echo getNiceDate($housing["begin_date"]); ?></td>
+                        <td><?php echo getNiceDate($housing["end_date"]); ?></td>
+                        <td><a href="?page=housing&h=<?php echo $id; ?>"><?php echo $housing["nom"]; ?></a></td>
+                    </tr>
+                <?php
+                $cpt++;
+                }
+                ?>
+                </tbody>
+            </table>
+    </div>
+    <?php
+    }
 }
 
 function ModifHousing($housing){
