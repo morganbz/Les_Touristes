@@ -249,26 +249,26 @@ function getAllNearDate($date_start, $date_end){
         for($i = 0; $i < $nb_day; $i++){
                 array_push($dates,
                 array(
-                        'date_start' => date("Y-m-d", strtotime($date_start.'+ '$i' days')),
-                        'date_end' => date("Y-m-d", strtotime($date_end.'+ '$i' days'))
+                        'date_start' => date("Y-m-d", strtotime($date_start.'+ '.$i.' days')),
+                        'date_end' => date("Y-m-d", strtotime($date_end.'+ '.$i.' days'))
                 ));
 
                 array_push($dates,
                 array(
-                        'date_start' => date("Y-m-d", strtotime($date_start.'+ '$i' days')),
+                        'date_start' => date("Y-m-d", strtotime($date_start.'+ '.$i.' days')),
                         'date_end' => $date_end
                 ));
 
                 array_push($dates,
                 array(
                         'date_start' => $date_start,
-                        'date_end' => date("Y-m-d", strtotime($date_end.'- '$i' days'))
+                        'date_end' => date("Y-m-d", strtotime($date_end.'- '.$i.' days'))
                 ));
 
                 array_push($dates,
                 array(
-                        'date_start' => date("Y-m-d", strtotime($date_start.'- '$i' days')),
-                        'date_end' => date("Y-m-d", strtotime($date_end.'- '$i' days'))
+                        'date_start' => date("Y-m-d", strtotime($date_start.'- '.$i.' days')),
+                        'date_end' => date("Y-m-d", strtotime($date_end.'- '.$i.' days'))
                 ));
 
         }
