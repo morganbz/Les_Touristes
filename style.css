@@ -199,6 +199,10 @@ img {
   font-size: 15px;
 }
 
+.about-avatar img{
+    box-shadow: 10px -5px 5px rgba(31, 45, 61, 0.125);
+}
+
 @media (max-width: 991px) {
   .about-avatar {
     margin-top: 30px;
