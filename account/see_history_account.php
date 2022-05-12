@@ -23,7 +23,7 @@ if(!empty($reservations)){
         <?php
 
         foreach($reservations as $history){
-            $has_rated = HasRatedHousing($history['id_history']);
+            $has_rated = hasRatedHistory($history['id_history']);
 
             $housing = getHousingById($history['id_housing']);
 
