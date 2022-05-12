@@ -537,7 +537,7 @@ function getPriceAnnounceByDate($id, $date_start){
 
         $row = mysqli_fetch_assoc($result);
 
-        return $row['price'];
+        return $row;
 }
 
 function getAnnounceGrpNbByIdHousing($id_housing){
