@@ -383,25 +383,28 @@ function searchAnnounce($priceMin, $priceMax, $date_start, $date_end, $dest, $di
                                 else{
                                         $dates = durationDispo($row["id"], $date_start, $date_end);
                                         foreach($dates as $date){
-                                                if(isset($_SESSION["id_user"])){
-                                                        if(!alreadyBookPeriod($row["id"], $_SESSION["id_user"], $date_start, $date_end)){
+                                                if(!isTakenDuration($row["id"], $date_start, $date_end)){
+                                                        if(isset($_SESSION["id_user"])){
+                                                                if(!alreadyBookPeriod($row["id"], $_SESSION["id_user"], $date_start, $date_end)){
+                                                                        $row["adresse"] = getAddress($row["latitude"], $row["longitude"]);
+                                                                        $row["type"] = $TYPE_HOUSING[$row["type"]];
+                                                                        $row["isHousing"] = 1;
+                                                                        $row['dispo_start'] = $date_start;
+                                                                        $row['dispo_end'] = $date_end;
+                                                                        $row['nb_day'] = getNbDay($date_start, $date_end);
+                                                                        array_push($result, $row);    
+                                                                }
+                                                        }
+                                                        else{
                                                                 $row["adresse"] = getAddress($row["latitude"], $row["longitude"]);
                                                                 $row["type"] = $TYPE_HOUSING[$row["type"]];
                                                                 $row["isHousing"] = 1;
                                                                 $row['dispo_start'] = $date_start;
                                                                 $row['dispo_end'] = $date_end;
                                                                 $row['nb_day'] = getNbDay($date_start, $date_end);
-                                                                array_push($result, $row);    
+                                                                array_push($result, $row);
                                                         }
-                                                }
-                                                else{
-                                                        $row["adresse"] = getAddress($row["latitude"], $row["longitude"]);
-                                                        $row["type"] = $TYPE_HOUSING[$row["type"]];
-                                                        $row["isHousing"] = 1;
-                                                        $row['dispo_start'] = $date_start;
-                                                        $row['dispo_end'] = $date_end;
-                                                        $row['nb_day'] = getNbDay($date_start, $date_end);
-                                                        array_push($result, $row);
+
                                                 }
 
                                         }
