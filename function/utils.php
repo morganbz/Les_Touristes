@@ -230,8 +230,6 @@ function getFiveBestAnnounces(){
 }
 
 function getNiceDate($date){
-    setlocale (LC_TIME, 'fr_FR.utf8','fra');
-    date_default_timezone_set('Europe/Paris');
     return strftime("%A %d %B %Y", strtotime($date));
 }
 
