@@ -279,17 +279,6 @@ function getAllNearDate($date_start, $date_end){
                         'date_end' => date("Y-m-d", strtotime($date_end.'+ '.$nb_day.' days'))
                 ));
 
-                array_push($dates,
-                array(
-                        'date_start' => date("Y-m-d", strtotime($date_start.'+ '.$nb_day.' days')),
-                        'date_end' => $date_end
-                ));
-
-                array_push($dates,
-                array(
-                        'date_start' => $date_start,
-                        'date_end' => date("Y-m-d", strtotime($date_end.'- '.$nb_day.' days'))
-                ));
 
                 array_push($dates,
                 array(
