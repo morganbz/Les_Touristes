@@ -85,7 +85,7 @@ foreach($conflicts as $demands){
                             ?>
                         </td>
                         <td>
-                            <button class="btn btn-primary" data-modal ="<?php echo 'confirm_resa'.$demand['id']; ?>" >Accepter</button>
+                            <button class="btn btn-primary modal-button" href ="#<?php echo 'confirm_resa'.$demand['id']; ?>" >Accepter</button>
                         </td>
                     </tr>
 
@@ -132,26 +132,21 @@ foreach($conflicts as $demands){
 ?>
 
 <script>
-    let modalBtns = [...document.querySelectorAll("button")];
-      modalBtns.forEach(function (btn) {
-        btn.onclick = function () {
-          let modal = btn.getAttribute("data-modal");
-          document.getElementById(modal).style.display = "block";
-        };
-      });
 
-      let closeBtns = [...document.querySelectorAll(".close")];
-      closeBtns.forEach(function (btn) {
-        btn.onclick = function () {
-          let modal = btn.closest(".modal");
-          modal.style.display = "none";
-        };
-      });
+    var btn = document.querySelectorAll("button. modal-button");
 
-      window.onclick = function (event) {
-        if (event.target.className === "modal") {
-          event.target.style.display = "none";
-        }
-      };
+    // All page modals
+    var modals = document.querySelectorAll('.modal');
+
+    // Get the <span> element that closes the modal
+    var spans = document.getElementsByClassName("close");
+
+    // When the user clicks the button, open the modal
+    for (var i = 0; i < btn.length; i++) {
+    btn[i].onclick = function(e) {
+        e.preventDefault();
+        modal = document.querySelector(e.target.getAttribute("href"));
+        modal.style.display = "block";
+    }
 
 </script>
