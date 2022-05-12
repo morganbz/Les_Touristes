@@ -136,10 +136,6 @@ foreach($conflicts as $demands){
                     <?php
                         }
                         ?>
-                        <td>
-                            <button class="btn btn-primary modal-button" href ="#myModal<?php echo $demand['id_reservation']; ?>" >Accepter</button>
-                        </td>
-                    </tr>
 
                     <div class="modal" id="myModal<?php echo $demand['id_reservation']; ?>">
                         <div class="modal-dialog modal-dialog-centered">
