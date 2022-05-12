@@ -325,6 +325,9 @@ function searchNearDateAnnounce($priceMin, $priceMax, $date_start, $date_end, $d
                 array_merge($result, searchAnnounce($priceMin, $priceMax, $date['date_start'], $date['date_end'], $dest, $distance));
         }
 
+        $nb_day = array_column($result, 'nb_day');
+        array_multisort($nb_day, SORT_DESC, $result);
+
         return $result;
 }
 
