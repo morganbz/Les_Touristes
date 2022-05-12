@@ -492,7 +492,7 @@ function displayUser($id){
                     ?><div>
                     <h2>Evaluations</h2>
                     </div>
-                    <h3>Moyenne des notes : "<?php echo getAverage($id, 3); ?>"/5</h3><?php
+                    <h3>Moyenne des notes : <?php echo getAverage($id, 3); ?>/5</h3><?php
                     displayRate($id, 3);
                 }
                 ?>         
