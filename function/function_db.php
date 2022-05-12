@@ -271,7 +271,7 @@ function getAllNearDate($date_start, $date_end){
                         'date_end' => date("Y-m-d", strtotime($date_end.'- '.$i.' days'))
                 ));
 
-        }/*
+        }*/
         if($nb_day > 2){
 
                 array_push($dates,
