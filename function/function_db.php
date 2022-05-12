@@ -381,7 +381,7 @@ function searchAnnounce($priceMin, $priceMax, $date_start, $date_end, $dest, $di
                                         }
                                 }
                                 else{
-                                        $dates = durationDispo($id_housing, $date_start, $date_end);
+                                        $dates = durationDispo($row["id"], $date_start, $date_end);
                                         foreach($dates as $date){
                                                 if(isset($_SESSION["id_user"])){
                                                         if(!alreadyBookPeriod($row["id"], $_SESSION["id_user"], $date_start, $date_end)){
