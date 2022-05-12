@@ -101,7 +101,7 @@ foreach($conflicts as $demands){
                                 <p><?php echo $demand['id_reservation'] ?></p>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                <button type="button" class="btn btn-secondary annuler" data-bs-dismiss="modal">Annuler</button>
                                 <form action="index.php" method="post" id="form1">
                                 <?php
                                     echo "<input  type='hidden' name='id_housing' id='id_housing' value =".$id_housing." >";
@@ -142,6 +142,9 @@ foreach($conflicts as $demands){
     // Get the <span> element that closes the modal
     var spans = document.getElementsByClassName("btn-close");
 
+    // Get the annuler button element that closes the modal
+    var annuler_button = document.getElementsByClassName("annuler");
+
     // When the user clicks the button, open the modal
     for (var i = 0; i < btn.length; i++) {
         btn[i].onclick = function(e) {
@@ -154,6 +157,14 @@ foreach($conflicts as $demands){
     // When the user clicks on <span> (x), close the modal
     for (var i = 0; i < spans.length; i++) {
         spans[i].onclick = function() {
+            for (var index in modals) {
+            if (typeof modals[index].style !== 'undefined') modals[index].style.display = "none";    
+            }
+        }
+    }
+
+    for (var i = 0; i < annuler_button.length; i++) {
+        annuler_button[i].onclick = function() {
             for (var index in modals) {
             if (typeof modals[index].style !== 'undefined') modals[index].style.display = "none";    
             }
