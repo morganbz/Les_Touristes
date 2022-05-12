@@ -403,7 +403,7 @@ function searchAnnounce($priceMin, $priceMax, $date_start, $date_end, $dest, $di
                                                                 $row['date_start'] = $date_start;
                                                                 $row['date_end'] = $date_end;
                                                                 $row['nb_day'] = getNbDay($date_start, $date_end);
-                                                                row['isNear'] = true;
+                                                                $row['isNear'] = true;
                                                                 array_push($result, $row);
                                                         }
 
