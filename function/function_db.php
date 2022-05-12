@@ -370,6 +370,7 @@ function searchAnnounce($priceMin, $priceMax, $date_start, $date_end, $dest, $di
                                                         $row["adresse"] = getAddress($row["latitude"], $row["longitude"]);
                                                         $row["type"] = $TYPE_HOUSING[$row["type"]];
                                                         $row["isHousing"] = 1;
+                                                        $row['is_near'] = false;
                                                         array_push($result, $row);    
                                                 }
                                         }
@@ -377,20 +378,20 @@ function searchAnnounce($priceMin, $priceMax, $date_start, $date_end, $dest, $di
                                                 $row["adresse"] = getAddress($row["latitude"], $row["longitude"]);
                                                 $row["type"] = $TYPE_HOUSING[$row["type"]];
                                                 $row["isHousing"] = 1;
+                                                $row['is_near'] = false;
                                                 array_push($result, $row);
                                         }
                                 }
                                 else{
                                         $dates = durationDispo($row["id"], $date_start, $date_end);
-                                        foreach($dates as $date){
+                                        if(!empty($dates)){
                                                 if(isset($_SESSION["id_user"])){
                                                         if(!alreadyBookPeriod($row["id"], $_SESSION["id_user"], $date["date_start"], $date["date_end"])){
                                                                 $row["adresse"] = getAddress($row["latitude"], $row["longitude"]);
                                                                 $row["type"] = $TYPE_HOUSING[$row["type"]];
                                                                 $row["isHousing"] = 1;
                                                                 $row['dates'] = $dates;
-                                                                $row['nb_day'] = getNbDay($date["date_start"], $date["date_end"]);
-                                                                $row['isNear'] = true;
+                                                                $row['is_near'] = true;
                                                                 array_push($result, $row);    
                                                         }
                                                 }
@@ -399,8 +400,7 @@ function searchAnnounce($priceMin, $priceMax, $date_start, $date_end, $dest, $di
                                                         $row["type"] = $TYPE_HOUSING[$row["type"]];
                                                         $row["isHousing"] = 1;
                                                         $row['dates'] = $dates;
-                                                        $row['nb_day'] = getNbDay($date["date_start"], $date["date_end"]);
-                                                        $row['isNear'] = true;
+                                                        $row['is_near'] = true;
                                                         array_push($result, $row);
                                                 }
 
