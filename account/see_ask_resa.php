@@ -85,7 +85,7 @@ foreach($conflicts as $demands){
                             ?>
                         </td>
                         <td>
-                            <button class="btn btn-primary" onclick ="confirmBooking(<?php echo $demand['id']; ?>)" >Accepter</button>
+                            <button class="btn btn-primary" data-modal ="<?php echo 'confirm_resa'.$demand['id']; ?>" >Accepter</button>
                         </td>
                     </tr>
 
@@ -132,7 +132,12 @@ foreach($conflicts as $demands){
 ?>
 
 <script>
-    function confirmBooking(id_reservation){
-        document.getElementById("confirm_resa" + id_reservation).style.display = "fixed";
-    }
+    let modalBtns = [...document.querySelectorAll(".button")];
+      modalBtns.forEach(function (btn) {
+        btn.onclick = function () {
+          let modal = btn.getAttribute("data-modal");
+          document.getElementById(modal).style.display = "block";
+        };
+      });
+
 </script>
