@@ -57,7 +57,7 @@
             if ($page == "home"){
                 //var_dump(searchAnnounce(0, 10000, "2022-03-20", "2022-03-22", "Chambery", 99999));
                 //var_dump(durationDispo(119, "2022-03-20", "2022-03-22"));
-                getTotalPrice(120, "2022-05-25", "2022-05-27");
+                echo getTotalPrice(120, "2022-05-25", "2022-05-27");
 
                 include_once "home.php";
             }
