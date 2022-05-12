@@ -14,6 +14,8 @@
     <li class="nav-item active"><a class="nav-link" href="?page=user_page&page_account=see_history_account">Voir mon historique</a></li>
     <li class="nav-item active"><a class="nav-link" href="?page=user_page&page_account=see_activity">Voir mes activités</a></li>
     <li class="nav-item active"><a class="nav-link" href="?page=user_page&page_account=add_activity">Ajouter une activité</a></li>
+    <li class="nav-item active"><a class="nav-link" href="?page=user_page&page_account=housing_history">Voir l'hitorique des réservations</a></li>
+
   </ul>
 </nav>
 
@@ -62,11 +64,8 @@
     }
     else if ($page_account == "see_resa"){
       include_once "account/see_resa.php";
-
-    }
-    else if ($page_account == "see_history_account"){
-      include_once "account/see_history_account.php";
-
+    }else if ($page_account == "housing_history"){
+      include_once "account/housing_history.php";
     }
 }
 ?>
