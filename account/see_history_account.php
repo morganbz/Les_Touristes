@@ -28,24 +28,26 @@ if(!empty($reservations)){
             $housing = getHousingById($history['id_housing']);
 
             ?>
-            <th scope="row"><?php echo $cpt; ?></th>
-            <td><?php echo $history["begin_date"]; ?></td>
-            <td><?php echo $history["end_date"]; ?></td>
-            <td><a class = "link_announce" href="?page=user&&id_housing=<?php echo $history["id_history"]; ?>"><?php echo $housing["nom"]; ?></a></td>
-            
-            <td>
-                <?php
-                if($has_rated){
-                    $rate = getRate($history['id_history']);
-                    echo $rate."/5";
-                }
-                else{
-                    ?>
-                    <button class="btn btn-primary" id="submit1" name="submit" value="rate_reservation" type="submit">Noter </button>
+            <tr>
+                <th scope="row"><?php echo $cpt; ?></th>
+                <td><?php echo $history["begin_date"]; ?></td>
+                <td><?php echo $history["end_date"]; ?></td>
+                <td><a class = "link_announce" href="?page=user&&id_housing=<?php echo $history["id_history"]; ?>"><?php echo $housing["nom"]; ?></a></td>
+                
+                <td>
                     <?php
-                }
-                ?>
-            </td>
+                    if($has_rated){
+                        $rate = getRate($history['id_history']);
+                        echo $rate."/5";
+                    }
+                    else{
+                        ?>
+                        <button class="btn btn-primary" id="submit1" name="submit" value="rate_reservation" type="submit">Noter </button>
+                        <?php
+                    }
+                    ?>
+                </td>
+            </tr>
 
 
 
