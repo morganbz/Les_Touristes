@@ -85,7 +85,7 @@ foreach($conflicts as $demands){
                             ?>
                         </td>
                         <td>
-                            <button class="modal-button" href ="#myModal<?php echo $demand['id_reservation']; ?>" >#myModal<?php echo $demand['id_reservation']; ?></button>
+                            <button class="modal-button" href ="#myModal<?php echo $demand['id_reservation']; ?>" >Accepter</button>
                         </td>
                     </tr>
 
@@ -98,6 +98,7 @@ foreach($conflicts as $demands){
                             </div>
                             <div class="modal-body">
                                 <p>Accepter cette réservation entrainera la suppression des autres demandes en conflit avec celle-ci.</p>
+                                <p><?php echo $demand['id_reservation'] ?></p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
