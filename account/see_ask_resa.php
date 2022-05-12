@@ -148,5 +148,6 @@ foreach($conflicts as $demands){
         modal = document.querySelector(e.target.getAttribute("href"));
         modal.style.display = "block";
     }
+}
 
 </script>
