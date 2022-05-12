@@ -55,7 +55,7 @@
 
             <?php
             if ($page == "home"){
-                var_dump(searchAnnounce(0, 10000, "2022-03-23", "2022-03-25", "Chambery", 99999));
+                var_dump(searchAnnounce(0, 10000, "2022-03-19", "2022-03-22", "Chambery", 99999));
 
                 include_once "home.php";
             }
