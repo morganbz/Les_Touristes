@@ -189,7 +189,7 @@ foreach($conflicts as $demands){
     // Get the <span> element that closes the modal
     var spans = document.getElementsByClassName("btn-close");
 
-    // Get the annuler button element that closes the modal
+    // recupère les boutons annuler
     var annuler_button = document.getElementsByClassName("annuler");
 
     // When the user clicks the button, open the modal
@@ -210,6 +210,7 @@ foreach($conflicts as $demands){
         }
     }
 
+    //pour le bouton fermer
     for (var i = 0; i < annuler_button.length; i++) {
         annuler_button[i].onclick = function() {
             for (var index in modals) {
