@@ -532,6 +532,7 @@ function getAllBookAskByIdHousing($id_housing){
 
         global $base;
         $sql = "SELECT 
+                        id,
                         id_owner,
                         date_start,
                         date_end,
