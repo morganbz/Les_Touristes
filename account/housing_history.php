@@ -1,6 +1,25 @@
+<label for="order">Trier par :</label>
+<select name = 'order' id="order" onchange="window.location.href = (!(window.location.href.includes('&order='))) ? window.location.href.concat(this.value) : (window.location.href).substr(0, (window.location.href).indexOf('&order=')).concat(this.value)">
 <?php
+foreach($ORDER as $order){
+    if (isset($_GET["order"])){
+        if ($order["value"] == $_GET["order"]){
+            ?><option value = '&order=<?php echo $order['value']; ?>' selected><?php echo $order['nom']; ?></option><?php
+        } else {
+            ?><option value = '&order=<?php echo $order['value']; ?>'><?php echo $order['nom']; ?></option><?php
+        }
+    } else {
+        ?><option value = '&order=<?php echo $order['value']; ?>'><?php echo $order['nom']; ?></option><?php
+    }
+    
+}
+echo "</select>";
+if (isset($_GET["order"])){
+    $housing_history = getHousingHistoryByIdOwner($_SESSION["id_user"], $_GET["order"]);
+} else {
+    $housing_history = getHousingHistoryByIdOwner($_SESSION["id_user"]);
+}
 
-$housing_history  = getHousingHistoryByIdOwner($_SESSION["id_user"]);
 ?>
     <?php
         if (count($housing_history) == 0){

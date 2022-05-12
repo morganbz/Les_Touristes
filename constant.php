@@ -5,6 +5,11 @@ $TYPE_ACTIVITY = array("Randonnée", "Espace Culturel", "Restauration", "Baignad
 
 $TYPE_RATED = array(1 => "Logement", 2 => "Activités", 3 => "Utilisateur");
 
+define('HOUSING_ORDER', 'id_housing');
+define('DATE_ORDER', 'begin_date');
+
+$ORDER = array(array("nom" => "Date", "value" => DATE_ORDER), array("nom" => "Logement", "value" => HOUSING_ORDER));
+
 //ne marche pas sur le serveur car le français n'est pas installé
 setlocale(LC_TIME, 'fr_FR.utf8','fra');
 date_default_timezone_set('Europe/Paris');

@@ -1357,7 +1357,7 @@ function searchActivity($dest, $distance){
         return $activity;   
 }
 
-function getHousingHistoryByIdOwner($id){
+function getHousingHistoryBy($what, $id, $order = DATE_ORDER){
         global $base;
 
         $history = [];
@@ -1365,7 +1365,8 @@ function getHousingHistoryByIdOwner($id){
         $sql = "SELECT h.id, h.type, h.latitude, h.longitude, h.nom, h.image_folder, h.description, hh.begin_date, hh.end_date 
                 FROM `housing_history` hh INNER JOIN `housing` h 
                 ON hh.id_housing = h.id
-                WHERE hh.id_user = $id";
+                WHERE hh.$what = $id
+                ORDER BY hh.$order";
               
         $result = mysqli_query($base, $sql);
 
@@ -1376,5 +1377,12 @@ function getHousingHistoryByIdOwner($id){
         return $history;
 }
 
+function getHousingHistoryByIdOwner($id, $order = DATE_ORDER){
+        return getHousingHistoryBy("id_user", $id, $order = DATE_ORDER);
+}
+
+function getHousingHistoryByIdHousing($id, $order = DATE_ORDER){
+        return getHousingHistoryBy("id_housing", $id, $order = DATE_ORDER);
+}
 
 ?>
