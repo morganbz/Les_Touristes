@@ -448,12 +448,12 @@ function isTakenDuration($id_housing , $date_start, $date_end){
 
 function durationDispo($id_housing, $date_start, $date_end){
 
-        $result = [];
+        $results = [];
         $dates = getAllNearDate($date_start, $date_end);
 
         foreach($dates as $date){
                 if(!isTakenDuration($id_housing , $date_start, $date_end)){
-                        array_push($result, $date);
+                        array_push($results, $date);
                 }
         }
         return $results;
