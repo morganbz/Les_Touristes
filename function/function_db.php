@@ -273,6 +273,31 @@ function getAllNearDate($date_start, $date_end){
 
         }
         if($nb_day > 2){
+
+                array_push($dates,
+                array(
+                        'date_start' => date("Y-m-d", strtotime($date_start.'- 2 days')),
+                        'date_end' => date("Y-m-d", strtotime($date_end.'- 1 days'))
+                ));
+
+                array_push($dates,
+                array(
+                        'date_start' => date("Y-m-d", strtotime($date_start.'- 1 days')),
+                        'date_end' => date("Y-m-d", strtotime($date_end.'- 2 days'))
+                ));
+
+                array_push($dates,
+                array(
+                        'date_start' => date("Y-m-d", strtotime($date_start.'+ 2 days')),
+                        'date_end' => date("Y-m-d", strtotime($date_end.'+ 1 days'))
+                ));
+
+                array_push($dates,
+                array(
+                        'date_start' => date("Y-m-d", strtotime($date_start.'+ 1 days')),
+                        'date_end' => date("Y-m-d", strtotime($date_end.'+ 2 days'))
+                ));
+
                 array_push($dates,
                 array(
                         'date_start' => date("Y-m-d", strtotime($date_start.'+ '.$nb_day.' days')),
