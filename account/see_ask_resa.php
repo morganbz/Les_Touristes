@@ -130,54 +130,7 @@ foreach($conflicts as $demands){
 
 }
 ?>
-<h2>1st Modal</h2>
 
-<!-- Trigger/Open The Modal -->
-<button class="modal-button" href="#myModal1">Open Modal</button>
-
-<!-- The Modal -->
-<div id="myModal1" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-    <div class="modal-header">
-      <span class="close">×</span>
-      <h2>Modal Header</h2>
-    </div>
-    <div class="modal-body">
-      <p>Some text in the Modal Body</p>
-      <p>Some other text...</p>
-    </div>
-    <div class="modal-footer">
-      <h3>Modal Footer</h3>
-    </div>
-  </div>
-
-</div>
-
-<h2>2nd Modal</h2>
-
-<!-- Trigger/Open The Modal -->
-<button class="modal-button" href="#myModal7">Open Modal</button>
-
-<!-- The Modal -->
-<div id ="myModal7" class="modal" tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>Modal body text goes here.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 <script>
 
