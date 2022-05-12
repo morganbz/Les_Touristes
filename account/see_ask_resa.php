@@ -140,7 +140,7 @@ foreach($conflicts as $demands){
     var modals = document.querySelectorAll('.modal');
 
     // Get the <span> element that closes the modal
-    var spans = document.getElementsByClassName("close");
+    var spans = document.getElementsByClassName("btn-close");
 
     // When the user clicks the button, open the modal
     for (var i = 0; i < btn.length; i++) {
