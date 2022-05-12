@@ -143,11 +143,11 @@ foreach($conflicts as $demands){
 
     // When the user clicks the button, open the modal
     for (var i = 0; i < btn.length; i++) {
-    btn[i].onclick = function(e) {
-        e.preventDefault();
-        modal = document.querySelector(e.target.getAttribute("href"));
-        modal.style.display = "block";
+        btn[i].onclick = function(e) {
+            e.preventDefault();
+            modal = document.querySelector(e.target.getAttribute("href"));
+            modal.style.display = "block";
+        }
     }
-}
 
 </script>
