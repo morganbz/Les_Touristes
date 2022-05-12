@@ -85,11 +85,11 @@ foreach($conflicts as $demands){
                             ?>
                         </td>
                         <td>
-                            <button class="modal-button" href ="#7" >Accepter</button>
+                            <button class="modal-button" href ="#<?php echo 'confirm_resa'.$demand['id']; ?>" >Accepter</button>
                         </td>
                     </tr>
 
-                    <div class="modal" id="7">
+                    <div class="modal" id="<?php echo 'confirm_resa'.$demand['id']; ?>">
                         <div class="modal-dialog">
                             <div class="modal-content">
                             <div class="modal-header">
@@ -130,6 +130,55 @@ foreach($conflicts as $demands){
 
 }
 ?>
+<h2>1st Modal</h2>
+
+<!-- Trigger/Open The Modal -->
+<button class="modal-button" href="#myModal1">Open Modal</button>
+
+<!-- The Modal -->
+<div id="myModal1" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">×</span>
+      <h2>Modal Header</h2>
+    </div>
+    <div class="modal-body">
+      <p>Some text in the Modal Body</p>
+      <p>Some other text...</p>
+    </div>
+    <div class="modal-footer">
+      <h3>Modal Footer</h3>
+    </div>
+  </div>
+
+</div>
+
+<h2>2nd Modal</h2>
+
+<!-- Trigger/Open The Modal -->
+<button class="modal-button" href="#myModal2">Open Modal</button>
+
+<!-- The Modal -->
+<div id="myModal2" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">×</span>
+      <h2>Modal Header</h2>
+    </div>
+    <div class="modal-body">
+      <p>Some text in the Modal Body</p>
+      <p>Some other text...</p>
+    </div>
+    <div class="modal-footer">
+      <h3>Modal Footer</h3>
+    </div>
+  </div>
+
+</div>
 
 <script>
 
