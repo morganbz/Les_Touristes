@@ -90,7 +90,7 @@ foreach($conflicts as $demands){
                     </tr>
 
                     <div class="modal" id="myModal<?php echo $demand['id_reservation']; ?>">
-                        <div class="modal-dialog">
+                        <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title">Confirmation</h5>
