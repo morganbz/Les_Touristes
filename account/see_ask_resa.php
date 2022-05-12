@@ -85,11 +85,11 @@ foreach($conflicts as $demands){
                             ?>
                         </td>
                         <td>
-                            <button class="modal-button" href ="#<?php echo 'confirm_resa'.$demand['id']; ?>" >Accepter</button>
+                            <button class="modal-button" href ="#7" >Accepter</button>
                         </td>
                     </tr>
 
-                    <div class="modal" id="<?php echo 'confirm_resa'.$demand['id']; ?>">
+                    <div class="modal" id="7">
                         <div class="modal-dialog">
                             <div class="modal-content">
                             <div class="modal-header">
