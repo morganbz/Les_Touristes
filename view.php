@@ -55,7 +55,8 @@
 
             <?php
             if ($page == "home"){
-                //var_dump(getAllNearDate("2022-03-20", "2022-03-25"));
+                var_dump(searchNearDateAnnounce(0, 10000, "2022-03-23", "2022-03-29", "Chambery", 99999));
+
                 include_once "home.php";
             }
             else if ($page == "recherche_activitee"){
