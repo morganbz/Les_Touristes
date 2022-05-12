@@ -238,10 +238,10 @@ function modificationPassUser($pass){
 function getAllNearDate($date_start, $date_end){
         $dates = [];
         
-        $currDate = $row['date_start'];
+        $currDate = $date_start;
         $nb_day = 0;
 
-        while($currDate <= $row['date_end'] ){
+        while($currDate <= $date_end ){
                 $nb_day++;
                 $currDate = date("Y-m-d", strtotime($currDate.'+ 1 days'));
         }
