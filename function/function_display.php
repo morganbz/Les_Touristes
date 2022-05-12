@@ -197,7 +197,13 @@ function displayHousingHistory($id, $isForUser){
                         <th scope="row"><?php echo $cpt; ?></th>
                         <td><?php echo getNiceDate($housing["begin_date"]); ?></td>
                         <td><?php echo getNiceDate($housing["end_date"]); ?></td>
-                        <td><a href="?page=housing&h=<?php echo $id; ?>"><?php echo $housing["nom"]; ?></a></td>
+                        <?php
+                        if ($isForUser){
+                            ?><td><a href="?page=housing&h=<?php echo $id; ?>"><?php echo $housing["nom"]; ?></a></td><?php
+                        } else {
+                            ?><td><a href="?page=user&u=<?php echo $housing["id_user"]; ?>"><?php echo getUserById($housing["id_user"])["firstname"]." ".getUserById($housing["id_user"])["lastname"]; ?></a></td><?php
+                        }
+                        ?>
                     </tr>
                 <?php
                 $cpt++;
