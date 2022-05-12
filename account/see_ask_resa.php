@@ -85,11 +85,11 @@ foreach($conflicts as $demands){
                             ?>
                         </td>
                         <td>
-                            <button class="modal-button" href ="#myModal<?php echo $demand['id']; ?>" >#myModal<?php echo $demand['id']; ?></button>
+                            <button class="modal-button" href ="#myModal<?php echo $demand['id']; ?>" >#myModal<?php echo $demand['id_reservation']; ?></button>
                         </td>
                     </tr>
 
-                    <div class="modal" id="myModal<?php echo $demand['id']; ?>">
+                    <div class="modal" id="myModal<?php echo $demand['id_reservation']; ?>">
                         <div class="modal-dialog">
                             <div class="modal-content">
                             <div class="modal-header">
