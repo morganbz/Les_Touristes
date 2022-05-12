@@ -386,7 +386,17 @@ function displayUser($id){
     $lastname = $infos["lastname"];
     $birth_date = $infos["birth_date"];
     $phone = $infos["phone"];
+    $mail = $infos["mail"];
     $description = $infos["description"];
+
+    $today = date("Y-m-d");
+    $diff = date_diff(date_create($birth_date), date_create($today));
+    $age = $diff->format('%y');
+
+    $nb_housing = count(getHousingByIdOwner($id));
+    $nb_activity = count(getActivityByIdOwner($id));
+    $nb_housing_history = count(getHousingHistoryByIdOwner($id));
+    $nb_rates = getNbNotes($id, 3);
 
     $profile_picture = "./ressources/profile_picture.png";
     $profile_picture_folder = "picture_profile/".$id;
@@ -399,45 +409,103 @@ function displayUser($id){
         }
     }
     ?>
-    <img src="<?php echo $profile_picture;?>" alt="Profile picture">
-    <div>
-        <h2><?php echo $firstname . " " . $lastname;?></h2>
-        <p>Date de naissance : <?php echo $birth_date;?></p>
-        <p>Numéro de téléphone : <?php echo $phone;?></p>
-        <p>Description : <?php echo $description;?></p>
-    </div>
-    <div>
-        <h2>Coups de coeurs</h2>
-    </div>
-    <div>
-        <h2>Badges</h2>
-    </div>
-    <div>
-        <h2>Evaluations</h2>
-    </div>
+    <section class="section about-section gray-bg" id="about">
+            <div class="container">
+                <div class="row align-items-center flex-row-reverse">
+                    <div class="col-lg-6">
+                        <div class="about-text go-to">
+                            <h3 class="dark-color"><?php echo $firstname . " " . $lastname;?></h3>
+                            <h6 class="theme-color lead">À propos :</h6>
+                            <p><?php echo $description;?></p>
+                            <div class="row about-list">
+                                <div class="col-md-6">
+                                    <div class="media">
+                                        <label>Date de naissance</label>
+                                        <p><?php echo getNiceDate($birth_date);?></p>
+                                    </div>
+                                    <div class="media">
+                                        <label>Âge</label>
+                                        <p><?php echo $age;?> ans</p>
+                                    </div>                       
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="media">
+                                        <label>E-mail</label>
+                                        <p><?php echo $mail;?></p>
+                                    </div>
+                                    <div class="media">
+                                        <label>Téléphone</label>
+                                        <p><?php echo $phone;?></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="about-avatar">
+                            <img src="<?php echo $profile_picture;?>" alt="Photo de profil">
+                        </div>
+                    </div>
+                </div>
+                <div class="counter">
+                    <div class="row">
+                        <div class="col-6 col-lg-3">
+                            <div class="count-data text-center">
+                                <h6 class="count h2" data-to="<?php echo $nb_activity;?>" data-speed="<?php echo $nb_activity;?>"><?php echo $nb_activity;?></h6>
+                                <p class="m-0px font-w-600">Recommandations d'acivités</p>
+                            </div>
+                        </div>
+                        <div class="col-6 col-lg-3">
+                            <div class="count-data text-center">
+                                <h6 class="count h2" data-to="<?php echo $nb_housing;?>" data-speed="<?php echo $nb_housing;?>"><?php echo $nb_housing;?></h6>
+                                <p class="m-0px font-w-600">Propositions d'hébergements</p>
+                            </div>
+                        </div>
+                        <div class="col-6 col-lg-3">
+                            <div class="count-data text-center">
+                                <h6 class="count h2" data-to="<?php echo $nb_housing_history;?>" data-speed="<?php echo $nb_housing_history;?>"><?php echo $nb_housing_history;?></h6>
+                                <p class="m-0px font-w-600">Hébergements visités</p>
+                            </div>
+                        </div>
+                        <div class="col-6 col-lg-3">
+                            <div class="count-data text-center">
+                                <h6 class="count h2" data-to="<?php echo $nb_rates;?>" data-speed="<?php echo $nb_rates;?>"><?php echo $nb_rates;?></h6>
+                                <p class="m-0px font-w-600">Evaluations</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h2>Coups de coeurs</h2>
+                </div>
+                <div>
+                    <h2>Badges</h2>
+                </div>
+                
+                <?php
 
+                if (isset($_SESSION["id_user"]) && $_SESSION["id_user"] != $id && !isAlreadyRated($id, $_SESSION["id_user"], 3)){
+                    displayFormRateAndComment($id, 3);
+                } 
+
+                if ($nb_rates != 0){
+                    ?><div>
+                    <h2>Evaluations</h2>
+                    </div>
+                    <h3>Moyenne des notes : "<?php echo getAverage($id, 3); ?>"/5</h3><?php
+                    displayRate($id, 3);
+                }
+                ?>         
+            </div>
+        </section>
     <?php
-
-    if (isset($_SESSION["id_user"]) && $_SESSION["id_user"] != $id && !isAlreadyRated($id, $_SESSION["id_user"], 3)){
-        displayFormRateAndComment($id, 3);
-    } 
-
-    if (getNbNotes($id, 2) == 0){
-        echo "<h3>Aucune évaluations</h3>";
-    } else {
-        echo "<h3>Moyenne des notes : ". getAverage($id, 3)."/5</h3>";
-        displayRate($id, 3);
-    }
 }
 
 function displayFormRateAndComment($id, $type_rated){
 ?>
     <form action="index.php" method="post">
-        <div>
-            <label for="rate">Note :</label>
-            <NOBR>0</NOBR>   
-            <input type="range" id="rate" name="rate" min="0" max="5" step="0.2" required>
-            <NOBR>5</NOBR>   
+        <div class="rating"> 
+            <input type="radio" name="rate" value="5" id="5"><label for="5">☆</label> <input type="radio" name="rate" value="4" id="4"><label for="4">☆</label> <input type="radio" name="rate" value="3" id="3"><label for="3">☆</label> <input type="radio" name="rate" value="2" id="2"><label for="2">☆</label> <input type="radio" name="rate" value="1" id="1"><label for="1">☆</label>
         </div>
 
         <div>
@@ -453,7 +521,7 @@ function displayFormRateAndComment($id, $type_rated){
         <input value="<?php echo $id;?>" type="hidden" name="id_rated" id="id_rated">
 
         <input value="<?php echo $type_rated;?>" type="hidden" name="rated_is_housing" id="rated_is_housing">
-
+       
         <button class="w-30 btn btn-primary btn-lg px-4 me-sm-3" id="submit" name="submit" value="submit_rate_and_comment" type="submit">Envoyer</button>
     </form>
 <?php
