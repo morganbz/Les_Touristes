@@ -1085,6 +1085,14 @@ function getAllActivityID(){
         return $ids;
 }
 
+function deleteReservationById($id){
+        global $base;
+
+        $sql = "DELETE FROM `reservation` WHERE id = $id";
+
+        mysqli_query($base, $sql);
+}
+
 function addHousingHistory($begin_date, $end_date, $id_user, $id_housing){
         global $base;
 
@@ -1109,12 +1117,26 @@ function getHistoryByIdUser($id){
         return $history;
 }
 
-/*function fromResaToHistory(){
+function fromResaToHistory(){
+        $current_date = date("Y-m-d");
+
         global $base;
 
-        $sql = 
+        $sql = "SELECT `id`, `id_user`, `id_housing`, `date_start`, `date_end` FROM `reservation` 
+                WHERE date_end <= '$current_date' AND accepted = 1";
 
-}*/
+        $result = mysqli_query($base, $sql);
+
+        while($row = mysqli_fetch_assoc($result)){
+
+                addHousingHistory($row['date_start'], $row['date_end'], $row['id_user'], $row['id_housing']);
+
+                deleteReservationById($row['id']);
+
+        }
+
+
+}
 
 function searchActivity($dest, $distance){
         global $base;
