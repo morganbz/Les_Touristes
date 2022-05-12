@@ -65,8 +65,8 @@ foreach($conflicts as $demands){
                     ?>
                     <tr>
                         <th scope="row"><?php echo $cpt; ?></th>
-                        <td><?php echo $demand["date_start"]; ?></td>
-                        <td><?php echo $demand["date_end"]; ?></td>
+                        <td><?php echo getNiceDate($demand["date_start"]); ?></td>
+                        <td><?php echo getNiceDate($demand["date_end"]); ?></td>
                         <td><?php echo $demand["nb_day"]; ?></td>
                         <td><?php echo $demand["price"]." €"; ?></td>
                         <td><a class = "link_announce" href="?page=user&u=<?php echo $user["id"]; ?>"><?php echo $user["mail"]; ?></a></td>
