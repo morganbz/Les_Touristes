@@ -5,7 +5,7 @@ $TYPE_ACTIVITY = array("Randonnée", "Espace Culturel", "Restauration", "Baignad
 
 $TYPE_RATED = array(1 => "Logement", 2 => "Activités", 3 => "Utilisateur");
 
-var_dump(setlocale(LC_TIME, 'fr_FR.utf8','fra'));
+var_dump(setlocale(LC_ALL, 'fr_FR.utf8','fra'));
 date_default_timezone_set('Europe/Paris');
 var_dump(phpinfo());
 ?>
