@@ -385,24 +385,13 @@ function searchAnnounce($priceMin, $priceMax, $date_start, $date_end, $dest, $di
                                 else{
                                         $dates = durationDispo($row["id"], $date_start, $date_end);
                                         if(!empty($dates)){
-                                                if(isset($_SESSION["id_user"])){
-                                                        if(!alreadyBookPeriod($row["id"], $_SESSION["id_user"], $date["date_start"], $date["date_end"])){
-                                                                $row["adresse"] = getAddress($row["latitude"], $row["longitude"]);
-                                                                $row["type"] = $TYPE_HOUSING[$row["type"]];
-                                                                $row["isHousing"] = 1;
-                                                                $row['dates'] = $dates;
-                                                                $row['is_near'] = true;
-                                                                array_push($result, $row);    
-                                                        }
-                                                }
-                                                else{
-                                                        $row["adresse"] = getAddress($row["latitude"], $row["longitude"]);
-                                                        $row["type"] = $TYPE_HOUSING[$row["type"]];
-                                                        $row["isHousing"] = 1;
-                                                        $row['dates'] = $dates;
-                                                        $row['is_near'] = true;
-                                                        array_push($result, $row);
-                                                }
+                                                $row["adresse"] = getAddress($row["latitude"], $row["longitude"]);
+                                                $row["type"] = $TYPE_HOUSING[$row["type"]];
+                                                $row["isHousing"] = 1;
+                                                $row['dates'] = $dates;
+                                                $row['is_near'] = true;
+                                                array_push($result, $row);    
+
 
                                         }
 
