@@ -371,6 +371,7 @@ function searchAnnounce($priceMin, $priceMax, $date_start, $date_end, $dest, $di
                                                         $row["type"] = $TYPE_HOUSING[$row["type"]];
                                                         $row["isHousing"] = 1;
                                                         $row['is_near'] = false;
+                                                        $row['nb_ask'] = nbBookAskPeriod($row["id"], $date_start, $date_end);
                                                         array_push($result, $row);    
                                                 }
                                         }
@@ -379,6 +380,7 @@ function searchAnnounce($priceMin, $priceMax, $date_start, $date_end, $dest, $di
                                                 $row["type"] = $TYPE_HOUSING[$row["type"]];
                                                 $row["isHousing"] = 1;
                                                 $row['is_near'] = false;
+                                                $row['nb_ask'] = nbBookAskPeriod($row["id"], $date_start, $date_end);
                                                 array_push($result, $row);
                                         }
                                 }
@@ -658,6 +660,25 @@ function getTotalPrice($id_housing, $date_start, $date_end){
                 $currDate = date("Y-m-d", strtotime($currDate.'+ 1 days'));
         }
         return $price;
+}
+
+function nbBookAskPeriod($id_housing, $date_start, $date_end){
+        global $base;
+        $cpt = 0;
+
+        $sql = "SELECT * FROM `reservation` 
+        WHERE accepted = 0 AND id_housing = $id_housing AND
+                (date_start BETWEEN '$date_start' AND '$date_end')
+            OR
+            (date_end BETWEEN '$date_start' AND '$date_end')";
+        
+        $result = mysqli_query($base, $sql);
+
+        while($row = mysqli_fetch_assoc($result)){
+                $cpt++;
+        }
+        return $cpt;
+
 }
 
 
