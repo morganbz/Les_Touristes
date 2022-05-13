@@ -24,7 +24,7 @@
                     foreach($preferences as $preference){
                         ?>
 
-                        <div class="modal" id="myModal<?php echo $preference['id']; ?>">
+                        <div class="modal" id="myModal">
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header">
