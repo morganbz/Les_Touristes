@@ -38,6 +38,7 @@ function loadMapAddress(data = null, zoom = 22){
             center: new google.maps.LatLng(latitude, longitude),
             zoom: zoom
         });
+        console.log(map);
         
         setMarkers(map,data);
     });
