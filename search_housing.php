@@ -61,7 +61,7 @@
                                                 echo "<input  type='hidden' name='price_search_max' id='price_search_max' value =".$preference['price_max']." >";
                                                 echo "<input  type='hidden' name='distance_search' id='distance_search' value =".$preference['distance']." >";
                                             ?>
-                                                <button>Confirmer</button>
+                                                <button class="btn btn-primary" id="submit1" name="submit" value="BookHousing" type="submit">Confirmer</button>
                                             </form>
                                         </div>
                                         </div>
