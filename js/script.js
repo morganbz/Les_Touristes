@@ -180,6 +180,7 @@ function getLocationbyid(id)
         dataType: "json",
         success: function (response) {
             var results = response["data"];
+            console.log(response["distance"]);
             if(response["distance"] == 0){
                 loadMapAddress(results, 22);
             }
