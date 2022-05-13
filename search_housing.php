@@ -44,7 +44,7 @@
                                                 <p> entre <?php echo $preference['price_min']; ?>€ et <?php echo $preference['price_max']; ?>€ la nuit </p>
                                                 <p> Distance max : <?php echo $preference['distance']; ?> km </p>
                                             </div>
-                                            <div>
+                                            <div class="d-flex align-items-start">
                                                 <div class="flex">
                                                     <label for="date_seach_arrive">Arrivée</label>
                                                     <br>
