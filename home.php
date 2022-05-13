@@ -131,7 +131,7 @@ $nb_images = count($best_annouces_w_img);
 </div>
 
 <div class = "catch_phrase">
-    <p> Bienvenue chez les Touristes la plateforme collaborative regroupant à la fois location de logement et activités à proximité de ses derniers afin de planifier au mieux votre séjour!
+    <p> Bienvenue chez les Touristes la plateforme collaborative regroupant à la fois location de logement et activités à proximité de ces derniers afin de planifier au mieux votre séjour!
     </p>
 </div>
 
