@@ -88,10 +88,8 @@ foreach($conflicts as $demands){
                 <?php
                 foreach($demands as $demand){
                     $user = getUserById($demand["id_user"]);
-                    /*$nbNotes = getNbNotes($user["id"], 3);
-                    if($nbNotes > 0){
-                        $average = getAverage($user["id"], 3);
-                    }*/
+                    $nbNotes = getNbNotes($user["id"], 3);
+
                     ?>
                     <tr>
                         <th scope="row"><?php echo $cpt; ?></th>
@@ -102,17 +100,16 @@ foreach($conflicts as $demands){
                         <td><a class = "link_announce" href="?page=user&u=<?php echo $user["id"]; ?>"><?php echo $user["mail"]; ?></a></td>
                         <td>
                             <?php
-                            /*if($nbNotes > 0){
+                            /f($nbNotes > 0){
                                 if($nbNotes == 1){
-                                    echo $average."/5 (".$nbNotes." note)";
+                                    echo $demand["note"]."/5 (".$nbNotes." note)";
                                 } else {
-                                    echo $average."/5 (".$nbNotes." notes)";
+                                    echo $demand["note"]."/5 (".$nbNotes." notes)";
                                 }
                             }
                             else{
                                 echo "N/A";
-                            }*/
-                            echo $demand["note"];
+                            }
                             ?>
                         </td>
                         <?php
