@@ -1,4 +1,12 @@
-
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
         <div id="page_content">
             <?php
             if(isset($_SESSION['id_user'])){
@@ -6,6 +14,7 @@
                 $preferences = getPreferenceByIdUser($_SESSION['id_user']);
 
                 if(!empty($preferences)){
+                    var_dump($preferences);
                     ?>
                     <div id = "preference">
                         <select class="form-select form-select-sm" aria-label=".form-select-sm example">
@@ -174,3 +183,11 @@
             }
 
         </script>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="js/script.js"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6q4hVJGUioenp17tQTqiCS9dLDWbgATw&callback=initMap"></script>
+        
+
+    </body>
+</html>
