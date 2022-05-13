@@ -7,31 +7,33 @@ if(isset($_GET['tri'])){
 }
 $housing = getHousingById($id_housing);
 
-$first_demands = getAllBookAskByIdHousing($id_housing);
-$conflicts = getConflict($first_demands);
-$nb_conflits = 1;
-
-if(!empty($conflicts)){
-    ?>
-    <label for="order">Trier par :</label>
-    <select name = 'order' id="order" onchange="window.location.href = (!(window.location.href.includes('&order='))) ? window.location.href.concat(this.value) : (window.location.href).substr(0, (window.location.href).indexOf('&order=')).concat(this.value)">
-    <?php
-    foreach($ORDER_FOR_ASK as $order){
-        if (isset($_GET["order"])){
-            if ($order["value"] == $_GET["order"]){
-                ?><option value = '&order=<?php echo $order['value']; ?>' selected><?php echo $order['nom']; ?></option><?php
-            } else {
-                ?><option value = '&order=<?php echo $order['value']; ?>'><?php echo $order['nom']; ?></option><?php
-            }
+?>
+<label for="order">Trier par :</label>
+<select name = 'order' id="order" onchange="window.location.href = (!(window.location.href.includes('&order='))) ? window.location.href.concat(this.value) : (window.location.href).substr(0, (window.location.href).indexOf('&order=')).concat(this.value)">
+<?php
+foreach($ORDER_FOR_ASK as $order){
+    if (isset($_GET["order"])){
+        if ($order["value"] == $_GET["order"]){
+            ?><option value = '&order=<?php echo $order['value']; ?>' selected><?php echo $order['nom']; ?></option><?php
         } else {
             ?><option value = '&order=<?php echo $order['value']; ?>'><?php echo $order['nom']; ?></option><?php
         }
-        
+    } else {
+        ?><option value = '&order=<?php echo $order['value']; ?>'><?php echo $order['nom']; ?></option><?php
     }
-    echo "</select>";
-
     
 }
+echo "</select>";
+
+if (isset($_GET["order"])){
+    $conflicts = getConflict($first_demands, $_GET['order']);
+} else {
+    $conflicts = getConflict($first_demands, 0);
+}
+
+$first_demands = getAllBookAskByIdHousing($id_housing);
+$nb_conflits = 1;
+
 
 foreach($conflicts as $demands){
     $caption = "";

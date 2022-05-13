@@ -848,12 +848,15 @@ function bookHousingPeriod($id_housing, $id_customer, $date_start, $date_end){
 
 }
 
-function getConflict($demands){
+function getConflict($demands, $order){
         $res = [];
         $cpt = 1;
         $num_conflict = 1;
         $no_conflicts = [];
         $is_done = false;
+        if($order == 0){
+                $order = "nb_day";
+        }
 
         foreach($demands as $curr_demands){
 
@@ -895,8 +898,8 @@ function getConflict($demands){
                                         array_push($conflicts, $curr_demands);
 
                                         
-                                        $nb_day = array_column($conflicts, 'nb_day');
-                                        array_multisort($nb_day, SORT_DESC, $conflicts);
+                                        $order_by = array_column($conflicts, $order);
+                                        array_multisort($order_by, SORT_DESC, $conflicts);
 
                                         array_push($res, $conflicts);
                                 }
