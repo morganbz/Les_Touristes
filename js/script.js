@@ -32,16 +32,43 @@ function addressCoord(next){
     }
 }
 
+function addressCoordById(next, id){
+    var adresse = document.querySelector('#place_search' + id).value;
+    if(adresse != ""){
+        var geocoder =  new google.maps.Geocoder();
+        geocoder.geocode( { 'address': adresse}, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                latitude = results[0].geometry.location.lat();
+                longitude = results[0].geometry.location.lng();
+            }
+            else {
+                alert("Something got wrong " + status);
+            }
+            next();
+        });
+    }
+}
+
 function loadMapAddress(data = null, zoom = 22){
     addressCoord(function(){
         var map = new google.maps.Map(document.getElementById('search_housing_map'), {
             center: new google.maps.LatLng(latitude, longitude),
             zoom: zoom
         });
-        console.log("test");
         
         setMarkers(map,data);
     });
+}
+
+function loadMapAddressById(data = null, zoom = 22, id){
+    addressCoordById(function(){
+        var map = new google.maps.Map(document.getElementById('search_housing_map'), {
+            center: new google.maps.LatLng(latitude, longitude),
+            zoom: zoom
+        });
+        
+        setMarkers(map,data);
+    }, id);
 }
 
 function loadMapAddressActivity(data = null, zoom = 22){
@@ -182,12 +209,11 @@ function getLocationbyid(id)
         success: function (response) {
             var results = response["data"];
             if(response["distance"] == 0){
-                loadMapAddress(results, 22);
+                loadMapAddressById(results, 22, id);
             }
             else{
                 var zoom = 22 - Math.ceil(Math.log(response["distance"]*100)/Math.log(2));
-                console.log(zoom);
-                loadMapAddress(results, zoom);
+                loadMapAddressById(results, zoom , id);
             }
             $("#search_housing_list").empty();
             for(let i = 0; i < results.length; i++){
