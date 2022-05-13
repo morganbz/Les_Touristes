@@ -126,6 +126,11 @@
         </div>
 
         <script>
+
+            // All page modals
+            var modals = document.querySelectorAll('.modal');
+
+
             function getLocationbyid(id)
             {
                 $.ajax({
@@ -167,19 +172,18 @@
                         console.log("COMPLETE");
                     }
                 });
+                var modals = document.querySelectorAll('.modal');
 
-                var modal = document.querySelectorAll("modal.myModal" + id);
-                modal.style.display = "none";
+                for (var index in modals) {
+                    if (typeof modals[index].style !== 'undefined') modals[index].style.display = "none";    
+                    }
                 
-
                 
             }
 
             var btn = document.querySelectorAll("button.modal-button");
 
 
-            // All page modals
-            var modals = document.querySelectorAll('.modal');
 
             // Get the <span> element that closes the modal
             var spans = document.getElementsByClassName("btn-close");
