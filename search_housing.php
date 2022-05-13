@@ -10,13 +10,13 @@
         <div id="page_content">
             <?php
             if(isset($_SESSION['id_user'])){
-
-                $preferences = getPreferenceByIdUser($_SESSION['id_user']);
-
                 ?>
                     <div id = "preference">
                             <label >Mes préférences :</label>
                             <?php
+
+                $preferences = getPreferenceByIdUser($_SESSION['id_user']);
+
 
                 if(!empty($preferences)){
                             foreach($preferences as $preference){
@@ -27,10 +27,6 @@
                                 <?php
                             }
 
-                            ?>
-                            <button class="btn btn-primary"><a class="nav-link" href="?page=user_page&page_account=add_pref_search">Voir mes préférences</a> </button>
-                    </div>
-                    <?php
                     foreach($preferences as $preference){
                         ?>
 
@@ -80,6 +76,10 @@
                     <?php
 
                 }
+                ?>
+                    <button class="btn btn-primary"><a class="nav-link" href="?page=user_page&page_account=add_pref_search">Voir mes préférences</a> </button>
+            </div>
+                    <?php
 
             }
             ?>
