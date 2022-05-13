@@ -162,12 +162,12 @@ function getLocation(id)
         url: "ajax.php",
         data: {
             action: "getLocation",
-            destination: document.querySelector('#place_search' + id).value,
-            arrive: document.querySelector('#date_seach_arrive' + id).value,
-            departure: document.querySelector('#date_seach_departure' + id).value,
-            price_min: document.querySelector('#price_search_min' + id).value,
-            price_max: document.querySelector('#price_search_max' + id).value,
-            distance: document.querySelector('#distance_search' + id).value
+            destination: document.querySelector('#place_search1').value,
+            arrive: document.querySelector('#date_seach_arrive1').value,
+            departure: document.querySelector('#date_seach_departure1').value,
+            price_min: document.querySelector('#price_search_min1').value,
+            price_max: document.querySelector('#price_search_max1').value,
+            distance: document.querySelector('#distance_search1').value
         },
         dataType: "json",
         success: function (response) {
