@@ -77,7 +77,7 @@
 
                 }
                 ?>
-                    <button class="btn btn-primary"><a class="nav-link" href="?page=user_page&page_account=add_pref_search">Voir mes préférences</a> </button>
+                    <button class="btn btn-primary"><a class="link-light" href="?page=user_page&page_account=add_pref_search">Voir mes préférences</a> </button>
             </div>
                     <?php
 
