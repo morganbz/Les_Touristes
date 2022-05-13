@@ -28,13 +28,13 @@ html, body {
     height: calc(100% - 20%);
 }
 #search_housing_list {
-    height: calc(100% - 20% - 50px);
+    height: calc(100% - 30% - 50px);
     width: 50%;
     overflow-y: scroll;
     position: fixed;
 }
 #search_housing_map {
-    height: 100%;
+    height: 70%;
     width: 50%;
     margin-left: 50%;
 }
