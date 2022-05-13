@@ -49,13 +49,13 @@
                                                 <div class="flex">
                                                     <label for="date_seach_arrive">Arrivée</label>
                                                     <br>
-                                                    <input placeholder="Quand ?" type="date" name="date_seach_arrive" id="date_seach_arrive">
+                                                    <input placeholder="Quand ?" type="date" name="date_seach_arrive" id="date_seach_arrive<?php echo $preference['id']; ?>">
                                                 </div>
                                                 
                                                 <div class="flex">
                                                     <label for="date_seach_departure">Départ</label>
                                                     <br>
-                                                    <input placeholder="Quand ?" type="date" name="date_seach_departure" id="date_seach_departure">
+                                                    <input placeholder="Quand ?" type="date" name="date_seach_departure" id="date_seach_departure<?php echo $preference['id']; ?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -63,10 +63,10 @@
                                             <button type="button" class="btn btn-secondary annuler" data-bs-dismiss="modal">Annuler</button>
                                             <form>
                                                 <?php
-                                                    echo "<input  type='hidden' name='place_search' id='place_search' value =".$preference['destination']." >";
-                                                    echo "<input  type='hidden' name='price_search_min' id='price_search_min' value =".$preference['price_min']." >";
-                                                    echo "<input  type='hidden' name='price_search_max' id='price_search_max' value =".$preference['price_max']." >";
-                                                    echo "<input  type='hidden' name='distance_search' id='distance_search' value =".$preference['distance']." >";
+                                                    echo "<input  type='hidden' name='place_search' id='place_search". $preference['id']."' value =".$preference['destination']." >";
+                                                    echo "<input  type='hidden' name='price_search_min' id='price_search_min". $preference['id']."' value =".$preference['price_min']." >";
+                                                    echo "<input  type='hidden' name='price_search_max' id='price_search_max". $preference['id']."' value =".$preference['price_max']." >";
+                                                    echo "<input  type='hidden' name='distance_search' id='distance_search". $preference['id']."' value =".$preference['distance']." >";
                                                 ?>
                                                 <button class="btn btn-primary recherche_modal" onclick="getLocationbyid(<?php echo $preference['id']; ?>)">Rechercher</button>
                                             </form>
@@ -181,45 +181,6 @@
                 }
                 }
             }
-
-            function getLocationbyid(id)
-{
-    $.ajax({
-        type: "POST",
-        url: "ajax.php",
-        data: {
-            action: "getLocation",
-            destination: document.querySelector('#place_search' + id).value,
-            arrive: document.querySelector('#date_seach_arrive' + id).value,
-            departure: document.querySelector('#date_seach_departure' + id).value,
-            price_min: document.querySelector('#price_search_min' + id).value,
-            price_max: document.querySelector('#price_search_max' + id).value,
-            distance: document.querySelector('#distance_search' + id).value
-        },
-        dataType: "json",
-        success: function (response) {
-            var results = response["data"];
-            if(response["distance"] == 0){
-                loadMapAddress(results, 22);
-            }
-            else{
-                var zoom = 22 - Math.ceil(Math.log(response["distance"]*100)/Math.log(2));
-                loadMapAddress(results, zoom);
-            }
-            $("#search_housing_list").empty();
-            for(let i = 0; i < results.length; i++){
-                $("#search_housing_list").append("<div class='data_search'><a href='?page=ask_reservation&id_housing="+ results[i]["id"] + "&date_start="+ response["arrive"] +"&date_end=" + response["departure"] + "' class='link_announce'><p>Nom : " + results[i]['nom'] + "</p><p>Type de logement : " + results[i]['type'] + "</p><p>Adresse : " + results[i]['adresse'] + "</p><p>Prix à la nuit : " + results[i]['price'] + "</p><p>Description : " + results[i]['description'] + "</p></a></div>");
-            }
-        },
-        error: function (response) {
-            console.log("ERROR");
-        },
-        complete: function(response) {
-            console.log("COMPLETE");
-        }
-    });
-}
-
 
         </script>
 
