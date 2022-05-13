@@ -13,11 +13,12 @@
 
                 $preferences = getPreferenceByIdUser($_SESSION['id_user']);
 
-                if(!empty($preferences)){
-                    ?>
-                    <div id = "preference">
+                ?>
+            <div id = "preference">
                             <label >Mes préférences :</label>
                             <?php
+
+                if(!empty($preferences)){
                             foreach($preferences as $preference){
                                 ?>
 
@@ -25,9 +26,7 @@
 
                                 <?php
                             }
-                            ?>
-                    </div>
-                    <?php
+
                     foreach($preferences as $preference){
                         ?>
 
@@ -77,6 +76,10 @@
                     <?php
 
                 }
+            ?>
+                <button class="modal-button btn btn-primary"><a class="nav-link" href="?page=user_page&page_account=add_pref_search">Voir mes préférences</a> </button>
+            </div>
+                <?php
 
             }
             ?>
