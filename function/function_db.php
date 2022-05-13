@@ -718,15 +718,11 @@ function getAllBookAskByIdHousing($id_housing){
                 $user = getUserById($row["id_user"]);
                 $nbNotes = getNbNotes($user["id"], 3);
                 if($nbNotes > 0){
-                        $average = getAverage($user["id"], 3);
-                        if($nbNotes == 1){
-                                $note = $average."/5 (".$nbNotes." note)";
-                                } else {
-                                $note = $average."/5 (".$nbNotes." notes)";
-                                }
+                        $note = getAverage($user["id"], 3);
+
                 }
                 else{
-                        $note = "N/A";
+                        $note = -1;
                 }
                 $row["note"] = $note;
 
