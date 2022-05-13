@@ -46,13 +46,7 @@
                                             </div>
 
                                             <div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            
-                                            <button type="button" class="btn btn-secondary annuler" data-bs-dismiss="modal">Annuler</button>
-                                            <form action="index.php" method="post" id="form1">
-                                            <div class="flex">
+                                                <div class="flex">
                                                     <label for="date_seach_arrive">Arrivée</label>
                                                     <br>
                                                     <input placeholder="Quand ?" type="date" name="date_seach_arrive" id="date_seach_arrive<?php echo $preference['id']; ?>">
@@ -63,6 +57,11 @@
                                                     <br>
                                                     <input placeholder="Quand ?" type="date" name="date_seach_departure" id="date_seach_departure<?php echo $preference['id']; ?>">
                                                 </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary annuler" data-bs-dismiss="modal">Annuler</button>
+                                            <form action="index.php" method="post" id="form1">
                                                 <?php
                                                     echo "<input  type='hidden' name='place_search' id='place_search". $preference['id']."' value =".$preference['destination']." >";
                                                     echo "<input  type='hidden' name='price_search_min' id='price_search_min". $preference['id']."' value =".$preference['price_min']." >";
