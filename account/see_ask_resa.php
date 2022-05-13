@@ -2,11 +2,37 @@
 
 $id_owner = $_SESSION["id_user"];
 $id_housing = $_GET["id_housing"];
+$tri = 0;
+if(isset($_GET['tri'])){
+    $tri = $_GET['tri'];
+}
 $housing = getHousingById($id_housing);
 
 $first_demands = getAllBookAskByIdHousing($id_housing);
 $conflicts = getConflict($first_demands);
 $nb_conflits = 1;
+
+if(!empty($conflicts)){
+    ?>
+    <label for="order">Trier par :</label>
+    <select name = 'order' id="order" onchange="window.location.href = (!(window.location.href.includes('&order='))) ? window.location.href.concat(this.value) : (window.location.href).substr(0, (window.location.href).indexOf('&order=')).concat(this.value)">
+    <?php
+    foreach($ORDER as $order){
+        if (isset($_GET["order"])){
+            if ($order["value"] == $_GET["order"]){
+                ?><option value = '&order=<?php echo $order['value']; ?>' selected><?php echo $order['nom']; ?></option><?php
+            } else {
+                ?><option value = '&order=<?php echo $order['value']; ?>'><?php echo $order['nom']; ?></option><?php
+            }
+        } else {
+            ?><option value = '&order=<?php echo $order['value']; ?>'><?php echo $order['nom']; ?></option><?php
+        }
+        
+    }
+    echo "</select>";
+
+    
+}
 
 foreach($conflicts as $demands){
     $caption = "";
@@ -28,7 +54,9 @@ foreach($conflicts as $demands){
     <?php
     if(!empty($demands)){
 
+
         ?>
+
 
         <table class="table table-bordered caption-top">
             <?php 
