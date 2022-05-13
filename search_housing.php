@@ -63,7 +63,7 @@
                                                     echo "<input  type='hidden' name='price_search_max' id='price_search_max". $preference['id']."' value =".$preference['price_max']." >";
                                                     echo "<input  type='hidden' name='distance_search' id='distance_search". $preference['id']."' value =".$preference['distance']." >";
                                                 ?>
-                                                <button class="flex" class= "search_btn" onclick="getLocationbyid(<?php echo $preference['id']; ?>)">Rechercher</button>
+                                                <button class="btn btn-primary recherche_modal" onclick="getLocationbyid(<?php echo $preference['id']; ?>)">Rechercher</button>
                                         </div>
                                     </div>
                                 </div>
