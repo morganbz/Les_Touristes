@@ -1,4 +1,3 @@
-$( document ).ready(function() {
 
 
 
@@ -243,5 +242,3 @@ function getLocationActivity()
         }
     });
 }
-
-});
