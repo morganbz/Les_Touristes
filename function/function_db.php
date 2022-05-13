@@ -927,6 +927,26 @@ function getConflict($demands, $order){
                         }
                         $cpt++;
                 }
+                else{
+                        if(isset($curr_demands["id_user"])){
+                                $user = getUserById($curr_demands["id_user"]);
+                                if(isset($user["id"])){
+                                        $nbNotes = getNbNotes($user["id"], 3);
+                                        if($nbNotes > 0){
+                                                $average = getAverage($user["id"], 3);
+                                                if($nbNotes == 1){
+                                                        $note = $average."/5 (".$nbNotes." note)";
+                                                    } else {
+                                                        $note = $average."/5 (".$nbNotes." notes)";
+                                                    }
+                                        }
+                                        else{
+                                                $note = "N/A";
+                                        }
+                                        $curr_demands["note"] = $note;
+                                }
+                        }
+                }
                 $is_done =  false;
                 
 
