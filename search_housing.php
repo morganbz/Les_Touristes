@@ -68,7 +68,7 @@
                                                     echo "<input  type='hidden' name='price_search_max' id='price_search_max' value =".$preference['price_max']." >";
                                                     echo "<input  type='hidden' name='distance_search' id='distance_search' value =".$preference['distance']." >";
                                                 ?>
-                                                <button class="btn btn-primary recherche_modal" >Rechercher</button>
+                                                <button class="btn btn-primary recherche_modal" onclick="getLocation()">Rechercher</button>
                                             </form>
                                         </div>
                                     </div>
@@ -152,15 +152,6 @@
                     e.preventDefault();
                     modal = document.querySelector(e.target.getAttribute("href"));
                     modal.style.display = "block";
-                }
-            }
-
-            for (var i = 0; i < btn_search.length; i++) {
-                btn_search[i].onclick = function() {
-                    for (var index in modals) {
-                    if (typeof modals[index].style !== 'undefined') modals[index].style.display = "none";    
-                    }
-                    getLocation();
                 }
             }
 
