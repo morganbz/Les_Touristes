@@ -55,6 +55,38 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtoupper($_SERVER['HTTP_X_REQU
         $data = searchAnnounce($price_min, $price_max, $arrive, $departure, $destination, $distance);
     }
 
+    elseif ($_POST['action'] == "getLocationbyid" && isset($_POST['destination']))
+    {
+        $response_code = HTTP_OK;
+        $destination = $_POST['destination'];
+        if(isset($_POST['arrive'])){
+            $arrive = $_POST['arrive'];
+        }
+        if(isset($_POST['departure'])){
+            $departure = $_POST['departure'];
+        }
+        if(isset($_POST['price_min'])){
+            $price_min = $_POST['price_min'];
+            if($_POST['price_min'] == ''){
+                $price_min = 0;
+            }
+        }
+        if(isset($_POST['price_max'])){
+            $price_max = $_POST['price_max'];
+            if($_POST['price_max'] == ''){
+                $price_max = 999999999;
+            }
+        }
+        if(isset($_POST['distance'])){
+            $distance = $_POST['distance'];
+            if($_POST['distance'] == ''){
+                $distance = 20;
+            }
+        }
+        $message = "OK";
+        $data = searchAnnounce($price_min, $price_max, $arrive, $departure, $destination, $distance);
+    }
+
     elseif ($_POST['action'] == "getLocationActivity" && isset($_POST['destination'])) 
     {
         $response_code = HTTP_OK;
