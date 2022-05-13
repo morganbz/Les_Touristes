@@ -25,13 +25,14 @@ foreach($ORDER_FOR_ASK as $order){
 }
 echo "</select>";
 
+$first_demands = getAllBookAskByIdHousing($id_housing);
+
 if (isset($_GET["order"])){
     $conflicts = getConflict($first_demands, $_GET['order']);
 } else {
     $conflicts = getConflict($first_demands, 0);
 }
 
-$first_demands = getAllBookAskByIdHousing($id_housing);
 $nb_conflits = 1;
 
 
