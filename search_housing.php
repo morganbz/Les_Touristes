@@ -17,13 +17,13 @@
                     var_dump($preferences);
                     ?>
                     <div id = "preference">
-                        
-                            
+                        <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                            <option>Voir mes préférences</option>
                             <?php
                             foreach($preferences as $preference){
                                 ?>
 
-                                 <button class="modal-button"  href ="#myModal<?php echo $preference['id']; ?>" ><?php echo $preference['nom']; ?> </button> 
+                                <option> <button class="modal-button"  href ="#myModal<?php echo $preference['id']; ?>" ><?php echo $preference['nom']; ?> </button> </option>
 
                                 <?php
                             }
