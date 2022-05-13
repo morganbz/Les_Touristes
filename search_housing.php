@@ -63,7 +63,7 @@
                                                     echo "<input  type='hidden' name='price_search_max' id='price_search_max". $preference['id']."' value =".$preference['price_max']." >";
                                                     echo "<input  type='hidden' name='distance_search' id='distance_search". $preference['id']."' value =".$preference['distance']." >";
                                                 ?>
-                                                <button class="btn btn-primary recherche_modal" onclick="getLocationbyid(<?php echo $preference['id']; ?>)">Rechercher</button>
+                                                <button class="btn btn-primary recherche_modal<?php echo $preference['id']; ?>" onclick="getLocationbyid(<?php echo $preference['id']; ?>)">Rechercher</button>
                                         </div>
                                     </div>
                                 </div>
@@ -167,11 +167,16 @@
                         console.log("COMPLETE");
                     }
                 });
+
+                var modal = document.querySelectorAll("modal.myModal" + id);
+                modal.style.display = "none";
+                
+
+                
             }
 
             var btn = document.querySelectorAll("button.modal-button");
 
-            var btn_search = document.querySelectorAll("button.recherche_modal");
 
             // All page modals
             var modals = document.querySelectorAll('.modal');
@@ -196,6 +201,7 @@
                     }
                 }
             }
+
 
             // When the user clicks anywhere outside of the modal, close it
             window.onclick = function(event) {
