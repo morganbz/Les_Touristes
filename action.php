@@ -498,6 +498,25 @@
             $page = "user_page";
             $page_account = "see_activity";
         }   
+
+        //---------------------- AJOUT D'UNE PREFERENCE POUR RECHERCHE LOGEMENT ----------------------
+
+        else if($submit == "add_pref_search"){
+            $id_user = $_SESSION["id_user"];
+
+            $name = $_POST['name_pref_search'];
+            $price_min = $_POST['price_min_pref_search'];
+            $price_max = $_POST['price_max_pref_search'];
+            $dest = $_POST['dest_pref_search'];
+            $distance = $_POST['distance_pref_search'];
+
+            addPreferenceSearchHousing($id_user, $name, $dest, $distance, $price_min, $price_max);
+
+            $page = "user_page";
+
+
+
+        }
         
         // ---------------- AJOUT D'UNE NOTE ET COMMENTAIRE --------------------------------
 
@@ -530,22 +549,4 @@
         $page = "user_page";
     }
 
-    //---------------------- AJOUT D'UNE PREFERENCE POUR RECHERCHE LOGEMENT ----------------------
-
-    else if($submit == "add_pref_search"){
-        $id_user = $_SESSION["id_user"];
-
-        $name = $_POST['name_pref_search'];
-        $price_min = $_POST['price_min_pref_search'];
-        $price_max = $_POST['price_max_pref_search'];
-        $dest = $_POST['dest_pref_search'];
-        $distance = $_POST['distance_pref_search'];
-
-        addPreferenceSearchHousing($id_user, $name, $dest, $distance, $price_min, $price_max);
-
-        $page = "user_page";
-
-
-
-    }
 ?>
