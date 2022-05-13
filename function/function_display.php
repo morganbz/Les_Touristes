@@ -396,7 +396,7 @@ function displayUser($id){
     $nb_housing = count(getHousingByIdOwner($id));
     $nb_activity = count(getActivityByIdOwner($id));
     $nb_housing_history = count(getHousingHistoryByIdOwner($id));
-    $nb_rates = getNbNotes($id, 3);
+    $nb_rates = getNbEvaluationUserByID($id);
 
     $profile_picture = "./ressources/profile_picture.png";
     $profile_picture_folder = "picture_profile/".$id;

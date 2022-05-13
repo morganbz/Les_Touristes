@@ -1002,6 +1002,16 @@ function getNbNotes($id_rated, $type_rated){
 
 }
 
+function getNbEvaluationUserByID($id){
+        global $base;
+
+        $sql = "SELECT * FROM rate WHERE id_rater = $id";
+
+        $result = mysqli_query($base, $sql); 
+
+        return mysqli_num_rows($result);
+}
+
 function addRating($id_rated, $id_rater, $rate, $title, $message, $type_rated){
         global $base;
 
