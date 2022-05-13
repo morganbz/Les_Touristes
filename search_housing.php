@@ -139,7 +139,7 @@
                     type: "POST",
                     url: "ajax.php",
                     data: {
-                        action: "getLocationbyid",
+                        action: "getLocation",
 
                         destination: document.querySelector('#place_search' + id).value,
 
