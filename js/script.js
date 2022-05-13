@@ -180,12 +180,12 @@ function getLocationbyid(id)
         dataType: "json",
         success: function (response) {
             var results = response["data"];
-            console.log(response["distance"]);
             if(response["distance"] == 0){
                 loadMapAddress(results, 22);
             }
             else{
                 var zoom = 22 - Math.ceil(Math.log(response["distance"]*100)/Math.log(2));
+                console.log(zoom);
                 loadMapAddress(results, zoom);
             }
             $("#search_housing_list").empty();
