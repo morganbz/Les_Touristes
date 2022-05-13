@@ -155,7 +155,7 @@ function getLocation()
     });
 }
 
-function getLocation(id)
+function getLocationbyid(id)
 {
     $.ajax({
         type: "POST",
