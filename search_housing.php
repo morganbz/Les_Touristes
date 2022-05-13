@@ -44,9 +44,6 @@
                                                 <p> entre <?php echo $preference['price_min']; ?>€ et <?php echo $preference['price_max']; ?>€ la nuit </p>
                                                 <p> Distance max : <?php echo $preference['distance']; ?> km </p>
                                             </div>
-
-
-                                            <button type="button" class="btn btn-secondary annuler" data-bs-dismiss="modal">Annuler</button>
                                             <form>
                                             <div>
                                                 <div class="flex">
@@ -184,9 +181,6 @@
             // Get the <span> element that closes the modal
             var spans = document.getElementsByClassName("btn-close");
 
-            // recupère les boutons annuler
-            var annuler_button = document.getElementsByClassName("annuler");
-
             // When the user clicks the button, open the modal
             for (var i = 0; i < btn.length; i++) {
                 btn[i].onclick = function(e) {
@@ -199,15 +193,6 @@
             // When the user clicks on <span> (x), close the modal
             for (var i = 0; i < spans.length; i++) {
                 spans[i].onclick = function() {
-                    for (var index in modals) {
-                    if (typeof modals[index].style !== 'undefined') modals[index].style.display = "none";    
-                    }
-                }
-            }
-
-            //pour le bouton fermer
-            for (var i = 0; i < annuler_button.length; i++) {
-                annuler_button[i].onclick = function() {
                     for (var index in modals) {
                     if (typeof modals[index].style !== 'undefined') modals[index].style.display = "none";    
                     }
