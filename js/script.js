@@ -155,55 +155,7 @@ function getLocation()
     });
 }
 
-function getLocationbyid(id)
-{
-    $.ajax({
-        type: "POST",
-        url: "ajax.php",
-        data: {
-            action: "getLocationbyid",
 
-            destination: document.querySelector('#place_search' + id).value,
-
-            arrive: document.querySelector('#date_seach_arrive' + id).value,
-
-            departure: document.querySelector('#date_seach_departure' + id).value,
-
-            price_min: document.querySelector('#price_search_min' + id).value,
-            price_max: document.querySelector('#price_search_max' + id).value,
-            distance: document.querySelector('#distance_search' + id).value
-
-        },
-        dataType: "json",
-        success: function (response) {
-            var results = response["data"];
-            if(response["distance"] == 0){
-                loadMapAddress(results, 22);
-            }
-            else{
-                var zoom = 22 - Math.ceil(Math.log(response["distance"]*100)/Math.log(2));
-                loadMapAddress(results, zoom);
-            }
-            $("#search_housing_list").empty();
-            for(let i = 0; i < results.length; i++){
-                $("#search_housing_list").append("<div class='data_search'><a href='?page=ask_reservation&id_housing="+ results[i]["id"] + "&date_start="+ response["arrive"] +"&date_end=" + response["departure"] + "' class='link_announce'><p>Nom : " + results[i]['nom'] + "</p><p>Type de logement : " + results[i]['type'] + "</p><p>Adresse : " + results[i]['adresse'] + "</p><p>Prix à la nuit : " + results[i]['price'] + "</p><p>Description : " + results[i]['description'] + "</p></a></div>");
-            }
-        },
-        error: function (response) {
-            console.log("ERROR");
-        },
-        complete: function(response) {
-            console.log("COMPLETE");
-        }
-    });
-    var modals = document.querySelectorAll('.modal');
-
-    for (var index in modals) {
-        if (typeof modals[index].style !== 'undefined') modals[index].style.display = "none";    
-        }
-    
-    
-}
 
 function getLocationActivity()
 {
