@@ -45,6 +45,11 @@
                                                 <p> Distance max : <?php echo $preference['distance']; ?> km </p>
                                             </div>
 
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary annuler" data-bs-dismiss="modal">Annuler</button>
+                                            <form>
                                             <div>
                                                 <div class="flex">
                                                     <label for="date_seach_arrive">Arrivée</label>
@@ -58,10 +63,6 @@
                                                     <input placeholder="Quand ?" type="date" name="date_seach_departure" id="date_seach_departure<?php echo $preference['id']; ?>">
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary annuler" data-bs-dismiss="modal">Annuler</button>
-                                            <form>
                                                 <?php
                                                     echo "<input  type='hidden' name='place_search' id='place_search". $preference['id']."' value =".$preference['destination']." >";
                                                     echo "<input  type='hidden' name='price_search_min' id='price_search_min". $preference['id']."' value =".$preference['price_min']." >";
@@ -138,7 +139,7 @@
                     type: "POST",
                     url: "ajax.php",
                     data: {
-                        action: "getLocation",
+                        action: "getLocationbyid",
 
                         destination: document.querySelector('#place_search' + id).value,
 
