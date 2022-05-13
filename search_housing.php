@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-    </head>
+
     <body>
         <div id="page_content">
             <?php
@@ -63,12 +56,12 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary annuler" data-bs-dismiss="modal">Annuler</button>
                                             <form action="index.php" method="post" id="form1">
-                                            <?php
-                                                echo "<input  type='hidden' name='place_search' id='place_search' value =".$preference['destination']." >";
-                                                echo "<input  type='hidden' name='price_search_min' id='price_search_min' value =".$preference['price_min']." >";
-                                                echo "<input  type='hidden' name='price_search_max' id='price_search_max' value =".$preference['price_max']." >";
-                                                echo "<input  type='hidden' name='distance_search' id='distance_search' value =".$preference['distance']." >";
-                                            ?>
+                                                <?php
+                                                    echo "<input  type='hidden' name='place_search' id='place_search' value =".$preference['destination']." >";
+                                                    echo "<input  type='hidden' name='price_search_min' id='price_search_min' value =".$preference['price_min']." >";
+                                                    echo "<input  type='hidden' name='price_search_max' id='price_search_max' value =".$preference['price_max']." >";
+                                                    echo "<input  type='hidden' name='distance_search' id='distance_search' value =".$preference['distance']." >";
+                                                ?>
                                                 <button class="btn btn-primary" id="submit1" name="submit" value="BookHousing" type="submit">Confirmer</button>
                                             </form>
                                         </div>
@@ -139,4 +132,3 @@
         
 
     </body>
-</html>
