@@ -39,6 +39,10 @@ html, body {
     margin-left: 50%;
 }
 
+#lien_invisible{
+    outline: none;
+}
+
 #search_activity_list {
     height: calc(100% - 10% - 50px);
     width: 50%;
