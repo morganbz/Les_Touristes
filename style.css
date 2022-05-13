@@ -25,23 +25,23 @@ html, body {
 }
 #contener {
     display: flex;
-    height: calc(100% - 20%);
+    height: calc(100% - 15%);
 }
 #search_housing_list {
-    height: calc(100% - 30% - 50px);
+    height: calc(100% - 15% - 50px);
     width: 50%;
     overflow-y: scroll;
     position: fixed;
 }
 #search_housing_map {
-    height: 70%;
+    height: 100%;
     width: 50%;
     margin-left: 50%;
 }
 
 #recherche_preference {
     display: flex;
-    height: 10%;
+    height: 5%;
 
 }
 
