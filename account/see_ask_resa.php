@@ -1,5 +1,4 @@
 <?php
-
 $id_owner = $_SESSION["id_user"];
 $id_housing = $_GET["id_housing"];
 $tri = 0;
@@ -17,7 +16,7 @@ if(!empty($conflicts)){
     <label for="order">Trier par :</label>
     <select name = 'order' id="order" onchange="window.location.href = (!(window.location.href.includes('&order='))) ? window.location.href.concat(this.value) : (window.location.href).substr(0, (window.location.href).indexOf('&order=')).concat(this.value)">
     <?php
-    foreach($ORDER as $order){
+    foreach($ORDER_FOR_ASK as $order){
         if (isset($_GET["order"])){
             if ($order["value"] == $_GET["order"]){
                 ?><option value = '&order=<?php echo $order['value']; ?>' selected><?php echo $order['nom']; ?></option><?php

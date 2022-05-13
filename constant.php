@@ -12,6 +12,12 @@ define('USER_ORDER', 'id_user');
 $ORDER_FOR_USER = array(array("nom" => "Date", "value" => DATE_ORDER), array("nom" => "Logement", "value" => HOUSING_ORDER));
 $ORDER_FOR_OWNER = array(array("nom" => "Date", "value" => DATE_ORDER), array("nom" => "Utilisateur", "value" => USER_ORDER));
 
+$ORDER_FOR_ASK = array(
+    array("nom" => "Nombre de jour", "value" => "nb_day"), 
+    array("nom" => "prix", "value" => "price"),
+    array("nom" => "note", "value" => "note"),
+    );
+
 //ne marche pas sur le serveur car le français n'est pas installé
 setlocale(LC_TIME, 'fr_FR.utf8','fra');
 date_default_timezone_set('Europe/Paris');
