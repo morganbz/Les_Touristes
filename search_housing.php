@@ -133,6 +133,35 @@
             // All page modals
             var modals = document.querySelectorAll('.modal');
 
+            function addressCoord(next){
+                var adresse = document.querySelector('#place_search').value;
+                if(adresse != ""){
+                    var geocoder =  new google.maps.Geocoder();
+                    geocoder.geocode( { 'address': adresse}, function(results, status) {
+                        if (status == google.maps.GeocoderStatus.OK) {
+                            latitude = results[0].geometry.location.lat();
+                            longitude = results[0].geometry.location.lng();
+                        }
+                        else {
+                            alert("Something got wrong " + status);
+                        }
+                        next();
+                    });
+                } 
+            }
+
+            function loadMapAddress(data = null, zoom = 22){
+                addressCoord(function(){
+                    var map = new google.maps.Map(document.getElementById('search_housing_map'), {
+                        center: new google.maps.LatLng(latitude, longitude),
+                        zoom: zoom
+                    });
+                    
+                    setMarkers(map,data);
+                });
+            }
+
+
             function getLocationbyid(id)
             {
                 $.ajax({
