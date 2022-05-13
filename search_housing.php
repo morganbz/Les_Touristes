@@ -8,6 +8,10 @@
     </head>
     <body>
         <div id="page_content">
+            <div id = "preference">
+                <label>Mes préférences : </label>
+            </div>
+
             <div class="searchbar">
                 <div class="flex">
                     <label for="place_search">Destination</label>
