@@ -1428,4 +1428,24 @@ function addPreferenceSearchHousing($id_user, $name, $destination, $distance, $p
         return ($result != null);
 }
 
+function getPreferenceByIdUser($id_user){
+        global $base;
+        $preferences = [];
+
+
+        $sql = "SELECT `id`, `nom`, `price_min`, `price_max`, `destination`, `distance` FROM `Preference_Recherche` 
+                WHERE id_user = $id_user";
+
+        $result = mysqli_query($base, $sql);
+
+        while($row = mysqli_fetch_assoc($result)){
+                $preferences[] = $row;
+        }
+    
+        return $preferences;
+
+
+
+}
+
 ?>

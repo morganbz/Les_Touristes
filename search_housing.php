@@ -8,8 +8,84 @@
     </head>
     <body>
         <div id="page_content">
+            <?php
+            if(isset($_SESSION['id_user'])){
+
+                $preferences = getPreferenceByIdUser($_SESSION['id_user']);
+
+                if(!empty($preferences)){
+                    ?>
+                    <div id = "preference">
+                        <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                            <option selected>Voir mes préférences</option>
+                            <?php
+                            foreach($preferences as $preference){
+                                ?>
+
+                                <option  href ="#myModal<?php echo $preference['id']; ?>" ><?php echo $preference['nom']; ?></option>
+
+                                <div class="modal" id="myModal<?php echo $preference['id']; ?>">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Choisir date</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div>
+                                                <p> Destination : <?php echo $preference['destination']; ?> </p>
+                                                <p> entre <?php echo $preference['price_min']; ?>€ et <?php echo $preference['price_max']; ?>€ la nuit </p>
+                                                <p> Distance max : <?php echo $preference['distance']; ?> km </p>
+                                            </div>
+
+                                            <div>
+                                                <div class="flex">
+                                                    <label for="date_seach_arrive">Arrivée</label>
+                                                    <br>
+                                                    <input placeholder="Quand ?" type="date" name="date_seach_arrive" id="date_seach_arrive">
+                                                </div>
+                                                
+                                                <div class="flex">
+                                                    <label for="date_seach_departure">Départ</label>
+                                                    <br>
+                                                    <input placeholder="Quand ?" type="date" name="date_seach_departure" id="date_seach_departure">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary annuler" data-bs-dismiss="modal">Annuler</button>
+                                            <form action="index.php" method="post" id="form1">
+                                            <?php
+                                                echo "<input  type='hidden' name='place_search' id='place_search' value =".$preference['destination']." >";
+                                                echo "<input  type='hidden' name='price_search_min' id='price_search_min' value =".$preference['price_min']." >";
+                                                echo "<input  type='hidden' name='price_search_max' id='price_search_max' value =".$preference['price_max']." >";
+                                                echo "<input  type='hidden' name='distance_search' id='distance_search' value =".$preference['distance']." >";
+                                            ?>
+                                                <button>Confirmer</button>
+                                            </form>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <?php
+                            }
+                            ?>
+                    </div>
+
+                    <?php
+
+                }
+
+            }
+            ?>
             <div id = "preference">
-                <label>Mes préférences : </label>
+                <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                    <option selected>Voir mes préférences</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
             </div>
 
             <div class="searchbar">
