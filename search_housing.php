@@ -17,23 +17,23 @@
                     var_dump($preferences);
                     ?>
                     <div id = "preference">
-                        <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                            <option selected>Voir mes préférences</option>
+                        
+                            
                             <?php
                             foreach($preferences as $preference){
                                 ?>
 
-                                <option> <button class="modal-button"  href ="#myModal<?php echo $preference['id']; ?>" ><?php echo $preference['nom']; ?> </button> </option>
+                                 <button class="modal-button"  href ="#myModal<?php echo $preference['id']; ?>" ><?php echo $preference['nom']; ?> </button> 
 
                                 <?php
                             }
                             ?>
                     </div>
                     <?php
-                    foreach($preferences as $preference){
+                    foreach($preferences as $pref){
                         ?>
 
-                        <div class="modal" id="myModal<?php echo $preference['id']; ?>">
+                        <div class="modal" id="myModal<?php echo $pref['id']; ?>">
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -42,9 +42,9 @@
                                         </div>
                                         <div class="modal-body">
                                             <div>
-                                                <p> Destination : <?php echo $preference['destination']; ?> </p>
-                                                <p> entre <?php echo $preference['price_min']; ?>€ et <?php echo $preference['price_max']; ?>€ la nuit </p>
-                                                <p> Distance max : <?php echo $preference['distance']; ?> km </p>
+                                                <p> Destination : <?php echo $pref['destination']; ?> </p>
+                                                <p> entre <?php echo $pref['price_min']; ?>€ et <?php echo $pref['price_max']; ?>€ la nuit </p>
+                                                <p> Distance max : <?php echo $pref['distance']; ?> km </p>
                                             </div>
 
                                             <div>
@@ -65,10 +65,10 @@
                                             <button type="button" class="btn btn-secondary annuler" data-bs-dismiss="modal">Annuler</button>
                                             <form action="index.php" method="post" id="form1">
                                                 <?php
-                                                    echo "<input  type='hidden' name='place_search' id='place_search' value =".$preference['destination']." >";
-                                                    echo "<input  type='hidden' name='price_search_min' id='price_search_min' value =".$preference['price_min']." >";
-                                                    echo "<input  type='hidden' name='price_search_max' id='price_search_max' value =".$preference['price_max']." >";
-                                                    echo "<input  type='hidden' name='distance_search' id='distance_search' value =".$preference['distance']." >";
+                                                    echo "<input  type='hidden' name='place_search' id='place_search' value =".$pref['destination']." >";
+                                                    echo "<input  type='hidden' name='price_search_min' id='price_search_min' value =".$pref['price_min']." >";
+                                                    echo "<input  type='hidden' name='price_search_max' id='price_search_max' value =".$pref['price_max']." >";
+                                                    echo "<input  type='hidden' name='distance_search' id='distance_search' value =".$pref['distance']." >";
                                                 ?>
                                                 <button class="btn btn-primary" id="submit1" name="submit" value="BookHousing" type="submit">Confirmer</button>
                                             </form>
