@@ -878,31 +878,33 @@ function getConflict($demands, $order){
                                 $new_demands = $demands;
 
                                 foreach($new_demands as $demand){
-                                        if(isset($demand["id_user"])){
-                                                $user = getUserById($demand["id_user"]);
-                                                if(isset($user["id"])){
-                                                        $nbNotes = getNbNotes($user["id"], 3);
-                                                        if($nbNotes > 0){
-                                                                $average = getAverage($user["id"], 3);
-                                                                if($nbNotes == 1){
-                                                                        $note = $average."/5 (".$nbNotes." note)";
-                                                                    } else {
-                                                                        $note = $average."/5 (".$nbNotes." notes)";
-                                                                    }
-                                                        }
-                                                        else{
-                                                                $note = "N/A";
-                                                        }
-                                                        $demand["note"] = $note;
-                                                }
-                                        }
+                        
 
                                         if(isset($demand['date_start']) && isset($demand['date_end'])){
 
                                                 if($demand != $curr_demands){
                                                         if(($demand['date_start'] >= $curr_start && $demand['date_start'] <= $curr_end)
                                                         || ($demand['date_end'] >= $curr_start && $demand['date_end'] <= $curr_end) ){
+                                                                if(isset($demand["id_user"])){
+                                                                        $user = getUserById($demand["id_user"]);
+                                                                        if(isset($user["id"])){
+                                                                                $nbNotes = getNbNotes($user["id"], 3);
+                                                                                if($nbNotes > 0){
+                                                                                        $average = getAverage($user["id"], 3);
+                                                                                        if($nbNotes == 1){
+                                                                                                $note = $average."/5 (".$nbNotes." note)";
+                                                                                            } else {
+                                                                                                $note = $average."/5 (".$nbNotes." notes)";
+                                                                                            }
+                                                                                }
+                                                                                else{
+                                                                                        $note = "N/A";
+                                                                                }
+                                                                                $demand["note"] = $note;
+                                                                        }
+                                                                }
                                                                 array_push($conflicts, $demand);
+
                                                         }
                                                 }
 
@@ -926,26 +928,6 @@ function getConflict($demands, $order){
 
                         }
                         $cpt++;
-                }
-                else{
-                        if(isset($curr_demands["id_user"])){
-                                $user = getUserById($curr_demands["id_user"]);
-                                if(isset($user["id"])){
-                                        $nbNotes = getNbNotes($user["id"], 3);
-                                        if($nbNotes > 0){
-                                                $average = getAverage($user["id"], 3);
-                                                if($nbNotes == 1){
-                                                        $note = $average."/5 (".$nbNotes." note)";
-                                                    } else {
-                                                        $note = $average."/5 (".$nbNotes." notes)";
-                                                    }
-                                        }
-                                        else{
-                                                $note = "N/A";
-                                        }
-                                        $curr_demands["note"] = $note;
-                                }
-                        }
                 }
                 $is_done =  false;
                 
