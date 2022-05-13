@@ -48,13 +48,13 @@
                                                 <div class="flex">
                                                     <label for="date_seach_arrive">Arrivée</label>
                                                     <br>
-                                                    <input placeholder="Quand ?" type="date" name="date_seach_arrive" id="date_seach_arrive<?php echo $preference['id']; ?>">
+                                                    <input class="form-control" placeholder="Quand ?" type="date" name="date_seach_arrive" id="date_seach_arrive<?php echo $preference['id']; ?>">
                                                 </div>
                                                 
                                                 <div class="flex">
                                                     <label for="date_seach_departure">Départ</label>
                                                     <br>
-                                                    <input placeholder="Quand ?" type="date" name="date_seach_departure" id="date_seach_departure<?php echo $preference['id']; ?>">
+                                                    <input class="form-control" placeholder="Quand ?" type="date" name="date_seach_departure" id="date_seach_departure<?php echo $preference['id']; ?>">
                                                 </div>
                                             </div>
                                                 <?php
