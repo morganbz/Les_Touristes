@@ -14,6 +14,7 @@
     <li class="nav-item active"><a class="nav-link" href="?page=user_page&page_account=see_activity">Voir mes activités</a></li>
     <li class="nav-item active"><a class="nav-link" href="?page=user_page&page_account=add_activity">Ajouter une activité</a></li>
     <li class="nav-item active"><a class="nav-link" href="?page=user_page&page_account=housing_history">Historique de mes réservations</a></li>
+    <li class="nav-item active"><a class="nav-link" href="?page=user_page&page_account=add_pref_search">Voir mes préférences</a></li>
 
   </ul>
 </nav>
