@@ -41,6 +41,8 @@ html, body {
 
 #lien_invisible{
     outline: none;
+    text-decoration: none;
+    color : white;
 }
 
 #search_activity_list {
