@@ -49,13 +49,13 @@
                                                 <div class="flex">
                                                     <label for="date_seach_arrive">Arrivée</label>
                                                     <br>
-                                                    <input placeholder="Quand ?" type="date" name="date_seach_arrive" id="date_seach_arrive">
+                                                    <input placeholder="Quand ?" type="date" name="date_seach_arrive" id="date_seach_arrive<?php echo $preference['id']; ?>">
                                                 </div>
                                                 
                                                 <div class="flex">
                                                     <label for="date_seach_departure">Départ</label>
                                                     <br>
-                                                    <input placeholder="Quand ?" type="date" name="date_seach_departure" id="date_seach_departure">
+                                                    <input placeholder="Quand ?" type="date" name="date_seach_departure" id="date_seach_departure<?php echo $preference['id']; ?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -63,12 +63,12 @@
                                             <button type="button" class="btn btn-secondary annuler" data-bs-dismiss="modal">Annuler</button>
                                             <form action="index.php" method="post" id="form1">
                                                 <?php
-                                                    echo "<input  type='hidden' name='place_search' id='place_search' value =".$preference['destination']." >";
-                                                    echo "<input  type='hidden' name='price_search_min' id='price_search_min' value =".$preference['price_min']." >";
-                                                    echo "<input  type='hidden' name='price_search_max' id='price_search_max' value =".$preference['price_max']." >";
-                                                    echo "<input  type='hidden' name='distance_search' id='distance_search' value =".$preference['distance']." >";
+                                                    echo "<input  type='hidden' name='place_search' id='place_search". $preference['id']."' value =".$preference['destination']." >";
+                                                    echo "<input  type='hidden' name='price_search_min' id='price_search_min". $preference['id']."' value =".$preference['price_min']." >";
+                                                    echo "<input  type='hidden' name='price_search_max' id='price_search_max". $preference['id']."' value =".$preference['price_max']." >";
+                                                    echo "<input  type='hidden' name='distance_search' id='distance_search". $preference['id']."' value =".$preference['distance']." >";
                                                 ?>
-                                                <button class="btn btn-primary recherche_modal" onclick="getLocation()">Rechercher</button>
+                                                <button class="btn btn-primary recherche_modal" onclick="getLocation(<?php echo $preference['id']; ?>)">Rechercher</button>
                                             </form>
                                         </div>
                                     </div>
