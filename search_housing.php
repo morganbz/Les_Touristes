@@ -68,7 +68,7 @@
                                                     echo "<input  type='hidden' name='price_search_max' id='price_search_max' value =".$preference['price_max']." >";
                                                     echo "<input  type='hidden' name='distance_search' id='distance_search' value =".$preference['distance']." >";
                                                 ?>
-                                                <button class="btn btn-primary recherche_modal" onclick="getLocation()">Rechercher</button>
+                                                <button class="btn btn-primary recherche_modal" onclick="getLocationbyid(<?php echo $preference['id']; ?>)">Rechercher</button>
                                             </form>
                                         </div>
                                     </div>
@@ -90,40 +90,40 @@
                 <div class="flex">
                     <label for="place_search">Destination</label>
                     <br>
-                    <input placeholder="Où allez vous ?" type="text" name="place_search" id="place_search1" required>
+                    <input placeholder="Où allez vous ?" type="text" name="place_search" id="place_search" required>
                 </div>
                 
                 <div class="flex">
                     <label for="date_seach_arrive">Arrivée</label>
                     <br>
-                    <input placeholder="Quand ?" type="date" name="date_seach_arrive" id="date_seach_arrive1">
+                    <input placeholder="Quand ?" type="date" name="date_seach_arrive" id="date_seach_arrive">
                 </div>
                 
                 <div class="flex">
                     <label for="date_seach_departure">Départ</label>
                     <br>
-                    <input placeholder="Quand ?" type="date" name="date_seach_departure" id="date_seach_departure1">
+                    <input placeholder="Quand ?" type="date" name="date_seach_departure" id="date_seach_departure">
                 </div>
 
                 <div class="flex">
                     <label for="price_search_min">Prix Minimum</label>
                     <br>
-                    <input placeholder="Quel prix min en €" type="float" name="price_search_min" id="price_search_min1" required>
+                    <input placeholder="Quel prix min en €" type="float" name="price_search_min" id="price_search_min" required>
                 </div>
 
                 <div class="flex">
                     <label for="price_search_max">Prix Maximum</label>
                     <br>
-                    <input placeholder="Quel prix max en €" type="float" name="price_search_max" id="price_search_max1" required>
+                    <input placeholder="Quel prix max en €" type="float" name="price_search_max" id="price_search_max" required>
                 </div>
 
                 <div class="flex">
                     <label for="distance_search">Distance</label>
                     <br>
-                    <input placeholder="Jusqu'où en km" type="float" name="distance_search" id="distance_search1" required>
+                    <input placeholder="Jusqu'où en km" type="float" name="distance_search" id="distance_search" required>
                 </div>
                 
-                <button class="flex" class= "search_btn" onclick="getLocationbyid(1)">Rechercher</button>
+                <button class="flex" class= "search_btn" onclick="getLocation()">Rechercher</button>
             </div>
             <div id="contener">
                 <div id="search_housing_list"></div>
