@@ -66,5 +66,9 @@
     }else if ($page_account == "housing_history"){
       displayHousingHistory($_SESSION["id_user"], true);
     }
+    else if($page_account == "add_pref_search"){
+      include_once "forms/add_pref_search.php";
+    }
+
 }
 ?>

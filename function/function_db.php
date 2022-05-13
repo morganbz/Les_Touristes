@@ -1415,4 +1415,17 @@ function getHousingHistoryByIdHousing($id, $order = DATE_ORDER){
         return getHousingHistoryBy("id_housing", $id, $order);
 }
 
+//--------------------------PREFERENCE RECHERCHE----------------------
+
+function addPreferenceSearchHousing($id_user, $name, $destination, $distance, $price_min, $price_max){
+        global $base;
+
+        $sql = "INSERT INTO `Preference_Recherche`(`id_user`, `nom`, `price_min`, `price_max`, `destination`, `distance`) 
+                VALUES ($id_user, '$name', $price_min, $price_max, '$destination', $distance)";
+        
+        $result = mysqli_query($base, $sql);
+
+        return ($result != null);
+}
+
 ?>
