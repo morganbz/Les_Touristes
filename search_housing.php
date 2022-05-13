@@ -21,7 +21,7 @@
                             foreach($preferences as $preference){
                                 ?>
 
-                                <button class="modal-button"  href ="#myModal<?php echo $preference['id']; ?>" ><?php echo $preference['nom']; ?> </button>
+                                <button class="modal-button btn btn-secondary"  href ="#myModal<?php echo $preference['id']; ?>" ><?php echo $preference['nom']; ?> </button>
 
                                 <?php
                             }
