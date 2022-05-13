@@ -124,7 +124,7 @@
 
                 }
                 ?>
-                    <button class="btn btn-primary" href="?page=user_page&page_account=add_pref_search">Voir mes préférences </button>
+                    <a  href="?page=user_page&page_account=add_pref_search">Voir mes préférences </a>
             </div>
                     <?php
 
