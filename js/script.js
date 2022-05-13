@@ -38,7 +38,7 @@ function loadMapAddress(data = null, zoom = 22){
             center: new google.maps.LatLng(latitude, longitude),
             zoom: zoom
         });
-        console.log(map);
+        console.log("test");
         
         setMarkers(map,data);
     });
