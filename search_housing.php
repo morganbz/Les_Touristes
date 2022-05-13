@@ -49,25 +49,27 @@
                                                 <div class="flex">
                                                     <label for="date_seach_arrive">Arrivée</label>
                                                     <br>
-                                                    <input placeholder="Quand ?" type="date" name="date_seach_arrive" id="date_seach_arrive<?php echo $preference['id']; ?>">
+                                                    <input placeholder="Quand ?" type="date" name="date_seach_arrive" id="date_seach_arrive">
                                                 </div>
                                                 
                                                 <div class="flex">
                                                     <label for="date_seach_departure">Départ</label>
                                                     <br>
-                                                    <input placeholder="Quand ?" type="date" name="date_seach_departure" id="date_seach_departure<?php echo $preference['id']; ?>">
+                                                    <input placeholder="Quand ?" type="date" name="date_seach_departure" id="date_seach_departure">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary annuler" data-bs-dismiss="modal">Annuler</button>
+                                            <form>
                                                 <?php
-                                                    echo "<input  type='hidden' name='place_search' id='place_search". $preference['id']."' value =".$preference['destination']." >";
-                                                    echo "<input  type='hidden' name='price_search_min' id='price_search_min". $preference['id']."' value =".$preference['price_min']." >";
-                                                    echo "<input  type='hidden' name='price_search_max' id='price_search_max". $preference['id']."' value =".$preference['price_max']." >";
-                                                    echo "<input  type='hidden' name='distance_search' id='distance_search". $preference['id']."' value =".$preference['distance']." >";
+                                                    echo "<input  type='hidden' name='place_search' id='place_search' value =".$preference['destination']." >";
+                                                    echo "<input  type='hidden' name='price_search_min' id='price_search_min' value =".$preference['price_min']." >";
+                                                    echo "<input  type='hidden' name='price_search_max' id='price_search_max' value =".$preference['price_max']." >";
+                                                    echo "<input  type='hidden' name='distance_search' id='distance_search' value =".$preference['distance']." >";
                                                 ?>
-                                                <button class="btn btn-primary recherche_modal" onclick="getLocationbyid(<?php echo $preference['id']; ?>)">Rechercher</button>
+                                                <button class="btn btn-primary recherche_modal" onclick="getLocation()">Rechercher</button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -88,37 +90,37 @@
                 <div class="flex">
                     <label for="place_search">Destination</label>
                     <br>
-                    <input placeholder="Où allez vous ?" type="text" name="place_search" id="place_search" required>
+                    <input placeholder="Où allez vous ?" type="text" name="place_search" id="place_search1" required>
                 </div>
                 
                 <div class="flex">
                     <label for="date_seach_arrive">Arrivée</label>
                     <br>
-                    <input placeholder="Quand ?" type="date" name="date_seach_arrive" id="date_seach_arrive">
+                    <input placeholder="Quand ?" type="date" name="date_seach_arrive" id="date_seach_arrive1">
                 </div>
                 
                 <div class="flex">
                     <label for="date_seach_departure">Départ</label>
                     <br>
-                    <input placeholder="Quand ?" type="date" name="date_seach_departure" id="date_seach_departure">
+                    <input placeholder="Quand ?" type="date" name="date_seach_departure" id="date_seach_departure1">
                 </div>
 
                 <div class="flex">
                     <label for="price_search_min">Prix Minimum</label>
                     <br>
-                    <input placeholder="Quel prix min en €" type="float" name="price_search_min" id="price_search_min" required>
+                    <input placeholder="Quel prix min en €" type="float" name="price_search_min" id="price_search_min1" required>
                 </div>
 
                 <div class="flex">
                     <label for="price_search_max">Prix Maximum</label>
                     <br>
-                    <input placeholder="Quel prix max en €" type="float" name="price_search_max" id="price_search_max" required>
+                    <input placeholder="Quel prix max en €" type="float" name="price_search_max" id="price_search_max1" required>
                 </div>
 
                 <div class="flex">
                     <label for="distance_search">Distance</label>
                     <br>
-                    <input placeholder="Jusqu'où en km" type="float" name="distance_search" id="distance_search" required>
+                    <input placeholder="Jusqu'où en km" type="float" name="distance_search" id="distance_search1" required>
                 </div>
                 
                 <button class="flex" class= "search_btn" onclick="getLocation()">Rechercher</button>
