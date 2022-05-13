@@ -25,10 +25,10 @@ html, body {
 }
 #contener {
     display: flex;
-    height: calc(100% - 10%);
+    height: calc(100% - 20%);
 }
 #search_housing_list {
-    height: calc(100% - 10% - 50px);
+    height: calc(100% - 20% - 50px);
     width: 50%;
     overflow-y: scroll;
     position: fixed;
@@ -37,6 +37,11 @@ html, body {
     height: 100%;
     width: 50%;
     margin-left: 50%;
+}
+
+#recherche_preference {
+    height: 10%;
+
 }
 
 #lien_invisible{

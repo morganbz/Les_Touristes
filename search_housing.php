@@ -58,7 +58,7 @@
             <?php
             if(isset($_SESSION['id_user'])){
                 ?>
-                    <div id = "preference">
+                    <div class = "recherche_preference" id = "recherche_preference">
                             <label >Mes préférences :</label>
                             <?php
 
