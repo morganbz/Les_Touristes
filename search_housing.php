@@ -61,7 +61,6 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary annuler" data-bs-dismiss="modal">Annuler</button>
-                                            <form>
                                                 <?php
                                                     echo "<input  type='hidden' name='place_search' id='place_search". $preference['id']."' value =".$preference['destination']." >";
                                                     echo "<input  type='hidden' name='price_search_min' id='price_search_min". $preference['id']."' value =".$preference['price_min']." >";
@@ -69,7 +68,6 @@
                                                     echo "<input  type='hidden' name='distance_search' id='distance_search". $preference['id']."' value =".$preference['distance']." >";
                                                 ?>
                                                 <button class="btn btn-primary recherche_modal" onclick="getLocationbyid(<?php echo $preference['id']; ?>)">Rechercher</button>
-                                            </form>
                                         </div>
                                     </div>
                                 </div>
