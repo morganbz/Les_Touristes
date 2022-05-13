@@ -714,6 +714,22 @@ function getAllBookAskByIdHousing($id_housing){
                         $nb_day++;
                         $currDate = date("Y-m-d", strtotime($currDate.'+ 1 days'));
                 }
+
+                $user = getUserById($row["id_user"]);
+                $nbNotes = getNbNotes($user["id"], 3);
+                if($nbNotes > 0){
+                        $average = getAverage($user["id"], 3);
+                        if($nbNotes == 1){
+                                $note = $average."/5 (".$nbNotes." note)";
+                                } else {
+                                $note = $average."/5 (".$nbNotes." notes)";
+                                }
+                }
+                else{
+                        $note = "N/A";
+                }
+                $row["note"] = $note;
+
                 $row['nb_day'] = $nb_day;
 
                 $row['price'] = getTotalPrice($id_housing, $row['date_start'], $row['date_end']);
@@ -885,24 +901,7 @@ function getConflict($demands, $order){
                                                 if($demand != $curr_demands){
                                                         if(($demand['date_start'] >= $curr_start && $demand['date_start'] <= $curr_end)
                                                         || ($demand['date_end'] >= $curr_start && $demand['date_end'] <= $curr_end) ){
-                                                                if(isset($demand["id_user"])){
-                                                                        $user = getUserById($demand["id_user"]);
-                                                                        if(isset($user["id"])){
-                                                                                $nbNotes = getNbNotes($user["id"], 3);
-                                                                                if($nbNotes > 0){
-                                                                                        $average = getAverage($user["id"], 3);
-                                                                                        if($nbNotes == 1){
-                                                                                                $note = $average."/5 (".$nbNotes." note)";
-                                                                                            } else {
-                                                                                                $note = $average."/5 (".$nbNotes." notes)";
-                                                                                            }
-                                                                                }
-                                                                                else{
-                                                                                        $note = "N/A";
-                                                                                }
-                                                                                $demand["note"] = $note;
-                                                                        }
-                                                                }
+                                                                
                                                                 array_push($conflicts, $demand);
 
                                                         }
