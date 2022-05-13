@@ -57,6 +57,13 @@ $nb_images = count($best_annouces_w_img);
         background-position:center;
         background-size:cover;
     }
+    .catch_phrase{
+        font-family: Georgia, monospace;
+        color : green;
+        font-size : medium;
+        text-align: center;
+        top : 50px; 
+    }
 </style>
 
 
@@ -121,6 +128,11 @@ $nb_images = count($best_annouces_w_img);
     <a href="#myCarousel" class="carousel-control-next" role="button" data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
     </a>
+</div>
+
+<div class = "catch_phrase">
+    <p> Bienvenue chez les Touristes la plateforme collaborative regroupant à la fois location de logement et activités à proximité de ses derniers afin de planifier au mieux votre séjour!
+    </p>
 </div>
 
 
