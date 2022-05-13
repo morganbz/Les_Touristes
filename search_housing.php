@@ -14,7 +14,7 @@
                 $preferences = getPreferenceByIdUser($_SESSION['id_user']);
 
                 ?>
-            <div id = "preference">
+                    <div id = "preference">
                             <label >Mes préférences :</label>
                             <?php
 
@@ -27,6 +27,10 @@
                                 <?php
                             }
 
+                            ?>
+                            <button class="btn btn-primary"><a class="nav-link" href="?page=user_page&page_account=add_pref_search">Voir mes préférences</a> </button>
+                    </div>
+                    <?php
                     foreach($preferences as $preference){
                         ?>
 
@@ -76,10 +80,6 @@
                     <?php
 
                 }
-            ?>
-                <button class="modal-button btn btn-primary"><a class="nav-link" href="?page=user_page&page_account=add_pref_search">Voir mes préférences</a> </button>
-            </div>
-                <?php
 
             }
             ?>
