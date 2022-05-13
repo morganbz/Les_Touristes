@@ -22,7 +22,7 @@
                             foreach($preferences as $preference){
                                 ?>
 
-                                <option class="modal-button"  href ="#myModal<?php echo $preference['id']; ?>" ><?php echo $preference['nom']; ?></option>
+                                <option> <button class="modal-button"  href ="#myModal<?php echo $preference['id']; ?>" ><?php echo $preference['nom']; ?> </button> </option>
 
                                 <?php
                             }
