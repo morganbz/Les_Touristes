@@ -55,31 +55,31 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtoupper($_SERVER['HTTP_X_REQU
         $data = searchAnnounce($price_min, $price_max, $arrive, $departure, $destination, $distance);
     }
 
-    elseif ($_POST['action'] == "getLocationbyid" && isset($_GET['place_search']))
+    elseif ($_POST['action'] == "getLocationbyid" && isset($_GET['destination']))
     {
         $response_code = HTTP_OK;
-        $destination = $_GET['place_search'];
-        if(isset($_GET['date_seach_arrive'])){
-            $arrive = $_GET['date_seach_arrive'];
+        $destination = $_POST['destination'];
+        if(isset($_POST['arrive'])){
+            $arrive = $_POST['arrive'];
         }
-        if(isset($_GET['date_seach_departure'])){
-            $departure = $_GET['date_seach_departure'];
+        if(isset($_POST['departure'])){
+            $departure = $_POST['departure'];
         }
-        if(isset($_GET['price_search_min'])){
-            $price_min = $_GET['pricprice_search_mine_min'];
-            if($_GET['price_search_min'] == ''){
+        if(isset($_POST['price_min'])){
+            $price_min = $_POST['price_min'];
+            if($_POST['price_min'] == ''){
                 $price_min = 0;
             }
         }
-        if(isset($_GET['price_search_max'])){
-            $price_max = $_GET['price_search_max'];
-            if($_GET['price_search_max'] == ''){
+        if(isset($_POST['price_max'])){
+            $price_max = $_POST['price_max'];
+            if($_POST['price_max'] == ''){
                 $price_max = 999999999;
             }
         }
-        if(isset($_GET['distance_search'])){
-            $distance = $_GET['distance_search'];
-            if($_GET['distance_search'] == ''){
+        if(isset($_POST['distance'])){
+            $distance = $_POST['distance'];
+            if($_POST['distance'] == ''){
                 $distance = 20;
             }
         }
