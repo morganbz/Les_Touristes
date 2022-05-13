@@ -100,7 +100,7 @@ foreach($conflicts as $demands){
                         <td><a class = "link_announce" href="?page=user&u=<?php echo $user["id"]; ?>"><?php echo $user["mail"]; ?></a></td>
                         <td>
                             <?php
-                            /f($nbNotes > 0){
+                            if($nbNotes > 0){
                                 if($nbNotes == 1){
                                     echo $demand["note"]."/5 (".$nbNotes." note)";
                                 } else {
