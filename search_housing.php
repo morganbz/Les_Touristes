@@ -24,9 +24,17 @@
 
                                 <option  href ="#myModal<?php echo $preference['id']; ?>" ><?php echo $preference['nom']; ?></option>
 
-                                <div class="modal" id="myModal<?php echo $preference['id']; ?>">
-                                    <div class="modal-dialog modal-dialog-centered">
-                                        <div class="modal-content">
+                                <?php
+                            }
+                            ?>
+                    </div>
+                    <?php
+                    foreach($preferences as $preference){
+                        ?>
+
+                        <div class="modal" id="myModal<?php echo $preference['id']; ?>">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title">Choisir date</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -64,14 +72,14 @@
                                                 <button class="btn btn-primary" id="submit1" name="submit" value="BookHousing" type="submit">Confirmer</button>
                                             </form>
                                         </div>
-                                        </div>
                                     </div>
                                 </div>
+                            </div>
 
-                                <?php
-                            }
-                            ?>
-                    </div>
+                    <?php
+
+                    }
+                    ?>
 
                     <?php
 
