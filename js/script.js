@@ -178,7 +178,13 @@ function getLocation()
 
                 if(results[i]['is_near'] == false){
                     if(results[i]['nb_ask'] > 0){
-                        var res = div + "<p class='text-danger'>Il y a déjà "+ results[i]['nb_ask'] +" demandes de réservation pour ces dates </p>";
+                        if(results[i]['nb_ask'] == 1){
+                            var res = div + "<p class='text-danger'>Il y a déjà "+ results[i]['nb_ask'] +" demande de réservation pour ces dates </p>";
+                        }
+                        else{
+                            var res = div + "<p class='text-danger'>Il y a déjà "+ results[i]['nb_ask'] +" demandes de réservation pour ces dates </p>";
+                        }
+                        var res = div + "</a></div>";
                     }
                     else{
                         var res = div + "</a></div>";
