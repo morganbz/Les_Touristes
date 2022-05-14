@@ -184,7 +184,7 @@ function getLocation()
                         else{
                             var res = div + "<p class='text-danger'>Il y a déjà "+ results[i]['nb_ask'] +" demandes de réservation pour ces dates </p>";
                         }
-                        var res = div + "</a></div>";
+                        var res = res + "</a></div>";
                     }
                     else{
                         var res = div + "</a></div>";
