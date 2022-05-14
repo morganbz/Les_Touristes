@@ -174,20 +174,20 @@ function getLocation()
             }
             $("#search_housing_list").empty();
             for(let i = 0; i < results.length; i++){
-                var div = "<div class='data_search'><a href='?page=ask_reservation&id_housing="+ results[i]["id"] + "&date_start="+ response["arrive"] +"&date_end=" + response["departure"] + "' class='link_announce'><p>Nom : " + results[i]['nom'] + "</p><p>Type de logement : " + results[i]['type'] + "</p><p>Adresse : " + results[i]['adresse'] + "</p><p>Prix à la nuit : " + results[i]['price'] + "</p><p>Description : " + results[i]['description'];
+                var div = "<div class='data_search'><a href='?page=ask_reservation&id_housing="+ results[i]["id"] + "&date_start="+ response["arrive"] +"&date_end=" + response["departure"] + "' class='link_announce'><p>Nom : " + results[i]['nom'] + "</p><p>Type de logement : " + results[i]['type'] + "</p><p>Adresse : " + results[i]['adresse'] + "</p><p>Prix à la nuit : " + results[i]['price'] + "</p><p>Description : " + results[i]['description'] +"</p>";
 
                 if(results[i]['is_near'] === 'false'){
                     if(results[i]['nb_ask'] !== '0'){
-                        var div = div + "<p class='text-danger'>Il y a déjà "+ results[i]['nb_ask'] +" demandes de réservation pour ces dates </p>";
+                        var res = div + "<p class='text-danger'>Il y a déjà "+ results[i]['nb_ask'] +" demandes de réservation pour ces dates </p>";
                     }
-                    var res = div + "</p></a></div>";
+                    else{
+                        var res = div + "</a></div>";
+                    }
                 }
                 else{
-                    var res = div + "</p></a></div>";
+                    var res = div + "</a></div>";
                 }
                 
-                "</p></a></div>";
-
                 $("#search_housing_list").append(res);
             }
         },
