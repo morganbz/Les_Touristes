@@ -20,6 +20,12 @@ function isTextBetweenLength($text, $minLength, $maxLength){
     return $good_length;
 }
 
+function clean($string) {
+    $string = str_replace(' ', '-', $string);
+ 
+    return preg_replace('/[^A-Za-z0-9\-]/', '', $string);
+}
+
 function isGoodDateBeforeToday($date){
     date_default_timezone_set('Europe/Paris');
     return $date < date("Y-m-d");
@@ -68,20 +74,24 @@ function getDistance($addressFrom, $lat, $lng){
 }
 
 function getCoords($address){
-    $address = str_replace(" ", "", $address);
+    $address = clean($address);
     $json = file_get_contents("https://maps.google.com/maps/api/geocode/json?address=$address&key=AIzaSyD6q4hVJGUioenp17tQTqiCS9dLDWbgATw&sensor=false");
     $json = json_decode($json);
-    $lat = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lat'};
-    $long = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lng'};
-    $res = [];
-    $res["latitude"] = $lat;
-    $res["longitude"] = $long;
-    return $res;
+    if (count($json->{'results'}) != 0){
+        $lat = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lat'};
+        $long = $json->{'results'}[0]->{'geometry'}->{'location'}->{'lng'};
+        $res = [];
+        $res["latitude"] = $lat;
+        $res["longitude"] = $long;
+    } else {
+        $_SESSION["error_requete_google"] = "Erreur dans la fonction getCoords.";
+    }
 
+    return $res;
 }
 
 function getCountry($address){
-    $address = str_replace(" ", "", $address);
+    $address = clean($address);
     $json = file_get_contents("https://maps.google.com/maps/api/geocode/json?address=$address&key=AIzaSyD6q4hVJGUioenp17tQTqiCS9dLDWbgATw&sensor=false");
     $json = json_decode($json);
     $cpt = 0;
@@ -101,12 +111,12 @@ function getCountry($address){
 }
 
 function getNumber($address){
-    $address = str_replace(" ", "", $address);
+    $address = clean($address);
     $json = file_get_contents("https://maps.google.com/maps/api/geocode/json?address=$address&key=AIzaSyD6q4hVJGUioenp17tQTqiCS9dLDWbgATw&sensor=false");
     $json = json_decode($json);
     $cpt = 0;
     $trouve = false;
-    $res = "not_found";
+    $res = "";
 
     $add_comp = $json->{'results'}[0]->{'address_components'};
 
@@ -122,7 +132,7 @@ function getNumber($address){
 }
 
 function getRoute($address){
-    $address = str_replace(" ", "", $address);
+    $address = clean($address);
     $json = file_get_contents("https://maps.google.com/maps/api/geocode/json?address=$address&key=AIzaSyD6q4hVJGUioenp17tQTqiCS9dLDWbgATw&sensor=false");
     $json = json_decode($json);
     $cpt = 0;
@@ -147,7 +157,7 @@ function getRouteAndNumber($address){
 }
 
 function getPostalCode($address){
-    $address = str_replace(" ", "", $address);
+    $address = clean($address);
     $json = file_get_contents("https://maps.google.com/maps/api/geocode/json?address=$address&key=AIzaSyD6q4hVJGUioenp17tQTqiCS9dLDWbgATw&sensor=false");
     $json = json_decode($json);
     $cpt = 0;
@@ -168,7 +178,7 @@ function getPostalCode($address){
 }
 
 function getCity($address){
-    $address = str_replace(" ", "", $address);
+    $address = clean($address);
     $json = file_get_contents("https://maps.google.com/maps/api/geocode/json?address=$address&key=AIzaSyD6q4hVJGUioenp17tQTqiCS9dLDWbgATw&sensor=false");
     $json = json_decode($json);
     $cpt = 0;
