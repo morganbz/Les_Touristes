@@ -16,6 +16,10 @@ function addAnnounce($price, $date_start, $id_housing, $nb_annouce = 0){
 function addHousingAndAnnounce($id_owner, $type, $latitude, $longitude, $name, $description, $price, $date_start, $date_end, $country){
         global $base;
 
+        $name = mysqli_real_escape_string($base, $name);
+        $description = mysqli_real_escape_string($base, $description);
+        $country = mysqli_real_escape_string($base, $country);
+
         $sql = "INSERT INTO housing (id_owner, type, latitude, longitude, nom, description, country) 
                 VALUES ($id_owner, $type, $latitude, $longitude, '$name', '$description', '$country');";
 
@@ -1200,7 +1204,7 @@ function addActivity($nom, $idtype, $pays, $lat, $long, $id_user, $desc){
 
         $folder = "./picture_activity/".strval($id_user)."/".strval($id_activity);
 
-        $sql = "UPDATE `activity` SET `image_folder` = '$folder' WHERE `id_activity` = '$id_activity'";
+        $sql = "UPDATE `activity` SET `image_folder` = '$folder' WHERE `id` = '$id_activity'";
 
         mysqli_query($base, $sql);
 
@@ -1212,7 +1216,7 @@ function getActivityByIdOwner($id){
 
         $activity = [];
 
-        $sql = "SELECT id_activity, type, latitude, longitude, country, nom, description, image_folder
+        $sql = "SELECT id, type, latitude, longitude, country, nom, description, image_folder
                 FROM activity
                 WHERE id_owner = $id";
         $result = mysqli_query($base, $sql);
@@ -1229,9 +1233,9 @@ function getActivityById($id){
 
         $activity = [];
 
-        $sql = "SELECT id_activity, type, latitude, longitude, country, nom, description, image_folder
+        $sql = "SELECT id, type, latitude, longitude, country, nom, description, image_folder
                 FROM activity
-                WHERE id_activity = $id";
+                WHERE id = $id";
         $result = mysqli_query($base, $sql);
 
         $activity = mysqli_fetch_assoc($result);
@@ -1249,7 +1253,7 @@ function updateActivity($id, $nom, $idtype, $pays, $lat, $long, $desc){
         $longitude = mysqli_real_escape_string($base, $long);
         $description = mysqli_real_escape_string($base, $desc);
 
-        $sql = "UPDATE activity SET nom='$name', latitude=$latitude, longitude=$longitude, country='$pays', type=$type, description='$description' WHERE id_activity=$id";
+        $sql = "UPDATE activity SET nom='$name', latitude=$latitude, longitude=$longitude, country='$pays', type=$type, description='$description' WHERE id=$id";
 
         $update_housing = $base->query($sql);
 
@@ -1280,14 +1284,14 @@ function getAllHousingID(){
 function getAllActivityID(){
         global $base;
 
-        $sql = "SELECT id_activity FROM activity";
+        $sql = "SELECT id FROM activity";
 
         $results = mysqli_query($base, $sql);
 
         $ids = Array();
 
         while ($row = mysqli_fetch_assoc($results)){
-                $ids[] = $row["id_activity"];
+                $ids[] = $row["id"];
         }
 
         return $ids;
@@ -1420,6 +1424,9 @@ function getHousingHistoryByIdHousing($id, $order = DATE_ORDER){
 function addPreferenceSearchHousing($id_user, $name, $destination, $distance, $price_min, $price_max){
         global $base;
 
+        $name = mysqli_real_escape_string($base, $name);
+        $destination = mysqli_real_escape_string($base, $destination);
+
         $sql = "INSERT INTO `Preference_Recherche`(`id_user`, `nom`, `price_min`, `price_max`, `destination`, `distance`) 
                 VALUES ($id_user, '$name', $price_min, $price_max, '$destination', $distance)";
         
@@ -1446,6 +1453,91 @@ function getPreferenceByIdUser($id_user){
 
 
 
+}
+
+//-------------------------- RECOMMANDATIONS -------------------------
+
+function addRecommandation ($id_user, $id_recommandated, $type){
+        global $base;
+
+        $sql = "INSERT INTO recommandation (id_user, id_recommandated, type) VALUES ($id_user, $id_recommandated, $type)";
+
+        mysqli_query($base, $sql);
+}
+
+function delRecommandation ($id_user, $id_recommandated, $type){
+        global $base;
+
+        $sql = "DELETE FROM recommandation WHERE id_user = $id_user AND id_recommandated = $id_recommandated AND type = $type";
+
+        mysqli_query($base, $sql);
+}
+
+function alreadyRecommanded($id_user, $id_recommandated, $type){
+        global $base;
+
+        $sql = "SELECT id FROM recommandation WHERE id_user = $id_user AND id_recommandated = $id_recommandated AND type = $type";
+
+        $result = mysqli_query($base, $sql);
+
+        return mysqli_num_rows($result) != 0;
+}
+
+function getNbRecommandation ($id, $type){
+        global $base;
+
+        $sql = "SELECT id FROM recommandation WHERE id_recommandated = $id AND type = $type";
+
+        $results = mysqli_query($base, $sql);
+
+        return mysqli_num_rows($results);
+}
+
+function getNbRecommandationHousing ($id){
+        return getNbRecommandation ($id, 1);
+}
+
+function getNbRecommandationActivity ($id){
+        return getNbRecommandation ($id, 2);
+}
+
+function getNbRecommandationUser ($id){
+        return getNbRecommandation ($id, 3);
+}
+
+function getRecommandationOfUser ($id){
+        global $base;
+
+        $sql = "SELECT id_recommandated, type FROM recommandation WHERE id_user = $id";
+
+        $results = mysqli_query($base, $sql);
+
+        $recommandations = array();
+
+        while ($row = mysqli_fetch_assoc($results)){
+                if ($row["type"] == 1){
+                        $info = getHousingById($row["id_recommandated"]);
+                        $url = "?page=housing&h=";
+                        $nom = $info["nom"];
+                } elseif ($row["type"] == 2){
+                        $info = getActivityById($row["id_recommandated"]);
+                        $url = "?page=activity&a=";
+                        $nom = $info["nom"];
+                } elseif ($row["type"] == 3){
+                        $info = getUserById($row["id_recommandated"]);
+                        $url = "?page=user&u=";
+                        $nom = $info["firstname"]." ".$info["lastname"];
+                }
+
+                $url = $url.$info["id"];
+
+                $recommandation["nom"] = $nom;
+                $recommandation["url"] = $url;
+
+                $recommandations[] = $recommandation;
+        }
+
+        return $recommandations;
 }
 
 ?>
