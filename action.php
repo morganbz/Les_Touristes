@@ -181,7 +181,7 @@
             $address_housing = $postal_code." ".$city." ".$address;
 
             $coord = getCoords($address_housing);
-            $country = getCountry($address_housing);
+            $country = getCountryFromCoords($coord["latitude"], $coord["longitude"]);
     
             $idAnnounce = addHousingAndAnnounce($id_owner, $type, $coord["latitude"], $coord["longitude"], $name, $description, $price, $date_start, $date_end, $country);
 
@@ -207,7 +207,7 @@
             $address_activity = $postal_code." ".$city." ".$address;
 
             $coord = getCoords($address_activity);
-            $pays = getCountry($address_activity);
+            $pays = getCountryFromCoords($coord["latitude"], $coord["longitude"]);
 
             $dossier = "picture_housing/".strval($_SESSION["id_user"])."/".$_POST["id_housing_announce_update"];
 
@@ -455,7 +455,7 @@
             $address_activity = $postal_code." ".$city." ".$address;
 
             $coord = getCoords($address_activity);
-            $country = getCountry($address_activity);
+            $country = getCountryFromCoords($coord["latitude"], $coord["longitude"]);
 
             $id_activity = addActivity($name, $type, $country, $coord["latitude"], $coord["longitude"], $id_user, $desc);
 
@@ -483,7 +483,7 @@
             $address_activity = $postal_code." ".$city." ".$address;
 
             $coord = getCoords($address_activity);
-            $pays = getCountry($address_activity);
+            $pays = getCountryFromCoords($coord["latitude"], $coord["longitude"]);
 
             $dossier = "picture_activity/".strval($_SESSION["id_user"])."/".$id;
 

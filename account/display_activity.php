@@ -17,11 +17,11 @@ foreach ($listeActivity as $activity){
     $description = $activity['description'];
     $type = $activity['type'];
 
-    $adress_all = getAddress($latitude, $longitude);
+    //$adress_all = getAddress($latitude, $longitude);
 
-    $adress = getRouteAndNumber($adress_all);
-    $city = getCity($adress_all);
-    $postal_code = getPostalCode($adress_all);
+    $adress = getRouteAndNumber($latitude, $longitude);
+    $city = getCity($latitude, $longitude);
+    $postal_code = getPostalCode($latitude, $longitude);
 
     $id = $activity['id_activity'];
 ?>

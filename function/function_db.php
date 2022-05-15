@@ -340,7 +340,7 @@ function searchNearDateAnnounce($priceMin, $priceMax, $date_start, $date_end, $d
 function searchAnnounce($priceMin, $priceMax, $date_start, $date_end, $dest, $distance){
         global $base;
         $TYPE_HOUSING = array("Maison", "Appartement", "Chalet", "Refuge");
-        $country = getCountry($dest);
+        $country = getCountryFromAddress($dest);
 
         $sql = "SELECT housing.id, 
         id_owner, 
@@ -1368,7 +1368,7 @@ function fromResaToHistory(){
 function searchActivity($dest, $distance){
         global $base;
         $TYPE_ACTIVITY = array("Randonnée", "Espace Culturel", "Restauration", "Baignade");
-        $country = getCountry($dest);
+        $country = getCountryFromAddress($dest);
 
         $sql = "SELECT * FROM `activity` WHERE country = '$country'";
 
