@@ -672,9 +672,9 @@ function nbBookAskPeriod($id_housing, $date_start, $date_end){
 
         $sql = "SELECT * FROM `reservation` 
         WHERE accepted = 0 AND id_housing = $id_housing AND
-                (date_start BETWEEN '$date_start' AND '$date_end')
+                ((date_start BETWEEN '$date_start' AND '$date_end')
             OR
-            (date_end BETWEEN '$date_start' AND '$date_end')";
+            (date_end BETWEEN '$date_start' AND '$date_end'))";
         
         $result = mysqli_query($base, $sql);
 
