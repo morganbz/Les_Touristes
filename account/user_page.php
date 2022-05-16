@@ -71,5 +71,7 @@
       include_once "forms/add_pref_search.php";
     }
 
-}
+  } else {
+    include_once "./page_404.php";
+  }
 ?>
