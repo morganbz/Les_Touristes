@@ -14,7 +14,7 @@ function uploadImg($dossier, $name_FILES){
     if (isset($_FILES)){
         $tmpName = $_FILES[$name_FILES]['tmp_name'];
         $typefile = $_FILES[$name_FILES]['type'];
-        $name = $_FILES[$name_FILES]['name'];
+        $name = clean($_FILES[$name_FILES]['name']);
         $size = $_FILES[$name_FILES]['size'];
         $error = $_FILES[$name_FILES]['error'];
 
