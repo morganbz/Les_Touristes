@@ -100,22 +100,32 @@
             else if ($page == "housing_history"){
                 if (isset($_GET["h"])){
                     displayHousingHistory($_GET["h"], false);
+                } else {
+                    include_once "page_404.php";
                 }
             }
             else if ($page == "housing" ){
                 if (isset($_GET["h"])){
                     displayHousing($_GET["h"]);
+                } else {
+                    include_once "page_404.php";
                 }
             }
             else if ($page == "activity" ){
                 if (isset($_GET["a"])){
                     displayActivity($_GET["a"]);
+                } else {
+                    include_once "page_404.php";
                 }
             }
             else if ($page == "user" ){
                 if (isset($_GET["u"])){
                     displayUser($_GET["u"]);
+                } else {
+                    include_once "page_404.php";
                 }
+            } else {
+                include_once "page_404.php";
             }
             ?>
         </div>

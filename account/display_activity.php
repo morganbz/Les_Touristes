@@ -23,7 +23,7 @@ foreach ($listeActivity as $activity){
     $city = getCity($latitude, $longitude);
     $postal_code = getPostalCode($latitude, $longitude);
 
-    $id = $activity['id_activity'];
+    $id = $activity['id'];
 ?>
 
 <form action="index.php" method="post" enctype= 'multipart/form-data'>

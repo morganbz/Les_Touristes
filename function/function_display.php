@@ -227,30 +227,34 @@ function displayHousing($id){
     global $TYPE_HOUSING;
     
     $infos = getHousingById($id);
-
-    $adresse = getAddress($infos["latitude"], $infos["longitude"]);
-
-    ?>
-     <div>
-        <h2><?php echo $infos["nom"];?></h2>
-        <p><?php echo getNbRecommandationHousing ($id); displayHeart($id, 1);?></p>
-        <p>Type d'hébergement : <?php echo $TYPE_HOUSING[$infos["type"]];?></p>
-        <p>Adresse : <?php echo $adresse;?></p>
-        <p>Pays : <?php echo getCountryFromCoords($infos["latitude"], $infos["longitude"]);?></p>
-        <p>Description : <?php echo $infos["description"];?></p>
-    </div>
-
-    <?php
-
-    if (isset($_SESSION["id_user"]) && !isAlreadyRated($id, $_SESSION["id_user"], 3)){
-        displayFormRateAndComment($id, 1);
-    } 
-
-    if (getNbNotes($id, 2) == 0){
-        echo "<h3>Aucune évaluations</h3>";
+    if ($infos == null) {
+        include_once "./page_404.php";
     } else {
-        echo "<h3>Moyenne des notes : ". getAverage($id, 1)."/5</h3>";
-        displayRate($id, 1);
+
+        $adresse = getAddress($infos["latitude"], $infos["longitude"]);
+
+        ?>
+        <div>
+            <h2><?php echo $infos["nom"];?></h2>
+            <p><?php echo getNbRecommandationHousing ($id); displayHeart($id, 1);?></p>
+            <p>Type d'hébergement : <?php echo $TYPE_HOUSING[$infos["type"]];?></p>
+            <p>Adresse : <?php echo $adresse;?></p>
+            <p>Pays : <?php echo getCountryFromCoords($infos["latitude"], $infos["longitude"]);?></p>
+            <p>Description : <?php echo $infos["description"];?></p>
+        </div>
+
+        <?php
+
+        if (isset($_SESSION["id_user"]) && !isAlreadyRated($id, $_SESSION["id_user"], 3)){
+            displayFormRateAndComment($id, 1);
+        } 
+
+        if (getNbNotes($id, 2) == 0){
+            echo "<h3>Aucune évaluations</h3>";
+        } else {
+            echo "<h3>Moyenne des notes : ". getAverage($id, 1)."/5</h3>";
+            displayRate($id, 1);
+        }
     }
 }
 
@@ -258,252 +262,259 @@ function displayActivity($id){
     global $TYPE_ACTIVITY;
 
     $infos = getActivityById($id);
-    /*
-    <div>
-        <div
-        id="carouselVideoExample"
-        class="carousel slide carousel-fade"
-        data-mdb-ride="carousel"
-        >
-        <!-- Indicators -->
-        <div class="carousel-indicators">
-            <button
-            type="button"
-            data-mdb-target="#carouselVideoExample"
-            data-mdb-slide-to="0"
-            class="active"
-            aria-current="true"
-            aria-label="Slide 1"
-            ></button>
-            <button
-            type="button"
-            data-mdb-target="#carouselVideoExample"
-            data-mdb-slide-to="1"
-            aria-label="Slide 2"
-            ></button>
-            <button
-            type="button"
-            data-mdb-target="#carouselVideoExample"
-            data-mdb-slide-to="2"
-            aria-label="Slide 3"
-            ></button>
-        </div>
-
-        <!-- Inner -->
-        <div class="carousel-inner">
-            <!-- Single item -->
-            <div class="carousel-item active">
-            <video class="img-fluid" autoplay loop muted>
-                <source src="https://mdbcdn.b-cdn.net/img/video/Tropical.mp4" type="video/mp4" />
-            </video>
-            <div class="carousel-caption d-none d-md-block">
-                <h5>First slide label</h5>
-                <p>
-                Nulla vitae elit libero, a pharetra augue mollis interdum.
-                </p>
-            </div>
-            </div>
-
-            <!-- Single item -->
-            <div class="carousel-item">
-            <video class="img-fluid" autoplay loop muted>
-                <source src="https://mdbcdn.b-cdn.net/img/video/forest.mp4" type="video/mp4" />
-            </video>
-            <div class="carousel-caption d-none d-md-block">
-                <h5>Second slide label</h5>
-                <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                </p>
-            </div>
-            </div>
-
-            <!-- Single item -->
-            <div class="carousel-item">
-            <video class="img-fluid" autoplay loop muted>
-                <source
-                src="https://mdbcdn.b-cdn.net/img/video/Agua-natural.mp4"
-                type="video/mp4"
-                />
-            </video>
-            <div class="carousel-caption d-none d-md-block">
-                <h5>Third slide label</h5>
-                <p>
-                Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-                </p>
-            </div>
-            </div>
-        </div>
-        <!-- Inner -->
-
-        <!-- Controls -->
-        <button
-            class="carousel-control-prev"
-            type="button"
-            data-mdb-target="#carouselVideoExample"
-            data-mdb-slide="prev"
-        >
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button
-            class="carousel-control-next"
-            type="button"
-            data-mdb-target="#carouselVideoExample"
-            data-mdb-slide="next"
-        >
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-        </div>
-    </div>
-    */
-    ?>
-    <div>
-        <h2><?php echo $infos["nom"];?></h2>
-        <p><?php echo getNbRecommandationActivity ($id); displayHeart($id, 2);?></p>
-        <p>Type d'activité : <?php echo $TYPE_ACTIVITY[$infos["type"]];?></p>
-        <p>Adresse : <?php echo getAddress($infos["latitude"], $infos["longitude"]);?></p>
-        <p>Pays : <?php echo $infos["country"];?></p>
-        <p>Description : <?php echo $infos["description"];?></p>
-    </div>
-
-    <?php
-
-    if (isset($_SESSION["id_user"]) && !isAlreadyRated($id, $_SESSION["id_user"], 2)){
-        displayFormRateAndComment($id, 2);
-    } 
-    if (getNbNotes($id, 2) == 0){
-        echo "<h3>Aucune évaluations</h3>";
+    if ($infos == null) {
+        include_once "./page_404.php";
     } else {
-         echo "<h3>Moyenne des notes : ". getAverage($id, 2)."/5</h3>";
-        echo "<h3>Anciens commentaires :</h3>";
-        displayRate($id, 2);
+        /*
+        <div>
+            <div
+            id="carouselVideoExample"
+            class="carousel slide carousel-fade"
+            data-mdb-ride="carousel"
+            >
+            <!-- Indicators -->
+            <div class="carousel-indicators">
+                <button
+                type="button"
+                data-mdb-target="#carouselVideoExample"
+                data-mdb-slide-to="0"
+                class="active"
+                aria-current="true"
+                aria-label="Slide 1"
+                ></button>
+                <button
+                type="button"
+                data-mdb-target="#carouselVideoExample"
+                data-mdb-slide-to="1"
+                aria-label="Slide 2"
+                ></button>
+                <button
+                type="button"
+                data-mdb-target="#carouselVideoExample"
+                data-mdb-slide-to="2"
+                aria-label="Slide 3"
+                ></button>
+            </div>
+
+            <!-- Inner -->
+            <div class="carousel-inner">
+                <!-- Single item -->
+                <div class="carousel-item active">
+                <video class="img-fluid" autoplay loop muted>
+                    <source src="https://mdbcdn.b-cdn.net/img/video/Tropical.mp4" type="video/mp4" />
+                </video>
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>First slide label</h5>
+                    <p>
+                    Nulla vitae elit libero, a pharetra augue mollis interdum.
+                    </p>
+                </div>
+                </div>
+
+                <!-- Single item -->
+                <div class="carousel-item">
+                <video class="img-fluid" autoplay loop muted>
+                    <source src="https://mdbcdn.b-cdn.net/img/video/forest.mp4" type="video/mp4" />
+                </video>
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Second slide label</h5>
+                    <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    </p>
+                </div>
+                </div>
+
+                <!-- Single item -->
+                <div class="carousel-item">
+                <video class="img-fluid" autoplay loop muted>
+                    <source
+                    src="https://mdbcdn.b-cdn.net/img/video/Agua-natural.mp4"
+                    type="video/mp4"
+                    />
+                </video>
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Third slide label</h5>
+                    <p>
+                    Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+                    </p>
+                </div>
+                </div>
+            </div>
+            <!-- Inner -->
+
+            <!-- Controls -->
+            <button
+                class="carousel-control-prev"
+                type="button"
+                data-mdb-target="#carouselVideoExample"
+                data-mdb-slide="prev"
+            >
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button
+                class="carousel-control-next"
+                type="button"
+                data-mdb-target="#carouselVideoExample"
+                data-mdb-slide="next"
+            >
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+            </div>
+        </div>
+        */
+        ?>
+        <div>
+            <h2><?php echo $infos["nom"];?></h2>
+            <p><?php echo getNbRecommandationActivity ($id); displayHeart($id, 2);?></p>
+            <p>Type d'activité : <?php echo $TYPE_ACTIVITY[$infos["type"]];?></p>
+            <p>Adresse : <?php echo getAddress($infos["latitude"], $infos["longitude"]);?></p>
+            <p>Pays : <?php echo $infos["country"];?></p>
+            <p>Description : <?php echo $infos["description"];?></p>
+        </div>
+
+        <?php
+
+        if (isset($_SESSION["id_user"]) && !isAlreadyRated($id, $_SESSION["id_user"], 2)){
+            displayFormRateAndComment($id, 2);
+        } 
+        if (getNbNotes($id, 2) == 0){
+            echo "<h3>Aucune évaluations</h3>";
+        } else {
+            echo "<h3>Moyenne des notes : ". getAverage($id, 2)."/5</h3>";
+            echo "<h3>Anciens commentaires :</h3>";
+            displayRate($id, 2);
+        }
     }
-   
 }
 
 function displayUser($id){
     $infos = getUserById($id);
-    $firstname = $infos["firstname"];
-    $lastname = $infos["lastname"];
-    $birth_date = $infos["birth_date"];
-    $phone = $infos["phone"];
-    $mail = $infos["mail"];
-    $description = $infos["description"];
+    if ($infos == null) {
+        include_once "./page_404.php";
+    } else {
+        $firstname = $infos["firstname"];
+        $lastname = $infos["lastname"];
+        $birth_date = $infos["birth_date"];
+        $phone = $infos["phone"];
+        $mail = $infos["mail"];
+        $description = $infos["description"];
 
-    $today = date("Y-m-d");
-    $diff = date_diff(date_create($birth_date), date_create($today));
-    $age = $diff->format('%y');
+        $today = date("Y-m-d");
+        $diff = date_diff(date_create($birth_date), date_create($today));
+        $age = $diff->format('%y');
 
-    $nb_housing = count(getHousingByIdOwner($id));
-    $nb_activity = count(getActivityByIdOwner($id));
-    $nb_housing_history = count(getHousingHistoryByIdOwner($id));
-    $nb_rates = getNbEvaluationUserByID($id);
-    $nb_recommandation = getNbRecommandationUser($id);
+        $nb_housing = count(getHousingByIdOwner($id));
+        $nb_activity = count(getActivityByIdOwner($id));
+        $nb_housing_history = count(getHousingHistoryByIdOwner($id));
+        $nb_rates = getNbEvaluationUserByID($id);
+        $nb_recommandation = getNbRecommandationUser($id);
 
-    $profile_picture = "./ressources/profile_picture.png";
-    $profile_picture_folder = "picture_profile/".$id;
-    if (isset($profile_picture_folder)){
-        $files = scandir ($profile_picture_folder);
-        foreach($files as $file){
-            if ($file != "." && $file != ".."){
-                $profile_picture = $profile_picture_folder."/".$file;
+        $profile_picture = "./ressources/profile_picture.png";
+        $profile_picture_folder = "picture_profile/".$id;
+        if (isset($profile_picture_folder)){
+            $files = scandir ($profile_picture_folder);
+            foreach($files as $file){
+                if ($file != "." && $file != ".."){
+                    $profile_picture = $profile_picture_folder."/".$file;
+                }
             }
         }
-    }
-    ?>
-    <section class="section about-section gray-bg" id="about">
-            <div class="container">
-                <div class="row align-items-center flex-row-reverse">
-                    <div class="col-lg-6">
-                        <div class="about-text go-to">
-                            <h3 class="dark-color"><?php echo $firstname . " " . $lastname;?></h3>
-                            <label class=""><?php echo $nb_recommandation; displayHeart($id, 3);?></label>
-                            <h6 class="theme-color lead">À propos :</h6>
-                            <p><?php echo nl2br($description);?></p>
-                            <div class="row about-list">
-                                <div class="col-md-6">
-                                    <div class="media">
-                                        <label>Date de naissance</label>
-                                        <p><?php echo getNiceDate($birth_date);?></p>
+        ?>
+        <section class="section about-section gray-bg" id="about">
+                <div class="container">
+                    <div class="row align-items-center flex-row-reverse">
+                        <div class="col-lg-6">
+                            <div class="about-text go-to">
+                                <h3 class="dark-color"><?php echo $firstname . " " . $lastname;?></h3>
+                                <label class=""><?php echo $nb_recommandation; displayHeart($id, 3);?></label>
+                                <h6 class="theme-color lead">À propos :</h6>
+                                <p><?php echo nl2br($description);?></p>
+                                <div class="row about-list">
+                                    <div class="col-md-6">
+                                        <div class="media">
+                                            <label>Date de naissance</label>
+                                            <p><?php echo getNiceDate($birth_date);?></p>
+                                        </div>
+                                        <div class="media">
+                                            <label>Âge</label>
+                                            <p><?php echo $age;?> ans</p>
+                                        </div>                       
                                     </div>
-                                    <div class="media">
-                                        <label>Âge</label>
-                                        <p><?php echo $age;?> ans</p>
-                                    </div>                       
+                                    <div class="col-md-6">
+                                        <div class="media">
+                                            <label>E-mail</label>
+                                            <p><?php echo $mail;?></p>
+                                        </div>
+                                        <div class="media">
+                                            <label>Téléphone</label>
+                                            <p><?php echo $phone;?></p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="media">
-                                        <label>E-mail</label>
-                                        <p><?php echo $mail;?></p>
-                                    </div>
-                                    <div class="media">
-                                        <label>Téléphone</label>
-                                        <p><?php echo $phone;?></p>
-                                    </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="about-avatar">
+                                <img src="<?php echo $profile_picture;?>" alt="Photo de profil">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="counter">
+                        <div class="row">
+                            <div class="col-6 col-lg-3">
+                                <div class="count-data text-center">
+                                    <h6 class="count h2" data-to="<?php echo $nb_activity;?>" data-speed="<?php echo $nb_activity;?>"><?php echo $nb_activity;?></h6>
+                                    <p class="m-0px font-w-600">Recommandations d'acivités</p>
+                                </div>
+                            </div>
+                            <div class="col-6 col-lg-3">
+                                <div class="count-data text-center">
+                                    <h6 class="count h2" data-to="<?php echo $nb_housing;?>" data-speed="<?php echo $nb_housing;?>"><?php echo $nb_housing;?></h6>
+                                    <p class="m-0px font-w-600">Propositions d'hébergements</p>
+                                </div>
+                            </div>
+                            <div class="col-6 col-lg-3">
+                                <div class="count-data text-center">
+                                    <h6 class="count h2" data-to="<?php echo $nb_housing_history;?>" data-speed="<?php echo $nb_housing_history;?>"><?php echo $nb_housing_history;?></h6>
+                                    <p class="m-0px font-w-600">Hébergements visités</p>
+                                </div>
+                            </div>
+                            <div class="col-6 col-lg-3">
+                                <div class="count-data text-center">
+                                    <h6 class="count h2" data-to="<?php echo $nb_rates;?>" data-speed="<?php echo $nb_rates;?>"><?php echo $nb_rates;?></h6>
+                                    <p class="m-0px font-w-600">Evaluations</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="about-avatar">
-                            <img src="<?php echo $profile_picture;?>" alt="Photo de profil">
-                        </div>
+                    <div>
+                        <h2>Coups de coeurs</h2>
+                        <?php displayCoupsDeCoeurs($id); ?>
                     </div>
-                </div>
-                <div class="counter">
-                    <div class="row">
-                        <div class="col-6 col-lg-3">
-                            <div class="count-data text-center">
-                                <h6 class="count h2" data-to="<?php echo $nb_activity;?>" data-speed="<?php echo $nb_activity;?>"><?php echo $nb_activity;?></h6>
-                                <p class="m-0px font-w-600">Recommandations d'acivités</p>
-                            </div>
-                        </div>
-                        <div class="col-6 col-lg-3">
-                            <div class="count-data text-center">
-                                <h6 class="count h2" data-to="<?php echo $nb_housing;?>" data-speed="<?php echo $nb_housing;?>"><?php echo $nb_housing;?></h6>
-                                <p class="m-0px font-w-600">Propositions d'hébergements</p>
-                            </div>
-                        </div>
-                        <div class="col-6 col-lg-3">
-                            <div class="count-data text-center">
-                                <h6 class="count h2" data-to="<?php echo $nb_housing_history;?>" data-speed="<?php echo $nb_housing_history;?>"><?php echo $nb_housing_history;?></h6>
-                                <p class="m-0px font-w-600">Hébergements visités</p>
-                            </div>
-                        </div>
-                        <div class="col-6 col-lg-3">
-                            <div class="count-data text-center">
-                                <h6 class="count h2" data-to="<?php echo $nb_rates;?>" data-speed="<?php echo $nb_rates;?>"><?php echo $nb_rates;?></h6>
-                                <p class="m-0px font-w-600">Evaluations</p>
-                            </div>
-                        </div>
+                    <div>
+                        <h2>Badges</h2>
                     </div>
-                </div>
-                <div>
-                    <h2>Coups de coeurs</h2>
-                    <?php displayCoupsDeCoeurs($id); ?>
-                </div>
-                <div>
-                    <h2>Badges</h2>
-                </div>
-                
-                <?php
+                    
+                    <?php
 
-                if (isset($_SESSION["id_user"]) && $_SESSION["id_user"] != $id && !isAlreadyRated($id, $_SESSION["id_user"], 3)){
-                    displayFormRateAndComment($id, 3);
-                } 
+                    if (isset($_SESSION["id_user"]) && $_SESSION["id_user"] != $id && !isAlreadyRated($id, $_SESSION["id_user"], 3)){
+                        displayFormRateAndComment($id, 3);
+                    } 
 
-                if ($nb_rates != 0){
-                    ?><div>
-                    <h2>Evaluations</h2>
-                    </div>
-                    <h3>Moyenne des notes : <?php echo getAverage($id, 3); ?>/5</h3><?php
-                    displayRate($id, 3);
-                }
-                ?>         
-            </div>
-        </section>
+                    if ($nb_rates != 0){
+                        ?><div>
+                        <h2>Evaluations</h2>
+                        </div>
+                        <h3>Moyenne des notes : <?php echo getAverage($id, 3); ?>/5</h3><?php
+                        displayRate($id, 3);
+                    }
+                    ?>         
+                </div>
+            </section>
     <?php
+    }
 }
 
 function displayFormRateAndComment($id, $type_rated){
@@ -550,11 +561,15 @@ function displayRate($id, $type_rated){
 function displayCoupsDeCoeurs($id){
     $coups_de_coeurs = getRecommandationOfUser ($id);
 
-    foreach($coups_de_coeurs as $cDc){
-        ?>
-        <a href="<?php echo $cDc["url"];?>"><?php echo $cDc["nom"];?></a>
-        <?php
-    }
+    if (count($coups_de_coeurs) == 0 ){
+        ?><p>Pas de coups de coeurs</p><?php
+    } else {
+        foreach($coups_de_coeurs as $cDc){
+            ?>
+            <a href="<?php echo $cDc["url"];?>"><?php echo $cDc["nom"];?></a>
+            <?php
+        }
+    } 
 }
 
 function displayHeart($id, $type){
