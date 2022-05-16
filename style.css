@@ -19,11 +19,11 @@ html, body {
 
 .home_page_link, .home_page_link:link, .home_page_link:visited{
   color: #20247b;
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 1);
   border-radius: 15px;
   transition: 1s;
   font-weight: 700;
-  opacity: 60%;
+  opacity: 65%;
   text-decoration: none;
 }
 
