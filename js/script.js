@@ -163,6 +163,10 @@ function getLocation()
             distance: document.querySelector('#distance_search').value
         },
         dataType: "json",
+        beforeSend: function () {
+            $("#search_housing_list").append("<div class='page-center'><div class='spinner-border' role='status'><span class='visually-hidden'>Loading...</span></div></div>");
+            console.log("recher");
+        },
         success: function (response) {
             var results = response["data"];
             if(response["distance"] == 0){
@@ -261,6 +265,9 @@ function getLocationbyid(id)
 
         },
         dataType: "json",
+        beforeSend: function () {
+            $("#search_housing_list").append("<div class='page-center'><div class='spinner-border' role='status'><span class='visually-hidden'>Loading...</span></div></div>");
+        },
         success: function (response) {
             var results = response["data"];
             if(response["distance"] == 0){
@@ -360,6 +367,9 @@ function getLocationActivity()
             distance: document.querySelector('#distance_search').value
         },
         dataType: "json",
+        beforeSend: function () {
+            $("#search_activity_list").append("<div class='page-center'><div class='spinner-border' role='status'><span class='visually-hidden'>Loading...</span></div></div>");
+        },
         success: function (response) {
             var results = response["data"];
             if(response["distance"] == 0){

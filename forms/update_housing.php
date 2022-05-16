@@ -1,6 +1,6 @@
 <?php
 $id_housing = $_GET["id_housing"];
-echo $id_housing;
+
 $housing = getHousingById($id_housing);
 $address = getAddress($housing["latitude"], $housing["longitude"]);
 ?>
@@ -8,9 +8,9 @@ $address = getAddress($housing["latitude"], $housing["longitude"]);
 <form action="index.php" method="post" enctype= 'multipart/form-data'>
     <div>
         <label for="name_housing_announce_update">Nom</label>
-        <?php
-        echo "<input value =".$housing["nom"]." type='text' name='name_housing_announce_update' id='name_housing_announce_update' required>";
-        ?>
+        
+        <input value ="<?php echo $housing["nom"]; ?>" type='text' name='name_housing_announce_update' id='name_housing_announce_update' required>
+        
     </div>
 
     <div>
