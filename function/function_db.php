@@ -505,7 +505,7 @@ function durationDispo($id_housing, $date_start, $date_end){
         return $results;
         
         
-}
+} 
 
 function getData($ville){
         global $base;
