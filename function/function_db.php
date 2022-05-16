@@ -551,7 +551,7 @@ function getAnnounceGrpNbByIdHousing($id_housing){
 
         $announces = [];
 
-        $sql = "SELECT id, price, MIN(date_start) AS date_start, MAX(date_start) AS date_end, COUNT(id) AS nb_day, isTaken, id_housing 
+        $sql = "SELECT id, price, MIN(date_start) AS date_start, MAX(date_start) AS date_end, COUNT(id) AS nb_day, isTaken, id_housing, nb_for_housing 
         FROM announce WHERE id_housing = $id_housing GROUP BY nb_for_housing";
         $result = mysqli_query($base, $sql);
 
