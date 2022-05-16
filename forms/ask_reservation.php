@@ -112,7 +112,7 @@ $nb_images = count($images);
                     if(!isTakenDuration($grp_annouce['id_housing'], $grp_annouce['date_start'], $grp_annouce['date_end'])){
                         ?>
 
-                        <li class="list-group-item"> <?php echo "du " .getNiceDate($grp_annouce['date_start']). " au " .getNiceDate($grp_annouce['date_end']); ?></li>
+                        <li class="list-group-item"> <?php echo "du " .getNiceDate($grp_annouce['date_start']). " au " .getNiceDate($grp_annouce['date_end'])." (".$grp_annouce['price']; ?>€ à la journée)</li>
 
                         <?php
 
@@ -122,13 +122,22 @@ $nb_images = count($images);
                         $announces_tri = groupByDate($announces);
                         foreach($announces_tri as $grp){
                             ?>
-                            <li class="list-group-item"> <?php echo "du " .getNiceDate(reset($grp)['date_start']). " au " .getNiceDate(end($grp)['date_start']); ?></li>
+                            <li class="list-group-item"> <?php echo "du " .getNiceDate(reset($grp)['date_start']). " au " .getNiceDate(end($grp)['date_start'])." (".$grp_annouce['price']; ?>€ à la journée)</li>
                             <?php
                         }
                     }
                 }
                 ?>
             </ul>
+            <?php
+            $announces = getAnnounceByIdHousing($housing["id"]);
+            $cpt = 0;
+            foreach($announces as $announce){
+                echo "<input  type='hidden' class='date_start_announce' name='date_start_announce".$cpt."' id='date_start_announce".$cpt."' value =".$announce['date_start']." >";
+                echo "<input  type='hidden' class='price_announce' name='price_announce".$cpt."' id='price_announce".$cpt."' value =".$announce['price']." >"; 
+                $cpt++;
+            }
+            ?>
     </div>
     <div id="housing_booking">
         <?php
@@ -153,6 +162,9 @@ $nb_images = count($images);
                     foreach($dates as $date){
                         echo "<input  type='hidden' class='date_start_near' name='date_start_near".$cpt."' id='date_start_near".$cpt."' value =".$date['date_start']." >";
                         echo "<input  type='hidden' class='date_end_near' name='date_end_near".$cpt."' id='date_end_near".$cpt."' value =".$date['date_end']." >";
+                        echo "<input  type='hidden' class='nb_day' name='nb_day".$cpt."' id='nb_day".$cpt."' value =".$date['nb_day']." >";
+                        echo "<input  type='hidden' class='price' name='price".$cpt."' id='price".$cpt."' value =".$date['price']." >";
+
                         $cpt++;
 
                     }
@@ -183,6 +195,7 @@ $nb_images = count($images);
                             echo "<input type = 'hidden' name = id_housing value =  ".$_GET['id_housing']." >";
                         ?>
                         <br>
+                        <p name = "price" id = "price_id"> 7</p>
                         <button class="btn btn-primary btn-lg w-75" id="submit" name="submit" value="Ask_reservation" type="submit">Reserver</button>
                     </form>
                 </section>
@@ -231,11 +244,63 @@ $nb_images = count($images);
    
     var btn = document.getElementById('validate_date');
 
+    var prices = document.getElementsByClassName("price_announce");
+
+    var date_announces = document.getElementsByClassName("date_start_announce");
+
+    // new Date("dateString") is browser-dependent and discouraged, so we'll write
+    // a simple parse function for U.S. date format (which does no error checking)
+    function parseDate(str) {
+        var mdy = str.split('-');
+        return new Date(mdy[0], mdy[1]-1, mdy[2]);
+    }
+
+
+
+
     btn.onclick = function(e) {
+        var message = (parseInt($('#nb_day' + $('#select_date').val()).val()) *  parseInt($('#price' + $('#select_date').val()).val())) + '€';
         $('input[name=date_start_reservation]').val( $('#date_start_near' + $('#select_date').val()).val() );
         $('input[name=date_end_reservation]').val( $('#date_end_near' + $('#select_date').val()).val() );
+        $('#price_id').text(message);
+
 
     }
+
+    $('input[name=date_end_reservation]').change(function() {
+        var price = 0;
+        var date_start = $('input[name=date_start_reservation]').val();
+        var date_end = $('input[name=date_end_reservation]').val();
+        for (var i = 0; i < date_announces.length; i++) {
+            if($('#date_start_announce' + i).val() >= date_start){
+                if($('#date_start_announce' + i).val() <= date_end){
+                    price = price + parseInt($('#price_announce' + i).val());
+                }
+            }
+
+        }
+
+        $('#price_id').text(price + '€');
+
+    });
+
+    $('input[name=date_start_reservation]').change(function() {
+        var price = 0;
+        var date_start = $('input[name=date_start_reservation]').val();
+        var date_end = $('input[name=date_end_reservation]').val();
+        for (var i = 0; i < date_announces.length; i++) {
+            if($('#date_start_announce' + i).val() >= date_start){
+                if($('#date_start_announce' + i).val() <= date_end){
+                    price = price + parseInt($('#price_announce' + i).val());
+                }
+            }
+
+        }
+
+        $('#price_id').text(price + '€');
+
+    });
+
 
 
 

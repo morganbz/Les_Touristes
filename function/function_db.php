@@ -418,31 +418,67 @@ function isTakenDay($housing){
 }
 
 function isTakenDuration($id_housing , $date_start, $date_end){
-        global $base;
+
         $taken = false;
-        $dateDifference = abs(strtotime($date_end) - strtotime($date_start));
-        $years  = floor($dateDifference / (365 * 60 * 60 * 24));
-        $months = floor(($dateDifference - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
-        $days   = floor(($dateDifference - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 *24) / (60 * 60 * 24));
 
-        $sql = "SELECT * FROM housing INNER JOIN announce ON housing.id = announce.id_housing
-        WHERE housing.id = $id_housing AND date_start >=  '$date_start' AND date_start <= '$date_end'";
-        
-        $announce = mysqli_query($base, $sql);
+        if(periodExist($id_housing , $date_start, $date_end)){
+                global $base;
+                $dateDifference = abs(strtotime($date_end) - strtotime($date_start));
+                $years  = floor($dateDifference / (365 * 60 * 60 * 24));
+                $months = floor(($dateDifference - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
+                $days   = floor(($dateDifference - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 *24) / (60 * 60 * 24));
 
-        $currDate = $date_start;
+                $sql = "SELECT * FROM housing INNER JOIN announce ON housing.id = announce.id_housing
+                WHERE housing.id = $id_housing AND date_start >=  '$date_start' AND date_start <= '$date_end'";
+                
+                $announce = mysqli_query($base, $sql);
 
-        while(($row = mysqli_fetch_array($announce)) && !$taken){
-                if(isTakenDay($row)){
-                        $taken = true;
+                $currDate = $date_start;
+
+                while(($row = mysqli_fetch_array($announce)) && !$taken){
+                        if(isTakenDay($row)){
+                                $taken = true;
+                        }
+                        $currDate = date("Y-m-d", strtotime($currDate.'+ 1 days'));
                 }
-                $currDate = date("Y-m-d", strtotime($currDate.'+ 1 days'));
+
         }
+        else{
+                $taken = true;
+        }
+
 
         return $taken;
 
+}
+
+function periodExist($id_housing , $date_start, $date_end){
+        $period = [];
+        global $base;
+
+        $nb_day = 0;
+        $currDate = $date_start;
+
+        while($currDate <= $date_end ){
+                $nb_day++;
+                $currDate = date("Y-m-d", strtotime($currDate.'+ 1 days'));
+        }
+
+        $sql = "SELECT * FROM announce 
+                WHERE id_housing = $id_housing AND date_start >=  '$date_start' AND date_start <= '$date_end'";
+
+        $result = mysqli_query($base, $sql);
+
+        while($row = mysqli_fetch_assoc($result)){
+                $period[] = $row;
+        }
+
+        return count($period) == $nb_day;
+
+        
 
 }
+
 
 function durationDispo($id_housing, $date_start, $date_end){
 
@@ -450,7 +486,19 @@ function durationDispo($id_housing, $date_start, $date_end){
         $dates = getAllNearDate($date_start, $date_end);
 
         foreach($dates as $date){
+
+
                 if(!isTakenDuration($id_housing , $date["date_start"], $date["date_end"])){
+                        $nb_day = 0;
+                        $currDate = $date["date_start"];
+
+                        while($currDate <= $date["date_end"] ){
+                                $nb_day++;
+                                $currDate = date("Y-m-d", strtotime($currDate.'+ 1 days'));
+                        }
+                        $date['price'] = getPriceAnnounceByDate($id_housing, $date["date_start"]);
+                        $date['nb_day'] = $nb_day;
+
                         array_push($results, $date);
                 }
         }
