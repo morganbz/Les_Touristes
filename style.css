@@ -17,6 +17,24 @@ html, body {
   margin-top : 45px; 
 }
 
+.home_page_link, .home_page_link:link, .home_page_link:visited{
+  color: #20247b;
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 15px;
+  transition: 1s;
+  font-weight: 700;
+  opacity: 65%;
+  text-decoration: none;
+}
+
+.home_page_link:hover{
+  opacity: 100%;
+  background-color: rgba(245, 245, 245, 0.7);
+  box-shadow: 0px 0px 20px rgba(31, 45, 61, 1);
+  border-radius: 15px;
+  transition: 1s;
+}
+
 .home-page-infos{
   position:absolute;
   margin: -20px 5vw auto 5vw;

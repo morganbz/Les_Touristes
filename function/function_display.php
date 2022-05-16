@@ -495,6 +495,7 @@ function displayUser($id){
                     </div>
                     <div>
                         <h2>Badges</h2>
+                        <?php displayBadges($id); ?>
                     </div>
                     
                     <?php
@@ -572,14 +573,27 @@ function displayCoupsDeCoeurs($id){
     } 
 }
 
+function displayBadges($id){
+    $badges = getBadgesUser($id);
+    
+    if (count($badges) == 0 ){
+        ?><p>Pas de badges</p><?php
+    } else {
+        foreach($badges as $b){
+            ?>
+            <p><?php echo $b["nom"]; ?></p>
+            <?php
+        }
+    }
+}
+
+
 function displayHeart($id, $type){
     ?>
     <NOBR class="heartbox">
         <input type="checkbox" class="checkbox" id="checkbox" name="like_checkbox" onchange="
         <?php 
         if (isset($_SESSION["id_user"])){
-
-        
         ?>
         jQuery.ajax({
             type: 'POST',
