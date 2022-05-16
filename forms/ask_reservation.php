@@ -1,4 +1,5 @@
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <?php
 
 $housing = getHousingById($_GET["id_housing"]);
@@ -102,41 +103,141 @@ $nb_images = count($images);
             echo "<p>".getAddress($housing["latitude"], $housing["longitude"])."</p>";
             echo "<h3>Description</h3>";
             echo "<p>".$housing["description"]."</p>";
-        ?>
+            ?>
+            <h3>Periodes de disponibilitées</h3>
+            <ul class="list-group">
+                <?php
+                $grp_announces = getAnnounceGrpNbByIdHousing($_GET["id_housing"]);
+                foreach($grp_announces as $grp_annouce){
+                    if(!isTakenDuration($grp_annouce['id_housing'], $grp_annouce['date_start'], $grp_annouce['date_end'])){
+                        ?>
+
+                        <li class="list-group-item"> <?php echo "du " .getNiceDate($grp_annouce['date_start']). " au " .getNiceDate($grp_annouce['date_end']); ?></li>
+
+                        <?php
+
+                    }
+                    else{
+                        $announces = getAnnounceNotTakenByNb($grp_annouce['id_housing'], $grp_annouce['nb_for_housing']);
+                        $announces_tri = groupByDate($announces);
+                        foreach($announces_tri as $grp){
+                            ?>
+                            <li class="list-group-item"> <?php echo "du " .getNiceDate(reset($grp)['date_start']). " au " .getNiceDate(end($grp)['date_start']); ?></li>
+                            <?php
+                        }
+                    }
+                }
+                ?>
+            </ul>
     </div>
     <div id="housing_booking">
         <?php
-        if(isset($_GET['date_start']) && isset($_GET['date_end'])){
+        if(isset($_GET['near'])){
+            $dates = durationDispo($_GET['id_housing'], $_GET['date_start'], $_GET['date_end']);
+            $cpt = 0;
 
             ?>
-            <section>
-                <form class="d-flex flex-column justify-content-center align-items-center" action="index.php" method="post">
-                    <br>
-                    <div class="form-floating w-75">
-                        <?php
-                            echo '<input class="form-control" placeholder="Date de début du sejour" type="date" name="date_start_reservation" id="date_start_reservation" value ="'.$_GET['date_start'].'" required>';
-                        ?>
-                        <label class="form-label" for="date_start_reservation">Date de début du sejour</label>
-                    </div>
-                    <br>
-                    <div class="form-floating w-75">
-                        <?php
-                            echo '<input class="form-control" placeholder="Date de fin du sejour" type="date" name="date_end_reservation" id="date_end_reservation" value ="'.$_GET['date_end'].'" required>';
-                        ?>
-                        <label class="form-label" for="date_end_reservation">Date de fin du sejour</label>
-                    </div>
-            
+                <div class="d-inline-flex p-2 bd-highlight">
+                <select class="form-select" aria-label="Default select example" id="select_date" >
+                    <option selected>dates de séjour suggérées </option>
                     <?php
-                        echo "<input type = 'hidden' name = id_housing value =  ".$_GET['id_housing']." >";
+                    foreach($dates as $date){
+                        echo "<option class='option_near' id='option_near' value='".$cpt."' ><?php ?>Du ".getNiceDate($date['date_start'])." au ".getNiceDate($date['date_end'])."</option>";
+                        $cpt++;
+                    }
                     ?>
-                    <br>
-                    <button class="btn btn-primary btn-lg w-75" id="submit" name="submit" value="Ask_reservation" type="submit">Reserver</button>
-                </form>
-            </section>
+
+                </select>
+                <?php
+                    $cpt = 0;
+                    foreach($dates as $date){
+                        echo "<input  type='hidden' class='date_start_near' name='date_start_near".$cpt."' id='date_start_near".$cpt."' value =".$date['date_start']." >";
+                        echo "<input  type='hidden' class='date_end_near' name='date_end_near".$cpt."' id='date_end_near".$cpt."' value =".$date['date_end']." >";
+                        $cpt++;
+
+                    }
+                    ?>
+                    <button class="btn btn-primary" id="validate_date">Valider</button>
+                </div>
+
+
+
+                <section>
+                    <form class="d-flex flex-column justify-content-center align-items-center" action="index.php" method="post">
+                        <br>
+                        <div class="form-floating w-75">
+                            <?php
+                                echo '<input class="form-control" placeholder="Date de début du sejour" type="date" name="date_start_reservation" id="date_start_reservation" required>';
+                            ?>
+                            <label class="form-label" for="date_start_reservation">Date de début du sejour</label>
+                        </div>
+                        <br>
+                        <div class="form-floating w-75">
+                            <?php
+                                echo '<input class="form-control" placeholder="Date de fin du sejour" type="date" name="date_end_reservation" id="date_end_reservation" required>';
+                            ?>
+                            <label class="form-label" for="date_end_reservation">Date de fin du sejour</label>
+                        </div>
+                
+                        <?php
+                            echo "<input type = 'hidden' name = id_housing value =  ".$_GET['id_housing']." >";
+                        ?>
+                        <br>
+                        <button class="btn btn-primary btn-lg w-75" id="submit" name="submit" value="Ask_reservation" type="submit">Reserver</button>
+                    </form>
+                </section>
+
             <?php
+
+        }
+        else{
+
+        
+            if(isset($_GET['date_start']) && isset($_GET['date_end'])){
+
+                ?>
+                <section>
+                    <form class="d-flex flex-column justify-content-center align-items-center" action="index.php" method="post">
+                        <br>
+                        <div class="form-floating w-75">
+                            <?php
+                                echo '<input class="form-control" placeholder="Date de début du sejour" type="date" name="date_start_reservation" id="date_start_reservation" value ="'.$_GET['date_start'].'" required>';
+                            ?>
+                            <label class="form-label" for="date_start_reservation">Date de début du sejour</label>
+                        </div>
+                        <br>
+                        <div class="form-floating w-75">
+                            <?php
+                                echo '<input class="form-control" placeholder="Date de fin du sejour" type="date" name="date_end_reservation" id="date_end_reservation" value ="'.$_GET['date_end'].'" required>';
+                            ?>
+                            <label class="form-label" for="date_end_reservation">Date de fin du sejour</label>
+                        </div>
+                
+                        <?php
+                            echo "<input type = 'hidden' name = id_housing value =  ".$_GET['id_housing']." >";
+                        ?>
+                        <br>
+                        <button class="btn btn-primary btn-lg w-75" id="submit" name="submit" value="Ask_reservation" type="submit">Reserver</button>
+                    </form>
+                </section>
+                <?php
+            }
         }
         ?>
     </div>
 </div>
 
+<script>
+   
+    var btn = document.getElementById('validate_date');
 
+    btn.onclick = function(e) {
+        $('input[name=date_start_reservation]').val( $('#date_start_near' + $('#select_date').val()).val() );
+        $('input[name=date_end_reservation]').val( $('#date_end_near' + $('#select_date').val()).val() );
+
+    }
+
+
+
+
+</script>

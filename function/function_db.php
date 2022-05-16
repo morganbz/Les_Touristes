@@ -562,6 +562,57 @@ function getAnnounceGrpNbByIdHousing($id_housing){
         return $announces;
 }
 
+function getAnnounceNotTakenByNb($id_housing, $nb){
+        global $base;
+
+        $announces = [];
+
+        $sql = "SELECT id, price, date_start, isTaken
+        FROM announce WHERE id_housing = $id_housing AND nb_for_housing = $nb AND isTaken = 0";
+        $result = mysqli_query($base, $sql);
+
+        while($row = mysqli_fetch_assoc($result)){
+            $announces[] = $row;
+        }
+
+        return $announces;
+}
+
+function groupByDate($announces){
+        $result = array();
+        $group_actu = array();
+
+        foreach($announces as $announce){
+                if(count($group_actu) == 0){
+                        $group_actu[] = $announce;
+                }
+                else{
+                        $end_group = end($group_actu);
+
+                        $date_end = $end_group['date_start'];
+                        $prev_date = date("Y-m-d", strtotime($date_end.'+ 1 days'));
+
+                        if($announce['date_start'] == $prev_date){
+                                $group_actu[] = $announce;
+                        }
+                        else{
+                                $result[] = $group_actu;
+                                $group_actu = array();
+                                $group_actu[] = $announce;
+                        }
+
+
+                }
+
+        }
+
+        $result[] = $group_actu;
+
+        return $result;
+
+
+}
+
 function askbookAnnounce($id_housing, $id_customer, $date_start, $date_end){
         global $base;
 

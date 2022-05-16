@@ -148,7 +148,6 @@ function setMarkers(map,locations) {
     }
 }
 
-
 function getLocation()
 {
     $.ajax({
@@ -193,7 +192,26 @@ function getLocation()
                     }
                 }
                 else{
-                    var div = "<div class='data_search border border-2 rounded-1 border-danger'><a href='?page=ask_reservation&id_housing="+ results[i]["id"] + "&date_start="+ response["arrive"] +"&date_end=" + response["departure"] + "' class='link_announce'><h4>" + results[i]["nom"] + "</h4>"+ results[i]['type'] + " situé au " + results[i]['adresse'] + "</p><p>Prix à la nuit : " + results[i]['price'] + "</p><p>Description : " + results[i]['description'] +"</p>" + "<p class = 'font-italic'>" + "Ces dates ne sont pas disponibles, dates proche disponibles : du " + results[i]['dates'][0]['date_start'] + " au " + results[i]['dates'][0]['date_end'];
+                    var string1 = results[i]['dates'][0]['date_start'].split('-');
+                    var string2 = results[i]['dates'][0]['date_end'].split('-');
+
+                    var date1 = new Date(parseInt(string1[0]), parseInt(string1[1]) - 1, parseInt(string1[2]));
+                    var date2 = new Date(parseInt(string2[0]), parseInt(string2[1]) - 1, parseInt(string2[2]));
+
+                    let dateLocale1 = date1.toLocaleString('fr-FR',{
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'});
+                    
+                    let dateLocale2 = date2.toLocaleString('fr-FR',{
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'});
+
+
+                        var div = "<div class='data_search border border-2 rounded-1 border-danger'><a href='?page=ask_reservation&id_housing="+ results[i]["id"] + "&date_start="+ response["arrive"] +"&date_end=" + response["departure"] + "&near=ok' class='link_announce'><h4>" + results[i]["nom"] + "</h4>"+ results[i]['type'] + " situé au " + results[i]['adresse'] + "</p><p>Prix à la nuit : " + results[i]['price'] + "</p><p>Description : " + results[i]['description'] +"</p>" + "<p class = 'font-italic'>" + "Ces dates ne sont pas disponibles, dates proche disponibles : du " + dateLocale1 + " au " + dateLocale2;
 
                     var size = results[i]['dates'].length;
 
@@ -272,7 +290,27 @@ function getLocationbyid(id)
                     }
                 }
                 else{
-                    var div = "<div class='data_search border border-2 rounded-1 border-danger'><a href='?page=ask_reservation&id_housing="+ results[i]["id"] + "&date_start="+ response["arrive"] +"&date_end=" + response["departure"] + "' class='link_announce'><h4>" + results[i]["nom"] + "</h4>"+ results[i]['type'] + " situé au " + results[i]['adresse'] + "</p><p>Prix à la nuit : " + results[i]['price'] + "</p><p>Description : " + results[i]['description'] +"</p>" + "<p class = 'font-italic'>" + "Ces dates ne sont pas disponibles, dates proche disponibles : du " + results[i]['dates'][0]['date_start'] + " au " + results[i]['dates'][0]['date_end'];
+
+                    var string1 = results[i]['dates'][0]['date_start'].split('-');
+                    var string2 = results[i]['dates'][0]['date_end'].split('-');
+
+                    var date1 = new Date(parseInt(string1[0]), parseInt(string1[1]) - 1, parseInt(string1[2]));
+                    var date2 = new Date(parseInt(string2[0]), parseInt(string2[1]) - 1, parseInt(string2[2]));
+
+                    let dateLocale1 = date1.toLocaleString('fr-FR',{
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'});
+                    
+                    let dateLocale2 = date2.toLocaleString('fr-FR',{
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'});
+
+
+                    var div = "<div class='data_search border border-2 rounded-1 border-danger'><a href='?page=ask_reservation&id_housing="+ results[i]["id"] + "&date_start="+ response["arrive"] +"&date_end=" + response["departure"] + "&near=ok' class='link_announce'><h4>" + results[i]["nom"] + "</h4>"+ results[i]['type'] + " situé au " + results[i]['adresse'] + "</p><p>Prix à la nuit : " + results[i]['price'] + "</p><p>Description : " + results[i]['description'] +"</p>" + "<p class = 'font-italic'>" + "Ces dates ne sont pas disponibles, dates proche disponibles : du " + dateLocale1 + " au " + dateLocale2;
 
                     var size = results[i]['dates'].length;
 
@@ -307,6 +345,8 @@ function getLocationbyid(id)
     
     
 }
+
+
 
 
 function getLocationActivity()
