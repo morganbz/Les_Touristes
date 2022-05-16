@@ -1625,4 +1625,44 @@ function getRecommandationOfUser ($id){
         return $recommandations;
 }
 
+//--------------------------GESTION STCKERS----------------------
+
+function getBadgesUser($id_user){
+        global $base;
+
+        $sql = "SELECT s.id, s.nom, s.description, s.picture, 
+                (IF (su.points >= s.bronze AND su.points < s.silver, 'bronze', IF (su.points >= s.silver AND su.points < s.gold, 'silver', 'gold'))) AS 'niveau' 
+                FROM sticker_user su INNER JOIN sticker s ON s.id = su.id_sticker 
+                WHERE su.id_user = $id_user AND su.points >= s.bronze";
+
+        $results = mysqli_query($base, $sql);
+
+        $badges = array();
+
+        while($row = mysqli_fetch_assoc($results)){
+                $badges[] = $row;
+        }
+
+        return $badges;
+} 
+
+function setPointsUser($id_user, $nb_points, $id_sticker){
+        global $base;
+
+        $sql = "SELECT id FROM sticker_user WHERE id_user = $id_user AND id_sticker = $id_sticker";
+
+        $result = mysqli_query($base, $sql);
+
+        $row = mysqli_fetch_assoc($result);
+
+        if (empty($row)){
+                $sql = "INSERT INTO sticker_user (id_sticker, id_user, points) VALUES ($id_sticker, $id_user, $nb_points)";
+        } else {
+                $id = $row["id"];
+                $sql = "UPDATE sticker_user SET points = points + $nb_points WHERE id = $id";
+        }
+
+        mysqli_query($base, $sql);
+}
 ?>
+
