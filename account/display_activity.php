@@ -90,7 +90,7 @@ foreach ($listeActivity as $activity){
                 echo "<img src='".$imgLink."' alt='".$nom."'/>";
                 ?>
                 <form action="index.php" method="post">
-                    <button id="del_img" name="del_img" value="<?php echo $imgLink;?>" type = "submit">Supprimer</button>
+                    <button class="btn btn-outline-primary" id="del_img" name="del_img" value="<?php echo $imgLink;?>" type = "submit">Supprimer</button>
                 </form>
                 <?php
             }

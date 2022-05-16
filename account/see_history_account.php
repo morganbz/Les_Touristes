@@ -42,7 +42,7 @@ if(!empty($reservations)){
                     }
                     else{
                         ?>
-                        <button class="btn btn-primary" id="submit1" name="submit" value="rate_reservation" type="submit">Noter </button>
+                        <button class="btn btn-outline-primary" id="submit1" name="submit" value="rate_reservation" type="submit">Noter </button>
                         <?php
                     }
                     ?>

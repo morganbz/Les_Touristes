@@ -117,7 +117,7 @@ foreach($conflicts as $demands){
                         if($is_conflict){
                             ?>
                                     <td>
-                                        <button class="btn btn-primary modal-button" href ="#myModal<?php echo $demand['id_reservation']; ?>" >Accepter</button>
+                                        <button class="btn btn-outline-primary modal-button" href ="#myModal<?php echo $demand['id_reservation']; ?>" >Accepter</button>
                                     </td>
                                 </tr>
 
@@ -140,7 +140,7 @@ foreach($conflicts as $demands){
                                                 echo "<input  type='hidden' name='date_start' id='date_start' value =".$demand['date_start']." >";
                                                 echo "<input  type='hidden' name='date_end' id='date_end' value =".$demand['date_end']." >";
                                             ?>
-                                                <button class="btn btn-primary" id="submit1" name="submit" value="BookHousing" type="submit">Confirmer</button>
+                                                <button class="btn btn-outline-primary" id="submit1" name="submit" value="BookHousing" type="submit">Confirmer</button>
                                             </form>
                                         </div>
                                         </div>
@@ -158,7 +158,7 @@ foreach($conflicts as $demands){
                                     echo "<input  type='hidden' name='date_start' id='date_start' value =".$demand['date_start']." >";
                                     echo "<input  type='hidden' name='date_end' id='date_end' value =".$demand['date_end']." >";
                                 ?>
-                                    <button class="btn btn-primary" id="submit1" name="submit" value="BookHousing" type="submit">Accepter </button>
+                                    <button class="btn btn-outline-primary" id="submit1" name="submit" value="BookHousing" type="submit">Accepter </button>
                                 </form>
                             </td>
                         </tr>
@@ -185,7 +185,7 @@ foreach($conflicts as $demands){
                                     echo "<input  type='hidden' name='date_start' id='date_start' value =".$demand['date_start']." >";
                                     echo "<input  type='hidden' name='date_end' id='date_end' value =".$demand['date_end']." >";
                                 ?>
-                                    <button class="btn btn-primary" id="submit1" name="submit" value="BookHousing" type="submit">Confirmer</button>
+                                    <button class="btn btn-outline-primary" id="submit1" name="submit" value="BookHousing" type="submit">Confirmer</button>
                                 </form>
                             </div>
                             </div>

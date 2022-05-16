@@ -69,7 +69,7 @@
                     echo '<input type="text" class="d-none" name="back_page" id="back_page" value="'.$back_page.'">';
                 ?>
 
-                <button class="w-100 btn btn-primary btn-lg px-4 me-sm-3" id="submit" name="submit" value="Register" type="submit">Inscription</button>
+                <button class="w-100 btn btn-outline-primary btn-lg px-4 me-sm-3" id="submit" name="submit" value="Register" type="submit">Inscription</button>
                 &nbsp;
             </form>
             <?php

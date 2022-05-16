@@ -71,7 +71,7 @@ function displayAskReservation($data){
                     echo "<input type='hidden' name='date_start' id='date_start' value=".$info["date_start"]." required>";
                     echo "<input type='hidden' name='date_end' id='date_end' value=".$info["date_end"]." required>";
                     echo "<input type='hidden' name='id_user' id='id_user' value=".$info["id_user"]." required>";
-                    echo "<button id='submit' class='btn-secondary' name='submit' value='Validate_reservation' type='submit'>Valider la demande de reservation</button>";
+                    echo "<button class='btn btn-outline-primary' id='submit' class='btn-secondary' name='submit' value='Validate_reservation' type='submit'>Valider la demande de reservation</button>";
                 echo "</form>";
             echo "</div>";
         }
@@ -122,11 +122,11 @@ function displayHousingAccount($housing){
             
                 <input  type='hidden' name='id_housing' id='id_housing' value ="<?php echo $id ?>">
             
-                <button class="btn btn-primary" id="submit1" name="submit" value="AskUpdateHousingInfos" type="submit">Modifier le logement </button>
+                <button class="btn btn-outline-primary " id="submit1" name="submit" value="AskUpdateHousingInfos" type="submit">Modifier le logement </button>
 
-                <button class="btn btn-primary" id="submit2" name="submit" value="AskUpdateHousingDates" type="submit">Modifier les periodes de disponibilités</button>
+                <button class="btn btn-outline-primary " id="submit2" name="submit" value="AskUpdateHousingDates" type="submit">Modifier les periodes de disponibilités</button>
 
-                <button class="btn btn-primary" id="submit2" name="submit" value="ViewHousingHistory" type="submit">Voir les anciènnes réservations</button>
+                <button class="btn btn-outline-primary " id="submit2" name="submit" value="ViewHousingHistory" type="submit">Voir les anciènnes réservations</button>
             </form>
 
         </div>

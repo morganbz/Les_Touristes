@@ -6,8 +6,9 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    background-color: #f5f5f5;
+    background-color: #ebebeb;
 }
+
 /* PAGE HOME*/
 .catch_phrase{
   color : #20247b;
@@ -62,6 +63,14 @@ html, body {
 .home-page-counter p{
   font-size: calc(1.3rem + 0.1vw);
   font-weight: 600;
+}
+
+/*************************************************************/
+
+.display-form-bg{
+  padding: 20px 150px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 30px;
 }
 
 /*************************************************************/
@@ -340,11 +349,14 @@ mark {
 .btn-outline-primary{
     border-color: #20247b;
     color: #20247b;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .btn-outline-primary:hover{
     border-color: #20247b;
     background-color: #20247b;
+    transition: 0.5s;
 }
 
 .btn-lg:hover{

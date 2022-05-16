@@ -75,9 +75,15 @@ $housings = getHousingByIdOwner($id_owner);
             </div>
 
             <?php
+        } else {
+            ?>
+            <div>
+                <a href="?page=ask_reservation&id_housing=<?php echo $housing["id"];?>"><h2><?php echo $housing["nom"];?></h2></a>
+                <p>Pas de réservations actuellement</p>
+            </div>
+            <?php
         }
     }
-
     ?>
 
 </section>

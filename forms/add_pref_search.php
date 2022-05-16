@@ -99,6 +99,6 @@ if(!empty($preferences)){
 
         </div>
 
-        <button id="submit" name="submit" value="add_pref_search" type="submit" class="w-100 btn btn-primary btn-lg px-4 me-sm-3">Ajouter la préférence</button>
+        <button class="btn btn-outline-primary" id="submit" name="submit" value="add_pref_search" type="submit" class="w-100 btn btn-primary btn-lg px-4 me-sm-3">Ajouter la préférence</button>
     </form>
 </div>

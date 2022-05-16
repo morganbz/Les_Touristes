@@ -37,5 +37,5 @@
         <label for="desc_activite">Descritpion de l'activité</label>
     </div>
 
-    <button id="submit" name="submit" value="Add_activite" type="submit">Ajouter l'activité</button>
+    <button class="btn btn-outline-primary" id="submit" name="submit" value="Add_activite" type="submit">Ajouter l'activité</button>
 </form>

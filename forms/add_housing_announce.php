@@ -52,5 +52,5 @@
         <label for="date_end_announce">Date de la fin de l'annonce</label>
     </div>
 
-    <button id="submit" name="submit" value="Add_housing_announce" type="submit">Ajouter le logement</button>
+    <button class="btn btn-outline-primary" id="submit" name="submit" value="Add_housing_announce" type="submit">Ajouter le logement</button>
 </form>

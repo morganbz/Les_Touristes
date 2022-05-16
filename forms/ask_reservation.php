@@ -169,7 +169,7 @@ $nb_images = count($images);
 
                     }
                     ?>
-                    <button class="btn btn-primary" id="validate_date">Valider</button>
+                    <button class="btn btn-outline-primary " id="validate_date">Valider</button>
                 </div>
 
 

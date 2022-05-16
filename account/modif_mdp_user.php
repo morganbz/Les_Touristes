@@ -9,7 +9,7 @@
         <input placeholder="Confirmer Mot de Passe" type="password" name="conf_pass_modif" id="conf_pass_modif" minlenght="8" required>
     </div>
     
-    <button id="submit" name="submit" value="modification_pass_user" type="submit">Modifier le mot de passe</button>
+    <button class="btn btn-outline-primary" id="submit" name="submit" value="modification_pass_user" type="submit">Modifier le mot de passe</button>
 </form>
 
 <?php
