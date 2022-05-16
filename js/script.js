@@ -148,6 +148,7 @@ function setMarkers(map,locations) {
     }
 }
 
+
 function getLocation()
 {
     $.ajax({
@@ -174,9 +175,10 @@ function getLocation()
             }
             $("#search_housing_list").empty();
             for(let i = 0; i < results.length; i++){
-                var div = "<div class='data_search'><a href='?page=ask_reservation&id_housing="+ results[i]["id"] + "&date_start="+ response["arrive"] +"&date_end=" + response["departure"] + "' class='link_announce'><p>Nom : " + results[i]['nom'] + "</p><p>Type de logement : " + results[i]['type'] + "</p><p>Adresse : " + results[i]['adresse'] + "</p><p>Prix à la nuit : " + results[i]['price'] + "</p><p>Description : " + results[i]['description'] +"</p>";
 
                 if(results[i]['is_near'] == false){
+                    var div = "<div class='data_search border border-2 rounded-1 border-secondary'><a href='?page=ask_reservation&id_housing="+ results[i]["id"] + "&date_start="+ response["arrive"] +"&date_end=" + response["departure"] + "' class='link_announce'><h4>" + results[i]["nom"] + "</h4>"+ results[i]['type'] + " situé au " + results[i]['adresse'] + "</p><p>Prix à la nuit : " + results[i]['price'] + "</p><p>Description : " + results[i]['description'] +"</p>";
+
                     if(results[i]['nb_ask'] > 0){
                         if(results[i]['nb_ask'] == 1){
                             var res = div + "<p class='text-danger'>Il y a déjà "+ results[i]['nb_ask'] +" demande de réservation pour ces dates </p>";
@@ -191,10 +193,25 @@ function getLocation()
                     }
                 }
                 else{
-                    var res = div + "</a></div>";
+                    var div = "<div class='data_search border border-2 rounded-1 border-danger'><a href='?page=ask_reservation&id_housing="+ results[i]["id"] + "&date_start="+ response["arrive"] +"&date_end=" + response["departure"] + "' class='link_announce'><h4>" + results[i]["nom"] + "</h4>"+ results[i]['type'] + " situé au " + results[i]['adresse'] + "</p><p>Prix à la nuit : " + results[i]['price'] + "</p><p>Description : " + results[i]['description'] +"</p>" + "<p class = 'font-italic'>" + "Ces dates ne sont pas disponibles, dates proche disponibles : du " + results[i]['dates'][0]['date_start'] + " au " + results[i]['dates'][0]['date_end'];
+
+                    var size = results[i]['dates'].length;
+
+                    if(size > 1){
+                        div = div + " (" + (size - 1);
+                        if(size > 2){
+                            div = div + "autres dates disponible)";
+                        }
+                        else{
+                            div = div + " autre date disponible)";
+                        }
+                    }
+
+
+                    var res = div + "</p></a></div>";
                 }
                 
-                $("#search_housing_list").append(res);
+                $("#search_housing_list").append(res);     
             }
         },
         error: function (response) {
@@ -237,8 +254,43 @@ function getLocationbyid(id)
             }
             $("#search_housing_list").empty();
             for(let i = 0; i < results.length; i++){
-                $("#search_housing_list").append("<div class='data_search'><a href='?page=ask_reservation&id_housing="+ results[i]["id"] + "&date_start="+ response["arrive"] +"&date_end=" + response["departure"] + "' class='link_announce'><p>Nom : " + results[i]['nom'] + "</p><p>Type de logement : " + results[i]['type'] + "</p><p>Adresse : " + results[i]['adresse'] + "</p><p>Prix à la nuit : " + results[i]['price'] + "</p><p>Description : " + results[i]['description'] + "</p></a></div>");
-            }
+
+                if(results[i]['is_near'] == false){
+                    var div = "<div class='data_search border border-2 rounded-1 border-secondary'><a href='?page=ask_reservation&id_housing="+ results[i]["id"] + "&date_start="+ response["arrive"] +"&date_end=" + response["departure"] + "' class='link_announce'><h4>" + results[i]["nom"] + "</h4>"+ results[i]['type'] + " situé au " + results[i]['adresse'] + "</p><p>Prix à la nuit : " + results[i]['price'] + "</p><p>Description : " + results[i]['description'] +"</p>";
+
+                    if(results[i]['nb_ask'] > 0){
+                        if(results[i]['nb_ask'] == 1){
+                            var res = div + "<p class='text-danger'>Il y a déjà "+ results[i]['nb_ask'] +" demande de réservation pour ces dates </p>";
+                        }
+                        else{
+                            var res = div + "<p class='text-danger'>Il y a déjà "+ results[i]['nb_ask'] +" demandes de réservation pour ces dates </p>";
+                        }
+                        var res = res + "</a></div>";
+                    }
+                    else{
+                        var res = div + "</a></div>";
+                    }
+                }
+                else{
+                    var div = "<div class='data_search border border-2 rounded-1 border-danger'><a href='?page=ask_reservation&id_housing="+ results[i]["id"] + "&date_start="+ response["arrive"] +"&date_end=" + response["departure"] + "' class='link_announce'><h4>" + results[i]["nom"] + "</h4>"+ results[i]['type'] + " situé au " + results[i]['adresse'] + "</p><p>Prix à la nuit : " + results[i]['price'] + "</p><p>Description : " + results[i]['description'] +"</p>" + "<p class = 'font-italic'>" + "Ces dates ne sont pas disponibles, dates proche disponibles : du " + results[i]['dates'][0]['date_start'] + " au " + results[i]['dates'][0]['date_end'];
+
+                    var size = results[i]['dates'].length;
+
+                    if(size > 1){
+                        div = div + " (" + (size - 1);
+                        if(size > 2){
+                            div = div + "autres dates disponible)";
+                        }
+                        else{
+                            div = div + " autre date disponible)";
+                        }
+                    }
+
+
+                    var res = div + "</p></a></div>";
+                }
+                
+                $("#search_housing_list").append(res);            }
         },
         error: function (response) {
             console.log("ERROR");

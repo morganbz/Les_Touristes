@@ -339,8 +339,6 @@ function searchNearDateAnnounce($priceMin, $priceMax, $date_start, $date_end, $d
 
 
 
-
-
 function searchAnnounce($priceMin, $priceMax, $date_start, $date_end, $dest, $distance){
         global $base;
         $TYPE_HOUSING = array("Maison", "Appartement", "Chalet", "Refuge");
@@ -396,6 +394,7 @@ function searchAnnounce($priceMin, $priceMax, $date_start, $date_end, $dest, $di
                                                 $row["isHousing"] = 1;
                                                 $row['dates'] = $dates;
                                                 $row['is_near'] = true;
+                                                $row['nb_ask'] = 99999999;
                                                 array_push($result, $row);    
 
 
@@ -407,9 +406,12 @@ function searchAnnounce($priceMin, $priceMax, $date_start, $date_end, $dest, $di
                 }
 
         }
+
+        $nb_ask = array_column($result, 'nb_ask');
+        array_multisort($nb_ask,SORT_ASC, $result);
+
         return $result;
 }
-
 function isTakenDay($housing){
         global $base; 
         return $housing["isTaken"] == "1";
