@@ -134,6 +134,7 @@ html, body {
 .data_search{
     border: black solid 1px;
     height: auto;
+    margin-bottom: 1px;
 }
 .data_search:hover{
     background-color: lightgray;
