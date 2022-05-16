@@ -1299,6 +1299,38 @@ function getAllActivityID(){
         return $ids;
 }
 
+function getAllUserID(){
+        global $base;
+
+        $sql = "SELECT id FROM user";
+
+        $results = mysqli_query($base, $sql);
+
+        $ids = Array();
+
+        while ($row = mysqli_fetch_assoc($results)){
+                $ids[] = $row["id"];
+        }
+
+        return $ids;
+}
+
+function getAllRateID(){
+        global $base;
+
+        $sql = "SELECT id FROM rate";
+
+        $results = mysqli_query($base, $sql);
+
+        $ids = Array();
+
+        while ($row = mysqli_fetch_assoc($results)){
+                $ids[] = $row["id"];
+        }
+
+        return $ids;
+}
+
 function deleteReservationById($id){
         global $base;
 

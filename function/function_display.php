@@ -466,7 +466,7 @@ function displayUser($id){
                             <div class="col-6 col-lg-3">
                                 <div class="count-data text-center">
                                     <h6 class="count h2" data-to="<?php echo $nb_activity;?>" data-speed="<?php echo $nb_activity;?>"><?php echo $nb_activity;?></h6>
-                                    <p class="m-0px font-w-600">Recommandations d'acivités</p>
+                                    <p class="m-0px font-w-600">Recommandations d'activités</p>
                                 </div>
                             </div>
                             <div class="col-6 col-lg-3">

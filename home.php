@@ -1,5 +1,8 @@
 <?php
-
+$nb_activity = count(getAllActivityID()) ;
+$nb_housing = count(getAllHousingID());
+$nb_user = count(getAllUserID());
+$nb_evaluations = count(getAllRateID());
 
 $best_annouces = getFiveBestAnnounces();
 $best_annouces_w_img = array();
@@ -30,44 +33,6 @@ $nb_images = count($best_annouces_w_img);
 
 ?>
 
-
-
-<style>
-    .carousel-item{
-        height:32rem;
-        background:#777;
-        color:white;
-        position:relative;
-        background-position:center;
-        background-size:cover;
-    }
-    .container{
-        position:absolute;
-        bottom:0;
-        left:0;
-        right:0;
-        padding-bottom:50px;
-    }
-    .overlay-image{
-        position:absolute;
-        bottom:0;
-        left:0;
-        right:0;
-        top:0;
-        background-position:center;
-        background-size:cover;
-    }
-    .catch_phrase{
-        font-family: Georgia, monospace;
-        color : green;
-        font-size : medium;
-        text-align: center;
-        top : 50px; 
-    }
-</style>
-
-
-
 <div id="myCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
     <?php
     if($nb_images != 0){
@@ -83,6 +48,35 @@ $nb_images = count($best_annouces_w_img);
             echo '</ol>';
     }
     ?>
+    <style>
+        .carousel-item{
+        height:32rem;
+        background:#777;
+        color:white;
+        position:relative;
+        background-position:center;
+        background-size:cover;
+        }
+
+        .container{
+        position:absolute;
+        bottom:0;
+        left:0;
+        right:0;
+        padding-bottom:50px;
+        }
+
+        .overlay-image{
+        position:absolute;
+        bottom:0;
+        left:0;
+        right:0;
+        top:0;
+        background-position:center;
+        background-size:cover;
+        }
+    </style>
+
     <div class="carousel-inner">
         <div class="carousel-item active">
             <?php
@@ -130,9 +124,36 @@ $nb_images = count($best_annouces_w_img);
     </a>
 </div>
 
-<div class = "catch_phrase">
-    <p> Bienvenue chez les Touristes la plateforme collaborative regroupant à la fois location de logements et activités à proximité de ces derniers afin de planifier au mieux votre séjour!
-    </p>
+<div class = "home-page-infos">
+    <div class="counter home-page-counter">
+        <div class="row">
+            <div class="col-6 col-lg-3">
+                <div class="count-data text-center">
+                    <h6 class="count" data-to="<?php echo $nb_activity;?>" data-speed="<?php echo $nb_activity;?>"><?php echo $nb_activity;?></h6>
+                    <p class="m-0px font-w-600">Activités</p>
+                </div>
+            </div>
+            <div class="col-6 col-lg-3">
+                <div class="count-data text-center">
+                    <h6 class="count" data-to="<?php echo $nb_housing;?>" data-speed="<?php echo $nb_housing;?>"><?php echo $nb_housing;?></h6>
+                    <p class="m-0px font-w-600">Hébergements</p>
+                </div>
+            </div>
+            <div class="col-6 col-lg-3">
+                <div class="count-data text-center">
+                    <h6 class="count" data-to="<?php echo $nb_user;?>" data-speed="<?php echo $nb_user;?>"><?php echo $nb_user;?></h6>
+                    <p class="m-0px font-w-600">Utilisateurs</p>
+                </div>
+            </div>
+            <div class="col-6 col-lg-3">
+                <div class="count-data text-center">
+                    <h6 class="count" data-to="<?php echo $nb_evaluations;?>" data-speed="<?php echo $nb_evaluations;?>"><?php echo $nb_evaluations;?></h6>
+                    <p class="m-0px font-w-600">Evaluations</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p class="catch_phrase"> Bienvenue chez les Touristes la plateforme collaborative regroupant à la fois location de logements et activités à proximité de ces derniers afin de planifier au mieux votre séjour !</p>
 </div>
 
 
