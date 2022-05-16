@@ -1,18 +1,16 @@
 <div id="page_content">
-    <div class="searchbar">
-        <div class="flex">
-            <label for="place_search">Destination</label>
-            <br>
-            <input placeholder="Où allez vous ?" type="text" name="place_search" id="place_search" required>
+    <div class="d-flex flex-nowrap flex-row justify-content-center flex-xxl-fill">
+        <div class="form-floating">
+            <input class="form-control" placeholder="Où allez vous ?" type="text" name="place_search" id="place_search" required>
+            <label class="form-label" for="place_search">Destination</label>
         </div>
 
-        <div class="flex">
-            <label for="distance_search">Distance</label>
-            <br>
-            <input placeholder="Jusqu'où en km" type="float" name="distance_search" id="distance_search" required>
+        <div class="form-floating">
+            <input class="form-control" placeholder="Jusqu'où en km" type="float" name="distance_search" id="distance_search" required>
+            <label class="form-label" for="distance_search">Distance</label>
         </div>
         
-        <button class="flex search_btn" onclick="getLocationActivity()">Rechercher</button>
+        <button class="btn btn-outline-primary ms-5" onclick="getLocationActivity()">Rechercher</button>
     </div>
     <div id="contener">
         <div id="search_activity_list"></div>
