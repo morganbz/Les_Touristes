@@ -594,6 +594,24 @@ function getPriceAnnounceByDate($id, $date_start){
         return $row['price'];
 }
 
+function getPriceHousingPeriod($id_housing, $date_start, $date_end){
+
+        global $base;
+
+        $price = 0;
+
+        $sql = "SELECT id, price, date_start, isTaken, id_housing FROM announce WHERE id_housing = $id_housing 
+                AND (date_start BETWEEN '$date_start' AND '$date_end')";
+        $result = mysqli_query($base, $sql);
+
+        while($row = mysqli_fetch_assoc($result)){
+                $price = $price + $row['price'];
+        }
+
+        return $price;
+
+}
+
 function getAnnounceGrpNbByIdHousing($id_housing){
         global $base;
 

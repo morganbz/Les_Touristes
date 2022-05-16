@@ -230,6 +230,7 @@ $nb_images = count($images);
                             echo "<input type = 'hidden' name = id_housing value =  ".$_GET['id_housing']." >";
                         ?>
                         <br>
+                        <p name = "price" id = "price_id"><?php echo getPriceHousingPeriod($_GET['id_housing'],$_GET['date_start'], $_GET['date_end']) ; ?></p>
                         <button class="btn btn-primary btn-lg w-75" id="submit" name="submit" value="Ask_reservation" type="submit">Reserver</button>
                     </form>
                 </section>
