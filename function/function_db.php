@@ -612,6 +612,36 @@ function getPriceHousingPeriod($id_housing, $date_start, $date_end){
 
 }
 
+function getBookByIdUser($id_user){
+        $reservations = array();
+        global $base;
+
+        $sql = "SELECT * FROM `reservation` WHERE id_user = $id_user AND accepted = 1";
+
+        $result = mysqli_query($base, $sql);
+
+        while($row = mysqli_fetch_assoc($result)){
+                array_push($reservations, $row);
+        }
+
+        $date_start = array_column($reservations, 'date_start');
+        array_multisort($date_start, $reservations);
+
+        return $reservations;
+
+}
+
+function getBookById($id){
+        global $base;
+
+        $sql = "SELECT * FROM `reservation` WHERE id = $id";
+
+        $result = mysqli_query($base, $sql);
+
+        return mysqli_fetch_assoc($result);
+}
+
+
 function getAnnounceGrpNbByIdHousing($id_housing){
         global $base;
 

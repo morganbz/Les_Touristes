@@ -15,7 +15,7 @@
     <li class="nav-item active"><a class="nav-link" href="?page=user_page&page_account=add_activity">Ajouter une activité</a></li>
     <li class="nav-item active"><a class="nav-link" href="?page=user_page&page_account=housing_history">Historique de mes réservations</a></li>
     <li class="nav-item active"><a class="nav-link" href="?page=user_page&page_account=add_pref_search">Voir mes préférences</a></li>
-
+    <li class="nav-item active"><a class="nav-link" href="?page=user_page&page_account=see_resa_client">Voir mes voyages à venir</a></li>
   </ul>
 </nav>
 
@@ -69,6 +69,9 @@
     }
     else if($page_account == "add_pref_search"){
       include_once "forms/add_pref_search.php";
+    }
+    else if($page_account == "see_resa_client"){
+      include_once "account/see_resa_client.php";
     }
 
   } else {
