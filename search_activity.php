@@ -24,7 +24,7 @@ if(isset($_GET['resa'])){
                     </div>
                 </div>
                     <?php
-                        echo "<input  type='hidden' name='place_search' id='place_search' value =".$housing['latitude']." ".$housing['longitude']." >";
+                        echo "<input  type='hidden' name='place_search_modal' id='place_search_modal' value =".$housing['latitude']." ".$housing['longitude']." >";
                     ?>
                     <button class="btn btn-outline-primary recherche_modal<?php echo $preference['id']; ?>" onclick="getLocationActivity()">Rechercher</button>
             </div>
