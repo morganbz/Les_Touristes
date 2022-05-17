@@ -629,17 +629,21 @@ function displayCoupsDeCoeurs($id){
 
 function displayBadges($id){
     $badges = getBadgesUser($id);
-    
+    ?><div class="d-flex"><?php
     if (count($badges) == 0 ){
         ?><p>Pas de badges</p><?php
     } else {
         foreach($badges as $b){
             ?>
-            <p><?php echo $b["nom"]." niveau : ".$b["niveau"];?></p>
+            <div class="ms-3 text-center">
+            <p><strong><?php echo $b["nom"];?></strong></p>
             
-            <?php
+            <button type="button" class="btn btn-lg <?php echo $b["niveau"];?>" data-bs-toggle="tooltip" data-bs-placement="top" title="<?php echo $b["description"];?>"><i class="<?php echo $b["picture"];?>"></i></button>
+            </div>
+        <?php    
         }
     }
+    ?></div><?php
 }
 
 
