@@ -49,7 +49,6 @@ if(!empty($preferences)){
 
     <?php
 }
-//<div ">
 ?>
 
 <div class="container h-100" style="width:60%;">
