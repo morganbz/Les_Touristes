@@ -539,7 +539,7 @@ function displayFormRateAndComment($id, $type_rated){
 
         <input value="<?php echo $type_rated;?>" type="hidden" name="rated_is_housing" id="rated_is_housing">
        
-        <button class="w-30 btn btn-primary btn-lg px-4 me-sm-3" id="submit" name="submit" value="submit_rate_and_comment" type="submit">Envoyer</button>
+        <button class="w-30 btn btn-outline-primary btn-lg px-4 me-sm-3" id="submit" name="submit" value="submit_rate_and_comment" type="submit">Envoyer</button>
     </form>
 <?php
 }

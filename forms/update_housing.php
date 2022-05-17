@@ -10,8 +10,7 @@ if(isset($_SESSION["id_user"])){
             <div class="col-lg-15" >
                 <div class="about-text go-to">
                     <h3 class="dark-color"><?php echo $housing["nom"]; ?></h3>
-                    <form action="index.php" method="post" enctype= 'multipart/form-data' class="align-items-center" >
-                        
+                    <form action="index.php" method="post" enctype= 'multipart/form-data' class="align-items-center">
                         
                         <div>
                             <h3 class="dark-color"><label class="h3" for="name_housing_announce_update">Nom</label></h3>

@@ -55,7 +55,7 @@ if(count($announces) > 0){
         <input type="hidden" name="id_housing" id="id_housing" value = <?php echo $id_housing; ?> required>
 
 
-        <button class="btn btn-primary btn-lg w-30" id="submit" name="submit" value="add_announce_period" type="submit">Ajouter la periode</button>
+        <button class="btn btn-outline-primary btn-lg w-30" id="submit" name="submit" value="add_announce_period" type="submit">Ajouter la periode</button>
     </form>
 </div>
 
