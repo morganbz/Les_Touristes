@@ -1,3 +1,38 @@
+<?php
+if(isset($_GET['resa'])){
+    $reservation = getBookById($_GET['resa']);
+    $housing = getHousingById($reservation['id_housing']);
+}
+?>
+
+<div class="modal" id="myModal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Choisir date</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <p> Destination : <?php echo $housing['nom']?> </p>
+                </div>
+                <div class="d-flex align-items-start">
+                    <div class="flex">
+                        <label for="date_seach_arrive">Distance (en km)</label>
+                        <br>
+                        <input class="form-control" placeholder="Quand ?" type="int" name="distance" id="distanceModal">
+                    </div>
+                </div>
+                    <?php
+                        echo "<input  type='hidden' name='place_search' id='place_search' value =".$housing['latitude']." ".$housing['longitude']." >";
+                    ?>
+                    <button class="btn btn-outline-primary recherche_modal<?php echo $preference['id']; ?>" onclick="getLocationActivity()">Rechercher</button>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
 <div id="page_content">
     <div class="d-flex flex-nowrap flex-row justify-content-center flex-xxl-fill">
         <div class="form-floating">
