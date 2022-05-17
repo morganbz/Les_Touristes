@@ -636,9 +636,8 @@ function displayBadges($id){
         foreach($badges as $b){
             ?>
             <div class="ms-3 text-center">
-            <p><strong><?php echo $b["nom"];?></strong></p>
             
-            <button type="button" class="btn btn-lg <?php echo $b["niveau"];?>" data-bs-toggle="tooltip" data-bs-placement="top" title="<?php echo $b["description"];?>"><i class="<?php echo $b["picture"];?>"></i></button>
+            <button type="button" class="btn btn-lg <?php echo $b["niveau"];?>" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" title="<b><?php echo $b["nom"];?></b></br><?php echo $b["description"];?>"><i class="<?php echo $b["picture"];?>"></i></button>
             </div>
         <?php    
         }
