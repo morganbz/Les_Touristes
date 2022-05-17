@@ -690,3 +690,24 @@ svg #main-circ {
   background-color: #fff;
   border-bottom: none;
 }
+
+/*-------------------------------- BADGES --------------------------*/
+.bronze{
+  background-color : brown;
+}
+
+.silver{
+  background-color : silver;
+}
+
+.gold{
+  background-color : goldenrod;
+}
+
+.bronze, .silver, .gold{
+  color: #fefefe;
+}
+
+.bronze:hover, .silver:hover, .gold:hover{
+  box-shadow: 0px 0px 20px rgba(31, 45, 61, 1) ;
+}
