@@ -581,7 +581,8 @@ function displayBadges($id){
     } else {
         foreach($badges as $b){
             ?>
-            <p><?php echo $b["nom"]; ?></p>
+            <p><?php echo $b["nom"]." niveau : ".$b["niveau"];?></p>
+            
             <?php
         }
     }
