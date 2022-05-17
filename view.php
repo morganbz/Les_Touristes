@@ -97,6 +97,13 @@
             else if($page == "update_housing_announces"){
                 include_once "forms/update_housing_announces.php";
             }
+            else if($page == "update_activity"){
+                if(isset($_GET["id_activity"])){
+                    include_once "forms/update_activity.php";
+                } else {
+                    include_once "page_404.php";
+                }
+            }
             else if ($page == "housing_history"){
                 if (isset($_GET["h"])){
                     displayHousingHistory($_GET["h"], false);

@@ -471,6 +471,12 @@
 
         // ---------------- MODIFICATION ACTIVITE --------------------------------
 
+        if($submit == "AskUpdateActivityInfos"){
+            $id_activity = $_POST["id_activity"];
+            $url = getURL()."?page=update_activity&id_activity=".$id_activity;
+            header('Location: '.$url.'');
+        }
+
         if($submit == "activity_update"){
             $type = $_POST["type_activity"];
             $city = $_POST["city_activity_update"];

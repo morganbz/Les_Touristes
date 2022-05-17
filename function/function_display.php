@@ -103,39 +103,93 @@ function displayHousingAccount($housing){
 
     $announces = getAllAnnounceOrderByDistinct($id);
 
-    echo "<li class='list-group-item'>";
+    ?>
+    <div class="container">
+    <div class="align-items-center m-3 display-form-bg">
+        <div class="col-lg-30" >
+            <div class="about-text go-to">
+                <h4><strong class="dark-color"><?php echo $nom;?></strong></h4>
+                <p class="mw-100">Type de logement : <?php echo $TYPE_HOUSING[$type]; ?></p>
+                <p class="mw-100">Adresse : <?php echo $adresse; ?></p>
+                <p class="mw-100">Description : <?php echo $description; ?></p>
 
-        echo "<p>Nom : " .$nom. "</p><p>Type de logement : " .$TYPE_HOUSING[$type]. "</p><p>Adresse : " .$adresse. "</p><p>Description : ".$description. "</p>";
+                <p class="mw-100">Périodes de disponibilités :</p>
+                <ul>
+                <?php
+                foreach ($announces as $announce){
+                    echo "<li>";
+                    echo "du ". getNiceDate($announce["date_start"]) . " au " . getNiceDate($announce["date_end"]);
+                    echo "</li>";
+                }
+                ?>
+                </ul>
 
-        echo "<p>Periode de disponibilités : ";
+                <div class="d-flex justify-content-around">
+                    <form action="index.php" method="post" id="form_display_housing_account">
+                    
+                        <input  type='hidden' name='id_housing' id='id_housing' value ="<?php echo $id; ?>">
+                    
+                        <button class="btn btn-outline-primary " id="submit1" name="submit" value="AskUpdateHousingInfos" type="submit">Modifier le logement</button>
 
-        foreach ($announces as $announce){
-            echo "du ". getNiceDate($announce["date_start"]) . " au " . getNiceDate($announce["date_end"]);
-            echo "<br>";
-        }
-        ?>
-        </p>
+                        <button class="btn btn-outline-primary " id="submit2" name="submit" value="AskUpdateHousingDates" type="submit">Modifier les periodes de disponibilités</button>
 
-        <div class="d-flex justify-content-around">
+                        <button class="btn btn-outline-primary " id="submit2" name="submit" value="ViewHousingHistory" type="submit">Voir les anciènnes réservations</button>
+                    </form>
+                </div>
 
-            <form action="index.php" method="post" id="form_display_housing_account">
-            
-                <input  type='hidden' name='id_housing' id='id_housing' value ="<?php echo $id ?>">
-            
-                <button class="btn btn-outline-primary " id="submit1" name="submit" value="AskUpdateHousingInfos" type="submit">Modifier le logement </button>
-
-                <button class="btn btn-outline-primary " id="submit2" name="submit" value="AskUpdateHousingDates" type="submit">Modifier les periodes de disponibilités</button>
-
-                <button class="btn btn-outline-primary " id="submit2" name="submit" value="ViewHousingHistory" type="submit">Voir les anciènnes réservations</button>
-            </form>
-
+            </div>
         </div>
+    </div>
+</div>
+<?php
+}
 
-        <?php
+function displayActivityAccount($activity){
 
-    echo "</li>";
+    global $TYPE_ACTIVITY;
 
+    $nom = $activity['nom'];
+    $latitude = $activity['latitude'];
+    $longitude = $activity['longitude'];
+    $description = $activity['description'];
+    $type = $activity['type'];
+    $adresse = getAddress($latitude, $longitude);
+    $id = $activity['id'];
 
+    $log_directory = $activity["image_folder"];
+
+    $images = [];
+
+    foreach(glob($log_directory.'/*.*') as $file) {
+        $images[] = $file;
+    }
+    $nb_images = count($images);
+
+    ?>
+    <div class="container">
+    <div class="align-items-center m-3 display-form-bg">
+        <div class="col-lg-30" >
+            <div class="about-text go-to">
+                <h4><strong class="dark-color"><?php echo $nom;?></strong></h4>
+                <p class="mw-100">Type d'activité : <?php echo $TYPE_ACTIVITY[$type]; ?></p>
+                <p class="mw-100">Adresse : <?php echo $adresse; ?></p>
+                <p class="mw-100">Description : <?php echo $description; ?></p>
+
+                <div class="d-flex justify-content-around">
+                    <form action="index.php" method="post" id="form_display_activity_account">
+                    
+                        <input  type='hidden' name='id_activity' id='id_activity' value ="<?php echo $id; ?>">
+                    
+                        <button class="btn btn-outline-primary " id="submit1" name="submit" value="AskUpdateActivityInfos" type="submit">Modifier l'activtié</button>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<?php
 }
 
 function displayHousingHistory($id, $isForUser){
