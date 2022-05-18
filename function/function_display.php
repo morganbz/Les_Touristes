@@ -203,7 +203,7 @@ function displayUpdateMapForm($id, $is_housing, $latitude, $longitude){
         } else {
             $infos = getActivityById($id);
         }
-        if ($_SESSION["id_user"] == $id_owner["id_owner"]){
+        if ($_SESSION["id_user"] == $infos["id_owner"]){
             ?>
             <div class="container">
                 <div class="align-items-center m-3 display-form-bg">
