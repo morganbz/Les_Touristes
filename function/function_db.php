@@ -51,6 +51,8 @@ function addHousingAndAnnounce($id_owner, $type, $latitude, $longitude, $name, $
 
         mysqli_query($base, $sql);
 
+        setPointsUser($id_owner, 2, 4);
+
         return $id_housing;
 }
 
@@ -217,6 +219,8 @@ function updateUser($firstname, $lastname, $birth_date, $phone, $description){
                 $errors[] = "Erreur au moment de l'ajout dans la base de donnée";
                 $_SESSION["errors_modifications"] = $errors;
         }
+
+        setPointsUser($_SESSION["id_user"], 1, 9);
 }
 
 function modificationPassUser($old_pass, $pass){
@@ -422,6 +426,10 @@ function searchAnnounce($priceMin, $priceMax, $date_start, $date_end, $dest, $di
 
         $nb_ask = array_column($result, 'nb_ask');
         array_multisort($nb_ask,SORT_ASC, $result);
+
+        if (isset($_SESSION["id_user"])){
+                setPointsUser($_SESSION["id_user"], 2, 10);
+        }
 
         return $result;
 }
@@ -1135,6 +1143,10 @@ function addHousingAnnounceDate($id, $price, $date) {
                 $errors[] = "Erreur au moment de l'ajout dans la base de donnée";
                 $_SESSION["errors_add_housing_date"] = $errors;
         }
+        
+        if (isset($_SESSION["id_user"])){
+                setPointsUser($_SESSION["id_user"], 1, 4);
+        }
 
 }
 
@@ -1208,6 +1220,11 @@ function addRating($id_rated, $id_rater, $rate, $title, $message, $type_rated){
         
         $result = mysqli_query($base, $sql);
 
+        if ($rate > 2.5){
+                setPointsUser($id_rater, 2, 5);    
+        } else{
+                setPointsUser($id_rater, 2, 6);
+        }
 }
 
 function addRatingUser($id_rated, $id_rater, $rate, $title, $message){
@@ -1370,6 +1387,17 @@ function addActivity($nom, $idtype, $pays, $lat, $long, $id_user, $desc){
 
         mysqli_query($base, $sql);
 
+        if($idtype == 0){
+                setPointsUser($id_user, 2, 3);     
+        } else if ($idtype == 1) {
+                setPointsUser($id_user, 2, 7);  
+        } else if ($idtype == 2) {
+                setPointsUser($id_user, 2, 8);  
+        } else if ($idtype == 3) {
+                setPointsUser($id_user, 2, 2);  
+        }
+        
+
         return $id_activity;
 }
 
@@ -1508,6 +1536,7 @@ function addHousingHistory($begin_date, $end_date, $id_user, $id_housing){
 
         mysqli_query($base, $sql);
 
+        setPointsUser($id_user, 2, 1);
 }
 
 function getHistoryByIdUser($id){
@@ -1582,6 +1611,10 @@ function searchActivity($dest, $distance){
                 }
         }
 
+        if (isset($_SESSION["id_user"])){
+                setPointsUser($_SESSION["id_user"], 2, 10);
+        }
+
         return $activity;   
 }
 
@@ -1644,9 +1677,6 @@ function getPreferenceByIdUser($id_user){
         }
     
         return $preferences;
-
-
-
 }
 
 //-------------------------- RECOMMANDATIONS -------------------------
@@ -1657,6 +1687,8 @@ function addRecommandation ($id_user, $id_recommandated, $type){
         $sql = "INSERT INTO recommandation (id_user, id_recommandated, type) VALUES ($id_user, $id_recommandated, $type)";
 
         mysqli_query($base, $sql);
+
+        setPointsUser($id_user, 2, 11);
 }
 
 function delRecommandation ($id_user, $id_recommandated, $type){
@@ -1665,6 +1697,8 @@ function delRecommandation ($id_user, $id_recommandated, $type){
         $sql = "DELETE FROM recommandation WHERE id_user = $id_user AND id_recommandated = $id_recommandated AND type = $type";
 
         mysqli_query($base, $sql);
+
+        setPointsUser($id_user, -2, 11);
 }
 
 function alreadyRecommanded($id_user, $id_recommandated, $type){
