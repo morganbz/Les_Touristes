@@ -1807,5 +1807,20 @@ function setPointsUser($id_user, $nb_points, $id_sticker){
 
         mysqli_query($base, $sql);
 }
-?>
 
+//---------------------- MODIFICATION DES COORDONNEE GEOGRAPHIQUES UNIQUEMENT ----------------
+
+function updateCoords($id, $is_housing, $latitude, $longitude){
+        global $base;
+
+        if ($is_housing){
+                $table = "housing";  
+        } else {
+                $table = "activity";
+        }
+
+        $sql = "UPDATE $table SET latitude = $latitude, longitude = $longitude WHERE id = $id";
+
+        mysqli_query($base, $sql);
+}
+?>

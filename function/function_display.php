@@ -133,7 +133,9 @@ function displayHousingAccount($housing){
 
                         <button class="btn btn-outline-primary " id="submit2" name="submit" value="AskUpdateHousingDates" type="submit">Modifier les periodes de disponibilités</button>
 
-                        <button class="btn btn-outline-primary " id="submit2" name="submit" value="ViewHousingHistory" type="submit">Voir les anciènnes réservations</button>
+                        <button class="btn btn-outline-primary " id="submit3" name="submit" value="ViewHousingHistory" type="submit">Voir les anciènnes réservations</button>
+                    
+                        <button class="btn btn-outline-primary " id="submit4" name="submit" value="AskUpdateHousingMap" type="submit">Voir sur la carte</button>
                     </form>
                 </div>
 
@@ -182,6 +184,8 @@ function displayActivityAccount($activity){
                     
                         <button class="btn btn-outline-primary " id="submit1" name="submit" value="AskUpdateActivityInfos" type="submit">Modifier l'activtié</button>
 
+                        <button class="btn btn-outline-primary " id="submit2" name="submit" value="AskUpdateActivityMap" type="submit">Voir sur la carte</button>
+
                     </form>
                 </div>
 
@@ -190,6 +194,60 @@ function displayActivityAccount($activity){
     </div>
 </div>
 <?php
+}
+
+function displayUpdateMapForm($id, $is_housing, $latitude, $longitude){
+    ?>
+    <div class="container">
+        <div class="align-items-center m-3 display-form-bg">
+            <div class="col-lg-15" >
+                <div class="about-text go-to">
+                    <?php
+
+                    if (isset($_SESSION["errors_update_activity"])){
+                        echo "<ul>";
+                        foreach ($_SESSION["errors_update_activity"] as $error){
+                            echo "<li>$error</li>";
+                        }
+                        echo "</ul>";
+                    }
+                    ?>
+
+                    <form action="index.php" method="post" class="text-center">
+                        <div>
+                        <h3 class="dark-color"><label class="h3" for="update_map_position_latitude">Latitude</label>
+                            <input class="form-control w-30" placeholder="42.8346769" value="<?php echo $latitude;?>" type="text" name="update_map_position_latitude" id="update_map_position_latitude" required>
+                        </div>
+
+                        <div>
+                            <h3 class="dark-color"><label class="h3" for="update_map_position_longitude">Longitude</label>
+                            <input class="form-control w-30" placeholder="9.382870" value="<?php echo $longitude;?>" type="text" name="update_map_position_longitude" id="update_map_position_longitude" required>
+                        </div>
+
+                        <input class="form-control w-30" value="<?php echo $id;?>" type="hidden" name="id_update_map_position" id="id_update_map_position">
+
+                        <input class="form-control w-30" value="<?php echo $is_housing;?>" type="hidden" name="is_housing_update_map_position" id="is_housing_update_map_position">
+
+                        <div id="map" class="mt-4" style="width:100%; height:500px; border-radius: 10px;"></div>
+                        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6q4hVJGUioenp17tQTqiCS9dLDWbgATw&callback=initMap"></script>
+                        <script>
+                            document.getElementById("map").append(
+                                new google.maps.Marker({
+                                                position: new google.maps.LatLng(<?php echo $latitude;?>, <?php echo $longitude;?> ),
+                                                map: new google.maps.Map(document.getElementById("map"), {center: { lat: <?php echo $latitude;?>,lng: <?php echo $longitude;?> }, zoom: 13}),
+                                                icon: new google.maps.MarkerImage('./ressources/marker_simple.png')
+                                            })
+                            );
+                        </script>
+
+                        <button class="btn btn-outline-primary" id="submit" name="submit" value="update_map_position" type="submit">Mettre à jour</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php   
 }
 
 function displayHousingHistory($id, $isForUser){
@@ -484,7 +542,7 @@ function displayUser($id){
                         <div class="col-lg-6">
                             <div class="about-text go-to">
                                 <h3 class="dark-color"><?php echo $firstname . " " . $lastname;?></h3>
-                                <label><?php echo $nb_recommandation; displayHeart($id, 3);?></label>
+                                <label id="nb_recommandation"><?php echo $nb_recommandation;?></label><?php displayHeart($id, 3);?>
                                 <h6 class="theme-color lead">À propos :</h6>
                                 <p><?php echo nl2br($description);?></p>
                                 <div class="row about-list">
