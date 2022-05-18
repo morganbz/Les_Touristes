@@ -231,15 +231,7 @@ $nb_images = count($images);
         disableEmptyDetails: true, // disable showing empty date details
     }
     );
-    let $calendar = container.data('plugin_simpleCalendar')
-
-    var newEvent = {
-    startDate: new Date(new Date().setHours(new Date().getHours() + 48)).toISOString(),
-    endDate: new Date(new Date().setHours(new Date().getHours() + 49)).getTime(),
-    summary: 'New event'
-    };
-
-    $calendar.addEvent(newEvent);
+    let $calendar = container.data('plugin_simpleCalendar');
    
     var btn = document.getElementById('validate_date');
 
