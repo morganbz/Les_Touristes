@@ -199,11 +199,11 @@ function displayActivityAccount($activity){
 function displayUpdateMapForm($id, $is_housing, $latitude, $longitude){
     if (isset($_SESSION["id_user"])){
         if ($is_housing){
-            $id_owner = getHousingById($id);
+            $infos = getHousingById($id);
         } else {
-            $id_owner = getActivityById($id);
+            $infos = getActivityById($id);
         }
-        if ($_SESSION["id_user"] == $id_owner){
+        if ($_SESSION["id_user"] == $id_owner["id_owner"]){
             ?>
             <div class="container">
                 <div class="align-items-center m-3 display-form-bg">
