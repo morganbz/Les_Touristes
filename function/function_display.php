@@ -513,7 +513,7 @@ function displayUser($id){
                         </div>
                         <div class="col-lg-6">
                             <div class="about-avatar">
-                                <img src="<?php echo $profile_picture;?>" alt="Photo de profil">
+                                <img class="img-size img-profile" src="<?php echo $profile_picture;?>" alt="Photo de profil">
                             </div>
                         </div>
                     </div>
@@ -546,7 +546,7 @@ function displayUser($id){
                         </div>
                     </div>
                     <div class="d-flex justify-content-evenly mt-4 mb-4">
-                        <?php displayBadges($id); ?>
+                        <?php displayBadges($id);?>
                     </div>
                     
                     <div class="profile-box">

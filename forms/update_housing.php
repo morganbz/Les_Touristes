@@ -70,7 +70,7 @@ if(isset($_SESSION["id_user"])){
                             $imgLink = $cheminImg."/".$image;
                             ?>
                             <div  class="text-center">
-                            <img class="m-1 img-fluid" src="<?php echo $imgLink;?>" alt="<?php echo $housing["nom"];?>"/>
+                            <img class="m-1 img-size img-fluid " src="<?php echo $imgLink;?>" alt="<?php echo $housing["nom"];?>"/>
                             
                             <form action="index.php" method="post">
                                 <button class="btn btn-outline-primary align-center" id="del_img" name="del_img" value="<?php echo $imgLink;?>" type = "submit">Supprimer</button>
