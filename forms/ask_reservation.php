@@ -1,5 +1,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="jquery.simple-calendar.js"></script>
+<link rel="stylesheet" type="text/css" href="simple-calendar.css" />
 <?php
 
 $housing = getHousingById($_GET["id_housing"]);
@@ -105,36 +107,16 @@ $nb_images = count($images);
             echo "<p>".$housing["description"]."</p>";
             ?>
             <h3>Periodes de disponibilitées</h3>
-            <ul class="list-group">
-                <?php
-                $grp_announces = getAnnounceGrpNbByIdHousing($_GET["id_housing"]);
-                foreach($grp_announces as $grp_annouce){
-                    if(!isTakenDuration($grp_annouce['id_housing'], $grp_annouce['date_start'], $grp_annouce['date_end'])){
-                        ?>
-
-                        <li class="list-group-item"> <?php echo "du " .getNiceDate($grp_annouce['date_start']). " au " .getNiceDate($grp_annouce['date_end'])." (".$grp_annouce['price']; ?>€ à la journée)</li>
-
-                        <?php
-
-                    }
-                    else{
-                        $announces = getAnnounceNotTakenByNb($grp_annouce['id_housing'], $grp_annouce['nb_for_housing']);
-                        $announces_tri = groupByDate($announces);
-                        foreach($announces_tri as $grp){
-                            ?>
-                            <li class="list-group-item"> <?php echo "du " .getNiceDate(reset($grp)['date_start']). " au " .getNiceDate(end($grp)['date_start'])." (".$grp_annouce['price']; ?>€ à la journée)</li>
-                            <?php
-                        }
-                    }
-                }
-                ?>
-            </ul>
+            <div id = "calendar" class = "w-75"></div>
             <?php
             $announces = getAnnounceByIdHousing($housing["id"]);
             $cpt = 0;
             foreach($announces as $announce){
                 echo "<input  type='hidden' class='date_start_announce' name='date_start_announce".$cpt."' id='date_start_announce".$cpt."' value =".$announce['date_start']." >";
                 echo "<input  type='hidden' class='price_announce' name='price_announce".$cpt."' id='price_announce".$cpt."' value =".$announce['price']." >"; 
+                echo "<input  type='hidden' class='isTaken_announce' name='isTaken_announce".$cpt."' id='isTaken_announce".$cpt."' value =".$announce['isTaken']." >"; 
+                echo "<input  type='hidden' class='id_announce' name='id_announce".$cpt."' id='id_announce".$cpt."' value =".$announce['id']." >"; 
+
                 $cpt++;
             }
             ?>
@@ -164,6 +146,7 @@ $nb_images = count($images);
                         echo "<input  type='hidden' class='date_end_near' name='date_end_near".$cpt."' id='date_end_near".$cpt."' value =".$date['date_end']." >";
                         echo "<input  type='hidden' class='nb_day' name='nb_day".$cpt."' id='nb_day".$cpt."' value =".$date['nb_day']." >";
                         echo "<input  type='hidden' class='price' name='price".$cpt."' id='price".$cpt."' value =".$date['price']." >";
+                        
 
                         $cpt++;
 
@@ -242,18 +225,59 @@ $nb_images = count($images);
 </div>
 
 <script>
+    var container = $("#calendar").simpleCalendar(
+        {
+        disableEventDetails: true, // disable showing event details
+        disableEmptyDetails: true, // disable showing empty date details
+    }
+    );
+    let $calendar = container.data('plugin_simpleCalendar')
+
+    var newEvent = {
+    startDate: new Date(new Date().setHours(new Date().getHours() + 48)).toISOString(),
+    endDate: new Date(new Date().setHours(new Date().getHours() + 49)).getTime(),
+    summary: 'New event'
+    };
+
+    $calendar.addEvent(newEvent);
    
     var btn = document.getElementById('validate_date');
 
     var prices = document.getElementsByClassName("price_announce");
 
     var date_announces = document.getElementsByClassName("date_start_announce");
+    var takens = document.getElementsByClassName("isTaken_announce");
+    var ids = document.getElementsByClassName("id_announce");
 
     // new Date("dateString") is browser-dependent and discouraged, so we'll write
     // a simple parse function for U.S. date format (which does no error checking)
     function parseDate(str) {
         var mdy = str.split('-');
         return new Date(mdy[0], mdy[1]-1, mdy[2]);
+    }
+
+
+    for (var i = 0; i < date_announces.length; i++) {
+        if(takens[i].value == "0"){
+            var newEvent = {
+                startDate: new Date(date_announces[i].value).toISOString(),
+                endDate: new Date(date_announces[i].value).getTime(),
+                summary: ids[i].value + ' ' + prices[i].value
+            };
+            $calendar.addEvent(newEvent);
+
+        }
+
+    }
+
+    var has_events = document.getElementsByClassName("day has-event");
+    console.log(has_events);
+    console.log(has_events.length);
+
+    for (var i = 0; i < has_events.length; i++) {
+        has_events[i].innerHTML  = "<p data-bs-toggle='tooltip' data-bs-placement='bottom' data-bs-html='true' title='" +
+           'prix à la nuit : '+ prices[i].value + '€' + 
+            "'>"+ has_events[i].innerText + "</p>";
     }
 
 
