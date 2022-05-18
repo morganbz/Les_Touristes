@@ -278,7 +278,6 @@ function getLocation()
         dataType: "json",
         beforeSend: function () {
             $("#search_housing_list").append("<div class='page-center'><div class='spinner-border' role='status'><span class='visually-hidden'>Loading...</span></div></div>");
-            console.log("recher");
         },
         success: function (response) {
             var results = response["data"];
