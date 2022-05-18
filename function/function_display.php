@@ -642,7 +642,7 @@ function displayCoupsDeCoeurs($id){
     ?><div class="container text-center">
         <div class="row"><?php
     if (count($coups_de_coeurs) == 0 ){
-        ?><p>Pas de coups de coeurs</p><?php
+        ?><p>Pas de coups de c&oelig;urs</p><?php
     } else {
         foreach($coups_de_coeurs as $cDc){
             ?><div class="col-md-6">

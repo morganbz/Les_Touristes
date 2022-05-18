@@ -378,6 +378,7 @@
         // ---------------- MODIFICATION MOT DE PASSE UTILISATEURS --------------------------------
 
         if($submit == "modification_pass_user"){
+            $old_pass = $_POST["old_pass_modif"];
             $pass = $_POST["pass_modif"];
             $conf_pass = $_POST["conf_pass_modif"];
 
@@ -398,7 +399,11 @@
             }
            
             if($good_pass && $good_conf_pass){
-                modificationPassUser(hash_password($pass));
+                $ok = modificationPassUser($old_pass, hash_password($pass));
+                if (!$ok){
+                    $page = "user_page";
+                    $page_account = "change_password";
+                }
             } else {
                 $page = "user_page";
                 $page_account = "change_password";

@@ -850,3 +850,14 @@ svg #main-circ {
   font-style: oblique;
   color: rgb(160, 160, 160);
 }
+
+/* ERREURS */
+.error{
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: rgb(255, 0, 0, 0.1);
+  color: rgb(255, 0, 0);
+  list-style: none;
+  padding-left: 40px;
+}

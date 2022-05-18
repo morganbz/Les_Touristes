@@ -219,21 +219,34 @@ function updateUser($firstname, $lastname, $birth_date, $phone, $description){
         }
 }
 
-function modificationPassUser($pass){
+function modificationPassUser($old_pass, $pass){
         global $base;
 
         $id = $_SESSION["id_user"];
 
-        $sql = "UPDATE user SET password='$pass' WHERE id=$id";
+        $sql = "SELECT password FROM user WHERE id=$id";
 
-        $insert_modification_pass_user = $base->query($sql);
+        $result = mysqli_query($base, $sql);
 
-        if ($insert_modification_pass_user){
-                unset($_SESSION["errors_modification_pass"]);
+        $insert_modification_pass_user = false;
+
+        if(password_verify($old_pass, mysqli_fetch_assoc($result)["password"])){
+            $sql = "UPDATE user SET password='$pass' WHERE id=$id";
+
+                $insert_modification_pass_user = $base->query($sql);
+
+                if ($insert_modification_pass_user){
+                        unset($_SESSION["errors_modification_pass"]);
+                } else {
+                        $errors[] = "Erreur au moment de l'ajout dans la base de donnée";
+                        $_SESSION["errors_modification_pass"] = $errors;
+                }    
         } else {
-                $errors[] = "Erreur au moment de l'ajout dans la base de donnée";
+                $errors[] = "L’ancien mot de passe saisi est incorrect. Veuillez recommencer.";
                 $_SESSION["errors_modification_pass"] = $errors;
         }
+
+        return $insert_modification_pass_user;
 }
 
 // ----------------------------------------------------- ANNOUNCE ----------------------------------------
