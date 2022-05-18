@@ -1423,7 +1423,7 @@ function getActivityById($id){
 
         $activity = [];
 
-        $sql = "SELECT id, type, latitude, longitude, country, nom, description, image_folder
+        $sql = "SELECT id, id_owner, type, latitude, longitude, country, nom, description, image_folder
                 FROM activity
                 WHERE id = $id";
         $result = mysqli_query($base, $sql);

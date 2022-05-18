@@ -197,57 +197,70 @@ function displayActivityAccount($activity){
 }
 
 function displayUpdateMapForm($id, $is_housing, $latitude, $longitude){
-    ?>
-    <div class="container">
-        <div class="align-items-center m-3 display-form-bg">
-            <div class="col-lg-15" >
-                <div class="about-text go-to">
-                    <?php
+    if (isset($_SESSION["id_user"])){
+        if ($is_housing){
+            $id_owner = getHousingById($id);
+        } else {
+            $id_owner = getActivityById($id);
+        }
+        if ($_SESSION["id_user"] == $id_owner){
+            ?>
+            <div class="container">
+                <div class="align-items-center m-3 display-form-bg">
+                    <div class="col-lg-15" >
+                        <div class="about-text go-to">
+                            <?php
 
-                    if (isset($_SESSION["errors_update_activity"])){
-                        echo "<ul>";
-                        foreach ($_SESSION["errors_update_activity"] as $error){
-                            echo "<li>$error</li>";
-                        }
-                        echo "</ul>";
-                    }
-                    ?>
+                            if (isset($_SESSION["errors_update_activity"])){
+                                echo "<ul>";
+                                foreach ($_SESSION["errors_update_activity"] as $error){
+                                    echo "<li>$error</li>";
+                                }
+                                echo "</ul>";
+                            }
+                            ?>
 
-                    <form action="index.php" method="post" class="text-center">
-                        <div>
-                        <h3 class="dark-color"><label class="h3" for="update_map_position_latitude">Latitude</label>
-                            <input class="form-control w-30" placeholder="42.8346769" value="<?php echo $latitude;?>" type="text" name="update_map_position_latitude" id="update_map_position_latitude" required>
+                            <form action="index.php" method="post" class="text-center">
+                                <div>
+                                <h3 class="dark-color"><label class="h3" for="update_map_position_latitude">Latitude</label>
+                                    <input class="form-control w-30" placeholder="42.8346769" value="<?php echo $latitude;?>" type="text" name="update_map_position_latitude" id="update_map_position_latitude" required>
+                                </div>
+
+                                <div>
+                                    <h3 class="dark-color"><label class="h3" for="update_map_position_longitude">Longitude</label>
+                                    <input class="form-control w-30" placeholder="9.382870" value="<?php echo $longitude;?>" type="text" name="update_map_position_longitude" id="update_map_position_longitude" required>
+                                </div>
+
+                                <input class="form-control w-30" value="<?php echo $id;?>" type="hidden" name="id_update_map_position" id="id_update_map_position">
+
+                                <input class="form-control w-30" value="<?php echo $is_housing;?>" type="hidden" name="is_housing_update_map_position" id="is_housing_update_map_position">
+
+                                <div id="map" class="mt-4" style="width:100%; height:500px; border-radius: 10px;"></div>
+                                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6q4hVJGUioenp17tQTqiCS9dLDWbgATw&callback=initMap"></script>
+                                <script>
+                                    document.getElementById("map").append(
+                                        new google.maps.Marker({
+                                                        position: new google.maps.LatLng(<?php echo $latitude;?>, <?php echo $longitude;?> ),
+                                                        map: new google.maps.Map(document.getElementById("map"), {center: { lat: <?php echo $latitude;?>,lng: <?php echo $longitude;?> }, zoom: 13}),
+                                                        icon: new google.maps.MarkerImage('./ressources/marker_simple.png')
+                                                    })
+                                    );
+                                </script>
+
+                                <button class="btn btn-outline-primary" id="submit" name="submit" value="update_map_position" type="submit">Mettre à jour</button>
+
+                            </form>
                         </div>
-
-                        <div>
-                            <h3 class="dark-color"><label class="h3" for="update_map_position_longitude">Longitude</label>
-                            <input class="form-control w-30" placeholder="9.382870" value="<?php echo $longitude;?>" type="text" name="update_map_position_longitude" id="update_map_position_longitude" required>
-                        </div>
-
-                        <input class="form-control w-30" value="<?php echo $id;?>" type="hidden" name="id_update_map_position" id="id_update_map_position">
-
-                        <input class="form-control w-30" value="<?php echo $is_housing;?>" type="hidden" name="is_housing_update_map_position" id="is_housing_update_map_position">
-
-                        <div id="map" class="mt-4" style="width:100%; height:500px; border-radius: 10px;"></div>
-                        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6q4hVJGUioenp17tQTqiCS9dLDWbgATw&callback=initMap"></script>
-                        <script>
-                            document.getElementById("map").append(
-                                new google.maps.Marker({
-                                                position: new google.maps.LatLng(<?php echo $latitude;?>, <?php echo $longitude;?> ),
-                                                map: new google.maps.Map(document.getElementById("map"), {center: { lat: <?php echo $latitude;?>,lng: <?php echo $longitude;?> }, zoom: 13}),
-                                                icon: new google.maps.MarkerImage('./ressources/marker_simple.png')
-                                            })
-                            );
-                        </script>
-
-                        <button class="btn btn-outline-primary" id="submit" name="submit" value="update_map_position" type="submit">Mettre à jour</button>
-
-                    </form>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <?php   
+            <?php   
+        } else {
+            include_once "./page_404.php";
+        }
+    } else {
+        include_once "./page_404.php";
+    }
 }
 
 function displayHousingHistory($id, $isForUser){
