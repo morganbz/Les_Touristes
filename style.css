@@ -71,6 +71,7 @@ html, body {
   padding: 20px 150px;
   background-color: rgba(255, 255, 255, 0.7);
   border-radius: 30px;
+  box-shadow: 0px 0px 20px rgba(31, 45, 61, 0.2);
 }
 
 /*************************************************************/
@@ -210,8 +211,11 @@ html, body {
     background-color: #f5f5f5;
 }
 
-img {
-    max-width: 30vw;
+.img-profile {
+  max-width: 30vw;
+}
+
+.img-size {
     vertical-align: middle;
     border-style: none;
     border-radius: 20px;
@@ -292,7 +296,7 @@ img {
 }
 
 .about-avatar img{
-    box-shadow: 10px -5px 5px rgba(31, 45, 61, 0.125);
+    box-shadow: 10px -5px 15px rgba(31, 45, 61, 0.125);
 }
 
 @media (max-width: 991px) {
@@ -344,6 +348,15 @@ mark {
 
 .input-text-profile{
     width: 49%;
+    padding: .375rem .75rem;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
 .btn-outline-primary{
@@ -367,6 +380,37 @@ mark {
     margin-top: 10px;
 }
 
+.profile-box{
+  padding: 20px 50px 50px 50px;
+  margin-top: 20px;
+  border-radius: 20px;
+  background-color: rgba(32, 39, 123, 0.07);
+}
+
+.profile-box h2{
+  padding-bottom: 8px;
+  border-bottom: solid 2px #ced4da;
+  color: #20247b;
+  font-weight: 450;
+}
+
+.profile-box h2 NOBR{
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+.profile-box h2 i{
+  font-size: 30px;
+  color:#20247b
+}
+
+.btn-danger{
+  line-height: 20px;
+  font-size: 20px;
+  border-radius: 10px;
+
+}
+
 /*Notes et commentaires*/
 .rate{
 	border-bottom-right-radius: 12px;
@@ -376,7 +420,7 @@ mark {
 .rating {
     display: flex;
     flex-direction: row-reverse;
-    justify-content: left
+    justify-content: center
 }
 
 .rating>input {
@@ -386,7 +430,7 @@ mark {
 .rating>label {
     position: relative;
     width: 1em;
-    font-size: 30px;
+    font-size: 40px;
     font-weight: 300;
     color: #FFD600;
     cursor: pointer
@@ -409,6 +453,12 @@ mark {
 
 .rating:hover>input:checked~label:before {
     opacity: 0.4
+}
+
+.stars-color{
+  font-size: x-large;
+  color: #FFD600;
+  margin-right: 5px;
 }
 
 /*--- SUPER LIKE ---*/
@@ -680,4 +730,138 @@ svg #main-circ {
 .card .card-header {
   background-color: #fff;
   border-bottom: none;
+}
+
+/*-------------------------------- BADGES --------------------------*/
+.bronze{
+  /*background-color : brown;*/
+  background-image: linear-gradient(
+ to bottom right,
+ rgb(116, 73, 14) 0,
+ rgb(186, 130, 75) 16%, 
+ rgb(230, 179, 137) 35%,
+ rgb(250, 219, 188) 50%,
+ rgb(230, 179, 137) 65%,
+ rgb(186, 130, 75) 84%,
+ rgb(116, 73, 14) 100%
+ );
+}
+
+.silver{
+  /*background-color : silver;*/
+  background-image: linear-gradient(
+ to bottom right,
+ rgb(98, 98, 98) 0,
+ rgb(121, 121, 121) 16%, 
+ rgb(177, 177, 177) 35%,
+ rgb(211, 211, 211) 50%,
+ rgb(177, 177, 177) 65%,
+ rgb(121, 121, 121) 84%,
+ rgb(98, 98, 98) 100%
+ );
+}
+
+.gold{
+  background-image: linear-gradient(
+ to bottom right,
+ #462523 0,
+ #cb9b51 16%, 
+ #f6e27a 35%,
+ #f8f3ac 50%,
+ #f6e27a 65%,
+ #cb9b51 82%,
+ #462523 100%
+ );
+}
+
+.bronze, .silver, .gold{
+  border: solid 1px rgb(34, 34, 34);
+  border-radius: 15px;
+  color: rgb(34, 34, 34);
+  height: calc(60px + 0.9rem);
+  width: calc(60px + 0.9rem);
+  font-size: calc(15px + 1rem);
+  margin: 5px 10px;
+}
+
+.bronze:hover, .silver:hover, .gold:hover{
+  border: none;
+  box-shadow: 0px 0px 20px rgba(31, 45, 61, 1);
+  color: rgb(34, 34, 34);
+}
+
+
+/* BUBBLE */
+.talk-bubble {
+	margin: 20px;
+  display: inline-block;
+  position: relative;
+	width: 200px;
+	height: auto;
+	background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 15px 0px 20px rgba(31, 45, 61, 0.2);
+}
+
+.round{
+  border-radius: 30px;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+}
+
+.tri-right.border.btm-left:before {
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+	left: -8px;
+  right: auto;
+  top: auto;
+	bottom: -40px;
+	border: 32px solid;
+	border-color: transparent transparent transparent #666;
+}
+.tri-right.btm-left:after{
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+	left: 0px;
+  right: auto;
+  top: auto;
+	bottom: -20px;
+	border: 22px solid;
+	border-color: transparent transparent transparent rgba(255, 255, 255, 0.9);
+}
+
+/* talk bubble contents */
+.talktext{
+  margin-left: 50px;
+  padding: 1.5em;
+	text-align: left;
+  line-height: 1.5em;
+}
+.talktext p{
+  /* remove webkit p margins */
+  -webkit-margin-before: 0em;
+  -webkit-margin-after: 0em;
+}
+
+.rate-name{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-right: 25px;
+  font-style: oblique;
+  color: rgb(160, 160, 160);
+}
+
+/* ERREURS */
+.error{
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: rgb(255, 0, 0, 0.1);
+  color: rgb(255, 0, 0);
+  list-style: none;
+  padding-left: 40px;
 }

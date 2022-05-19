@@ -51,6 +51,8 @@ function addHousingAndAnnounce($id_owner, $type, $latitude, $longitude, $name, $
 
         mysqli_query($base, $sql);
 
+        setPointsUser($id_owner, 2, 4);
+
         return $id_housing;
 }
 
@@ -217,23 +219,38 @@ function updateUser($firstname, $lastname, $birth_date, $phone, $description){
                 $errors[] = "Erreur au moment de l'ajout dans la base de donnée";
                 $_SESSION["errors_modifications"] = $errors;
         }
+
+        setPointsUser($_SESSION["id_user"], 1, 9);
 }
 
-function modificationPassUser($pass){
+function modificationPassUser($old_pass, $pass){
         global $base;
 
         $id = $_SESSION["id_user"];
 
-        $sql = "UPDATE user SET password='$pass' WHERE id=$id";
+        $sql = "SELECT password FROM user WHERE id=$id";
 
-        $insert_modification_pass_user = $base->query($sql);
+        $result = mysqli_query($base, $sql);
 
-        if ($insert_modification_pass_user){
-                unset($_SESSION["errors_modification_pass"]);
+        $insert_modification_pass_user = false;
+
+        if(password_verify($old_pass, mysqli_fetch_assoc($result)["password"])){
+            $sql = "UPDATE user SET password='$pass' WHERE id=$id";
+
+                $insert_modification_pass_user = $base->query($sql);
+
+                if ($insert_modification_pass_user){
+                        unset($_SESSION["errors_modification_pass"]);
+                } else {
+                        $errors[] = "Erreur au moment de l'ajout dans la base de donnée";
+                        $_SESSION["errors_modification_pass"] = $errors;
+                }    
         } else {
-                $errors[] = "Erreur au moment de l'ajout dans la base de donnée";
+                $errors[] = "L’ancien mot de passe saisi est incorrect. Veuillez recommencer.";
                 $_SESSION["errors_modification_pass"] = $errors;
         }
+
+        return $insert_modification_pass_user;
 }
 
 // ----------------------------------------------------- ANNOUNCE ----------------------------------------
@@ -409,6 +426,10 @@ function searchAnnounce($priceMin, $priceMax, $date_start, $date_end, $dest, $di
 
         $nb_ask = array_column($result, 'nb_ask');
         array_multisort($nb_ask,SORT_ASC, $result);
+
+        if (isset($_SESSION["id_user"])){
+                setPointsUser($_SESSION["id_user"], 2, 10);
+        }
 
         return $result;
 }
@@ -611,6 +632,36 @@ function getPriceHousingPeriod($id_housing, $date_start, $date_end){
         return $price;
 
 }
+
+function getBookByIdUser($id_user){
+        $reservations = array();
+        global $base;
+
+        $sql = "SELECT * FROM `reservation` WHERE id_user = $id_user AND accepted = 1";
+
+        $result = mysqli_query($base, $sql);
+
+        while($row = mysqli_fetch_assoc($result)){
+                array_push($reservations, $row);
+        }
+
+        $date_start = array_column($reservations, 'date_start');
+        array_multisort($date_start, $reservations);
+
+        return $reservations;
+
+}
+
+function getBookById($id){
+        global $base;
+
+        $sql = "SELECT * FROM `reservation` WHERE id = $id";
+
+        $result = mysqli_query($base, $sql);
+
+        return mysqli_fetch_assoc($result);
+}
+
 
 function getAnnounceGrpNbByIdHousing($id_housing){
         global $base;
@@ -1092,6 +1143,10 @@ function addHousingAnnounceDate($id, $price, $date) {
                 $errors[] = "Erreur au moment de l'ajout dans la base de donnée";
                 $_SESSION["errors_add_housing_date"] = $errors;
         }
+        
+        if (isset($_SESSION["id_user"])){
+                setPointsUser($_SESSION["id_user"], 1, 4);
+        }
 
 }
 
@@ -1165,6 +1220,11 @@ function addRating($id_rated, $id_rater, $rate, $title, $message, $type_rated){
         
         $result = mysqli_query($base, $sql);
 
+        if ($rate > 2.5){
+                setPointsUser($id_rater, 2, 5);    
+        } else{
+                setPointsUser($id_rater, 2, 6);
+        }
 }
 
 function addRatingUser($id_rated, $id_rater, $rate, $title, $message){
@@ -1327,6 +1387,17 @@ function addActivity($nom, $idtype, $pays, $lat, $long, $id_user, $desc){
 
         mysqli_query($base, $sql);
 
+        if($idtype == 0){
+                setPointsUser($id_user, 2, 3);     
+        } else if ($idtype == 1) {
+                setPointsUser($id_user, 2, 7);  
+        } else if ($idtype == 2) {
+                setPointsUser($id_user, 2, 8);  
+        } else if ($idtype == 3) {
+                setPointsUser($id_user, 2, 2);  
+        }
+        
+
         return $id_activity;
 }
 
@@ -1352,7 +1423,7 @@ function getActivityById($id){
 
         $activity = [];
 
-        $sql = "SELECT id, type, latitude, longitude, country, nom, description, image_folder
+        $sql = "SELECT id, id_owner, type, latitude, longitude, country, nom, description, image_folder
                 FROM activity
                 WHERE id = $id";
         $result = mysqli_query($base, $sql);
@@ -1465,6 +1536,7 @@ function addHousingHistory($begin_date, $end_date, $id_user, $id_housing){
 
         mysqli_query($base, $sql);
 
+        setPointsUser($id_user, 2, 1);
 }
 
 function getHistoryByIdUser($id){
@@ -1539,6 +1611,10 @@ function searchActivity($dest, $distance){
                 }
         }
 
+        if (isset($_SESSION["id_user"])){
+                setPointsUser($_SESSION["id_user"], 2, 10);
+        }
+
         return $activity;   
 }
 
@@ -1601,9 +1677,6 @@ function getPreferenceByIdUser($id_user){
         }
     
         return $preferences;
-
-
-
 }
 
 //-------------------------- RECOMMANDATIONS -------------------------
@@ -1614,6 +1687,8 @@ function addRecommandation ($id_user, $id_recommandated, $type){
         $sql = "INSERT INTO recommandation (id_user, id_recommandated, type) VALUES ($id_user, $id_recommandated, $type)";
 
         mysqli_query($base, $sql);
+
+        setPointsUser($id_user, 2, 11);
 }
 
 function delRecommandation ($id_user, $id_recommandated, $type){
@@ -1622,6 +1697,8 @@ function delRecommandation ($id_user, $id_recommandated, $type){
         $sql = "DELETE FROM recommandation WHERE id_user = $id_user AND id_recommandated = $id_recommandated AND type = $type";
 
         mysqli_query($base, $sql);
+
+        setPointsUser($id_user, -2, 11);
 }
 
 function alreadyRecommanded($id_user, $id_recommandated, $type){
@@ -1730,5 +1807,20 @@ function setPointsUser($id_user, $nb_points, $id_sticker){
 
         mysqli_query($base, $sql);
 }
-?>
 
+//---------------------- MODIFICATION DES COORDONNEE GEOGRAPHIQUES UNIQUEMENT ----------------
+
+function updateCoords($id, $is_housing, $latitude, $longitude){
+        global $base;
+
+        if ($is_housing){
+                $table = "housing";  
+        } else {
+                $table = "activity";
+        }
+
+        $sql = "UPDATE $table SET latitude = $latitude, longitude = $longitude WHERE id = $id";
+
+        mysqli_query($base, $sql);
+}
+?>

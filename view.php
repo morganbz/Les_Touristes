@@ -4,11 +4,10 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="style.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="./style.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="style.css">
+        <script src="./js/script.js"></script>
         <title>Les Touristes</title>
     </head>
     <body>
@@ -97,6 +96,29 @@
             else if($page == "update_housing_announces"){
                 include_once "forms/update_housing_announces.php";
             }
+            else if($page == "map_housing"){
+                if(isset($_GET["id_housing"])){
+                    $id = $_GET["id_housing"];
+                    displayUpdateMapForm($id, true, getHousingById($id)["latitude"], getHousingById($id)["longitude"]);
+                } else {
+                    include_once "page_404.php";
+                }
+            }
+            else if($page == "update_activity"){
+                if(isset($_GET["id_activity"])){
+                    include_once "forms/update_activity.php";
+                } else {
+                    include_once "page_404.php";
+                }
+            }
+            else if($page == "map_activity"){
+                if(isset($_GET["id_activity"])){
+                    $id = $_GET["id_activity"];
+                    displayUpdateMapForm($id, false, getActivityById($id)["latitude"], getActivityById($id)["longitude"]);
+                } else {
+                    include_once "page_404.php";
+                }
+            }
             else if ($page == "housing_history"){
                 if (isset($_GET["h"])){
                     displayHousingHistory($_GET["h"], false);
@@ -127,7 +149,19 @@
             } else {
                 include_once "page_404.php";
             }
+            if($page == "test"){
+                include_once("forms/update_map_position.php");
+            }
             ?>
         </div>
     </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script>
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    </script>
 </html>

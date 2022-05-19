@@ -1,6 +1,4 @@
 
-
-
 function initMap() {
     var map = new google.maps.Map(document.getElementById('search_housing_map'), {
         center: new google.maps.LatLng(46, 2),
@@ -49,6 +47,23 @@ function addressCoordById(next, id){
     }
 }
 
+function addressCoordModal(next){
+    var adresse = document.querySelector('#place_search_modal').value;
+    if(adresse != ""){
+        var geocoder =  new google.maps.Geocoder();
+        geocoder.geocode( { 'address': adresse}, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                latitude = results[0].geometry.location.lat();
+                longitude = results[0].geometry.location.lng();
+            }
+            else {
+                alert("Something got wrong " + status);
+            }
+            next();
+        });
+    }
+}
+
 function loadMapAddress(data = null, zoom = 22){
     addressCoord(function(){
         var map = new google.maps.Map(document.getElementById('search_housing_map'), {
@@ -81,6 +96,19 @@ function loadMapAddressActivity(data = null, zoom = 22){
         setMarkers(map,data);
     });
 }
+
+function loadMapAddressActivitModal(data = null, zoom = 22, latitude, longitude){
+    addressCoordModal(function(){
+        var map = new google.maps.Map(document.getElementById('search_activity_map'), {
+            center: new google.maps.LatLng(latitude, longitude),
+            zoom: zoom
+        });
+        
+        setMarkersModal(map,data, latitude, longitude);
+    });
+}
+
+
 
 function setMarkers(map,locations) {
     for(var i=0; i<locations.length; i++){
@@ -148,6 +176,91 @@ function setMarkers(map,locations) {
     }
 }
 
+function setMarkersModal(map,locations, latitude, longitude) {
+
+    for(var i=0; i<=locations.length; i++){
+        if(i == locations.length){
+            var myLatLng = new google.maps.LatLng(latitude, longitude);
+            var infoWindow = new google.maps.InfoWindow();
+        }
+        else{
+            var station = locations[i];
+            var myLatLng = new google.maps.LatLng(station['latitude'], station['longitude']);
+            var infoWindow = new google.maps.InfoWindow();
+        }
+
+        var map_icon;
+        if(station['isHousing'] == 1 || i == locations.length){
+            map_icon = new google.maps.MarkerImage('ressources/house.png');
+        }
+        else{
+            map_icon = new google.maps.MarkerImage('ressources/house.png');
+            if (station['type'] == "Restauration") {
+                map_icon = new google.maps.MarkerImage('ressources/restauration.png');
+            }
+            if (station['type'] == "Randonnée") {
+                map_icon = new google.maps.MarkerImage('ressources/randonnee.png');
+            }
+            if (station['type'] == "Baignade") {
+                map_icon = new google.maps.MarkerImage('ressources/baignade.png');
+            }
+            if (station['type'] == "Espace Culturel") {
+                map_icon = new google.maps.MarkerImage('ressources/espace_culturel.png');
+            }
+        }
+        
+
+        if(i != locations.length){
+            var marker = new google.maps.Marker({
+                position: myLatLng,
+                map: map,
+                title: station['marker_ville'],
+                icon: map_icon
+            });
+        }
+        else{
+            var marker = new google.maps.Marker({
+                position: myLatLng,
+                map: map,
+                title: "logement",
+                icon: map_icon
+            });
+        }
+
+        (function(i){
+            google.maps.event.addListener(marker, "click",function(){
+                var station = locations[i];
+                infoWindow.close();
+                
+                if (station['isHousing'] == 0) {
+                    infoWindow.setContent(
+                        "<div id='infoWindow'>"
+                        +"<p>Nom : "+station['nom']+"<p>"
+                        +"<p>Type de logement : " + station['type'] + "<p>"
+                        +"<p>Adresse : "+station['adresse']+"<p>"
+                        +"</div>"
+                    );
+                }
+                else{
+                    if(i != locations.length){
+                        infoWindow.setContent(
+                            "<div id='infoWindow'>"
+                            +"<p>Nom : "+station['nom']+"<p>"
+                            +"<p>Type de logement : " + station['type'] + "<p>"
+                            +"<p>Adresse : "+station['adresse']+"<p>"
+                            +"<p>Prix à la nuit : " + station['price'] + "<p>"
+                            +"</div>"
+                        );
+                    }
+                }
+
+
+                infoWindow.open(map,this);
+            });
+        })(i);
+    }
+}
+
 function getLocation()
 {
     $.ajax({
@@ -165,7 +278,6 @@ function getLocation()
         dataType: "json",
         beforeSend: function () {
             $("#search_housing_list").append("<div class='page-center'><div class='spinner-border' role='status'><span class='visually-hidden'>Loading...</span></div></div>");
-            console.log("recher");
         },
         success: function (response) {
             var results = response["data"];
@@ -348,7 +460,7 @@ function getLocationbyid(id)
 
     for (var index in modals) {
         if (typeof modals[index].style !== 'undefined') modals[index].style.display = "none";    
-        }
+    }
     
     
 }
@@ -391,4 +503,47 @@ function getLocationActivity()
             console.log("COMPLETE");
         }
     });
+}
+
+function getLocationActivityModal()
+{
+    $.ajax({
+        type: "POST",
+        url: "ajax.php",
+        data: {
+            action: "getLocationActivity",
+            destination: document.querySelector('#place_search_modal').value,
+            distance: document.querySelector('#distanceModal').value
+        },
+        dataType: "json",
+        beforeSend: function () {
+            $("#search_activity_list").append("<div class='page-center'><div class='spinner-border' role='status'><span class='visually-hidden'>Loading...</span></div></div>");
+        },
+        success: function (response) {
+            var results = response["data"];
+            var latitude =  document.querySelector('#lat_modal').value;
+            var longitude =  document.querySelector('#long_modal').value;
+            if(response["distance"] == 0){
+                loadMapAddressActivitModal(results, 22, latitude, longitude);
+            }
+            else{
+                var zoom = 22 - Math.ceil(Math.log(response["distance"]*100)/Math.log(2));
+                loadMapAddressActivitModal(results, zoom, latitude, longitude);
+            }
+            $("#search_activity_list").empty();
+            for(let i = 0; i < results.length; i++){
+                $("#search_activity_list").append("<div class='data_search'><a href='?page=activity&a="+ results[i]["id"]+"' class='link_announce'><p>Nom : " + results[i]['nom'] + "</p><p>Type de logement : " + results[i]['type'] + "</p><p>Adresse : " + results[i]['adresse'] + "</p><p>Description : " + results[i]['description'] + "</p></a></div>");
+            }
+        },
+        error: function (response) {
+            console.log("ERROR");
+        },
+        complete: function(response) {
+            console.log("COMPLETE");
+        }
+    });
+    var modals = document.querySelectorAll('.modal');
+    for (var index in modals) {
+        if (typeof modals[index].style !== 'undefined') modals[index].style.display = "none";    
+    }
 }

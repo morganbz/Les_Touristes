@@ -11,7 +11,7 @@
 
             <div class="card-body mx-auto">
                 <a type="button" href="index.php"
-                class="btn btn-sm btn-info text-white"> Retour à l'accueil </a>
+                class="btn btn-outline-primary"> Retour à l'accueil </a>
             </div>
         </div>
     </div>
