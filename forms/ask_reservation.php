@@ -233,7 +233,7 @@ $nb_images = count($images);
     );
     let $calendar = container.data('plugin_simpleCalendar');
    
-    var btn = document.getElementById('validate_date');
+    var btn = document.getElementById('#validate_date');
 
     var prices = document.getElementsByClassName("price_announce");
 
