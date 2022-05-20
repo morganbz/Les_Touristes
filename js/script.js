@@ -309,7 +309,7 @@ function getLocation()
                     if(size > 1){
                         div = div + " (" + (size - 1);
                         if(size > 2){
-                            div = div + "autres dates disponible)";
+                            div = div + " autres dates disponibles)";
                         }
                         else{
                             div = div + " autre date disponible)";
