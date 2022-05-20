@@ -251,6 +251,9 @@
 
             addDistinctAnnounce($id_housing, $date_start, $date_end, $price);
 
+            $page = "user_page"; 
+            $page_account = "update_housing_announces";
+
 
         }
 
