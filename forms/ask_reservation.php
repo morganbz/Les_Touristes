@@ -1,4 +1,3 @@
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript" src="jquery.simple-calendar.js"></script>
 <link rel="stylesheet" type="text/css" href="simple-calendar.css" />
@@ -129,7 +128,7 @@ $nb_images = count($images);
 
             ?>
                 <div class="d-inline-flex p-2 bd-highlight">
-                <select class="form-select" aria-label="Default select example" id="select_date" >
+                <select name = "select_date" class="form-select" aria-label="Default select example" id="select_date" >
                     <option selected>dates de séjour suggérées </option>
                     <?php
                     foreach($dates as $date){
@@ -152,7 +151,6 @@ $nb_images = count($images);
 
                     }
                     ?>
-                    <button class="btn btn-outline-primary " id="validate_date">Valider</button>
                 </div>
 
 
@@ -231,9 +229,15 @@ $nb_images = count($images);
         disableEmptyDetails: true, // disable showing empty date details
     }
     );
-    let $calendar = container.data('plugin_simpleCalendar');
-   
-    var btn = document.getElementById('#validate_date');
+    let $calendar = container.data('plugin_simpleCalendar')
+
+    var newEvent = {
+    startDate: new Date(new Date().setHours(new Date().getHours() + 48)).toISOString(),
+    endDate: new Date(new Date().setHours(new Date().getHours() + 49)).getTime(),
+    summary: 'New event'
+    };
+
+    $calendar.addEvent(newEvent);
 
     var prices = document.getElementsByClassName("price_announce");
 
@@ -263,6 +267,8 @@ $nb_images = count($images);
     }
 
     var has_events = document.getElementsByClassName("day has-event");
+    console.log(has_events);
+    console.log(has_events.length);
 
     for (var i = 0; i < has_events.length; i++) {
         has_events[i].innerHTML  = "<p data-bs-toggle='tooltip' data-bs-placement='bottom' data-bs-html='true' title='" +
@@ -272,17 +278,14 @@ $nb_images = count($images);
 
 
 
-    if($('#validate_date').length > 0){
-        btn.onclick = function(e) {
-            var message = (parseInt($('#nb_day' + $('#select_date').val()).val()) *  parseInt($('#price' + $('#select_date').val()).val())) + '€';
-            $('input[name=date_start_reservation]').val( $('#date_start_near' + $('#select_date').val()).val() );
-            $('input[name=date_end_reservation]').val( $('#date_end_near' + $('#select_date').val()).val() );
-            $('#price_id').text(message);
 
-
-        }
-    }
-
+    $('[name="select_date"]').change(function() {
+        var message = (parseInt($('#nb_day' + $('#select_date').val()).val()) *  parseInt($('#price' + $('#select_date').val()).val())) + '€';
+        $('input[name=date_start_reservation]').val( $('#date_start_near' + $('#select_date').val()).val() );
+        $('input[name=date_end_reservation]').val( $('#date_end_near' + $('#select_date').val()).val() );
+        $('#price_id').text(message);
+    })
+    
     $('input[name=date_end_reservation]').change(function() {
         var price = 0;
         var date_start = $('input[name=date_start_reservation]').val();

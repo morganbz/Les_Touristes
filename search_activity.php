@@ -64,7 +64,6 @@ if(isset($_GET['resa'])){
                             <input class="form-control" placeholder="50" type="int" name="distance" id="distanceModal">
                         </div>
                     </div>
-
                         <?php
                             echo "<input  type='hidden' name='place_search_modal' id='place_search_modal' value ='".getAddress($housing['latitude'], $housing['longitude'])."' >";
                             echo "<input  type='hidden' name='place_search_modal' id='lat_modal' value ='".$housing['latitude']."' >";
@@ -93,19 +92,6 @@ if(isset($_GET['resa'])){
         <div class="form-floating">
             <input class="form-control" placeholder="Jusqu'où en km" type="float" name="distance_search" id="distance_search" required>
             <label class="form-label" for="distance_search">Distance</label>
-        </div>
-        <div class="form-floating">
-            <select name="type_search" id="type_search" class="form-select" aria-label="Default select example">
-                <option selected>tous type</option>
-                <?php
-                $max = sizeof($TYPE_ACTIVITY);
-                for($i = 0; $i < $max; $i++){
-                    ?>
-                    <option value="<?php echo $i ; ?>"><?php echo $TYPE_ACTIVITY[$i]; ?></option>
-                    <?php
-                }
-                ?>
-            </select>
         </div>
         
         <button class="btn btn-outline-primary ms-5" onclick="getLocationActivity()">Rechercher</button>
