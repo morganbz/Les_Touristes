@@ -1,4 +1,4 @@
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script src="js/script.js"></script>
         <div id="page_content">
             <?php
@@ -12,19 +12,23 @@
 
 
                 if(!empty($preferences)){
+                    $cpt = 0;
                             foreach($preferences as $preference){
 
-                                echo "<input  type='hidden' name='place_search' id='place_search". $preference['id']."' value =".$preference['destination']." >";
-                                echo "<input  type='hidden' name='price_search_min' id='price_search_min". $preference['id']."' value =".$preference['price_min']." >";
-                                echo "<input  type='hidden' name='price_search_max' id='price_search_max". $preference['id']."' value =".$preference['price_max']." >";
-                                echo "<input  type='hidden' name='distance_search' id='distance_search". $preference['id']."' value =".$preference['distance']." >";
+                                echo "<input  type='hidden' name='place_search". $cpt."' id='place_search". $cpt."' value =".$preference['destination']." >";
+                                echo "<input  type='hidden' name='price_search_min". $cpt."' id='price_search_min". $cpt."' value =".$preference['price_min']." >";
+                                echo "<input  type='hidden' name='price_search_max". $cpt."' id='price_search_max". $cpt."' value =".$preference['price_max']." >";
+                                echo "<input  type='hidden' name='distance_search". $cpt."' id='distance_search". $cpt."' value =".$preference['distance']." >";
+                                echo "<input  type='hidden' name='cpt' id='cpt". $cpt."' value =".$cpt." >";
 
                                 ?>
 
-                                <button class="btn btn-outline-primary recherche_modal<?php echo $preference['id']; ?>" onclick="fillSearch(<?php echo $preference['id']; ?>)"><?php echo $preference['nom']; ?> </button>
+                                <button value = <?php echo $cpt; ?> name="preference_search<?php echo $cpt;?>" id ="preference_search<?php echo $cpt;?>" class="btn btn-outline-primary preference_search"><?php echo $preference['nom']; ?> </button>
 
                                 <?php
+                                $cpt++;
                             }
+
                     ?>
 
                     <?php
@@ -79,17 +83,21 @@
         </div>
 
         <script> 
-        function fillSearch(id){
-            $('input[name=place_search').removeAttr('value');
-            $('input[name=price_search_min]').removeAttr('value');
-            $('input[name=price_search_max]').removeAttr('value');
-            $('input[name=distance_search]').removeAttr('value');
 
-            $('input[name=place_search').val( $('#place_search' + id).val() );
-            $('input[name=price_search_min]').val( $('#price_search_min' + id).val() );
-            $('input[name=price_search_max]').val( $('#price_search_max' + id).val() );
-            $('input[name=distance_search]').val( $('#distance_search' + id).val() );
-                }
+
+            var theButtons = $(".preference_search");
+
+            console.log(theButtons);
+            theButtons.each(function(index) {
+                var currentButton = $(this);
+                currentButton.click(function() {
+                    $('input[name=place_search]').val( $('#place_search' + this.value).val() );
+                    $('input[name=place_search]').val( $('#place_search' + this.value).val() );
+                    $('input[name=price_search_min]').val( $('#price_search_min' + this.value).val() );
+                    $('input[name=price_search_max]').val( $('#price_search_max' + this.value).val() );
+                    $('input[name=distance_search]').val( $('#distance_search' + this.value).val() );
+                });
+            });
         </script>
 
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6q4hVJGUioenp17tQTqiCS9dLDWbgATw&callback=initMap"></script>
