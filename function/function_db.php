@@ -1600,7 +1600,7 @@ function searchActivity($dest, $distance, $type){
         $country = getCountryFromAddress($dest);
 
         $sql = "SELECT * FROM `activity` WHERE country = '$country'";
-        if($type != -1){
+        if($type != -1 && $type != "-1"){
                 $sql = $sql . " AND type = $type";
         }
 
