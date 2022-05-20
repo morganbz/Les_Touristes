@@ -341,7 +341,9 @@ function getLocationActivity()
         data: {
             action: "getLocationActivity",
             destination: document.querySelector('#place_search').value,
-            distance: document.querySelector('#distance_search').value
+            distance: document.querySelector('#distance_search').value,
+            type: document.querySelector('#type_search').value
+
         },
         dataType: "json",
         beforeSend: function () {

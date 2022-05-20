@@ -1592,12 +1592,12 @@ function fromResaToHistory(){
 
 }
 
-function searchActivity($dest, $distance){
+function searchActivity($dest, $distance, $type){
         global $base;
         $TYPE_ACTIVITY = array("Randonnée", "Espace Culturel", "Restauration", "Baignade");
         $country = getCountryFromAddress($dest);
 
-        $sql = "SELECT * FROM `activity` WHERE country = '$country'";
+        $sql = "SELECT * FROM `activity` WHERE country = '$country' AND type = $type";
 
 
         $result = mysqli_query($base, $sql);
