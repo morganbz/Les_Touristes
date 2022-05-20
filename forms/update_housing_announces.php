@@ -55,6 +55,11 @@ if ($_SESSION["id_user"]){
                         <label class="form-label" for="date_start_update">date de fin</label>
                     </div>
 
+                    <div class="form-floating w-30">
+                        <input class = "form-control" placeholder="prix" type="int" name="price" id="price" required>
+                        <label class="form-label" for="price_update">prix à la nuit</label>
+                    </div>
+
                     <input type="hidden" name="id_housing" id="id_housing" value = <?php echo $id_housing; ?> required>
 
 

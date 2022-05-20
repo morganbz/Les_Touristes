@@ -243,6 +243,16 @@
             $page = "user_page"; 
             $page_account = "see_announce";
         }
+        if($submit == "housing_announce_update"){
+            $date_start = $_POST["date_start"];
+            $date_end = $_POST["date_end"];
+            $price = $_POST["price"];
+            $id_housing = $_POST["id_housing"];
+
+            addDistinctAnnounce($id_housing, $date_start, $date_end, $price);
+
+
+        }
 
         if ($submit == "del_announce") {
             $id = $_POST["id_announce_update"];
