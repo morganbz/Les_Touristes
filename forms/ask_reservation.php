@@ -186,23 +186,30 @@ $nb_images = count($images);
         }
         else{
 
-        
-            if(isset($_GET['date_start']) && isset($_GET['date_end'])){
-
                 ?>
                 <section>
                     <form class="d-flex flex-column justify-content-center align-items-center" action="index.php" method="post">
                         <br>
                         <div class="form-floating w-75">
                             <?php
-                                echo '<input class="form-control" placeholder="Date de début du sejour" type="date" name="date_start_reservation" id="date_start_reservation" value ="'.$_GET['date_start'].'" required>';
+                                if(isset($_GET['date_start']) && isset($_GET['date_end'])){
+                                    echo '<input class="form-control" placeholder="Date de début du sejour" type="date" name="date_start_reservation" id="date_start_reservation" value ="'.$_GET['date_start'].'" required>';
+                                }
+                                else{
+                                    echo '<input class="form-control" placeholder="Date de début du sejour" type="date" name="date_start_reservation" id="date_start_reservation" required>';
+                                }
                             ?>
                             <label class="form-label" for="date_start_reservation">Date de début du sejour</label>
                         </div>
                         <br>
                         <div class="form-floating w-75">
                             <?php
+                            if(isset($_GET['date_start']) && isset($_GET['date_end'])){
                                 echo '<input class="form-control" placeholder="Date de fin du sejour" type="date" name="date_end_reservation" id="date_end_reservation" value ="'.$_GET['date_end'].'" required>';
+                            }
+                            else{
+                                echo '<input class="form-control" placeholder="Date de fin du sejour" type="date" name="date_end_reservation" id="date_end_reservation" required>';
+                            }
                             ?>
                             <label class="form-label" for="date_end_reservation">Date de fin du sejour</label>
                         </div>
@@ -216,8 +223,7 @@ $nb_images = count($images);
                     </form>
                 </section>
                 <?php
-            }
-        }
+                }
         ?>
     </div>
 </div>
