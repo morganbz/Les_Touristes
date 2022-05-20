@@ -127,8 +127,8 @@
                 }
             }
             else if ($page == "housing" ){
-                if (isset($_GET["h"])){
-                    displayHousing($_GET["h"]);
+                if (isset($_GET["id_housing"])){
+                    displayHousing($_GET["id_housing"]);
                 } else {
                     include_once "page_404.php";
                 }

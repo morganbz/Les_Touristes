@@ -143,11 +143,37 @@ html, body {
     margin-left: 50%;
 }
 
-#housing_description {
+#housing_description, #activity_description {
     width: 75%;
+    margin-top: 30px;
 }
+
+#activity_description{
+  width: 85%;
+}
+
 #housing_booking {
-    width: 25%;
+  position: absolute;
+  top: 40rem;
+  z-index: 1;
+  width: 25%;
+  display: inline-block;
+  right: 50px;
+  padding: 20px 5px;
+  background-color: rgba(32, 39, 123, 0.17);
+  border: 2px solid rgba(32, 39, 123, 0.27);
+}
+
+#housing_booking input{
+  background-color: rgba(240, 240, 240, 0.9);
+}
+
+@media (max-width: 767px) {
+  #housing_booking {
+    position: initial;
+    width: 90%;
+    margin: 10px 5%;
+  }
 }
 
 .flex{
