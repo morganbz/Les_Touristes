@@ -94,7 +94,7 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtoupper($_SERVER['HTTP_X_REQU
     {
         $response_code = HTTP_OK;
         $destination = $_POST['destination'];
-        if(isset($_POST['type'];)){
+        if(isset($_POST['type'])){
             $type = $_POST['type'];
         }
         else{
