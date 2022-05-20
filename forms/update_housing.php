@@ -5,7 +5,7 @@ if(isset($_SESSION["id_user"])){
 
         $housing = getHousingById($id_housing);
         
-        if (isset($_SESSION["id_user"]) == $housing["id_owner"]){
+        if ($_SESSION["id_user"] == $housing["id_owner"]){
             $address = getAddress($housing["latitude"], $housing["longitude"]);
             ?>
             <div class="container">
@@ -47,7 +47,7 @@ if(isset($_SESSION["id_user"])){
 
                                 <div>
                                     <h3 class="dark-color"><label class="h3" for="description_housing_announce_update">Description</label></h3>
-                                    <textarea class="form-control w-30" name='description_housing_announce_update' placeholder="Description du logement" id='description_housing_announce_update'>"<?php echo $housing["description"];?>"</textarea>
+                                    <textarea class="form-control w-30" name='description_housing_announce_update' placeholder="Description du logement" id='description_housing_announce_update'><?php echo $housing["description"];?></textarea>
                                     
                                 </div>
 
