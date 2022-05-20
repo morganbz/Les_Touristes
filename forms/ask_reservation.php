@@ -263,8 +263,6 @@ $nb_images = count($images);
     }
 
     var has_events = document.getElementsByClassName("day has-event");
-    console.log(has_events);
-    console.log(has_events.length);
 
     for (var i = 0; i < has_events.length; i++) {
         has_events[i].innerHTML  = "<p data-bs-toggle='tooltip' data-bs-placement='bottom' data-bs-html='true' title='" +
@@ -274,15 +272,15 @@ $nb_images = count($images);
 
 
 
-    console.log(btn);
+    if(btn.length > 0){
+        btn.onclick = function(e) {
+            var message = (parseInt($('#nb_day' + $('#select_date').val()).val()) *  parseInt($('#price' + $('#select_date').val()).val())) + '€';
+            $('input[name=date_start_reservation]').val( $('#date_start_near' + $('#select_date').val()).val() );
+            $('input[name=date_end_reservation]').val( $('#date_end_near' + $('#select_date').val()).val() );
+            $('#price_id').text(message);
 
-    btn.onclick = function(e) {
-        var message = (parseInt($('#nb_day' + $('#select_date').val()).val()) *  parseInt($('#price' + $('#select_date').val()).val())) + '€';
-        $('input[name=date_start_reservation]').val( $('#date_start_near' + $('#select_date').val()).val() );
-        $('input[name=date_end_reservation]').val( $('#date_end_near' + $('#select_date').val()).val() );
-        $('#price_id').text(message);
 
-
+        }
     }
 
     $('input[name=date_end_reservation]').change(function() {
