@@ -80,10 +80,15 @@
 
         <script> 
         function fillSearch(id){
-                    $('input[name=place_search').val( $('#place_search' + id).val() );
-                    $('input[name=price_search_min]').val( $('#price_search_min' + id).val() );
-                    $('input[name=price_search_max]').val( $('#price_search_max' + id).val() );
-                    $('input[name=distance_search]').val( $('#distance_search' + id).val() );
+            $('input[name=place_search').removeAttr('value');
+            $('input[name=price_search_min]').removeAttr('value');
+            $('input[name=price_search_max]').removeAttr('value');
+            $('input[name=distance_search]').removeAttr('value');
+
+            $('input[name=place_search').val( $('#place_search' + id).val() );
+            $('input[name=price_search_min]').val( $('#price_search_min' + id).val() );
+            $('input[name=price_search_max]').val( $('#price_search_max' + id).val() );
+            $('input[name=distance_search]').val( $('#distance_search' + id).val() );
                 }
         </script>
 
