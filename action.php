@@ -243,7 +243,7 @@
             $page = "user_page"; 
             $page_account = "see_announce";
         }
-        if($submit == "housing_announce_update"){
+        if($submit == "add_announce_period"){
             $date_start = $_POST["date_start"];
             $date_end = $_POST["date_end"];
             $price = $_POST["price"];
