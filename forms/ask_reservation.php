@@ -274,6 +274,7 @@ $nb_images = count($images);
 
 
 
+    console.log(btn);
 
     btn.onclick = function(e) {
         var message = (parseInt($('#nb_day' + $('#select_date').val()).val()) *  parseInt($('#price' + $('#select_date').val()).val())) + '€';
