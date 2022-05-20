@@ -1001,11 +1001,24 @@ function bookAnnounce($id_announce, $id_customer){
 
 function bookReservation($id_housing, $id_customer, $date_start, $date_end){
         global $base;
+        $ids = [];
 
         $sql = "UPDATE `reservation` SET accepted = 1 
                 WHERE id_housing = $id_housing AND id_user = $id_customer AND date_start = '$date_start' AND date_end = '$date_end'";
         $result = mysqli_query($base, $sql);
-        
+
+        $sql = "SELECT id_user FROM reservation WHERE id_housing = $id_housing AND id_user != $id_customer AND
+                (
+                (date_start BETWEEN '$date_start' AND '$date_end')
+                OR (date_end BETWEEN '$date_start' AND '$date_end')
+                )
+        ";
+        $result = mysqli_query($base, $sql);
+
+        while($row = mysqli_fetch_assoc($result)){
+                array_push($ids, $row);
+        }
+                
         $sql = "DELETE FROM `reservation`
                 WHERE id_housing = $id_housing AND
                 (
