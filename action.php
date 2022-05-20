@@ -251,13 +251,13 @@
             $curr_date = date("Y-m-d");
             if($date_start >= $curr_date){
                 addDistinctAnnounce($id_housing, $date_start, $date_end, $price);
-                $page = "user_page"; 
-                $page_account = "update_housing_announces";
+                $url = "./?page=update_housing_announces&id_housing=".$id_housing;
+                header("Location: ".$url);
 
 
             }
             else{
-                $url = "./?page=user_page&page_account=update_housing_announces&error=past";
+                $url = "./?page=update_housing_announces&id_housing=".$id_housing."&error=past";
                 header("Location: ".$url);
             }
 
