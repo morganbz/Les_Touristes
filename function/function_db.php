@@ -997,7 +997,7 @@ function bookReservation($id_housing, $id_customer, $date_start, $date_end){
         }
 
         foreach($users as $user){
-                sendMailRefused($id_housing, $user['id'], $user['date_start'], $user['date_end']);
+                sendMailRefused($id_housing, $user['id_user'], $user['date_start'], $user['date_end']);
         }
         
         $sql = "DELETE FROM `reservation`
