@@ -267,7 +267,7 @@ function getLocation()
             for(let i = 0; i < results.length; i++){
 
                 if(results[i]['is_near'] == false){
-                    var div = "<div class='data_search border border-2 rounded-1 border-secondary'><a href='?page=ask_reservation&id_housing="+ results[i]["id"] + "&date_start="+ response["arrive"] +"&date_end=" + response["departure"] + "' class='link_announce'><h4>" + results[i]["nom"] + "</h4>"+ results[i]['type'] + " situé au " + results[i]['adresse'] + "</p><p>Prix à la nuit : " + results[i]['price'] + "</p><p>Description : " + results[i]['description'] +"</p>";
+                    var div = "<div class='data_search border-secondary'><a href='?page=ask_reservation&id_housing="+ results[i]["id"] + "&date_start="+ response["arrive"] +"&date_end=" + response["departure"] + "' class='link_announce'><h4>" + results[i]["nom"] + "</h4>"+ results[i]['type'] + " situé au " + results[i]['adresse'] + "</p><p>Prix à la nuit : " + results[i]['price'] + "</p><p>Description : " + results[i]['description'] +"</p>";
 
                     if(results[i]['nb_ask'] > 0){
                         if(results[i]['nb_ask'] == 1){
@@ -302,7 +302,7 @@ function getLocation()
                         day: 'numeric'});
 
 
-                        var div = "<div class='data_search border border-2 rounded-1 border-danger'><a href='?page=ask_reservation&id_housing="+ results[i]["id"] + "&date_start="+ response["arrive"] +"&date_end=" + response["departure"] + "&near=ok' class='link_announce'><h4>" + results[i]["nom"] + "</h4>"+ results[i]['type'] + " situé au " + results[i]['adresse'] + "</p><p>Prix à la nuit : " + results[i]['price'] + "</p><p>Description : " + results[i]['description'] +"</p>" + "<p class = 'font-italic'>" + "Ces dates ne sont pas disponibles, dates proche disponibles : du " + dateLocale1 + " au " + dateLocale2;
+                        var div = "<div class='data_search border-danger'><a href='?page=ask_reservation&id_housing="+ results[i]["id"] + "&date_start="+ response["arrive"] +"&date_end=" + response["departure"] + "&near=ok' class='link_announce'><h4>" + results[i]["nom"] + "</h4>"+ results[i]['type'] + " situé au " + results[i]['adresse'] + "</p><p>Prix à la nuit : " + results[i]['price'] + "</p><p>Description : " + results[i]['description'] +"</p>" + "<p class = 'font-italic'>" + "Ces dates ne sont pas disponibles, dates proche disponibles : du " + dateLocale1 + " au " + dateLocale2;
 
                     var size = results[i]['dates'].length;
 
