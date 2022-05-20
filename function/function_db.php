@@ -741,7 +741,7 @@ function askbookAnnounce($id_housing, $id_customer, $date_start, $date_end){
 function askBookHousingPeriod($id_housing, $id_customer, $date_start, $date_end){
 
         global $base;
-
+        //bite
         $sql = "INSERT INTO `reservation`(`id_user`, `id_housing`,`date_start`, `date_end`) 
         VALUES ($id_customer,$id_housing,'$date_start', '$date_end')";
         $announce = mysqli_query($base, $sql);
@@ -1000,10 +1000,14 @@ function bookAnnounce($id_announce, $id_customer){
 function bookReservation($id_housing, $id_customer, $date_start, $date_end){
         global $base;
 
+        //bite
+
         $sql = "UPDATE `reservation` SET accepted = 1 
                 WHERE id_housing = $id_housing AND id_user = $id_customer AND date_start = '$date_start' AND date_end = '$date_end'";
         $result = mysqli_query($base, $sql);
         
+        //bite
+
         $sql = "DELETE FROM `reservation`
                 WHERE id_housing = $id_housing AND
                 (
