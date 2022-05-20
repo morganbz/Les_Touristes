@@ -1341,8 +1341,9 @@ function addDistinctAnnounce($id_housing, $date_start, $date_end, $price){
 
         for($i = 1; $i <= $days + 1; $i++ ){
 
-                addAnnounce($price, $currDate, $id_housing, $nb_announce_distinct);
-
+                if(!announceExist($id_housing, $currDate)){
+                        addAnnounce($price, $currDate, $id_housing, $nb_announce_distinct);
+                }
                 $currDate = date("Y-m-d", strtotime($currDate.'+ 1 days'));
 
         }
