@@ -93,6 +93,19 @@ if(isset($_GET['resa'])){
             <input class="form-control" placeholder="Jusqu'où en km" type="float" name="distance_search" id="distance_search" required>
             <label class="form-label" for="distance_search">Distance</label>
         </div>
+        <div class="form-floating">
+            <select name="type_search" id="type_search" class="form-select" aria-label="Default select example">
+                <option selected value = "-1" >tous type</option>
+                <?php
+                $max = sizeof($TYPE_ACTIVITY);
+                for($i = 0; $i < $max; $i++){
+                    ?>
+                    <option value="<?php echo $i ; ?>"><?php echo $TYPE_ACTIVITY[$i]; ?></option>
+                    <?php
+                }
+                ?>
+            </select>
+        </div>
         
         <button class="btn btn-outline-primary ms-5" onclick="getLocationActivity()">Rechercher</button>
     </div>

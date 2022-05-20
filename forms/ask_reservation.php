@@ -1,4 +1,3 @@
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript" src="jquery.simple-calendar.js"></script>
 <link rel="stylesheet" type="text/css" href="simple-calendar.css" />
@@ -129,7 +128,7 @@ $nb_images = count($images);
 
             ?>
                 <div class="d-inline-flex p-2 bd-highlight">
-                <select class="form-select" aria-label="Default select example" id="select_date" >
+                <select name = "select_date" class="form-select" aria-label="Default select example" id="select_date" >
                     <option selected>dates de séjour suggérées </option>
                     <?php
                     foreach($dates as $date){
@@ -152,7 +151,6 @@ $nb_images = count($images);
 
                     }
                     ?>
-                    <button class="btn btn-outline-primary " id="validate_date">Valider</button>
                 </div>
 
 
@@ -188,23 +186,30 @@ $nb_images = count($images);
         }
         else{
 
-        
-            if(isset($_GET['date_start']) && isset($_GET['date_end'])){
-
                 ?>
                 <section>
                     <form class="d-flex flex-column justify-content-center align-items-center" action="index.php" method="post">
                         <br>
                         <div class="form-floating w-75">
                             <?php
-                                echo '<input class="form-control" placeholder="Date de début du sejour" type="date" name="date_start_reservation" id="date_start_reservation" value ="'.$_GET['date_start'].'" required>';
+                                if(isset($_GET['date_start']) && isset($_GET['date_end'])){
+                                    echo '<input class="form-control" placeholder="Date de début du sejour" type="date" name="date_start_reservation" id="date_start_reservation" value ="'.$_GET['date_start'].'" required>';
+                                }
+                                else{
+                                    echo '<input class="form-control" placeholder="Date de début du sejour" type="date" name="date_start_reservation" id="date_start_reservation" required>';
+                                }
                             ?>
                             <label class="form-label" for="date_start_reservation">Date de début du sejour</label>
                         </div>
                         <br>
                         <div class="form-floating w-75">
                             <?php
+                            if(isset($_GET['date_start']) && isset($_GET['date_end'])){
                                 echo '<input class="form-control" placeholder="Date de fin du sejour" type="date" name="date_end_reservation" id="date_end_reservation" value ="'.$_GET['date_end'].'" required>';
+                            }
+                            else{
+                                echo '<input class="form-control" placeholder="Date de fin du sejour" type="date" name="date_end_reservation" id="date_end_reservation" required>';
+                            }
                             ?>
                             <label class="form-label" for="date_end_reservation">Date de fin du sejour</label>
                         </div>
@@ -213,13 +218,24 @@ $nb_images = count($images);
                             echo "<input type = 'hidden' name = id_housing value =  ".$_GET['id_housing']." >";
                         ?>
                         <br>
-                        <p name = "price" id = "price_id"><?php echo getPriceHousingPeriod($_GET['id_housing'],$_GET['date_start'], $_GET['date_end']) ; ?>€</p>
+                        <?php
+                        if(isset($_GET['date_start']) && isset($_GET['date_end'])){
+                            ?>
+                            <p name = "price" id = "price_id"><?php echo getPriceHousingPeriod($_GET['id_housing'],$_GET['date_start'], $_GET['date_end']) ; ?>€</p>
+
+                            <?php
+                        }
+                        else{
+                            ?>
+                            <p name = "price" id = "price_id"></p>
+                            <?php
+                        }
+                        ?>
                         <button class="btn btn-outline-primary btn-lg w-75" id="submit" name="submit" value="Ask_reservation" type="submit">Reserver</button>
                     </form>
                 </section>
                 <?php
-            }
-        }
+                }
         ?>
     </div>
 </div>
@@ -231,9 +247,15 @@ $nb_images = count($images);
         disableEmptyDetails: true, // disable showing empty date details
     }
     );
-    let $calendar = container.data('plugin_simpleCalendar');
-   
-    var btn = document.getElementById('validate_date');
+    let $calendar = container.data('plugin_simpleCalendar')
+
+    var newEvent = {
+    startDate: new Date(new Date().setHours(new Date().getHours() + 48)).toISOString(),
+    endDate: new Date(new Date().setHours(new Date().getHours() + 49)).getTime(),
+    summary: 'New event'
+    };
+
+    $calendar.addEvent(newEvent);
 
     var prices = document.getElementsByClassName("price_announce");
 
@@ -275,15 +297,13 @@ $nb_images = count($images);
 
 
 
-    btn.onclick = function(e) {
+    $('[name="select_date"]').change(function() {
         var message = (parseInt($('#nb_day' + $('#select_date').val()).val()) *  parseInt($('#price' + $('#select_date').val()).val())) + '€';
         $('input[name=date_start_reservation]').val( $('#date_start_near' + $('#select_date').val()).val() );
         $('input[name=date_end_reservation]').val( $('#date_end_near' + $('#select_date').val()).val() );
         $('#price_id').text(message);
-
-
-    }
-
+    })
+    
     $('input[name=date_end_reservation]').change(function() {
         var price = 0;
         var date_start = $('input[name=date_start_reservation]').val();

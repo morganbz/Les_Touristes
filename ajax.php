@@ -94,6 +94,12 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtoupper($_SERVER['HTTP_X_REQU
     {
         $response_code = HTTP_OK;
         $destination = $_POST['destination'];
+        if(isset($_POST['type'])){
+            $type = $_POST['type'];
+        }
+        else{
+            $type = -1;
+        }
         if(isset($_POST['distance'])){
             $distance = $_POST['distance'];
             if($_POST['distance'] == ''){
@@ -101,7 +107,7 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtoupper($_SERVER['HTTP_X_REQU
             }
         }
         $message = "OK";
-        $data = searchActivity($destination, $distance);
+        $data = searchActivity($destination, $distance, $type);
     }
     
     elseif ($_POST['action'] == "addLike" && isset($_POST['infos'])) {

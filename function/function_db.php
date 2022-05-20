@@ -274,17 +274,21 @@ function getAllNearDate($date_start, $date_end){
                         'date_end' => date("Y-m-d", strtotime($date_end.'+ '.$i.' days'))
                 ));
 
-                array_push($dates,
-                array(
-                        'date_start' => date("Y-m-d", strtotime($date_start.'+ '.$i.' days')),
-                        'date_end' => $date_end
-                ));
+                if($i == 1){
+                        array_push($dates,
+                        array(
+                                'date_start' => date("Y-m-d", strtotime($date_start.'+ '.$i.' days')),
+                                'date_end' => $date_end
+                        ));
 
-                array_push($dates,
-                array(
-                        'date_start' => $date_start,
-                        'date_end' => date("Y-m-d", strtotime($date_end.'- '.$i.' days'))
-                ));
+                        array_push($dates,
+                        array(
+                                'date_start' => $date_start,
+                                'date_end' => date("Y-m-d", strtotime($date_end.'- '.$i.' days'))
+                        ));
+
+                }
+
 
                 array_push($dates,
                 array(
@@ -311,12 +315,6 @@ function getAllNearDate($date_start, $date_end){
                 array(
                         'date_start' => date("Y-m-d", strtotime($date_start.'+ 2 days')),
                         'date_end' => date("Y-m-d", strtotime($date_end.'+ 1 days'))
-                ));
-
-                array_push($dates,
-                array(
-                        'date_start' => date("Y-m-d", strtotime($date_start.'+ 1 days')),
-                        'date_end' => date("Y-m-d", strtotime($date_end.'+ 2 days'))
                 ));
 
                 array_push($dates,
@@ -523,6 +521,10 @@ function durationDispo($id_housing, $date_start, $date_end){
                         array_push($results, $date);
                 }
         }
+        $date_start = array_column($results, 'date_start');
+        $nb_day = array_column($results, 'nb_day');
+        array_multisort($date_start,SORT_ASC, $nb_day,  $results);
+
         return $results;
         
         
@@ -1596,13 +1598,15 @@ function fromResaToHistory(){
 
 }
 
-function searchActivity($dest, $distance){
+function searchActivity($dest, $distance, $type){
         global $base;
         $TYPE_ACTIVITY = array("Randonnée", "Espace Culturel", "Restauration", "Baignade");
         $country = getCountryFromAddress($dest);
 
         $sql = "SELECT * FROM `activity` WHERE country = '$country'";
-
+        if($type != -1 && $type != "-1"){
+                $sql = $sql . " AND type = $type";
+        }
 
         $result = mysqli_query($base, $sql);
 
