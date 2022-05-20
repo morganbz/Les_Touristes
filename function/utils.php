@@ -296,24 +296,25 @@ function getNbDay($date_start, $date_end){
 }
 
 
-function sendMailOwner($id_housing, $id_customer, $date_start, $date_end){
+function sendMailOwner($id_housing, $id_owner, $date_start, $date_end){
     $mail_subject = 'Demande de réservation';
     $mail_body = '';
-    $mail_receiver = '';
+    
+    $mail_receiver = getMailById($id_owner);
     send_mail($mail_subject, $mail_body, $mail_receiver);
 }
 
 function sendMailAccepted($id_housing, $id_customer, $date_start, $date_end){
     $mail_subject = 'Demande de réservation acceptée';
     $mail_body = '';
-    $mail_receiver = '';
+    $mail_receiver = getMailById($id_customer);
     send_mail($mail_subject, $mail_body, $mail_receiver);
 }
 
 function sendMailRefused($id_housing, $id_customer, $date_start, $date_end){
     $mail_subject = 'Demande de réservation refusée';
     $mail_body = '';
-    $mail_receiver = '';
+    $mail_receiver = getMailById($id_customer);
     send_mail($mail_subject, $mail_body, $mail_receiver);
 }
 
