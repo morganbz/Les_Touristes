@@ -1599,8 +1599,10 @@ function searchActivity($dest, $distance, $type){
         $TYPE_ACTIVITY = array("Randonnée", "Espace Culturel", "Restauration", "Baignade");
         $country = getCountryFromAddress($dest);
 
-        $sql = "SELECT * FROM `activity` WHERE country = '$country' AND type = $type";
-
+        $sql = "SELECT * FROM `activity` WHERE country = '$country'";
+        if($type != -1){
+                $sql = $sql . " AND type = $type";
+        }
 
         $result = mysqli_query($base, $sql);
 
