@@ -272,7 +272,7 @@ $nb_images = count($images);
 
 
 
-    if(btn.length > 0){
+    if($('#validate_date').length > 0){
         btn.onclick = function(e) {
             var message = (parseInt($('#nb_day' + $('#select_date').val()).val()) *  parseInt($('#price' + $('#select_date').val()).val())) + '€';
             $('input[name=date_start_reservation]').val( $('#date_start_near' + $('#select_date').val()).val() );
