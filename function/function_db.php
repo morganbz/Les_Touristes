@@ -51,6 +51,8 @@ function addHousingAndAnnounce($id_owner, $type, $latitude, $longitude, $name, $
 
         mysqli_query($base, $sql);
 
+        setPointsUser($id_owner, 2, 4);
+
         return $id_housing;
 }
 
@@ -217,23 +219,38 @@ function updateUser($firstname, $lastname, $birth_date, $phone, $description){
                 $errors[] = "Erreur au moment de l'ajout dans la base de donnée";
                 $_SESSION["errors_modifications"] = $errors;
         }
+
+        setPointsUser($_SESSION["id_user"], 1, 9);
 }
 
-function modificationPassUser($pass){
+function modificationPassUser($old_pass, $pass){
         global $base;
 
         $id = $_SESSION["id_user"];
 
-        $sql = "UPDATE user SET password='$pass' WHERE id=$id";
+        $sql = "SELECT password FROM user WHERE id=$id";
 
-        $insert_modification_pass_user = $base->query($sql);
+        $result = mysqli_query($base, $sql);
 
-        if ($insert_modification_pass_user){
-                unset($_SESSION["errors_modification_pass"]);
+        $insert_modification_pass_user = false;
+
+        if(password_verify($old_pass, mysqli_fetch_assoc($result)["password"])){
+            $sql = "UPDATE user SET password='$pass' WHERE id=$id";
+
+                $insert_modification_pass_user = $base->query($sql);
+
+                if ($insert_modification_pass_user){
+                        unset($_SESSION["errors_modification_pass"]);
+                } else {
+                        $errors[] = "Erreur au moment de l'ajout dans la base de donnée";
+                        $_SESSION["errors_modification_pass"] = $errors;
+                }    
         } else {
-                $errors[] = "Erreur au moment de l'ajout dans la base de donnée";
+                $errors[] = "L’ancien mot de passe saisi est incorrect. Veuillez recommencer.";
                 $_SESSION["errors_modification_pass"] = $errors;
         }
+
+        return $insert_modification_pass_user;
 }
 
 // ----------------------------------------------------- ANNOUNCE ----------------------------------------
@@ -257,21 +274,17 @@ function getAllNearDate($date_start, $date_end){
                         'date_end' => date("Y-m-d", strtotime($date_end.'+ '.$i.' days'))
                 ));
 
-                if($i == 1){
-                        array_push($dates,
-                        array(
-                                'date_start' => date("Y-m-d", strtotime($date_start.'+ '.$i.' days')),
-                                'date_end' => $date_end
-                        ));
+                array_push($dates,
+                array(
+                        'date_start' => date("Y-m-d", strtotime($date_start.'+ '.$i.' days')),
+                        'date_end' => $date_end
+                ));
 
-                        array_push($dates,
-                        array(
-                                'date_start' => $date_start,
-                                'date_end' => date("Y-m-d", strtotime($date_end.'- '.$i.' days'))
-                        ));
-
-                }
-
+                array_push($dates,
+                array(
+                        'date_start' => $date_start,
+                        'date_end' => date("Y-m-d", strtotime($date_end.'- '.$i.' days'))
+                ));
 
                 array_push($dates,
                 array(
@@ -298,6 +311,12 @@ function getAllNearDate($date_start, $date_end){
                 array(
                         'date_start' => date("Y-m-d", strtotime($date_start.'+ 2 days')),
                         'date_end' => date("Y-m-d", strtotime($date_end.'+ 1 days'))
+                ));
+
+                array_push($dates,
+                array(
+                        'date_start' => date("Y-m-d", strtotime($date_start.'+ 1 days')),
+                        'date_end' => date("Y-m-d", strtotime($date_end.'+ 2 days'))
                 ));
 
                 array_push($dates,
@@ -330,7 +349,7 @@ function searchNearDateAnnounce($priceMin, $priceMax, $date_start, $date_end, $d
         $nb_day = array_column($result, 'nb_day');
         $dispo_start = array_column($result, 'dispo_start');
         $dispo_end = array_column($result, 'dispo_end');
-        array_multisort($nb_day, $result);
+        array_multisort($nb_day, SORT_DESC, $dispo_start, $dispo_end, $result);
 
         return $result;
 }
@@ -407,6 +426,10 @@ function searchAnnounce($priceMin, $priceMax, $date_start, $date_end, $dest, $di
 
         $nb_ask = array_column($result, 'nb_ask');
         array_multisort($nb_ask,SORT_ASC, $result);
+
+        if (isset($_SESSION["id_user"])){
+                setPointsUser($_SESSION["id_user"], 2, 10);
+        }
 
         return $result;
 }
@@ -500,10 +523,6 @@ function durationDispo($id_housing, $date_start, $date_end){
                         array_push($results, $date);
                 }
         }
-        $date_start = array_column($results, 'date_start');
-        $nb_day = array_column($results, 'nb_day');
-        array_multisort($date_start,SORT_ASC, $nb_day,  $results);
-
         return $results;
         
         
@@ -1124,6 +1143,10 @@ function addHousingAnnounceDate($id, $price, $date) {
                 $errors[] = "Erreur au moment de l'ajout dans la base de donnée";
                 $_SESSION["errors_add_housing_date"] = $errors;
         }
+        
+        if (isset($_SESSION["id_user"])){
+                setPointsUser($_SESSION["id_user"], 1, 4);
+        }
 
 }
 
@@ -1197,6 +1220,11 @@ function addRating($id_rated, $id_rater, $rate, $title, $message, $type_rated){
         
         $result = mysqli_query($base, $sql);
 
+        if ($rate > 2.5){
+                setPointsUser($id_rater, 2, 5);    
+        } else{
+                setPointsUser($id_rater, 2, 6);
+        }
 }
 
 function addRatingUser($id_rated, $id_rater, $rate, $title, $message){
@@ -1359,6 +1387,17 @@ function addActivity($nom, $idtype, $pays, $lat, $long, $id_user, $desc){
 
         mysqli_query($base, $sql);
 
+        if($idtype == 0){
+                setPointsUser($id_user, 2, 3);     
+        } else if ($idtype == 1) {
+                setPointsUser($id_user, 2, 7);  
+        } else if ($idtype == 2) {
+                setPointsUser($id_user, 2, 8);  
+        } else if ($idtype == 3) {
+                setPointsUser($id_user, 2, 2);  
+        }
+        
+
         return $id_activity;
 }
 
@@ -1384,7 +1423,7 @@ function getActivityById($id){
 
         $activity = [];
 
-        $sql = "SELECT id, type, latitude, longitude, country, nom, description, image_folder
+        $sql = "SELECT id, id_owner, type, latitude, longitude, country, nom, description, image_folder
                 FROM activity
                 WHERE id = $id";
         $result = mysqli_query($base, $sql);
@@ -1497,6 +1536,7 @@ function addHousingHistory($begin_date, $end_date, $id_user, $id_housing){
 
         mysqli_query($base, $sql);
 
+        setPointsUser($id_user, 2, 1);
 }
 
 function getHistoryByIdUser($id){
@@ -1578,7 +1618,6 @@ function searchActivity($dest, $distance, $type){
         return $activity;   
 }
 
-
 function getHousingHistoryBy($what, $id, $order = DATE_ORDER){
         global $base;
 
@@ -1638,9 +1677,6 @@ function getPreferenceByIdUser($id_user){
         }
     
         return $preferences;
-
-
-
 }
 
 //-------------------------- RECOMMANDATIONS -------------------------
@@ -1651,6 +1687,8 @@ function addRecommandation ($id_user, $id_recommandated, $type){
         $sql = "INSERT INTO recommandation (id_user, id_recommandated, type) VALUES ($id_user, $id_recommandated, $type)";
 
         mysqli_query($base, $sql);
+
+        setPointsUser($id_user, 2, 11);
 }
 
 function delRecommandation ($id_user, $id_recommandated, $type){
@@ -1659,6 +1697,8 @@ function delRecommandation ($id_user, $id_recommandated, $type){
         $sql = "DELETE FROM recommandation WHERE id_user = $id_user AND id_recommandated = $id_recommandated AND type = $type";
 
         mysqli_query($base, $sql);
+
+        setPointsUser($id_user, -2, 11);
 }
 
 function alreadyRecommanded($id_user, $id_recommandated, $type){
@@ -1764,6 +1804,22 @@ function setPointsUser($id_user, $nb_points, $id_sticker){
                 $id = $row["id"];
                 $sql = "UPDATE sticker_user SET points = points + $nb_points WHERE id = $id";
         }
+
+        mysqli_query($base, $sql);
+}
+
+//---------------------- MODIFICATION DES COORDONNEE GEOGRAPHIQUES UNIQUEMENT ----------------
+
+function updateCoords($id, $is_housing, $latitude, $longitude){
+        global $base;
+
+        if ($is_housing){
+                $table = "housing";  
+        } else {
+                $table = "activity";
+        }
+
+        $sql = "UPDATE $table SET latitude = $latitude, longitude = $longitude WHERE id = $id";
 
         mysqli_query($base, $sql);
 }
