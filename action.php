@@ -248,12 +248,18 @@
             $date_end = $_POST["date_end"];
             $price = $_POST["price"];
             $id_housing = $_POST["id_housing"];
+            $curr_date = date("Y-m-d");
+            if($date_start >= $curr_date){
+                addDistinctAnnounce($id_housing, $date_start, $date_end, $price);
+                $page = "user_page"; 
+                $page_account = "update_housing_announces";
 
-            addDistinctAnnounce($id_housing, $date_start, $date_end, $price);
 
-            $page = "user_page"; 
-            $page_account = "update_housing_announces";
-
+            }
+            else{
+                $url = "./?page=user_page&page_account=update_housing_announces&error=past";
+                header("Location: ".$url);
+            }
 
         }
 
