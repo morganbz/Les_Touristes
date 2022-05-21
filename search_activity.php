@@ -64,7 +64,20 @@ if(isset($_GET['resa'])){
                             <input class="form-control" placeholder="50" type="int" name="distance" id="distanceModal">
                         </div>
                     </div>
-                        <?php
+                    <div class="form-floating">
+                        <select name="type_search" id="type_searchModal" class="form-select" aria-label="Default select example">
+                            <option selected value = "-1" >tous type</option>
+                            <?php
+                            $max = sizeof($TYPE_ACTIVITY);
+                            for($i = 0; $i < $max; $i++){
+                                ?>
+                                <option value="<?php echo $i ; ?>"><?php echo $TYPE_ACTIVITY[$i]; ?></option>
+                                <?php
+                            }
+                            ?>
+                        </select>
+                    </div>
+                                    <?php
                             echo "<input  type='hidden' name='place_search_modal' id='place_search_modal' value ='".getAddress($housing['latitude'], $housing['longitude'])."' >";
                             echo "<input  type='hidden' name='place_search_modal' id='lat_modal' value ='".$housing['latitude']."' >";
                             echo "<input  type='hidden' name='place_search_modal' id='long_modal' value ='".$housing['longitude']."' >";

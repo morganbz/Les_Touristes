@@ -379,7 +379,8 @@ function getLocationActivityModal()
         data: {
             action: "getLocationActivity",
             destination: document.querySelector('#place_search_modal').value,
-            distance: document.querySelector('#distanceModal').value
+            distance: document.querySelector('#distanceModal').value,
+            type: document.querySelector('#type_searchModal').value
         },
         dataType: "json",
         beforeSend: function () {
