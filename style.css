@@ -181,7 +181,7 @@ html, body {
 .flex{
     flex-grow: 1;
 }
-/*.data_search{
+.data_search{
   padding: 20px 50px 50px 50px;
   margin-top: 20px;
   border-radius: 20px;
@@ -195,7 +195,7 @@ padding-bottom: 8px;
 border-bottom: solid 2px #ced4da;
 color: #20247b;
 font-weight: 450;
-}*/
+}
 .data_search:hover{
     background-color: lightgray;
     animation: change 1s 1;
