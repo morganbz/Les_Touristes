@@ -5,11 +5,7 @@
                 <h3 class="dark-color">Changement de mot de passe</h3>  
                 <form action="index.php" method="post" class="align-items-center">
                     <div>
-                        <h3 class="dark-color"><label class="h3" for="old_pass_modif">Ancien mot de Passe</label>
-                        <input class="form-control w-30" placeholder="Mot de Passe" type="password" name="old_pass_modif" id="old_pass_modif" minlenght="8" required>
-                    </div>
-                    <div>
-                        <h3 class="dark-color"><label class="h3" for="pass_modif">Nouveau mot de Passe</label>
+                        <h3 class="dark-color"><label class="h3" for="pass_modif">Mot de Passe</label>
                         <input class="form-control w-30" placeholder="Mot de Passe" type="password" name="pass_modif" id="pass_modif" minlenght="8" required>
                     </div>
 
@@ -23,9 +19,10 @@
 
                 <?php
                     if (isset($_SESSION["errors_modification_pass"])){
-                        echo "<ul class='error'>";
+                        echo "<p class='error'>Erreurs lors de la création de compte :</p>";
+                        echo "<ul>";
                         foreach($_SESSION["errors_modification_pass"] as $error_modification_pass)
-                            echo "<li>$error_modification_pass</li>";
+                            echo "<li class='error'>$error_modification_pass</li>";
                         echo "</ul>";
                     }
                 ?>

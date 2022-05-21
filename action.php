@@ -243,25 +243,6 @@
             $page = "user_page"; 
             $page_account = "see_announce";
         }
-        if($submit == "add_announce_period"){
-            $date_start = $_POST["date_start"];
-            $date_end = $_POST["date_end"];
-            $price = $_POST["price"];
-            $id_housing = $_POST["id_housing"];
-            $curr_date = date("Y-m-d");
-            if($date_start >= $curr_date){
-                addDistinctAnnounce($id_housing, $date_start, $date_end, $price);
-                $url = "./?page=update_housing_announces&id_housing=".$id_housing;
-                header("Location: ".$url);
-
-
-            }
-            else{
-                $url = "./?page=update_housing_announces&id_housing=".$id_housing."&error=past";
-                header("Location: ".$url);
-            }
-
-        }
 
         if ($submit == "del_announce") {
             $id = $_POST["id_announce_update"];
@@ -397,7 +378,6 @@
         // ---------------- MODIFICATION MOT DE PASSE UTILISATEURS --------------------------------
 
         if($submit == "modification_pass_user"){
-            $old_pass = $_POST["old_pass_modif"];
             $pass = $_POST["pass_modif"];
             $conf_pass = $_POST["conf_pass_modif"];
 
@@ -418,11 +398,7 @@
             }
            
             if($good_pass && $good_conf_pass){
-                $ok = modificationPassUser($old_pass, hash_password($pass));
-                if (!$ok){
-                    $page = "user_page";
-                    $page_account = "change_password";
-                }
+                modificationPassUser(hash_password($pass));
             } else {
                 $page = "user_page";
                 $page_account = "change_password";
@@ -439,12 +415,6 @@
         if($submit == "AskUpdateHousingInfos"){
             $id_housing = $_POST["id_housing"];
             $url = getURL()."?page=update_housing&id_housing=".$id_housing;
-            header('Location: '.$url.'');
-        }
-
-        if ($submit == "AskUpdateHousingMap"){
-            $id_housing = $_POST["id_housing"];
-            $url = getURL()."?page=map_housing&id_housing=".$id_housing;
             header('Location: '.$url.'');
         }
 
@@ -507,12 +477,6 @@
             header('Location: '.$url.'');
         }
 
-        if ($submit == "AskUpdateActivityMap"){
-            $id_activity = $_POST["id_activity"];
-            $url = getURL()."?page=map_activity&id_activity=".$id_activity;
-            header('Location: '.$url.'');
-        }
-
         if($submit == "activity_update"){
             $type = $_POST["type_activity"];
             $city = $_POST["city_activity_update"];
@@ -539,29 +503,7 @@
 
             $page = "user_page";
             $page_account = "see_activity";
-        }
-
-        //---------------------- MODIFICATION DES COORDONNEE GEOGRAPHIQUES UNIQUEMENT ----------------
-        if ($submit == "update_map_position"){
-            $id = $_POST["id_update_map_position"];
-            $is_housing = $_POST["is_housing_update_map_position"];
-
-            $latitude = $_POST["update_map_position_latitude"];
-            $longitude = $_POST["update_map_position_longitude"];
-
-            if(is_numeric($latitude) && is_numeric($longitude)){
-                updateCoords($id, $is_housing, $latitude, $longitude);
-            }
-
-            if ($is_housing){
-                $url = "?page=map_housing&id_housing=".$id;
-            } else {
-                $url = "?page=map_activity&id_activity=".$id;
-            }
-
-            header('Location: '.$url.'');
-        }
-        
+        }   
 
         //---------------------- AJOUT D'UNE PREFERENCE POUR RECHERCHE LOGEMENT ----------------------
 

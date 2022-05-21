@@ -55,7 +55,7 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="about-avatar">
-                            <img class="img-size img-profile" src="<?php echo $profile_picture;?>" alt="Photo de profil">
+                            <img src="<?php echo $profile_picture;?>" alt="Photo de profil">
                         </div>
                     </div>
                 </div>
