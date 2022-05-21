@@ -89,7 +89,7 @@ $nb_images = count($best_annouces_w_img);
                 if (! $best_annouces_w_img[0]["is_housing"]){
                     echo "<a class='home_page_link' href='?page=activity&a=".$best_annouces_w_img[0]["infos"]["id"]."'>";
                 } else {
-                    echo "<a class='home_page_link' href='?page=housing&h=".$best_annouces_w_img[0]["infos"]["id"]."'>";
+                    echo "<a class='home_page_link' href='?page=housing&id_housing=".$best_annouces_w_img[0]["infos"]["id"]."'>";
                 }
                 echo "<h1 class='center-align home_page_link'>".$best_annouces_w_img[0]["infos"]["nom"]."</h1></a>";
                 echo '</div>';
@@ -107,7 +107,7 @@ $nb_images = count($best_annouces_w_img);
                 if (! $best_annouces_w_img[$index]["is_housing"]){
                     echo "<a class='home_page_link' href='?page=activity&a=".$best_annouces_w_img[$index]["infos"]["id"]."'>";
                 }  else {
-                    echo "<a class='home_page_link' href='?page=housing&h=".$best_annouces_w_img[$index]["infos"]["id"]."'>";
+                    echo "<a class='home_page_link' href='?page=housing&id_housing=".$best_annouces_w_img[$index]["infos"]["id"]."'>";
                 }
                 echo "<h1 class='center-align home_page_link'>".$best_annouces_w_img[$index]["infos"]["nom"]."</h1></a>";
                 echo '</div>';

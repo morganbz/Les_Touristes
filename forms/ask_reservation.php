@@ -8,6 +8,19 @@ $housing = getHousingById($id);
 
 $log_directory = $housing["image_folder"];
 
+$owner = getUserById($housing["id_owner"]);
+
+$profile_picture = "./ressources/profile_picture.png";
+        $profile_picture_folder = "picture_profile/".$owner["id"];
+        if (isset($profile_picture_folder)){
+            $files = scandir ($profile_picture_folder);
+            foreach($files as $file){
+                if ($file != "." && $file != ".."){
+                    $profile_picture = $profile_picture_folder."/".$file;
+                }
+            }
+        }
+
 displayCarousel($log_directory);
 ?>
 
@@ -15,7 +28,7 @@ displayCarousel($log_directory);
     <div id="housing_description" class="ms-5 about-text display-form-bg">
         <br>
             <h3 class='center-align dark-color'><?php echo $housing["nom"]; ?><NOBR class='h4 ms-5' style='color:black;'><?php echo getNbRecommandationActivity ($id); displayHeart($id, 1);?></NOBR></h3>
-            <?php 
+            <h4 class="center-align" style='padding-left: 3px;'><a href="?page=user&u=<?php echo $owner["id"]; ?>" class="link_user"><img class="photo_user_min" src="<?php echo $profile_picture; ?>" alt="Photo de profil"><?php echo $owner["firstname"]." ".$owner["lastname"];?></a></h4><?php
             echo "<h4 style='padding-left: 3px; border-left: 3px solid rgba(32, 39, 123, 0.17); border-radius: 2px;'>".$TYPE_HOUSING[$housing["type"]]."</h4>";
             echo "<h2 style='padding-left: 3px; border-left: 3px solid rgba(32, 39, 123, 0.17); border-radius: 2px;'>Description</h2>";
             echo "<p class='ms-3'>".$housing["description"]."</p>";
@@ -51,123 +64,125 @@ displayCarousel($log_directory);
                                                     })
                                     );
                                 </script>
-        <div id="housing_booking" class="display-form-bg">
-            <?php
-            if(isset($_GET['near'])){
-                $dates = durationDispo($_GET['id_housing'], $_GET['date_start'], $_GET['date_end']);
-                $cpt = 0;
-
-                ?>
-                    <div class="d-inline-flex p-2 bd-highlight">
-                    <select name = "select_date" class="form-select" aria-label="Default select example" id="select_date" >
-                        <option selected>dates de séjour suggérées </option>
-                        <?php
-                        foreach($dates as $date){
-                            echo "<option class='option_near' id='option_near' value='".$cpt."' ><?php ?>Du ".getNiceDate($date['date_start'])." au ".getNiceDate($date['date_end'])."</option>";
-                            $cpt++;
-                        }
-                        ?>
-
-                    </select>
-                    <?php
-                        $cpt = 0;
-                        foreach($dates as $date){
-                            echo "<input  type='hidden' class='date_start_near' name='date_start_near".$cpt."' id='date_start_near".$cpt."' value =".$date['date_start']." >";
-                            echo "<input  type='hidden' class='date_end_near' name='date_end_near".$cpt."' id='date_end_near".$cpt."' value =".$date['date_end']." >";
-                            echo "<input  type='hidden' class='nb_day' name='nb_day".$cpt."' id='nb_day".$cpt."' value =".$date['nb_day']." >";
-                            echo "<input  type='hidden' class='price' name='price".$cpt."' id='price".$cpt."' value =".$date['price']." >";
-                            
-
-                            $cpt++;
-
-                        }
-                        ?>
-                    </div>
-
-
-
-                    <section>
-                        <form class="d-flex flex-column justify-content-center align-items-center" action="index.php" method="post">
-                            <br>
-                            <div class="form-floating w-75">
-                                <?php
-                                    echo '<input class="form-control" placeholder="Date de début du sejour" type="date" name="date_start_reservation" id="date_start_reservation" required>';
-                                ?>
-                                <label class="form-label" for="date_start_reservation">Date de début du sejour</label>
-                            </div>
-                            <br>
-                            <div class="form-floating w-75">
-                                <?php
-                                    echo '<input class="form-control" placeholder="Date de fin du sejour" type="date" name="date_end_reservation" id="date_end_reservation" required>';
-                                ?>
-                                <label class="form-label" for="date_end_reservation">Date de fin du sejour</label>
-                            </div>
-                    
-                            <?php
-                                echo "<input type = 'hidden' name = id_housing value =  ".$_GET['id_housing']." >";
-                            ?>
-                            <br>
-                            <p name = "price" id = "price_id"></p>
-                            <button class="btn btn-outline-primary btn-lg w-75" id="submit" name="submit" value="Ask_reservation" type="submit">Reserver</button>
-                        </form>
-                    </section>
-
+        <div class='container_housing_book'>
+            <div id="housing_booking" class="display-form-bg">
                 <?php
-
-            }
-            else{
+                if(isset($_GET['near'])){
+                    $dates = durationDispo($_GET['id_housing'], $_GET['date_start'], $_GET['date_end']);
+                    $cpt = 0;
 
                     ?>
-                    <section>
-                        <form class="d-flex flex-column justify-content-center align-items-center" action="index.php" method="post">
-                            <br>
-                            <div class="form-floating w-75">
+                        <div class="d-inline-flex p-2 bd-highlight">
+                        <select name = "select_date" class="form-select" aria-label="Default select example" id="select_date" >
+                            <option selected>dates de séjour suggérées </option>
+                            <?php
+                            foreach($dates as $date){
+                                echo "<option class='option_near' id='option_near' value='".$cpt."' ><?php ?>Du ".getNiceDate($date['date_start'])." au ".getNiceDate($date['date_end'])."</option>";
+                                $cpt++;
+                            }
+                            ?>
+
+                        </select>
+                        <?php
+                            $cpt = 0;
+                            foreach($dates as $date){
+                                echo "<input  type='hidden' class='date_start_near' name='date_start_near".$cpt."' id='date_start_near".$cpt."' value =".$date['date_start']." >";
+                                echo "<input  type='hidden' class='date_end_near' name='date_end_near".$cpt."' id='date_end_near".$cpt."' value =".$date['date_end']." >";
+                                echo "<input  type='hidden' class='nb_day' name='nb_day".$cpt."' id='nb_day".$cpt."' value =".$date['nb_day']." >";
+                                echo "<input  type='hidden' class='price' name='price".$cpt."' id='price".$cpt."' value =".$date['price']." >";
+                                
+
+                                $cpt++;
+
+                            }
+                            ?>
+                        </div>
+
+
+
+                        <section>
+                            <form class="d-flex flex-column justify-content-center align-items-center" action="index.php" method="post">
+                                <br>
+                                <div class="form-floating w-75">
+                                    <?php
+                                        echo '<input class="form-control" placeholder="Date de début du sejour" type="date" name="date_start_reservation" id="date_start_reservation" required>';
+                                    ?>
+                                    <label class="form-label" for="date_start_reservation">Date de début du sejour</label>
+                                </div>
+                                <br>
+                                <div class="form-floating w-75">
+                                    <?php
+                                        echo '<input class="form-control" placeholder="Date de fin du sejour" type="date" name="date_end_reservation" id="date_end_reservation" required>';
+                                    ?>
+                                    <label class="form-label" for="date_end_reservation">Date de fin du sejour</label>
+                                </div>
+                        
                                 <?php
+                                    echo "<input type = 'hidden' name = id_housing value =  ".$_GET['id_housing']." >";
+                                ?>
+                                <br>
+                                <p name = "price" id = "price_id"></p>
+                                <button class="btn btn-outline-primary btn-lg w-75" id="submit" name="submit" value="Ask_reservation" type="submit">Reserver</button>
+                            </form>
+                        </section>
+
+                    <?php
+
+                }
+                else{
+
+                        ?>
+                        <section>
+                            <form class="d-flex flex-column justify-content-center align-items-center" action="index.php" method="post">
+                                <br>
+                                <div class="form-floating w-75">
+                                    <?php
+                                        if(isset($_GET['date_start']) && isset($_GET['date_end'])){
+                                            echo '<input class="form-control" placeholder="Date de début du sejour" type="date" name="date_start_reservation" id="date_start_reservation" value ="'.$_GET['date_start'].'" required>';
+                                        }
+                                        else{
+                                            echo '<input class="form-control" placeholder="Date de début du sejour" type="date" name="date_start_reservation" id="date_start_reservation" required>';
+                                        }
+                                    ?>
+                                    <label class="form-label" for="date_start_reservation">Date de début du sejour</label>
+                                </div>
+                                <br>
+                                <div class="form-floating w-75 mt-1">
+                                    <?php
                                     if(isset($_GET['date_start']) && isset($_GET['date_end'])){
-                                        echo '<input class="form-control" placeholder="Date de début du sejour" type="date" name="date_start_reservation" id="date_start_reservation" value ="'.$_GET['date_start'].'" required>';
+                                        echo '<input class="form-control" placeholder="Date de fin du sejour" type="date" name="date_end_reservation" id="date_end_reservation" value ="'.$_GET['date_end'].'" required>';
                                     }
                                     else{
-                                        echo '<input class="form-control" placeholder="Date de début du sejour" type="date" name="date_start_reservation" id="date_start_reservation" required>';
+                                        echo '<input class="form-control" placeholder="Date de fin du sejour" type="date" name="date_end_reservation" id="date_end_reservation" required>';
                                     }
+                                    ?>
+                                    <label class="form-label" for="date_end_reservation">Date de fin du sejour</label>
+                                </div>
+                        
+                                <?php
+                                    echo "<input type = 'hidden' name = id_housing value =  ".$_GET['id_housing']." >";
                                 ?>
-                                <label class="form-label" for="date_start_reservation">Date de début du sejour</label>
-                            </div>
-                            <br>
-                            <div class="form-floating w-75 mt-1">
+                                <br>
                                 <?php
                                 if(isset($_GET['date_start']) && isset($_GET['date_end'])){
-                                    echo '<input class="form-control" placeholder="Date de fin du sejour" type="date" name="date_end_reservation" id="date_end_reservation" value ="'.$_GET['date_end'].'" required>';
+                                    ?>
+                                    <p name = "price" id = "price_id" class="mt-3" style="font-weight:bold;"><?php echo getPriceHousingPeriod($_GET['id_housing'],$_GET['date_start'], $_GET['date_end']) ; ?>€</p>
+
+                                    <?php
                                 }
                                 else{
-                                    echo '<input class="form-control" placeholder="Date de fin du sejour" type="date" name="date_end_reservation" id="date_end_reservation" required>';
+                                    ?>
+                                    <p name = "price" id = "price_id"></p>
+                                    <?php
                                 }
                                 ?>
-                                <label class="form-label" for="date_end_reservation">Date de fin du sejour</label>
-                            </div>
-                    
-                            <?php
-                                echo "<input type = 'hidden' name = id_housing value =  ".$_GET['id_housing']." >";
-                            ?>
-                            <br>
-                            <?php
-                            if(isset($_GET['date_start']) && isset($_GET['date_end'])){
-                                ?>
-                                <p name = "price" id = "price_id" class="mt-3" style="font-weight:bold;"><?php echo getPriceHousingPeriod($_GET['id_housing'],$_GET['date_start'], $_GET['date_end']) ; ?>€</p>
-
-                                <?php
-                            }
-                            else{
-                                ?>
-                                <p name = "price" id = "price_id"></p>
-                                <?php
-                            }
-                            ?>
-                            <button class="btn btn-outline-primary btn-lg w-75" id="submit" name="submit" value="Ask_reservation" type="submit">Reserver</button>
-                        </form>
-                    </section>
-                    <?php
-                    }
-            ?>
+                                <button class="btn btn-outline-primary btn-lg w-75" id="submit" name="submit" value="Ask_reservation" type="submit">Reserver</button>
+                            </form>
+                        </section>
+                        <?php
+                        }
+                ?>
+            </div>
         </div>
         <div class="profile-box">
                         <h2>Evaluations

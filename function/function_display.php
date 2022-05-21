@@ -356,10 +356,6 @@ function displayHousing($id){
         include_once "./page_404.php";
     } else {
         include_once "./forms/ask_reservation.php";
-
-        if (isset($_SESSION["id_user"]) && !isAlreadyRated($id, $_SESSION["id_user"], 3)){
-            displayFormRateAndComment($id, 1);
-        } 
     }
 }
 

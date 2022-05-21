@@ -158,19 +158,50 @@ height: calc(100% - 19%);
   width: 85%;
 }
 
-#housing_booking {
+.photo_user_min{
+  transition: 1s;
+  height: 3rem;
+  border-radius: 3rem;
+  margin-right: 10px;
+}
+
+.link_user, .link_user:visited{
+  text-decoration: none;
+  color:#20247b;
+}
+
+.link_user:hover{
+  text-decoration: underline;
+}
+
+.link_user:hover .photo_user_min{
+  transition: 1s;
+  height: 5rem;
+  border-radius: 5rem;
+}
+
+.container_housing_book{
   position: absolute;
-  top: 40rem;
   z-index: 1;
-  width: 25%;
+  top: 41rem;
+  right: 20px;
+  height: 100em;
+  width: 400px;
+}
+
+#housing_booking {
+  position: sticky;
+  top: 60px;
+  z-index: 1;
+  width: 100%;
   display: inline-block;
-  right: 50px;
   padding: 20px 5px;
   background-color: rgba(32, 39, 123, 0.17);
   border: 2px solid rgba(32, 39, 123, 0.27);
+  box-shadow: 0px 0px 20px rgba(31, 45, 61, 1);;
 }
 
-#housing_booking input{
+#housing_booking input, #housing_booking #select_date{
   background-color: rgba(240, 240, 240, 0.9);
 }
 
