@@ -127,11 +127,10 @@ height: calc(100% - 19%);
 }
 
 #recherche_preference {
-    display: flex;
-    height: 5%;
+  display: flex;
+  height: 10%;
 
 }
-
 #lien_invisible{
     outline: none;
     text-decoration: none;
