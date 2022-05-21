@@ -191,7 +191,7 @@ height: calc(100% - 19%);
   border-radius: 20px;
   background-color: rgba(32, 39, 123, 0.07);
   border: 2px solid rgba(32, 39, 123, 0.27);
-  box-shadow: 0px 0px 20px #20247b;
+  box-shadow: 0px -5px 20px #20247b;
   height: auto;
   margin-bottom: 1px;
 }
