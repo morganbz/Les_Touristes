@@ -266,14 +266,14 @@ function getLocation()
             for(let i = 0; i < results.length; i++){
 
                 if(results[i]['is_near'] == false){
-                    var div = "<div class='data_search border-secondary'><a href='?page=ask_reservation&id_housing="+ results[i]["id"] + "&date_start="+ response["arrive"] +"&date_end=" + response["departure"] + "' class='link_announce'><h4>" + results[i]["nom"] + "</h4>"+ results[i]['type'] + " situé au " + results[i]['adresse'] + "</p><p>Prix à la nuit : " + results[i]['price'] + "</p><p>Description : " + results[i]['description'] +"</p>";
+                    var div = "<div class='data_search border-secondary'><a href='?page=ask_reservation&id_housing="+ results[i]["id"] + "&date_start="+ response["arrive"] +"&date_end=" + response["departure"] + "' class='link_announce'><h4>" + results[i]["nom"] + "</h4>"+ results[i]['type'] + " situé au " + results[i]['adresse'] + "</p><p><em>Prix à la nuit : " + results[i]['price'] + "€ la journée</em></p><p>" + results[i]['description'] +"</p>";
 
                     if(results[i]['nb_ask'] > 0){
                         if(results[i]['nb_ask'] == 1){
-                            var res = div + "<p class='text-danger'>Il y a déjà "+ results[i]['nb_ask'] +" demande de réservation pour ces dates </p>";
+                            var res = div + "<p class='text-secondary'><em>Il y a déjà "+ results[i]['nb_ask'] +" demande de réservation pour ces dates </p></em>";
                         }
                         else{
-                            var res = div + "<p class='text-danger'>Il y a déjà "+ results[i]['nb_ask'] +" demandes de réservation pour ces dates </p>";
+                            var res = div + "<p class='text-secondary'><em>Il y a déjà "+ results[i]['nb_ask'] +" demandes de réservation pour ces dates </p></em>";
                         }
                         var res = res + "</a></div>";
                     }
@@ -301,22 +301,22 @@ function getLocation()
                         day: 'numeric'});
 
 
-                        var div = "<div class='data_search border-danger'><a href='?page=ask_reservation&id_housing="+ results[i]["id"] + "&date_start="+ response["arrive"] +"&date_end=" + response["departure"] + "&near=ok' class='link_announce'><h4>" + results[i]["nom"] + "</h4>"+ results[i]['type'] + " situé au " + results[i]['adresse'] + "</p><p>Prix à la nuit : " + results[i]['price'] + "</p><p>Description : " + results[i]['description'] +"</p>" + "<p class = 'font-italic'>" + "Ces dates ne sont pas disponibles, dates proche disponibles : du " + dateLocale1 + " au " + dateLocale2;
+                        var div = "<div class='data_search border-secondary'><a href='?page=ask_reservation&id_housing="+ results[i]["id"] + "&date_start="+ response["arrive"] +"&date_end=" + response["departure"] + "&near=ok' class='link_announce'><h4>" + results[i]["nom"] + "</h4>"+ results[i]['type'] + " situé au " + results[i]['adresse'] + "</p><p><em>" + results[i]['price'] + "€ la journée</em></p><p>" + results[i]['description'] +"</p>" + "<p class='text-danger'><em>" + "indisponible pour ces dates, voir du <strong>" + dateLocale1 + "</strong> au <strong>" + dateLocale2 + "</strong>";
 
                     var size = results[i]['dates'].length;
 
                     if(size > 1){
-                        div = div + " (" + (size - 1);
+                        div = div + " (<strong>" + (size - 1) + "</strong>";
                         if(size > 2){
-                            div = div + " autres dates disponibles)";
+                            div = div + " autres suggestions)";
                         }
                         else{
-                            div = div + " autre date disponible)";
+                            div = div + " autre suggestion)";
                         }
                     }
 
 
-                    var res = div + "</p></a></div>";
+                    var res = div + "</em></p></a></div>";
                 }
                 
                 $("#search_housing_list").append(res);     
