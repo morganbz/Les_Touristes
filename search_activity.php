@@ -61,7 +61,7 @@ if(isset($_GET['resa'])){
                         <div class="flex">
                             <label for="date_seach_arrive">Distance (en km)</label>
                             <br>
-                            <input class="form-control" placeholder="50" type="int" name="distance" id="distanceModal">
+                            <input class="form-control" placeholder="20" type="int" name="distance" id="distanceModal">
                         </div>
                     </div>
                     <div class="form-floating">
