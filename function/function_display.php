@@ -133,7 +133,9 @@ function displayHousingAccount($housing){
 
                         <button class="btn btn-outline-primary " id="submit2" name="submit" value="AskUpdateHousingDates" type="submit">Modifier les periodes de disponibilités</button>
 
-                        <button class="btn btn-outline-primary " id="submit2" name="submit" value="ViewHousingHistory" type="submit">Voir les anciènnes réservations</button>
+                        <button class="btn btn-outline-primary " id="submit3" name="submit" value="ViewHousingHistory" type="submit">Voir les anciènnes réservations</button>
+                    
+                        <button class="btn btn-outline-primary " id="submit4" name="submit" value="AskUpdateHousingMap" type="submit">Voir sur la carte</button>
                     </form>
                 </div>
 
@@ -180,7 +182,9 @@ function displayActivityAccount($activity){
                     
                         <input  type='hidden' name='id_activity' id='id_activity' value ="<?php echo $id; ?>">
                     
-                        <button class="btn btn-outline-primary " id="submit1" name="submit" value="AskUpdateActivityInfos" type="submit">Modifier l'activtié</button>
+                        <button class="btn btn-outline-primary " id="submit1" name="submit" value="AskUpdateActivityInfos" type="submit">Modifier l'activité</button>
+
+                        <button class="btn btn-outline-primary " id="submit2" name="submit" value="AskUpdateActivityMap" type="submit">Voir sur la carte</button>
 
                     </form>
                 </div>
@@ -190,6 +194,73 @@ function displayActivityAccount($activity){
     </div>
 </div>
 <?php
+}
+
+function displayUpdateMapForm($id, $is_housing, $latitude, $longitude){
+    if (isset($_SESSION["id_user"])){
+        if ($is_housing){
+            $infos = getHousingById($id);
+        } else {
+            $infos = getActivityById($id);
+        }
+        if ($_SESSION["id_user"] == $infos["id_owner"]){
+            ?>
+            <div class="container">
+                <div class="align-items-center m-3 display-form-bg">
+                    <div class="col-lg-15" >
+                        <div class="about-text go-to">
+                            <?php
+
+                            if (isset($_SESSION["errors_update_activity"])){
+                                echo "<ul>";
+                                foreach ($_SESSION["errors_update_activity"] as $error){
+                                    echo "<li>$error</li>";
+                                }
+                                echo "</ul>";
+                            }
+                            ?>
+
+                            <form action="index.php" method="post" class="text-center">
+                                <div>
+                                <h3 class="dark-color"><label class="h3" for="update_map_position_latitude">Latitude</label>
+                                    <input class="form-control w-30" placeholder="42.8346769" value="<?php echo $latitude;?>" type="text" name="update_map_position_latitude" id="update_map_position_latitude" required>
+                                </div>
+
+                                <div>
+                                    <h3 class="dark-color"><label class="h3" for="update_map_position_longitude">Longitude</label>
+                                    <input class="form-control w-30" placeholder="9.382870" value="<?php echo $longitude;?>" type="text" name="update_map_position_longitude" id="update_map_position_longitude" required>
+                                </div>
+
+                                <input class="form-control w-30" value="<?php echo $id;?>" type="hidden" name="id_update_map_position" id="id_update_map_position">
+
+                                <input class="form-control w-30" value="<?php echo $is_housing;?>" type="hidden" name="is_housing_update_map_position" id="is_housing_update_map_position">
+
+                                <div id="map" class="mt-4" style="width:100%; height:500px; border-radius: 10px;"></div>
+                                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6q4hVJGUioenp17tQTqiCS9dLDWbgATw&callback=initMap"></script>
+                                <script>
+                                    document.getElementById("map").append(
+                                        new google.maps.Marker({
+                                                        position: new google.maps.LatLng(<?php echo $latitude;?>, <?php echo $longitude;?> ),
+                                                        map: new google.maps.Map(document.getElementById("map"), {center: { lat: <?php echo $latitude;?>,lng: <?php echo $longitude;?> }, zoom: 13}),
+                                                        icon: new google.maps.MarkerImage('./ressources/marker_simple.png')
+                                                    })
+                                    );
+                                </script>
+
+                                <button class="btn btn-outline-primary" id="submit" name="submit" value="update_map_position" type="submit">Mettre à jour</button>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <?php   
+        } else {
+            include_once "./page_404.php";
+        }
+    } else {
+        include_once "./page_404.php";
+    }
 }
 
 function displayHousingHistory($id, $isForUser){
@@ -284,31 +355,11 @@ function displayHousing($id){
     if ($infos == null) {
         include_once "./page_404.php";
     } else {
-
-        $adresse = getAddress($infos["latitude"], $infos["longitude"]);
-
-        ?>
-        <div>
-            <h2><?php echo $infos["nom"];?></h2>
-            <p><?php echo getNbRecommandationHousing ($id); displayHeart($id, 1);?></p>
-            <p>Type d'hébergement : <?php echo $TYPE_HOUSING[$infos["type"]];?></p>
-            <p>Adresse : <?php echo $adresse;?></p>
-            <p>Pays : <?php echo getCountryFromCoords($infos["latitude"], $infos["longitude"]);?></p>
-            <p>Description : <?php echo $infos["description"];?></p>
-        </div>
-
-        <?php
+        include_once "./forms/ask_reservation.php";
 
         if (isset($_SESSION["id_user"]) && !isAlreadyRated($id, $_SESSION["id_user"], 3)){
             displayFormRateAndComment($id, 1);
         } 
-
-        if (getNbNotes($id, 2) == 0){
-            echo "<h3>Aucune évaluations</h3>";
-        } else {
-            echo "<h3>Moyenne des notes : ". getAverage($id, 1)."/5</h3>";
-            displayRate($id, 1);
-        }
     }
 }
 
@@ -319,128 +370,47 @@ function displayActivity($id){
     if ($infos == null) {
         include_once "./page_404.php";
     } else {
-        /*
-        <div>
-            <div
-            id="carouselVideoExample"
-            class="carousel slide carousel-fade"
-            data-mdb-ride="carousel"
-            >
-            <!-- Indicators -->
-            <div class="carousel-indicators">
-                <button
-                type="button"
-                data-mdb-target="#carouselVideoExample"
-                data-mdb-slide-to="0"
-                class="active"
-                aria-current="true"
-                aria-label="Slide 1"
-                ></button>
-                <button
-                type="button"
-                data-mdb-target="#carouselVideoExample"
-                data-mdb-slide-to="1"
-                aria-label="Slide 2"
-                ></button>
-                <button
-                type="button"
-                data-mdb-target="#carouselVideoExample"
-                data-mdb-slide-to="2"
-                aria-label="Slide 3"
-                ></button>
-            </div>
-
-            <!-- Inner -->
-            <div class="carousel-inner">
-                <!-- Single item -->
-                <div class="carousel-item active">
-                <video class="img-fluid" autoplay loop muted>
-                    <source src="https://mdbcdn.b-cdn.net/img/video/Tropical.mp4" type="video/mp4" />
-                </video>
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>First slide label</h5>
-                    <p>
-                    Nulla vitae elit libero, a pharetra augue mollis interdum.
-                    </p>
-                </div>
-                </div>
-
-                <!-- Single item -->
-                <div class="carousel-item">
-                <video class="img-fluid" autoplay loop muted>
-                    <source src="https://mdbcdn.b-cdn.net/img/video/forest.mp4" type="video/mp4" />
-                </video>
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Second slide label</h5>
-                    <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </p>
-                </div>
-                </div>
-
-                <!-- Single item -->
-                <div class="carousel-item">
-                <video class="img-fluid" autoplay loop muted>
-                    <source
-                    src="https://mdbcdn.b-cdn.net/img/video/Agua-natural.mp4"
-                    type="video/mp4"
-                    />
-                </video>
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Third slide label</h5>
-                    <p>
-                    Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-                    </p>
-                </div>
-                </div>
-            </div>
-            <!-- Inner -->
-
-            <!-- Controls -->
-            <button
-                class="carousel-control-prev"
-                type="button"
-                data-mdb-target="#carouselVideoExample"
-                data-mdb-slide="prev"
-            >
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button
-                class="carousel-control-next"
-                type="button"
-                data-mdb-target="#carouselVideoExample"
-                data-mdb-slide="next"
-            >
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-            </div>
-        </div>
-        */
+        displayCarousel($infos["image_folder"]);
         ?>
-        <div>
-            <h2><?php echo $infos["nom"];?></h2>
-            <p><?php echo getNbRecommandationActivity ($id); displayHeart($id, 2);?></p>
-            <p>Type d'activité : <?php echo $TYPE_ACTIVITY[$infos["type"]];?></p>
-            <p>Adresse : <?php echo getAddress($infos["latitude"], $infos["longitude"]);?></p>
-            <p>Pays : <?php echo $infos["country"];?></p>
-            <p>Description : <?php echo $infos["description"];?></p>
-        </div>
-
-        <?php
-
-        if (isset($_SESSION["id_user"]) && !isAlreadyRated($id, $_SESSION["id_user"], 2)){
-            displayFormRateAndComment($id, 2);
-        } 
-        if (getNbNotes($id, 2) == 0){
-            echo "<h3>Aucune évaluations</h3>";
-        } else {
-            echo "<h3>Moyenne des notes : ". getAverage($id, 2)."/5</h3>";
-            echo "<h3>Anciens commentaires :</h3>";
-            displayRate($id, 2);
-        }
+        <div class="d-flex justify-content-center">
+            <div id="activity_description" class="ms-5 about-text display-form-bg">
+                <h3 class='center-align dark-color'><?php echo $infos["nom"];?><NOBR class='h4 ms-5' style='color:black;'><?php echo getNbRecommandationActivity ($id); displayHeart($id, 2);?></NOBR></h3>
+                <h4 style='padding-left: 3px; border-left: 3px solid rgba(32, 39, 123, 0.17); border-radius: 2px;'><?php echo $TYPE_ACTIVITY[$infos["type"]];?></h4>
+                <h2 style='padding-left: 3px; border-left: 3px solid rgba(32, 39, 123, 0.17); border-radius: 2px;'>Description</h2>
+                <p class='ms-3'><?php echo $infos["description"];?></p>
+                <h2 style='padding-left: 3px; border-left: 3px solid rgba(32, 39, 123, 0.17); border-radius: 2px;'>Localisation</h2>
+                <p class='ms-3'><?php echo getAddress($infos["latitude"], $infos["longitude"]);?></p>
+                <div id="map" class="mt-4" style="width:100%; height:500px; border-radius: 10px;"></div>
+                                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6q4hVJGUioenp17tQTqiCS9dLDWbgATw&callback=initMap"></script>
+                                <script>
+                                    document.getElementById("map").append(
+                                        new google.maps.Marker({
+                                                        position: new google.maps.LatLng(<?php echo $infos["latitude"];?>, <?php echo $infos["longitude"];?> ),
+                                                        map: new google.maps.Map(document.getElementById("map"), {center: { lat: <?php echo $infos["latitude"];?>,lng: <?php echo $infos["longitude"];?> }, zoom: 13}),
+                                                        icon: new google.maps.MarkerImage('./ressources/marker_simple.png')
+                                                    })
+                                    );
+                                </script>
+            <div class="profile-box">
+                        <h2>Evaluations
+                        <?php
+                        if (getNbNotes($id, 2) != 0){
+                            ?>
+                            <NOBR><?php echo displayRateWithStars(getAverage($id, 2));?></NOBR></h2><?php
+                        } else {
+                            ?></h2><p>Cette activitée n'as encore reçu aucune évaluation</p><?php
+                        }
+                        if (isset($_SESSION["id_user"]) && $_SESSION["id_user"] != $id && !isAlreadyRated($id, $_SESSION["id_user"], 2)){
+                                displayFormRateAndComment($id, 2);
+                        } 
+                        if (getNbNotes($id, 2) != 0){
+                            displayRate($id, 2);
+                        }
+                        ?>
+            </div>  
+            <?php            
     }
+    echo "</div></div>";
 }
 
 function displayUser($id){
@@ -465,6 +435,8 @@ function displayUser($id){
         $nb_rates = getNbEvaluationUserByID($id);
         $nb_recommandation = getNbRecommandationUser($id);
 
+        $nb_rates_for_user = getNbNotes($id, 3);
+
         $profile_picture = "./ressources/profile_picture.png";
         $profile_picture_folder = "picture_profile/".$id;
         if (isset($profile_picture_folder)){
@@ -482,7 +454,7 @@ function displayUser($id){
                         <div class="col-lg-6">
                             <div class="about-text go-to">
                                 <h3 class="dark-color"><?php echo $firstname . " " . $lastname;?></h3>
-                                <label class=""><?php echo $nb_recommandation; displayHeart($id, 3);?></label>
+                                <label id="nb_recommandation"><?php echo $nb_recommandation;?></label><?php displayHeart($id, 3);?>
                                 <h6 class="theme-color lead">À propos :</h6>
                                 <p><?php echo nl2br($description);?></p>
                                 <div class="row about-list">
@@ -511,11 +483,11 @@ function displayUser($id){
                         </div>
                         <div class="col-lg-6">
                             <div class="about-avatar">
-                                <img src="<?php echo $profile_picture;?>" alt="Photo de profil">
+                                <img class="img-size img-profile" src="<?php echo $profile_picture;?>" alt="Photo de profil">
                             </div>
                         </div>
                     </div>
-                    <div class="counter">
+                    <div class="counter mt-3">
                         <div class="row">
                             <div class="col-6 col-lg-3">
                                 <div class="count-data text-center">
@@ -543,29 +515,31 @@ function displayUser($id){
                             </div>
                         </div>
                     </div>
-                    <div>
-                        <h2>Coups de coeurs</h2>
-                        <?php displayCoupsDeCoeurs($id); ?>
-                    </div>
-                    <div>
-                        <h2>Badges</h2>
-                        <?php displayBadges($id); ?>
+                    <div class="d-flex justify-content-evenly mt-4 mb-4">
+                        <?php displayBadges($id);?>
                     </div>
                     
-                    <?php
-
-                    if (isset($_SESSION["id_user"]) && $_SESSION["id_user"] != $id && !isAlreadyRated($id, $_SESSION["id_user"], 3)){
-                        displayFormRateAndComment($id, 3);
-                    } 
-
-                    if ($nb_rates != 0){
-                        ?><div>
-                        <h2>Evaluations</h2>
-                        </div>
-                        <h3>Moyenne des notes : <?php echo getAverage($id, 3); ?>/5</h3><?php
-                        displayRate($id, 3);
-                    }
-                    ?>         
+                    <div class="profile-box">
+                        <h2>Coups de c&oelig;urs</h2>
+                        <?php displayCoupsDeCoeurs($id); ?>
+                    </div>   
+                    <div class="profile-box">
+                        <h2>Evaluations
+                        <?php
+                        if ($nb_rates_for_user != 0){
+                            ?>
+                            <NOBR><?php echo displayRateWithStars(getAverage($id, 3));?></NOBR></h2><?php
+                        } else {
+                            ?></h2><p>Cet utilisateurs n'as encore reçu aucune évaluation</p><?php
+                        }
+                        if (isset($_SESSION["id_user"]) && $_SESSION["id_user"] != $id && !isAlreadyRated($id, $_SESSION["id_user"], 3)){
+                                displayFormRateAndComment($id, 3);
+                        } 
+                        if ($nb_rates_for_user != 0){
+                            displayRate($id, 3);
+                        }
+                        ?>
+                    </div>         
                 </div>
             </section>
     <?php
@@ -574,19 +548,20 @@ function displayUser($id){
 
 function displayFormRateAndComment($id, $type_rated){
 ?>
-    <form action="index.php" method="post">
+<div class="d-flex justify-content-center">
+    <form action="index.php" method="post" class="w-50 text-center">
         <div class="rating"> 
             <input type="radio" name="rate" value="5" id="5"><label for="5">☆</label> <input type="radio" name="rate" value="4" id="4"><label for="4">☆</label> <input type="radio" name="rate" value="3" id="3"><label for="3">☆</label> <input type="radio" name="rate" value="2" id="2"><label for="2">☆</label> <input type="radio" name="rate" value="1" id="1"><label for="1">☆</label>
         </div>
 
-        <div>
-            <label for="title">Titre : </label>
-            <input placeholder="Titre" type="text" name="title" id="title">
+        <div class="form-floating">
+            <input class="form-control" placeholder="Très bien !" type="text" name="title" id="title">
+            <label class="form-label" for="title">Titre</label>
         </div>
 
-        <div>
-            <label for="message">Message : </label>
-            <input placeholder="Message" type="text" name="message" id="message">
+        <div class="form-floating mt-2">
+            <textarea class="form-control" style="resize: none; height:150px" placeholder="J'ai trouvé que..." type="text" name="message" id="message"></textarea>
+            <label class="form-label" for="message">Message</label>
         </div>
 
         <input value="<?php echo $id;?>" type="hidden" name="id_rated" id="id_rated">
@@ -595,52 +570,69 @@ function displayFormRateAndComment($id, $type_rated){
        
         <button class="w-30 btn btn-outline-primary btn-lg px-4 me-sm-3" id="submit" name="submit" value="submit_rate_and_comment" type="submit">Envoyer</button>
     </form>
+</div>
 <?php
+}
+
+function displayRateWithStars($nb){
+    for($i= ($nb - floor($nb) + 1); $i <= $nb; $i++){ 
+        echo "<i class='stars-color bi bi-star-fill'></i>";
+    }
+    if (($i - floor($i)) > 0 && ($i - floor($i)) < 1){
+        echo "<i class='stars-color bi bi-star-half'></i>";
+    }
+    for($j=$i; $j <= 5; $j++){
+        echo "<i class='stars-color bi bi-star'></i>";
+    }
 }
 
 function displayRate($id, $type_rated){
     $rates = getRates($id, $type_rated);
-
+    ?><div class="d-flex flex-column flex-wrap w-100"><?php
     foreach($rates as $rate) {
-    ?>
-    <div class="rate_and_comment"> 
-        <h4><?php echo $rate["title"];?></h4>
-        <p><?php echo $rate["rate"];?></p>
-        <p><?php echo $rate["message"];?></p>
-        <p> - <?php echo getUserById($rate["id_rater"])["firstname"]." ".getUserById($rate["id_rater"])["lastname"];?></p>
-    </div>
-    <?php
+        ?><div class="talk-bubble tri-right round btm-left w-100">
+            <div class="talktext">    
+                <h4><?php echo $rate["title"];?>
+                    <NOBR class="ms-2"> 
+                        <?php
+                        displayRateWithStars($rate["rate"]);
+                        ?>
+                    </NOBR>
+                </h4>
+                <p class="mb-4 ms-4"><?php echo nl2br($rate["message"]);?></p>
+                <p class="rate-name"> - <?php echo getUserById($rate["id_rater"])["firstname"]." ".getUserById($rate["id_rater"])["lastname"];?></p>
+            </div>
+        </div><?php
     }
+    ?></div><?php
 }
 
 function displayCoupsDeCoeurs($id){
     $coups_de_coeurs = getRecommandationOfUser ($id);
-
+    ?><div class="container text-center">
+        <div class="row"><?php
     if (count($coups_de_coeurs) == 0 ){
-        ?><p>Pas de coups de coeurs</p><?php
+        ?><p>Pas de coups de c&oelig;urs</p><?php
     } else {
         foreach($coups_de_coeurs as $cDc){
-            ?>
-            <a href="<?php echo $cDc["url"];?>"><?php echo $cDc["nom"];?></a>
+            ?><div class="col-md-6">
+            <a class="btn btn-danger bi bi-heart-fill w-50 mt-3 text-start" href="<?php echo $cDc["url"];?>"> <?php echo $cDc["nom"];?></a></div>
             <?php
         }
     } 
+    ?></div></div><?php
 }
 
 function displayBadges($id){
     $badges = getBadgesUser($id);
     ?><div class="d-flex"><?php
-    if (count($badges) == 0 ){
-        ?><p>Pas de badges</p><?php
-    } else {
-        foreach($badges as $b){
-            ?>
-            <div class="ms-3 text-center">
-            
-            <button type="button" class="btn btn-lg <?php echo $b["niveau"];?>" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" title="<b><?php echo $b["nom"];?></b></br><?php echo $b["description"];?>"><i class="<?php echo $b["picture"];?>"></i></button>
-            </div>
-        <?php    
-        }
+    foreach($badges as $b){
+        ?>
+        <div class="ms-3 text-center">
+        
+        <button type="button" class="btn btn-lg <?php echo $b["niveau"];?>" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true" title="<b><?php echo $b["nom"];?></b></br><?php echo $b["description"];?>"><i class="<?php echo $b["picture"];?>"></i></button>
+        </div>
+    <?php    
     }
     ?></div><?php
 }
@@ -726,4 +718,84 @@ function displayHeart($id, $type){
 <?php
 }
 
+function displayCarousel($filePath){
+    $images = [];
+
+    foreach(glob($filePath.'/*.*') as $file) {
+        $images[] = $file;
+    }
+
+    $nb_images = count($images);
+    ?>
+    <style>
+        .carousel-item{
+            height:32rem;
+            background:#777;
+            color:white;
+            position:relative;
+            background-position:center;
+            background-size:cover;
+        }
+        .container{
+            position:absolute;
+            bottom:0;
+            left:0;
+            right:0;
+            padding-bottom:50px;
+        }
+        .overlay-image{
+            position:absolute;
+            bottom:0;
+            left:0;
+            right:0;
+            top:0;
+            background-position:center;
+            background-size:cover;
+        }
+    </style>
+
+    <div id="myCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <?php
+        if($nb_images != 0){
+            echo '<ol class="carousel-indicators">';
+            for($index = 0; $index < $nb_images; $index++){
+                if ($index == 0) {
+                    echo '<li data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></li>';
+                }
+                else {
+                    echo '<li data-bs-target="#myCarousel" data-bs-slide-to="'.$index.'"></li>';
+                }
+            }
+                echo '</ol>';
+        }
+        
+        if ($nb_images != 0){
+            ?>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                        <div class="overlay-image" style="background-image:url('<?php echo $images[0];?>');"></div>
+                    <div class="container">   
+                    </div>
+                </div>
+                <?php
+                for ($index = 1; $index < $nb_images; $index++) { 
+                    ?><div class="carousel-item">
+                        <div class="overlay-image" style="background-image:url('<? echo $images[$index]; ?>');"></div>
+                            <div class="container">
+                            </div>
+                        </div>
+                    <?php
+                }
+                ?>
+                </div>
+                <a href="#myCarousel" class="carousel-control-prev" role="button" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                </a>
+                <a href="#myCarousel" class="carousel-control-next" role="button" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                </a>
+            </div>
+        <?php
+    }
+}
 ?>
