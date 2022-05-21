@@ -24,7 +24,7 @@ $profile_picture = "./ressources/profile_picture.png";
 displayCarousel($log_directory);
 ?>
 
-<div id="contener">
+<div>
     <div id="housing_description" class="ms-5 about-text display-form-bg">
         <br>
             <h3 class='center-align dark-color'><?php echo $housing["nom"]; ?><NOBR class='h4 ms-5' style='color:black;'><?php echo getNbRecommandationHousing($id); displayHeart($id, 1);?></NOBR></h3>
