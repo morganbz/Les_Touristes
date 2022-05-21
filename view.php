@@ -5,9 +5,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
         <link rel="stylesheet" href="style.css">
-        <script src="./js/script.js"></script>
         <title>Les Touristes</title>
     </head>
     <body>
@@ -96,25 +95,9 @@
             else if($page == "update_housing_announces"){
                 include_once "forms/update_housing_announces.php";
             }
-            else if($page == "map_housing"){
-                if(isset($_GET["id_housing"])){
-                    $id = $_GET["id_housing"];
-                    displayUpdateMapForm($id, true, getHousingById($id)["latitude"], getHousingById($id)["longitude"]);
-                } else {
-                    include_once "page_404.php";
-                }
-            }
             else if($page == "update_activity"){
                 if(isset($_GET["id_activity"])){
                     include_once "forms/update_activity.php";
-                } else {
-                    include_once "page_404.php";
-                }
-            }
-            else if($page == "map_activity"){
-                if(isset($_GET["id_activity"])){
-                    $id = $_GET["id_activity"];
-                    displayUpdateMapForm($id, false, getActivityById($id)["latitude"], getActivityById($id)["longitude"]);
                 } else {
                     include_once "page_404.php";
                 }
@@ -127,8 +110,8 @@
                 }
             }
             else if ($page == "housing" ){
-                if (isset($_GET["id_housing"])){
-                    displayHousing($_GET["id_housing"]);
+                if (isset($_GET["h"])){
+                    displayHousing($_GET["h"]);
                 } else {
                     include_once "page_404.php";
                 }
@@ -148,9 +131,6 @@
                 }
             } else {
                 include_once "page_404.php";
-            }
-            if($page == "test"){
-                include_once("forms/update_map_position.php");
             }
             ?>
         </div>

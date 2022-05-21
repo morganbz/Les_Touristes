@@ -1,3 +1,4 @@
+
 function initMap() {
     var map = new google.maps.Map(document.getElementById('search_housing_map'), {
         center: new google.maps.LatLng(46, 2),
@@ -308,7 +309,7 @@ function getLocation()
                     if(size > 1){
                         div = div + " (" + (size - 1);
                         if(size > 2){
-                            div = div + " autres dates disponibles)";
+                            div = div + "autres dates disponible)";
                         }
                         else{
                             div = div + " autre date disponible)";
@@ -342,7 +343,6 @@ function getLocationActivity()
             destination: document.querySelector('#place_search').value,
             distance: document.querySelector('#distance_search').value,
             type: document.querySelector('#type_search').value
-
         },
         dataType: "json",
         beforeSend: function () {
