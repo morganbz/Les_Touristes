@@ -4,8 +4,7 @@
             <?php
             if(isset($_SESSION['id_user'])){
                 ?>
-                    <div class = "recherche_preference" id = "recherche_preference">
-                            <label >Mes préférences :</label>
+                    <div class = "recherche_preference d-flex justify-content-around" id = "recherche_preference">
                             <?php
 
                 $preferences = getPreferenceByIdUser($_SESSION['id_user']);
@@ -35,7 +34,7 @@
 
                 }
                 ?>
-                    <a class="dark-color" href="?page=user_page&page_account=add_pref_search">Voir mes préférences </a>
+                    <div><a href="?page=user_page&page_account=add_pref_search"><button class="btn btn-outline-primary">Voir mes préférences</button> </a></div>
             </div>
                     <?php
 

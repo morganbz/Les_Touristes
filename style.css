@@ -105,15 +105,20 @@ html, body {
 }
 
 #contener {
-    display: flex;
-    height: calc(100% - 15%);
+  display: flex;
+  height: calc(100% - 9%);
+}
+
+#contener_connected {
+display: flex;
+height: calc(100% - 19%);
 }
 
 #search_housing_list {
-    height: calc(100% - 15% - 50px);
-    width: 50%;
-    overflow-y: scroll;
-    position: fixed;
+  height: calc(100% - 15% - 50px);
+  width: 50%;
+  overflow-y: scroll;
+  position: fixed;
 }
 #search_housing_map {
     height: 100%;
