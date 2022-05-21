@@ -104,10 +104,10 @@ html, body {
     height: 10%;
 }
 
-/*#contener {
+#contener {
     display: flex;
     height: calc(100% - 15%);
-}*/
+}
 
 #search_housing_list {
     height: calc(100% - 15% - 50px);
