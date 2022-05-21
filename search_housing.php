@@ -74,8 +74,19 @@
                 </div>
                 
                 <button class="btn btn-outline-primary ms-5" onclick="getLocation()">Rechercher</button>
-           </div> 
-            <div id="contener">
+            </div> 
+           <?php
+           if(isset($_SESSION['id_user'])){
+                ?>
+                <div id="contener_connected">
+                <?php
+            } 
+            else{
+                ?>
+                <div id="contener">
+                <?php
+            }
+            ?>
                 <div id="search_housing_list"></div>
                 <div id="search_housing_map"></div>
             </div>
