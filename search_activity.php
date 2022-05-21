@@ -95,7 +95,7 @@ if(isset($_GET['resa'])){
         </div>
         <div class="form-floating">
             <select name="type_search" id="type_search" class="form-select" aria-label="Default select example">
-                <option selected>tous type</option>
+                <option selected value = "-1" >tous type</option>
                 <?php
                 $max = sizeof($TYPE_ACTIVITY);
                 for($i = 0; $i < $max; $i++){
