@@ -27,7 +27,7 @@ displayCarousel($log_directory);
 <div id="contener">
     <div id="housing_description" class="ms-5 about-text display-form-bg">
         <br>
-            <h3 class='center-align dark-color'><?php echo $housing["nom"]; ?><NOBR class='h4 ms-5' style='color:black;'><?php echo getNbRecommandationActivity ($id); displayHeart($id, 1);?></NOBR></h3>
+            <h3 class='center-align dark-color'><?php echo $housing["nom"]; ?><NOBR class='h4 ms-5' style='color:black;'><?php echo getNbRecommandationHousing($id); displayHeart($id, 1);?></NOBR></h3>
             <h4 class="center-align" style='padding-left: 3px;'><a href="?page=user&u=<?php echo $owner["id"]; ?>" class="link_user"><img class="photo_user_min" src="<?php echo $profile_picture; ?>" alt="Photo de profil"><?php echo $owner["firstname"]." ".$owner["lastname"];?></a></h4><?php
             echo "<h4 style='padding-left: 3px; border-left: 3px solid rgba(32, 39, 123, 0.17); border-radius: 2px;'>".$TYPE_HOUSING[$housing["type"]]."</h4>";
             echo "<h2 style='padding-left: 3px; border-left: 3px solid rgba(32, 39, 123, 0.17); border-radius: 2px;'>Description</h2>";
