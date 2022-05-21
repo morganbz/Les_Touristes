@@ -1,4 +1,3 @@
-
 function initMap() {
     var map = new google.maps.Map(document.getElementById('search_housing_map'), {
         center: new google.maps.LatLng(46, 2),
