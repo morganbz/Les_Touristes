@@ -14,7 +14,6 @@ $ORDER_FOR_OWNER = array(array("nom" => "Date", "value" => DATE_ORDER), array("n
 
 $ORDER_FOR_ASK = array(
     array("nom" => "Nombre de jour", "value" => "nb_day"), 
-    array("nom" => "prix", "value" => "price"),
     array("nom" => "note", "value" => "note"),
     );
 
