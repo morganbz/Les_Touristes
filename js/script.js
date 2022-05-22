@@ -125,9 +125,9 @@ function setMarkers(map,locations) {
                 if (station['isHousing'] == 0) {
                     infoWindow.setContent(
                         "<div id='infoWindow'>"
-                        +"<a target = '_blank' href='?page=ask_reservation&id_housing="+ station["id"] + "' class='link_announce'>"
+                        +"<a target = '_blank' href='?page=activity&a="+ station["id"] + "' class='link_announce'>"
                         +"<p>Nom : "+station['nom']+"<p>"
-                        +"<p>Type de logement : " + station['type'] + "<p>"
+                        +"<p>Type : " + station['type'] + "<p>"
                         +"<p>Adresse : "+station['adresse']+"<p>"
                         +"</div>"
                     );
