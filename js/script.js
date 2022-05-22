@@ -210,8 +210,9 @@ function setMarkersModal(map,locations, latitude, longitude) {
                 if (station['isHousing'] == 0) {
                     infoWindow.setContent(
                         "<div id='infoWindow'>"
+                        +"<a target = '_blank' href='?page=activity&a="+ station["id"] + "' class='link_announce'>"
                         +"<p>Nom : "+station['nom']+"<p>"
-                        +"<p>Type de logement : " + station['type'] + "<p>"
+                        +"<p>Type : " + station['type'] + "<p>"
                         +"<p>Adresse : "+station['adresse']+"<p>"
                         +"</div>"
                     );
