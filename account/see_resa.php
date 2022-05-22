@@ -5,6 +5,7 @@ $housings = getHousingByIdOwner($id_owner);
 
 ?>
 <section>
+<div class = "marg_resa">
 <?php
     foreach($housings as $housing){
         $hasBook = hasBooking($housing["id"]);
@@ -13,7 +14,7 @@ $housings = getHousingByIdOwner($id_owner);
         if($hasBook || $hasAskBook){
 
             ?>
-            <div class = "display-form-bg marg_resa">
+            <div class = "display-form-bg">
             <div class="d-flex justify-content-evenly">
                 <div><h4><a class = "lien_logement" href="?page=ask_reservation&id_housing=<?php echo $housing["id"]; ?>"><?php echo $housing["nom"]; ?></a></h4></div>
 
@@ -82,5 +83,6 @@ $housings = getHousingByIdOwner($id_owner);
         }
     }
     ?>
+    </div>
 
 </section>

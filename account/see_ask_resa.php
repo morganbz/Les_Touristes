@@ -35,14 +35,16 @@ if (isset($_GET["order"])){
 }
 
 $nb_conflits = 1;
-
+?>
+<div class = "marg_resa">
+<?php
 
 foreach($conflicts as $demands){
     $caption = "";
     $is_conflict = false;
     $cpt = 1;
     ?>
-    <div class = "display-form-bg marg_resa">
+    <div class = "display-form-bg">
     <?php
 
     if(!($demands == end($conflicts))){
@@ -211,6 +213,7 @@ foreach($conflicts as $demands){
 
 }
 ?>
+</div>
 
 <script>
 
