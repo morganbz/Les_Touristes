@@ -153,7 +153,30 @@ $nb_images = count($best_annouces_w_img);
             </div>
         </div>
     </div>
-    <p class="catch_phrase"> Bienvenue chez les Touristes la plateforme collaborative regroupant à la fois location de logements et activités à proximité de ces derniers afin de planifier au mieux votre séjour !</p>
+    <div>
+        <p class="catch_phrase" style="font-size: 1.45rem;"> Bienvenue chez les Touristes, la plateforme collaborative regroupant à la fois location de logements et activités, afin de planifier au mieux vos voyages !</p>
+        <div class="about-text ms-5 mt-5">
+            <div class="description-site">
+                <h3 class="dark-color ms-5 droite">Crée toi un profil</h3>
+                <a href="?page=register"><img class="gauche-img" src="./ressources/Exemple_Profil.png" alt="Exemple de profil"></a>
+            </div>
+            <div class="description-site">
+                <h3 class="dark-color ms-5 gauche-txt">Ajoute des logements</h3>
+                <img class="droite" src="./ressources/Exemple_Add_Logement.png" alt="Exemple d'ajout de logement">
+            </div>
+            <div class="description-site">
+                <h3 class="dark-color ms-5 droite">Ajoute des activités</h3>
+                <img class="gauche-img" src="./ressources/Exemple_Add_Activite.png" alt="Exemple d'ajout d'activité">
+            </div>
+            <div class="description-site">
+                <h3 class="dark-color ms-5 gauche-txt">Regarde tes réservations</h3>
+                <img class="droite" src="./ressources/Exemple_Resa.png" alt="Exemple de réservation">
+            </div>
+            <div class="description-site">
+                <h3 class="dark-color ms-5 droite" style="font-size: 2rem;">Observe le profil des différents utilisateurs puis accepte la réservation de celui qui entre dans tes critères !</h3>
+            </div>
+        </div>
+    </div>
 </div>
 
 
