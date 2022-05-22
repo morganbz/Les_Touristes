@@ -3,6 +3,8 @@ if(isset($_SESSION["id_user"])){
     if (isset($_GET["id_housing"])){
         $id_housing = $_GET["id_housing"];
 
+        $_SESSION["back_page"] = "?page=update_housing&id_housing=".$id_housing;
+
         $housing = getHousingById($id_housing);
         
         if ($_SESSION["id_user"] == $housing["id_owner"]){

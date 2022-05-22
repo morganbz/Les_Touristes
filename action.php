@@ -604,8 +604,7 @@
         if(isset($_POST["del_img"])){
             unlink($_POST["del_img"]);
         }
-        $page = "user_page";
-        $page_account = "see_announce";
+        header("Location: ".$_SESSION["back_page"]);
     } else if (!empty($_POST)&&array_key_exists("del_img_profile", $_POST)) {
         if(isset($_POST["del_img_profile"])){
             unlink($_POST["del_img_profile"]);

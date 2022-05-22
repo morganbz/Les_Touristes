@@ -1,6 +1,8 @@
 <?php
 $activity = getActivityById($_GET["id_activity"]);
 
+$_SESSION["back_page"] = "?page=update_activity&id_activity=".$_GET["id_activity"];
+
 $nom = $activity['nom'];
 $latitude = $activity['latitude'];
 $longitude = $activity['longitude'];
