@@ -14,7 +14,7 @@ $ORDER_FOR_OWNER = array(array("nom" => "Date", "value" => DATE_ORDER), array("n
 
 $ORDER_FOR_ASK = array(
     array("nom" => "Nombre de jour", "value" => "nb_day"), 
-    array("nom" => "note", "value" => "note"),
+    array("nom" => "Date de début", "value" => "date_start"),
     );
 
 //ne marche pas sur le serveur car le français n'est pas installé
