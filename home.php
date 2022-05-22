@@ -84,7 +84,7 @@ $nb_images = count($best_annouces_w_img);
                 # code...
             }
             else {
-                echo '<div class="overlay-image" style="background-image:url('.$best_annouces_w_img[0]["img"].');"></div>';
+                ?><div class="overlay-image" style="background-image:url('<?php echo $best_annouces_w_img[0]["img"]; ?>');"></div><?php
                 echo '<div class="container">';
                 if (! $best_annouces_w_img[0]["is_housing"]){
                     echo "<a class='home_page_link' href='?page=activity&a=".$best_annouces_w_img[0]["infos"]["id"]."'>";
@@ -102,7 +102,7 @@ $nb_images = count($best_annouces_w_img);
         <?php
         for ($index = 1; $index < $nb_images; $index++) {  
             echo '<div class="carousel-item">';
-            echo '<div class="overlay-image" style="background-image:url('.$best_annouces_w_img[$index]["img"].');"></div>';
+            ?><div class="overlay-image" style="background-image:url('<?php echo $best_annouces_w_img[$index]["img"]; ?>');"></div><?php
                 echo '<div class="container">';
                 if (! $best_annouces_w_img[$index]["is_housing"]){
                     echo "<a class='home_page_link' href='?page=activity&a=".$best_annouces_w_img[$index]["infos"]["id"]."'>";
