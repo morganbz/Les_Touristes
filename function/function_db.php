@@ -1037,7 +1037,7 @@ function getConflict($demands, $order){
         $no_conflicts = [];
         $is_done = false;
         if($order == 0){
-                $order = "nb_day";
+                //$order = "nb_day";
         }
 
         $note = "N/A";
@@ -1086,8 +1086,8 @@ function getConflict($demands, $order){
                                         array_push($conflicts, $curr_demands);
 
                                         
-                                        $order_by = array_column($conflicts, $order);
-                                        array_multisort($order_by, SORT_DESC, $conflicts);
+                                        //$order_by = array_column($conflicts, $order);
+                                        //array_multisort($order_by, SORT_DESC, $conflicts);
 
                                         array_push($res, $conflicts);
                                 }
