@@ -29,32 +29,34 @@ if (isset($_GET["order"])){
                     $cpt = 1;
 
                 ?>
-                <table class="table">
-                    <thead>
-                        <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Début du séjour</th>
-                        <th scope="col">Fin du séjour</th>
-                        <th scope="col">Logement</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        foreach($housing_history as $housing){
-                            $id = $housing["id"];
-                            ?>
+                <div class = "display-form-bg mb-4">
+                    <table class="table">
+                        <thead>
                             <tr>
-                                <th scope="row"><?php echo $cpt; ?></th>
-                                <td><?php echo getNiceDate($housing["begin_date"]); ?></td>
-                                <td><?php echo getNiceDate($housing["end_date"]); ?></td>
-                                <td><a href="?page=housing&h=<?php echo $id; ?>"><?php echo $housing["nom"]; ?></a></td>
+                            <th scope="col">#</th>
+                            <th scope="col">Début du séjour</th>
+                            <th scope="col">Fin du séjour</th>
+                            <th scope="col">Logement</th>
                             </tr>
-                        <?php
-                        $cpt++;
-                        }
-                        ?>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            <?php
+                            foreach($housing_history as $housing){
+                                $id = $housing["id"];
+                                ?>
+                                <tr>
+                                    <th scope="row"><?php echo $cpt; ?></th>
+                                    <td><?php echo getNiceDate($housing["begin_date"]); ?></td>
+                                    <td><?php echo getNiceDate($housing["end_date"]); ?></td>
+                                    <td><a href="?page=housing&h=<?php echo $id; ?>"><?php echo $housing["nom"]; ?></a></td>
+                                </tr>
+                            <?php
+                            $cpt++;
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                        </div>
 
             </div>
         <?php
