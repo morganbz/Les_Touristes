@@ -1,41 +1,43 @@
-<?php
-$id_owner = $_SESSION["id_user"];
-$id_housing = $_GET["id_housing"];
-$tri = 0;
-if(isset($_GET['tri'])){
-    $tri = $_GET['tri'];
-}
-$housing = getHousingById($id_housing);
+<div class="marg_resa display-form-bg">
+    <?php
+    $id_owner = $_SESSION["id_user"];
+    $id_housing = $_GET["id_housing"];
+    $tri = 0;
+    if(isset($_GET['tri'])){
+        $tri = $_GET['tri'];
+    }
+    $housing = getHousingById($id_housing);
 
-?>
-<label for="order">Trier par :</label>
-<select
- aria-label="Default select example" name = 'order' id="order" onchange="window.location.href = (!(window.location.href.includes('&order='))) ? window.location.href.concat(this.value) : (window.location.href).substr(0, (window.location.href).indexOf('&order=')).concat(this.value)">
-<?php
-foreach($ORDER_FOR_ASK as $order){
-    if (isset($_GET["order"])){
-        if ($order["value"] == $_GET["order"]){
-            ?><option value = '&order=<?php echo $order['value']; ?>' selected><?php echo $order['nom']; ?></option><?php
+    ?>
+    <label for="order">Trier par :</label>
+    <select class="form-select w-25"
+    aria-label="Default select example" name = 'order' id="order" onchange="window.location.href = (!(window.location.href.includes('&order='))) ? window.location.href.concat(this.value) : (window.location.href).substr(0, (window.location.href).indexOf('&order=')).concat(this.value)">
+    <?php
+    foreach($ORDER_FOR_ASK as $order){
+        if (isset($_GET["order"])){
+            if ($order["value"] == $_GET["order"]){
+                ?><option value = '&order=<?php echo $order['value']; ?>' selected><?php echo $order['nom']; ?></option><?php
+            } else {
+                ?><option value = '&order=<?php echo $order['value']; ?>'><?php echo $order['nom']; ?></option><?php
+            }
         } else {
             ?><option value = '&order=<?php echo $order['value']; ?>'><?php echo $order['nom']; ?></option><?php
         }
-    } else {
-        ?><option value = '&order=<?php echo $order['value']; ?>'><?php echo $order['nom']; ?></option><?php
+        
     }
-    
-}
-echo "</select>";
+    echo "</select>";
 
-$first_demands = getAllBookAskByIdHousing($id_housing);
+    $first_demands = getAllBookAskByIdHousing($id_housing);
 
-if (isset($_GET["order"])){
-    $conflicts = getConflict($first_demands, $_GET['order']);
-} else {
-    $conflicts = getConflict($first_demands, "nb_day");
-}
+    if (isset($_GET["order"])){
+        $conflicts = getConflict($first_demands, $_GET['order']);
+    } else {
+        $conflicts = getConflict($first_demands, "nb_day");
+    }
 
-$nb_conflits = 1;
-?>
+    $nb_conflits = 1;
+    ?>
+</div>
 <div class = "marg_resa">
 <?php
 
@@ -77,7 +79,7 @@ foreach($conflicts as $demands){
             ?>
                 <?php echo $caption; ?>
             </caption>
-            <thead class="table-dark">
+            <thead class="tableau_couleur">
                 <tr class="text-center">
                     <th scope="col">#</th>
                     <th scope="col">Début du séjour</th>

@@ -993,3 +993,11 @@ svg #main-circ {
   list-style: none;
   padding-left: 40px;
 }
+
+/* TABLEAUX */
+.tableau_couleur{
+  background-color: rgba(32, 39, 123, 0.17);
+  border-top: transparent !important;
+  border-bottom: solid 2px #20247b;
+  color:#20247b;
+}
