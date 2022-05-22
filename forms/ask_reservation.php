@@ -238,8 +238,7 @@ displayCarousel($log_directory);
         }
 
     }
-    buildCalendar(new Date(2022, 5, 3), container);
-
+    
     var has_events = document.getElementsByClassName("day has-event");
     console.log(has_events);
     console.log(has_events.length);
