@@ -7,7 +7,7 @@ $reservations = getBookByIdUser($id_user);
 <section>
 <?php
 if(!empty($reservations)){
-    $cpt = 0;
+    $cpt = 1;
     ?>
     <table class="table">
         <thead>
