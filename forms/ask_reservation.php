@@ -187,17 +187,17 @@ displayCarousel($log_directory);
         <div class="profile-box">
                         <h2>Evaluations
                         <?php
-                        if (getNbNotes($id, 2) != 0){
+                        if (getNbNotes($id, 1) != 0){
                             ?>
-                            <NOBR><?php echo displayRateWithStars(getAverage($id, 2));?></NOBR></h2><?php
+                            <NOBR><?php echo displayRateWithStars(getAverage($id, 1));?></NOBR></h2><?php
                         } else {
                             ?></h2><p>Ce logement n'as encore reçu aucune évaluation</p><?php
                         }
-                        if (isset($_SESSION["id_user"]) && $_SESSION["id_user"] != $id && !isAlreadyRated($id, $_SESSION["id_user"], 2)){
-                                displayFormRateAndComment($id, 2);
+                        if (isset($_SESSION["id_user"]) && !isAlreadyRated($id, $_SESSION["id_user"], 1)){
+                                displayFormRateAndComment($id, 1);
                         } 
-                        if (getNbNotes($id, 2) != 0){
-                            displayRate($id, 2);
+                        if (getNbNotes($id, 1) != 0){
+                            displayRate($id, 1);
                         }
                         ?>
             </div> 
