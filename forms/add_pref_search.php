@@ -5,12 +5,12 @@ $cpt = 1;
 
 if(!empty($preferences)){
     ?>
-    <div>
-
-    <h4>Mes Préférences</h4>
+    <div class="marg_resa">
+        <div class="display-form-bg">
+    <h3 class="dark-color">Mes Préférences</h3>
 
     <table class="table table-striped table-hover">
-    <thead>
+    <thead class="tableau_couleur">
         <tr>
         <th class="text-center" scope="col">#</th>
         <th class="text-center" scope="col">Nom</th>
@@ -43,6 +43,7 @@ if(!empty($preferences)){
     </tbody>
     </table>
 
+    </div>
     </div>
 
 
