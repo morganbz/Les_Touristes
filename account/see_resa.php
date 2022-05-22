@@ -14,7 +14,7 @@ $housings = getHousingByIdOwner($id_owner);
 
             ?>
             <div class="d-flex justify-content-evenly">
-            <div><h4><a href="?page=ask_reservation&id_housing=<?php echo $housing["id"]; ?>"><?php echo $housing["nom"]; ?></a></h4></div>
+            <div><h4><a class = "lien_logement" href="?page=ask_reservation&id_housing=<?php echo $housing["id"]; ?>"><?php echo $housing["nom"]; ?></a></h4></div>
 
             <?php
             if($hasAskBook){
@@ -22,7 +22,7 @@ $housings = getHousingByIdOwner($id_owner);
                 <div>
                 
                 <?php
-                echo "<a class='btn btn-primary' href='?page=user_page&page_account=see_ask_resa&id_housing=".$housing['id']."' role='button'>Voir demande de reservation</a>"
+                echo "<a class='btn btn-outline-primary' href='?page=user_page&page_account=see_ask_resa&id_housing=".$housing['id']."' role='button'>Voir demande de reservation</a>"
                 ?>
                 </div>
                 <?php
@@ -34,13 +34,14 @@ $housings = getHousingByIdOwner($id_owner);
             <div>
                 <?php
                 if($hasBook){
+                    echo $hasBook;
                     $reservations = getAllBookByIdHousing($housing["id"]);
                     $cpt = 1;
 
                     ?>
-                    <table class="table">
-                        <thead>
-                            <tr>
+                     <table class="table table-bordered caption-top">
+                        <thead class="table-dark">
+                            <tr class="text-center">
                             <th scope="col">#</th>
                             <th scope="col">Début du séjour</th>
                             <th scope="col">Fin du séjour</th>
@@ -68,19 +69,14 @@ $housings = getHousingByIdOwner($id_owner);
 
                 }
                 else{
-                    echo "pas resa";
+                    ?>
+                    <p>Il n'y a pas de reservations pour ce logement.</p>
+                    <?php
                 }
                 ?>
 
             </div>
 
-            <?php
-        } else {
-            ?>
-            <div>
-                <a href="?page=ask_reservation&id_housing=<?php echo $housing["id"];?>"><h2><?php echo $housing["nom"];?></h2></a>
-                <p>Pas de réservations actuellement</p>
-            </div>
             <?php
         }
     }

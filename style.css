@@ -204,6 +204,9 @@ height: calc(100% - 19%);
   border: 2px solid rgba(32, 39, 123, 0.27);
   box-shadow: 0px 0px 20px rgba(31, 45, 61, 1);;
 }
+.lien_logement{
+  color: #20247b;
+}
 
 #housing_booking input, #housing_booking #select_date{
   background-color: rgba(240, 240, 240, 0.9);
