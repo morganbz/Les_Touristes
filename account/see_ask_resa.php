@@ -9,8 +9,8 @@
     $housing = getHousingById($id_housing);
 
     ?>
-    <label for="order">Trier par :</label>
-    <select class="form-select w-25"
+    <label class="catch_phrase" for="order">Trier par :</label>
+    <select class="form-select"
     aria-label="Default select example" name = 'order' id="order" onchange="window.location.href = (!(window.location.href.includes('&order='))) ? window.location.href.concat(this.value) : (window.location.href).substr(0, (window.location.href).indexOf('&order=')).concat(this.value)">
     <?php
     foreach($ORDER_FOR_ASK as $order){

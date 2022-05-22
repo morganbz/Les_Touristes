@@ -243,8 +243,8 @@ function displayHousingHistory($id, $isForUser){
         echo "<p> Pas d'anciennes réservations </p>";
     } else {
         ?>
-        <label for="order">Trier par :</label>
-        <select class="form-select w-25 mb-2" name = 'order' id="order" onchange="window.location.href = (!(window.location.href.includes('&order='))) ? window.location.href.concat(this.value) : (window.location.href).substr(0, (window.location.href).indexOf('&order=')).concat(this.value)">
+        <label class="catch_phrase" for="order">Trier par :</label>
+        <select class="form-select w-25 mb-3" name = 'order' id="order" onchange="window.location.href = (!(window.location.href.includes('&order='))) ? window.location.href.concat(this.value) : (window.location.href).substr(0, (window.location.href).indexOf('&order=')).concat(this.value)">
         <?php
         foreach($ORDER as $order){
             if (isset($_GET["order"])){
