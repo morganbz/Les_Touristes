@@ -1084,10 +1084,14 @@ function getConflict($demands, $order){
                                 else{
                                         array_push($conflicts, $curr_demands);
 
-                                        
-                                        
                                         $order_by = array_column($conflicts, $order);
-                                        array_multisort($order_by, SORT_DESC, $conflicts);
+                                        if($order == "date_start"){
+                                                array_multisort($order_by, SORT_ASC, $conflicts);
+                                        }
+                                        else{
+                                                array_multisort($order_by, SORT_DESC, $conflicts);
+
+                                        }
 
                                         array_push($res, $conflicts);
                                 }
