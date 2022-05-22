@@ -1037,7 +1037,7 @@ function getConflict($demands, $order){
         $no_conflicts = [];
         $is_done = false;
         if($order == 0){
-                $order = "nb_day";
+                //$order = "nb_day";
         }
 
         $note = "N/A";
