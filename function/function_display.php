@@ -543,6 +543,7 @@ function displayUser($id){
 }
 
 function displayFormRateAndComment($id, $type_rated){
+    $_SESSION["back_page"] = getUrl();
 ?>
 <div class="d-flex justify-content-center">
     <form action="index.php" method="post" class="w-50 text-center">

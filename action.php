@@ -595,8 +595,7 @@
 
             addRating($id_rated, $id_rater, $rate, $title, $message, $is_housing);
 
-            $page = "user_page";
-            $page_account = "see_activity";
+            header("Location: ".$_SESSION["back_page"]);
         }
 
 
