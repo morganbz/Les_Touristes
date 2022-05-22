@@ -155,7 +155,7 @@ html, body {
 
 #contener_connected {
 display: flex;
-height: calc(100% - 17% + 5px);
+height: calc(100% - 17% + 4px);
 }
 
 #search_housing_list {
