@@ -212,14 +212,6 @@ displayCarousel($log_directory);
     );
     let $calendar = container.data('plugin_simpleCalendar')
 
-    var newEvent = {
-    startDate: new Date(new Date().setHours(new Date().getHours() + 48)).toISOString(),
-    endDate: new Date(new Date().setHours(new Date().getHours() + 49)).getTime(),
-    summary: 'New event'
-    };
-
-    $calendar.addEvent(newEvent);
-
     var prices = document.getElementsByClassName("price_announce");
 
     var date_announces = document.getElementsByClassName("date_start_announce");
@@ -246,6 +238,7 @@ displayCarousel($log_directory);
         }
 
     }
+    buildCalendar(new Date(2022, 5, 3),$calendar);
 
     var has_events = document.getElementsByClassName("day has-event");
     console.log(has_events);
