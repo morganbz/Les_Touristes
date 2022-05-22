@@ -1,3 +1,7 @@
+:root{
+  --height-carousel: 0rem;
+}
+
 nav {
     z-index: 1000;
 }
@@ -183,7 +187,7 @@ height: calc(100% - 19%);
 .container_housing_book{
   position: absolute;
   z-index: 1;
-  top: 41rem;
+  top: calc(var(--height-carousel) + 9rem);
   right: 20px;
   height: 100em;
   width: 400px;

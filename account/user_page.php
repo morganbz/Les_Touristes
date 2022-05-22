@@ -4,18 +4,44 @@
 
 <nav class="navbar top-0 w-100 navbar-dark navbar-expand-sm bg-dark justify-content-center">
   <ul class="navbar-nav">
-    <li class="nav-item active"><a class="nav-link" href="?page=user_page&page_account=change_info">Modifier mes informations</a></li>
-    <li class="nav-item active"><a class="nav-link" href="?page=user_page&page_account=change_password">Modifier mon mot de passe</a></li>
-    <?php //<li class="nav-item active"><a class="nav-link" href="?page=user_page&page_account=see_recommandation">Voir mes recommandations</a></li>
-    //<li class="nav-item active"><a class="nav-link" href="?page=user_page&page_account=add_recommandation">Ajouter une recommandation</a></li>*/ ?>
-    <li class="nav-item active"><a class="nav-link" href="?page=user_page&page_account=see_announce">Voir mes logements</a></li>
-    <li class="nav-item active"><a class="nav-link" href="?page=user_page&page_account=add_announce">Ajouter un logement</a></li>
-    <li class="nav-item active"><a class="nav-link" href="?page=user_page&page_account=see_resa">Voir les réservations</a></li>
-    <li class="nav-item active"><a class="nav-link" href="?page=user_page&page_account=see_activity">Voir mes activités</a></li>
-    <li class="nav-item active"><a class="nav-link" href="?page=user_page&page_account=add_activity">Ajouter une activité</a></li>
-    <li class="nav-item active"><a class="nav-link" href="?page=user_page&page_account=housing_history">Historique de mes réservations</a></li>
-    <li class="nav-item active"><a class="nav-link" href="?page=user_page&page_account=add_pref_search">Voir mes préférences</a></li>
-    <li class="nav-item active"><a class="nav-link" href="?page=user_page&page_account=see_resa_client">Voir mes voyages à venir</a></li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Mes informations
+      </a>
+      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <li><a class="dropdown-item" href="?page=user_page&page_account=change_info">Modifier mon profil</a></li>
+        <li><a class="dropdown-item" href="?page=user_page&page_account=change_password">Modifier mon mot de passe</a></li>
+        <li><a class="dropdown-item" href="?page=user_page&page_account=add_pref_search">Voir mes préférences</a></li>
+      </ul>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Logements
+      </a>
+      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <li><a class="dropdown-item" href="?page=user_page&page_account=see_announce">Voir mes logements</a></li>
+        <li><a class="dropdown-item" href="?page=user_page&page_account=see_resa">Voir les réservations</a></li>
+        <li><a class="dropdown-item" href="?page=user_page&page_account=add_announce">Ajouter un logement</a></li>
+      </ul>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Activtiés
+      </a>
+      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <li><a class="dropdown-item" href="?page=user_page&page_account=see_activity">Voir mes activités</a></li>
+        <li><a class="dropdown-item" href="?page=user_page&page_account=add_activity">Ajouter une activité</a></li>
+      </ul>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Voyages
+      </a>
+      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <li><a class="dropdown-item" href="?page=user_page&page_account=see_resa_client">Voir mes voyages à venir</a></li>
+        <li><a class="dropdown-item" href="?page=user_page&page_account=housing_history">Historique de mes réservations</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
 

@@ -722,8 +722,12 @@ function displayCarousel($filePath){
     }
 
     $nb_images = count($images);
+    if($nb_images != 0){
     ?>
     <style>
+        :root{
+            --height-carousel: 32rem;
+        }
         .carousel-item{
             height:32rem;
             background:#777;
@@ -749,9 +753,7 @@ function displayCarousel($filePath){
             background-size:cover;
         }
     </style>
-<?php
-    if($nb_images != 0){
-        ?><div id="myCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel"><?php
+    <div id="myCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel"><?php
 
             echo '<ol class="carousel-indicators">';
             for($index = 0; $index < $nb_images; $index++){
