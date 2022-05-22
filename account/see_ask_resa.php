@@ -31,8 +31,7 @@ $first_demands = getAllBookAskByIdHousing($id_housing);
 if (isset($_GET["order"])){
     $conflicts = getConflict($first_demands, $_GET['order']);
 } else {
-    $conflicts = getConflict($first_demands, "nb
-    _day");
+    $conflicts = getConflict($first_demands, "nb_day");
 }
 
 $nb_conflits = 1;
