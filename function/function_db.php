@@ -1050,7 +1050,6 @@ function getConflict($demands, $order){
                                 $is_done = true;
                         }
                 }
-                $curr_demands['note'] = $order;
 
                 if(!$is_done){
                         $conflicts = [];
