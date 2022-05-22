@@ -52,7 +52,7 @@ $housings = getHousingByIdOwner($id_owner);
                             foreach($reservations as $reservation){
                                 $user = getUserById($reservation["id_user"]);
                                 ?>
-                                <tr>
+                                <tr class="text-center">
                                     <th scope="row"><?php echo $cpt; ?></th>
                                     <td><?php echo getNiceDate($reservation["date_start"]); ?></td>
                                     <td><?php echo getNiceDate($reservation["date_end"]); ?></td>
