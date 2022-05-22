@@ -43,13 +43,53 @@ html, body {
 .home-page-infos{
   position:absolute;
   margin: -20px 5vw auto 5vw;
+  padding: 10px;
   z-index:1;
 
   width: 90vw;
-  height: 500px;
+  min-height: 500px;
 
   background-color: rgba(255, 255, 255, 0.7);
   border-radius: 30px;
+}
+
+.gauche-img{
+  position: relative;
+  left: 30vw;
+}
+
+.gauche-txt{
+  position: relative;
+  left: 50vw;
+}
+
+.droite{
+  margin-left: 5vw !important;
+}
+
+.description-site h3{
+  width: max-content;
+  max-width: 90rem;
+}
+
+.home-page-infos .description-site{
+  border-left: 5px solid rgba(32, 39, 123, 0.27);
+  border-radius: 5px;
+  margin-bottom: 35px;
+  width: 75%;
+}
+
+.home-page-infos img{
+  transition: 1s;
+  border-radius:20px; 
+  height: 30rem; 
+  margin: 20px 0px;
+  box-shadow: 0px 0px 20px rgba(31, 45, 61, 0.2);
+}
+
+.home-page-infos img:hover{
+  transition: 1s;
+  height: 33rem; 
 }
 
 .home-page-counter{
