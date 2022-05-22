@@ -57,14 +57,14 @@ if(isset($_GET['resa'])){
                     <div class="d-flex align-items-start">
                         <h5><a href="?page=ask_reservation&id_housing=<?php echo $housing["id"]; ?>"><?php echo $housing['nom']?> </a></h5>
                     </div>
-                    <div class="d-flex align-items-start">
+                    <div class="d-flex align-items-start mb-4">
                         <div class="flex">
                             <label for="date_seach_arrive">Distance (en km)</label>
                             <br>
                             <input class="form-control" placeholder="20" type="int" name="distance" id="distanceModal">
                         </div>
                     </div>
-                    <div class="form-floating">
+                    <div class="d-flex align-items-start">
                         <select name="type_search" id="type_searchModal" class="form-select" aria-label="Default select example">
                             <option selected value = "-1" >tous type</option>
                             <?php
@@ -104,7 +104,7 @@ if(isset($_GET['resa'])){
 
         <div class="form-floating">
             <input class="form-control" placeholder="Jusqu'où en km" type="float" name="distance_search" id="distance_search" required>
-            <label class="form-label" for="distance_search">Distance</label>
+            <label class="form-label" for="distance_search">Distance (en km)</label>
         </div>
         <div class="form-floating">
             <select name="type_search" id="type_search" class="form-select" aria-label="Default select example">

@@ -266,7 +266,7 @@ function getLocation()
             for(let i = 0; i < results.length; i++){
 
                 if(results[i]['is_near'] == false){
-                    var div = "<div class='data_search border-secondary'><a href='?page=ask_reservation&id_housing="+ results[i]["id"] + "&date_start="+ response["arrive"] +"&date_end=" + response["departure"] + "' class='link_announce'><h4>" + results[i]["nom"] + "</h4>"+ results[i]['type'] + " situé au " + results[i]['adresse'] + "</p><p><em>Prix à la nuit : " + results[i]['price'] + "€ la journée</em></p><p>" + results[i]['description'] +"</p>";
+                    var div = "<div class='data_search border-secondary'><a href='?page=ask_reservation&id_housing="+ results[i]["id"] + "&date_start="+ response["arrive"] +"&date_end=" + response["departure"] + "' class='link_announce'><h4>" + results[i]["nom"] + "</h4>"+ results[i]['type'] + " situé au " + results[i]['adresse'] + "</p>" + results[i]['price'] + "€ la journée</em></p><p>" + results[i]['description'] +"</p>";
 
                     if(results[i]['nb_ask'] > 0){
                         if(results[i]['nb_ask'] == 1){

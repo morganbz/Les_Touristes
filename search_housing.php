@@ -60,17 +60,17 @@
 
                 <div class="form-floating">
                     <input class="form-control" placeholder="Quel prix min en €" type="float" name="price_search_min" id="price_search_min" required>
-                    <label class="form-label" for="price_search_min">Prix Minimum</label>
+                    <label class="form-label" for="price_search_min">Prix Minimum (en €)</label>
                 </div>
 
                 <div class="form-floating">
                     <input class="form-control" placeholder="Quel prix max en €" type="float" name="price_search_max" id="price_search_max" required>
-                    <label class="form-label" for="price_search_max">Prix Maximum</label>
+                    <label class="form-label" for="price_search_max">Prix Maximum (en €)</label>
                 </div>
 
                 <div class="form-floating">
                     <input class="form-control" placeholder="Jusqu'où en km" type="float" name="distance_search" id="distance_search" required>
-                    <label class="form-label" for="distance_search">Distance</label> 
+                    <label class="form-label" for="distance_search">Distance (en km)</label> 
                 </div>
                 
                 <button class="btn btn-outline-primary ms-5" onclick="getLocation()">Rechercher</button>
