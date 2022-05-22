@@ -125,8 +125,9 @@ function setMarkers(map,locations) {
                 if (station['isHousing'] == 0) {
                     infoWindow.setContent(
                         "<div id='infoWindow'>"
+                        +"<a target = '_blank' href='?page=activity&a="+ station["id"] + "' class='link_announce'>"
                         +"<p>Nom : "+station['nom']+"<p>"
-                        +"<p>Type de logement : " + station['type'] + "<p>"
+                        +"<p>Type : " + station['type'] + "<p>"
                         +"<p>Adresse : "+station['adresse']+"<p>"
                         +"</div>"
                     );
@@ -134,6 +135,7 @@ function setMarkers(map,locations) {
                 else{
                     infoWindow.setContent(
                         "<div id='infoWindow'>"
+                        +"<a target = '_blank' href='?page=ask_reservation&id_housing="+ station["id"] + "' class='link_announce'>"
                         +"<p>Nom : "+station['nom']+"<p>"
                         +"<p>Type de logement : " + station['type'] + "<p>"
                         +"<p>Adresse : "+station['adresse']+"<p>"
@@ -266,7 +268,7 @@ function getLocation()
             for(let i = 0; i < results.length; i++){
 
                 if(results[i]['is_near'] == false){
-                    var div = "<div class='data_search border-secondary'><a href='?page=ask_reservation&id_housing="+ results[i]["id"] + "&date_start="+ response["arrive"] +"&date_end=" + response["departure"] + "' class='link_announce'><h4>" + results[i]["nom"] + "</h4>"+ results[i]['type'] + " situé au " + results[i]['adresse'] + "</p><p><em>" + results[i]['price'] + "€ la journée</em></p><p>" + results[i]['description'] +"</p>";
+                    var div = "<div class='data_search border-secondary'><a target = '_blank' href='?page=ask_reservation&id_housing="+ results[i]["id"] + "&date_start="+ response["arrive"] +"&date_end=" + response["departure"] + "' class='link_announce'><h4>" + results[i]["nom"] + "</h4>"+ results[i]['type'] + " situé au " + results[i]['adresse'] + "</p><p><em>" + results[i]['price'] + "€ la journée</em></p><p>" + results[i]['description'] +"</p>";
 
                     if(results[i]['nb_ask'] > 0){
                         if(results[i]['nb_ask'] == 1){
@@ -301,7 +303,7 @@ function getLocation()
                         day: 'numeric'});
 
 
-                        var div = "<div class='data_search border-secondary'><a href='?page=ask_reservation&id_housing="+ results[i]["id"] + "&date_start="+ response["arrive"] +"&date_end=" + response["departure"] + "&near=ok' class='link_announce'><h4>" + results[i]["nom"] + "</h4>"+ results[i]['type'] + " situé au " + results[i]['adresse'] + "</p><p><em>" + results[i]['price'] + "€ la journée</em></p><p>" + results[i]['description'] +"</p>" + "<p class='text-danger'><em>" + "indisponible pour ces dates, voir du <strong>" + dateLocale1 + "</strong> au <strong>" + dateLocale2 + "</strong>";
+                        var div = "<div class='data_search border-secondary'><a target = '_blank' href='?page=ask_reservation&id_housing="+ results[i]["id"] + "&date_start="+ response["arrive"] +"&date_end=" + response["departure"] + "&near=ok' class='link_announce'><h4>" + results[i]["nom"] + "</h4>"+ results[i]['type'] + " situé au " + results[i]['adresse'] + "</p><p><em>" + results[i]['price'] + "€ la journée</em></p><p>" + results[i]['description'] +"</p>" + "<p class='text-danger'><em>" + "indisponible pour ces dates, voir du <strong>" + dateLocale1 + "</strong> au <strong>" + dateLocale2 + "</strong>";
 
                     var size = results[i]['dates'].length;
 
@@ -359,7 +361,7 @@ function getLocationActivity()
             }
             $("#search_activity_list").empty();
             for(let i = 0; i < results.length; i++){
-                $("#search_activity_list").append("<div class='data_search'><a href='?page=activity&a="+ results[i]["id"]+"' class='link_announce'><h4>" + results[i]['nom'] + "</h4><p>Type de logement : " + results[i]['type'] + "</p><p>Adresse : " + results[i]['adresse'] + "</p><p>Description : " + results[i]['description'] + "</p></a></div>");
+                $("#search_activity_list").append("<div class='data_search'><a target = '_blank' href='?page=activity&a="+ results[i]["id"]+"' class='link_announce'><h4>" + results[i]['nom'] + "</h4><p>Type de logement : " + results[i]['type'] + "</p><p>Adresse : " + results[i]['adresse'] + "</p><p>Description : " + results[i]['description'] + "</p></a></div>");
             }
         },
         error: function (response) {
@@ -399,7 +401,7 @@ function getLocationActivityModal()
             }
             $("#search_activity_list").empty();
             for(let i = 0; i < results.length; i++){
-                $("#search_activity_list").append("<div class='data_search'><a href='?page=activity&a="+ results[i]["id"]+"' class='link_announce'><h4>" + results[i]['nom'] + "</h4><p>Type de logement : " + results[i]['type'] + "</p><p>Adresse : " + results[i]['adresse'] + "</p><p>Description : " + results[i]['description'] + "</p></a></div>");
+                $("#search_activity_list").append("<div class='data_search'><a target = '_blank' href='?page=activity&a="+ results[i]["id"]+"' class='link_announce'><h4>" + results[i]['nom'] + "</h4><p>Type de logement : " + results[i]['type'] + "</p><p>Adresse : " + results[i]['adresse'] + "</p><p>Description : " + results[i]['description'] + "</p></a></div>");
             }
         },
         error: function (response) {

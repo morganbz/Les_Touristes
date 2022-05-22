@@ -155,11 +155,11 @@ html, body {
 
 #contener_connected {
 display: flex;
-height: calc(100% - 19%);
+height: calc(100% - 17% + 5px);
 }
 
 #search_housing_list {
-  height: calc(100% - 15% - 50px);
+  height: calc(100% - 15% - 62px);
   width: 50%;
   overflow-y: scroll;
   position: fixed;
