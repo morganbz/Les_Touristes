@@ -1,50 +1,5 @@
 <?php
 
-
-/*function displaySearch($array_housing){
-    $TYPE_HOUSING = array("Maison", "Appartement", "Chalet", "Refuge");
-
-    echo "<section>";
-        if(count($array_housing) == 0){
-            echo "Aucun Logement ne correspond à votre recherche.";
-        }
-        else{
-            echo "il y a ".count($array_housing) ." logements correspondant à votre recherche :";
-            foreach($array_housing as $housing){
-                echo "<article>";
-
-                echo "<div>";
-                echo "Nom : " . $housing["nom"];
-                echo "</div>";
-
-                echo "<div>";
-                echo "prix par nuit : " . $housing["price"];
-                echo "</div>";
-
-                echo "<div>";
-                echo "adresse : " . getAddress($housing["latitude"], $housing["longitude"]);
-                echo "</div>";
-
-                echo "<div>";
-                echo "type de logement : " . $TYPE_HOUSING[intval($housing["type"])];
-                echo "</div>";
-
-                echo "</article>";
-                echo "<br>";
-            }
-        }
-    echo "</section>";
-}*/
-
-/*function displayHousingForBooking($id_housing){
-
-    $housing = getHousingById($id_housing);
-    $announces = getAnnounceByIdHousing($id_housing);
-
-
-
-}*/
-
 function displayAskReservation($data){
     $id_housing = -1;
     echo "<section class='asking_section'>";
@@ -267,6 +222,7 @@ function displayHousingHistory($id, $isForUser){
     global $ORDER_FOR_USER;
     global $ORDER_FOR_OWNER;
 
+    ?><div class="marg_resa mt-3"><div class="display-form-bg"><?php
     if ($isForUser){
         $ORDER = $ORDER_FOR_USER;
         if (isset($_GET["order"])){
@@ -287,8 +243,8 @@ function displayHousingHistory($id, $isForUser){
         echo "<p> Pas d'anciennes réservations </p>";
     } else {
         ?>
-        <label for="order">Trier par :</label>
-        <select name = 'order' id="order" onchange="window.location.href = (!(window.location.href.includes('&order='))) ? window.location.href.concat(this.value) : (window.location.href).substr(0, (window.location.href).indexOf('&order=')).concat(this.value)">
+        <label class="catch_phrase" style="margin-top: 0px !important;" for="order">Trier par :</label>
+        <select class="form-select w-25 mb-3" name = 'order' id="order" onchange="window.location.href = (!(window.location.href.includes('&order='))) ? window.location.href.concat(this.value) : (window.location.href).substr(0, (window.location.href).indexOf('&order=')).concat(this.value)">
         <?php
         foreach($ORDER as $order){
             if (isset($_GET["order"])){
@@ -305,9 +261,9 @@ function displayHousingHistory($id, $isForUser){
         $cpt = 1;
         ?>
         </select>
-        <div>
+        
             <table class="table">
-                <thead>
+                <thead class="tableau_couleur">
                     <tr>
                     <th scope="col">#</th>
                     <th scope="col">Début du séjour</th>
@@ -338,7 +294,7 @@ function displayHousingHistory($id, $isForUser){
                 ?>
                 </tbody>
             </table>
-    </div>
+    </div></div>
     <?php
     }
 }
