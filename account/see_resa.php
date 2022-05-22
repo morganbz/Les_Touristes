@@ -56,7 +56,7 @@ $housings = getHousingByIdOwner($id_owner);
                                     <th scope="row"><?php echo $cpt; ?></th>
                                     <td><?php echo getNiceDate($reservation["date_start"]); ?></td>
                                     <td><?php echo getNiceDate($reservation["date_end"]); ?></td>
-                                    <td><a href="?page=user&u=<?php echo $reservation["id_user"]; ?>"><?php echo $user["mail"]; ?></a></td>
+                                    <td><a class = "lien_logement" href="?page=user&u=<?php echo $reservation["id_user"]; ?>"><?php echo $user["mail"]; ?></a></td>
                                 </tr>
                             <?php
                             $cpt++;
