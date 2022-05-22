@@ -720,6 +720,7 @@ function displayCarousel($filePath){
     foreach(glob($filePath.'/*.*') as $file) {
         $images[] = $file;
     }
+   
 
     $nb_images = count($images);
     if($nb_images != 0){
@@ -775,7 +776,7 @@ function displayCarousel($filePath){
                 <?php
                 for ($index = 1; $index < $nb_images; $index++) { 
                     ?><div class="carousel-item">
-                        <div class="overlay-image" style="background-image:url('<? echo $images[$index]; ?>');"></div>
+                        <div class="overlay-image" style="background-image:url('<?php echo $images[$index]; ?>');"></div>
                             <div class="container">
                             </div>
                         </div>
