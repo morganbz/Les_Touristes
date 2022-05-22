@@ -6,6 +6,7 @@ $cpt = 1;
 
 if(!empty($reservations)){
     ?>
+    <div class = "display-form-bg mb-4">
     <table class="table table-bordered caption-top">
         <thead class="table-dark">
             <tr class="text-center">
@@ -59,6 +60,7 @@ if(!empty($reservations)){
 
         </tbody>
     </table>
+    </div>
 
     <?php
 }
