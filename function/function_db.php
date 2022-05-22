@@ -1085,6 +1085,7 @@ function getConflict($demands, $order){
                                         array_push($conflicts, $curr_demands);
 
                                         
+                                        
                                         $order_by = array_column($conflicts, $order);
                                         array_multisort($order_by, SORT_DESC, $conflicts);
 
