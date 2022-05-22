@@ -1744,7 +1744,7 @@ function getRecommandationOfUser ($id){
         while ($row = mysqli_fetch_assoc($results)){
                 if ($row["type"] == 1){
                         $info = getHousingById($row["id_recommandated"]);
-                        $url = "?page=housing&h=";
+                        $url = "?page=housing&id_housing=";
                         $nom = $info["nom"];
                 } elseif ($row["type"] == 2){
                         $info = getActivityById($row["id_recommandated"]);
