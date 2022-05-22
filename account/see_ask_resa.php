@@ -44,7 +44,7 @@ foreach($conflicts as $demands){
     $is_conflict = false;
     $cpt = 1;
     ?>
-    <div class = "display-form-bg">
+    <div class = "display-form-bg mb-4">
     <?php
 
     if(!($demands == end($conflicts))){
