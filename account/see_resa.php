@@ -13,23 +13,24 @@ $housings = getHousingByIdOwner($id_owner);
         if($hasBook || $hasAskBook){
 
             ?>
+            <div class = "display-form-bg">
             <div class="d-flex justify-content-evenly">
-            <div><h4><a class = "lien_logement" href="?page=ask_reservation&id_housing=<?php echo $housing["id"]; ?>"><?php echo $housing["nom"]; ?></a></h4></div>
+                <div><h4><a class = "lien_logement" href="?page=ask_reservation&id_housing=<?php echo $housing["id"]; ?>"><?php echo $housing["nom"]; ?></a></h4></div>
 
-            <?php
-            if($hasAskBook){
-                ?>
-                <div>
-                
                 <?php
-                echo "<a class='btn btn-outline-primary' href='?page=user_page&page_account=see_ask_resa&id_housing=".$housing['id']."' role='button'>Voir demande de reservation</a>"
+                if($hasAskBook){
+                    ?>
+                    <div>
+                    
+                    <?php
+                    echo "<a class='btn btn-outline-primary' href='?page=user_page&page_account=see_ask_resa&id_housing=".$housing['id']."' role='button'>Voir demande de reservation</a>"
+                    ?>
+                    </div>
+                    <?php
+
+                }
                 ?>
                 </div>
-                <?php
-
-            }
-            ?>
-            </div>
 
             <div>
                 <?php
@@ -39,7 +40,7 @@ $housings = getHousingByIdOwner($id_owner);
 
                     ?>
                      <table class="table table-bordered caption-top">
-                        <thead class="table-dark">
+                        <thead class="tableau_couleur">
                             <tr class="text-center">
                             <th scope="col">#</th>
                             <th scope="col">Début du séjour</th>
@@ -52,7 +53,7 @@ $housings = getHousingByIdOwner($id_owner);
                             foreach($reservations as $reservation){
                                 $user = getUserById($reservation["id_user"]);
                                 ?>
-                                <tr class="text-center">
+                                <tr>
                                     <th scope="row"><?php echo $cpt; ?></th>
                                     <td><?php echo getNiceDate($reservation["date_start"]); ?></td>
                                     <td><?php echo getNiceDate($reservation["date_end"]); ?></td>
@@ -74,6 +75,7 @@ $housings = getHousingByIdOwner($id_owner);
                 }
                 ?>
 
+            </div>
             </div>
 
             <?php

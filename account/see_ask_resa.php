@@ -41,6 +41,9 @@ foreach($conflicts as $demands){
     $caption = "";
     $is_conflict = false;
     $cpt = 1;
+    ?>
+    <div class = "display-form-bg">
+    <?php
 
     if(!($demands == end($conflicts))){
         $caption = "Conflit n°". $nb_conflits;
@@ -200,6 +203,7 @@ foreach($conflicts as $demands){
             </tbody>
         </table>
 
+        </div>
 
     <?php
     }
