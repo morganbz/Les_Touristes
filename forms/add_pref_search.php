@@ -52,7 +52,7 @@ if(!empty($preferences)){
 }
 ?>
 
-<div class="container h-100" style="width:60%;">
+<div class="container h-100">
     <div class="align-items-center m-3 display-form-bg">
         <div class="col-lg-15" >
             <div class="about-text go-to">
